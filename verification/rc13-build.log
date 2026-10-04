@@ -1,0 +1,15 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.8.0-rc.13 build
+> tsc -p tsconfig.json && npm run mesh:bundle && npm run realm:bundle && npm run visual:bundle
+
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(250,14): error TS2503: Cannot find namespace 'Emscripten'.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(254,18): error TS2693: 'FS' only refers to a type, but is being used as a value here.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(256,16): error TS2503: Cannot find namespace 'Emscripten'.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(257,17): error TS2503: Cannot find namespace 'Emscripten'.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(262,36): error TS2304: Cannot find name 'EmscriptenModule'.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(276,14): error TS2503: Cannot find namespace 'Emscripten'.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(914,69): error TS2304: Cannot find name 'AsyncDisposable'.
+node_modules/@electric-sql/pglite/dist/pglite-CpaPhfpC.d.ts(989,13): error TS2550: Property 'asyncDispose' does not exist on type 'SymbolConstructor'. Do you need to change your target library? Try changing the 'lib' compiler option to 'esnext' or later.
+node_modules/@electric-sql/pglite/dist/worker/index.d.ts(7,75): error TS2304: Cannot find name 'AsyncDisposable'.
+node_modules/@electric-sql/pglite/dist/worker/index.d.ts(44,13): error TS2550: Property 'asyncDispose' does not exist on type 'SymbolConstructor'. Do you need to change your target library? Try changing the 'lib' compiler option to 'esnext' or later.

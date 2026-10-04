@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "bytes": 2401
+  },
+  {
+    "path": "/dist/realm-runtime.js",
+    "status": 200,
+    "bytes": 3735
+  },
+  {
+    "path": "/dist/preview-client.js",
+    "status": 200,
+    "bytes": 9681
+  },
+  {
+    "path": "/package.json",
+    "status": 404,
+    "bytes": 0
+  },
+  {
+    "path": "/src/realm-runtime.ts",
+    "status": 404,
+    "bytes": 0
+  }
+]

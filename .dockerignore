@@ -1,0 +1,11 @@
+node_modules
+runtime
+legacy
+reference-source
+verification
+audit
+references
+.git
+.env
+*.zip
+*.sqlite*

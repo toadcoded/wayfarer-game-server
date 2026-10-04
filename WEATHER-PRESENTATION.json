@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "authority": "cosmetic client presentation",
+  "clock": "validated game tick * 50ms; render time before joining",
+  "normalizedFields": [
+    "humidity",
+    "cloudWater",
+    "rain",
+    "wetness"
+  ],
+  "skyMeshes": 5,
+  "rainSlots": 64,
+  "nonzeroRainByQuality": {
+    "balanced": 24,
+    "high": 48,
+    "maximum": 64
+  },
+  "chunkCacheLimit": 16,
+  "chunkRefreshMs": 1000,
+  "affectsGameplay": false,
+  "durableWeather": false
+}

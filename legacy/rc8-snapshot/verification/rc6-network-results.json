@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "events": 4,
+      "hash": "5c04e9e6f708aeff674b6cca7450a908b0b04dad9f28b72e299f94d50295998d",
+      "complete": true
+    },
+    {
+      "events": 4,
+      "hash": "5c04e9e6f708aeff674b6cca7450a908b0b04dad9f28b72e299f94d50295998d",
+      "complete": true
+    }
+  ],
+  "scope": "Fresh real WebSocket capture across local profile store restart; not browser evidence"
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "file": "gemini_generated_video_EC06700E(1).mp4",
+    "bytes": 18470917,
+    "sha256": "e15df77d977d8bad7b36e66f51492c30110f8f243c8aef26d3432ae840c284e9",
+    "role": "visual direction only, not implemented world geometry"
+  },
+  {
+    "file": "0C8B5D83-5841-4C96-8F66-6B007D31EBCB(1).jpeg",
+    "bytes": 736357,
+    "sha256": "abf0e2a9fb8c938de86d6c7539dcf50df24756211bec8811a8db593fcf5e3c28",
+    "role": "visual direction only, not implemented world geometry"
+  },
+  {
+    "file": "CDD1AD3D-5ECD-40CB-9D4C-885110CA18A1(1).jpeg",
+    "bytes": 787971,
+    "sha256": "a9af308b50911a49dcf41ac77b8a7f27e9e5770e495ab141f749a302038d121d",
+    "role": "visual direction only, not implemented world geometry"
+  },
+  {
+    "file": "D224CFE5-3C51-4360-9B66-07F1C79421B7(1).jpeg",
+    "bytes": 644220,
+    "sha256": "4b550641a66c1a003c2f4ec41ca5b5b7baa3989479765971a127c099c5710e34",
+    "role": "visual direction only, not implemented world geometry"
+  }
+]

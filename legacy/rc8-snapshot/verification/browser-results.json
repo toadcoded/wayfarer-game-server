@@ -1,0 +1,22 @@
+{
+  "browser": "153.0.8010.0",
+  "checks": [
+    "Sprite PNG fetch and ImageBitmap decode succeed",
+    "Two real browser clients join and receive shared snapshots",
+    "Appearance choice reaches the other browser through server state",
+    "Distant beacon action rejected by authoritative position",
+    "Keyboard movement crosses actual causeway; beacon lights in both browsers",
+    "Full Quiet Tithe journey: accept, cross, gather three, return, receive one private reward",
+    "Reward claim consumes one token; private pack and shared equip/stow work through both browsers",
+    "Explicit disconnect and rejoin succeed",
+    "390×844 touch viewport, controls, reduced motion and no horizontal overflow",
+    "Live browser session replay verified at every recorded event: da3842a8dfaa7af9fd92ba3ed02d4ddfcd416849d1aded1fa824928a6c96e79c"
+  ],
+  "errors": [],
+  "limits": [
+    "Chromium software rendering only",
+    "Mobile viewport emulation, not physical iOS/Android",
+    "No Firefox/WebKit run",
+    "Babylon lab unchanged; previous initialization evidence retained separately"
+  ]
+}

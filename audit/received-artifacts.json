@@ -1,0 +1,276 @@
+{
+  "inspectionDate": "2026-10-01",
+  "artifacts": [
+    {
+      "filename": "wayfarer-integration-investigation.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 7335,
+      "sha256": "0e08be505ee8ed4bb80571bfd0c07a75e2667175136c258007364cb633a50ba0",
+      "entries": 4,
+      "uncompressedBytes": 14646,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7-handoff.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4049920,
+      "sha256": "73f64f4fae37b2a1d871c2456fc5cdfb26cd3981bf31ab5558fab46cb31995db",
+      "error": "Not a valid ZIP; preserved without extraction"
+    },
+    {
+      "filename": "wayfarer-v0.7-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4141270,
+      "sha256": "d0e109e34962bd9ab0c4bc767169d44dd622ecb6a3f01568828151e7b529d0e1",
+      "entries": 265,
+      "uncompressedBytes": 17561880,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.1-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4149803,
+      "sha256": "ae829b333ec051c737b08688ae197e46e9614acb380aba116266df97ec80a429",
+      "entries": 268,
+      "uncompressedBytes": 17579858,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.2-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4173556,
+      "sha256": "72b27ceb75f8607ef8f552d14c023e14434e3d7bd291a19f90471de63ac45345",
+      "entries": 282,
+      "uncompressedBytes": 17631711,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.3-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4189363,
+      "sha256": "4154e844bf0c17d4165f57dcf926aec484c039ec36412fdb810bbf0040d535ce",
+      "entries": 291,
+      "uncompressedBytes": 17666261,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.4-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4202524,
+      "sha256": "0d865ff121c7dfbc8889392ea194515aa5746ea309e394730b7ffadf087afc19",
+      "entries": 298,
+      "uncompressedBytes": 17696497,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.5-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4301869,
+      "sha256": "617b5534578270b995125eff114eaeec36e8fbe1f484e29c94dbfcc96cdcd132",
+      "entries": 311,
+      "uncompressedBytes": 17762616,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.6-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 4317641,
+      "sha256": "f214696fb9a3e47b053d1752c77eda0fdf5b2561b16052d7fcee499c7f2570cb",
+      "entries": 318,
+      "uncompressedBytes": 17844432,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.7-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 5058710,
+      "sha256": "ec4ec91e9e8f0ef95c8cfce22db1db5961e20687eb3a6c10d218090230ea20ae",
+      "entries": 352,
+      "uncompressedBytes": 18650239,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.8-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 6695416,
+      "sha256": "836f21f572eca48c772ac0d0399de840dabec334e31c10c1867c804ac55e67e3",
+      "entries": 381,
+      "uncompressedBytes": 25943051,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.9-abc-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 6751235,
+      "sha256": "d0b6a60768c9ed4db0faad90430a92b9c7dea0886ae38620d9fcd632ae8d3a7a",
+      "entries": 398,
+      "uncompressedBytes": 26073320,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.9-runtime.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 6727054,
+      "sha256": "e167225aeef935a17aae6b884e253255c84076db8379372c7f13bac98998cb3b",
+      "entries": 391,
+      "uncompressedBytes": 26023256,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.8-candidate.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 6974060,
+      "sha256": "5ed4d1f7f114e3e63aebe9b37995d82aae4bdf2025145468bf95d1b09fe5d479",
+      "entries": 425,
+      "uncompressedBytes": 26335927,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-world-typescript.zip",
+      "source": "preserved workspace artifact",
+      "bytes": 474524,
+      "sha256": "54bd914d453220e6cb7123d5eee7fddc77ead28f51eda1d8637990fef39ddabb",
+      "entries": 55,
+      "uncompressedBytes": 610550,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "first-lantern-production-2026-10-01.zip",
+      "source": "user attachment",
+      "bytes": 845421,
+      "sha256": "0595a7913b79c4e0428d7792c973276a0f6617c0780cd01a423063604620230f",
+      "entries": 48,
+      "uncompressedBytes": 3325768,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "mmorpg-chat-export-2026-10-01.zip",
+      "source": "user attachment",
+      "bytes": 114453464,
+      "sha256": "aff6790df105427e3ea217e432771657c083470af9ecc6c1b460503cecff2329",
+      "entries": 1052,
+      "uncompressedBytes": 136718095,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "polycodex-complete-delivery.zip",
+      "source": "user attachment",
+      "bytes": 6925219,
+      "sha256": "ab921513fd2bd76dcff0ef63ff5651d28b89413d8439065b0fb60e0b65378f3d",
+      "entries": 259,
+      "uncompressedBytes": 27272507,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.4(1).zip",
+      "source": "user attachment",
+      "bytes": 4168549,
+      "sha256": "a3e6a345f605780939e5dc801ba8885c877277956a22ef99e341d1a40b37fa28",
+      "entries": 241,
+      "uncompressedBytes": 17447269,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.5-preparation(1).zip",
+      "source": "user attachment",
+      "bytes": 7319306,
+      "sha256": "1a8e1d3a4d7c9644672148aad0625fbbdeeb62fa9a7525ed3e28df804d2508a5",
+      "entries": 872,
+      "uncompressedBytes": 15383192,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.6-preparation(1).zip",
+      "source": "user attachment",
+      "bytes": 9415285,
+      "sha256": "ab8a088a05168137e27768039809dc7b053e9541fcb266663c2c8fd1d71dad7f",
+      "entries": 144,
+      "uncompressedBytes": 10671443,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7-handoff(1).zip",
+      "source": "user attachment",
+      "bytes": 13625742,
+      "sha256": "dbace2c2c768cf7c30c674b700d23e2721683cc3a213b66c365c2bc15f5bd3f5",
+      "entries": 8,
+      "uncompressedBytes": 14023791,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.7.9-abc-runtime(1).zip",
+      "source": "user attachment",
+      "bytes": 6751235,
+      "sha256": "d0b6a60768c9ed4db0faad90430a92b9c7dea0886ae38620d9fcd632ae8d3a7a",
+      "entries": 398,
+      "uncompressedBytes": 26073320,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-v0.8-candidate(1).zip",
+      "source": "user attachment",
+      "bytes": 6974060,
+      "sha256": "5ed4d1f7f114e3e63aebe9b37995d82aae4bdf2025145468bf95d1b09fe5d479",
+      "entries": 425,
+      "uncompressedBytes": 26335927,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-world-typescript.zip",
+      "source": "user attachment",
+      "bytes": 28420,
+      "sha256": "36660dba92b64c526bbd2194607242dbdbfb928a82c9a242c8c48a6bb0235c8c",
+      "entries": 19,
+      "uncompressedBytes": 66325,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-world-typescript2.zip",
+      "source": "user attachment",
+      "bytes": 52484,
+      "sha256": "a6ba01208d3d5dc986ca5b64ea1c19ebe1de3829285d358763c94f14114f8974",
+      "entries": 34,
+      "uncompressedBytes": 125367,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    },
+    {
+      "filename": "wayfarer-world-typescript3.zip",
+      "source": "user attachment",
+      "bytes": 52484,
+      "sha256": "a6ba01208d3d5dc986ca5b64ea1c19ebe1de3829285d358763c94f14114f8974",
+      "entries": 34,
+      "uncompressedBytes": 125367,
+      "unsafePathOrLinkCount": 0,
+      "crcValid": true
+    }
+  ],
+  "notAvailable": [
+    "12 GB Drive/iCloud upload: no file or share link supplied",
+    "The two archive paths named by uploaded SHA256SUMS.txt"
+  ]
+}

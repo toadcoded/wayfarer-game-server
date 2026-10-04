@@ -1,0 +1,8 @@
+{
+  "passed": false,
+  "stage": "Chromium launch before page startup",
+  "failure": "SIGSEGV",
+  "attempts": 2,
+  "freshBrowserGate": "open",
+  "runtime": "bundled Chromium 153; second attempt supplied runtime libraries and disabled single-process mode"
+}

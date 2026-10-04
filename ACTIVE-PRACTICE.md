@@ -1,0 +1,15 @@
+# Active practice contract
+
+Every starter skill has three verbs in src/practice-interaction.ts: for example woodcutting aligns, braces and chops; fishing aims, casts and reels; prayer breathes, reflects and centres. PRACTICE-METHODS.json lists each skill’s drill and phase verbs. The unchanged small practice fixtures stay on checked ground beside Halden.
+
+A start command selects only a known skill. It awards nothing, charges the existing 100-tick recovery and creates a private, session-only challenge. Gathering starts select the existing profession and use the far landing’s eight-metre range. Practice uses the three-metre camp zone. Each profile has at most one active challenge across both.
+
+A response is `{kind:"action",sequence:1,action:"practice-step",value:"p1-1-0/0/2"}`. The value encodes the server-issued token, current step and chosen pad. Cancellation uses the same action with value `cancel`. Responses cannot provide XP, materials, position, time, health, reward kind or player identity. Tokens include the active player ID, starting tick and starting action sequence. Local sequence checks and exact step matching reject reuse. The server owns every field in the challenge.
+
+Each accepted correct response advances one of three steps; adjacent correct pads always differ. Per-step earliest response is 8–20 server ticks after that step is created. Early responses give no progression. Wrong current answers end the attempt; stale answers do not overwrite a newer step. Full completion awards once, then removes the challenge. Replay-friendly variation uses a deterministic hash, not cryptographic unpredictability. Knowledgeable automation can observe/predict and respond; this gate must never be described as proof of human input or total macro prevention.
+
+The whole attempt expires after 300 ticks. Near-deadline partial answers are closed safely if another step cannot fit. Leaving the range or losing health cancels the live prompt. Disconnecting retains the attempt cooldown but discards the unfinished prompt; there is no offline XP, catch-up, recovery reset or restored partial reward. Expiry/cancellation produce no punishment beyond the already charged bounded recovery.
+
+Resource rewards remain 25 selected-profession XP and the existing tool yield on complete gather, subject to pack capacity and the existing gathering reducer. The shared 100-tick starter gate limits sustained gathering to at most 18,000 XP/hour before walking/banking and practice to at most 720 XP/hour. The starter gate currently dominates the shorter level-derived gathering cooldown; richer methods can later use the finer gathering bonuses. Level/XP caps and exclusive XP ownership remain unchanged.
+
+Client prompts use text and stars as well as colour; no forced focus changes, mouse-path collection, speed challenge, behavioural ban or hidden suspicion score. A fifteen-second deadline with three settling periods is intentionally forgiving, though accessibility/device usability still needs physical user testing. Character gestures are cosmetic, local and reduced-motion aware; only server steps affect rewards.

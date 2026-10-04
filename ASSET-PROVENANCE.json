@@ -1,0 +1,44 @@
+[
+  {
+    "asset": "adventurer",
+    "sourceFileId": "file_00000000bac081f9b11c430f8d10434a",
+    "originalGifSHA256": "4f51eae9e02b602ee56cdd8022bc98367fe3054a1ffedcef638e9e667eae6148",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  },
+  {
+    "asset": "elder",
+    "sourceFileId": "file_000000007ed881f99002043d90b47f84",
+    "originalGifSHA256": "daf58e879761178fa10c0dbf586eef6b5f7df5cceb8ef96d4f019acd67bfd575",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  },
+  {
+    "asset": "lantern",
+    "sourceFileId": "file_00000000576081f9af0c6cc74494524f",
+    "originalGifSHA256": "53aa2634dddd1129c0cc3fd5c1222189beb75896c61ad3207bd49dfa2e3d97e9",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  },
+  {
+    "asset": "traveler",
+    "sourceFileId": "file_00000000b94481f981e7eb68127b42d6",
+    "originalGifSHA256": "963c8c55ea8252da54f7a19d7a00e80018aac12e015d8f50e1a57f25f2ab78e6",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  },
+  {
+    "asset": "villager",
+    "sourceFileId": "file_00000000fc6081f992b29c4a9c98bd17",
+    "originalGifSHA256": "0ffcef9c11f844ba42ff1668b84d016d3347f46c8b267104582a1c04598eff9b",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  },
+  {
+    "asset": "boar",
+    "sourceFileId": "file_000000001ebc81f9bbcdc7fec70959af",
+    "originalGifSHA256": "7bf3814677b5f2eaf937ef6783fadc4ae748c19195147e1898c3fbb5203ed36f",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  },
+  {
+    "asset": "stump",
+    "sourceFileId": "file_00000000ac1481f9b02b1a190ff171e3",
+    "originalGifSHA256": "3312ba24f8c601d9f6282b69db04ce68944b36bb7ad61bb47585bf7a3db96788",
+    "processing": "Original GIF preserved; composited frames packed losslessly as PNG. Magenta keyed only by browser display code."
+  }
+]

@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {NullEngine} from '@babylonjs/core';import {Realm3D} from '../dist/realm-3d.js';import {GameActions} from '../dist/game-actions.js';
+test('graphics context loss suspends rendering and restoration resumes with current quality',()=>{
+ const engine=new NullEngine(),view=new Realm3D(undefined,engine,false);let frames=0;view.scene.render=()=>{frames++;};
+ try{view.setQuality('maximum');view.update([],undefined,undefined,0,false);view.update([],undefined,undefined,20,false);assert.equal(frames,2);engine.onContextLostObservable.notifyObservers(engine);view.update([],undefined,undefined,100,false);assert.equal(frames,2);assert.equal(view.renderState,'recovering');engine.onContextRestoredObservable.notifyObservers(engine);view.setQuality('balanced');view.update([],undefined,undefined,110,false);view.update([],undefined,undefined,130,false);assert.equal(frames,3);assert.equal(view.renderState,'ready');assert.throws(()=>view.setQuality('invalid'));}finally{view.dispose();}
+});
+test('stable viewport avoids repeated resize while orientation changes resize once',()=>{
+ const engine=new NullEngine(),canvas={clientWidth:390,clientHeight:844};let resized=0;engine.resize=()=>{resized++;};const view=new Realm3D(canvas,engine,false);resized=0;
+ try{view.update([],undefined,undefined,0,false);view.update([],undefined,undefined,50,false);view.update([],undefined,undefined,100,false);assert.equal(resized,1);canvas.clientWidth=844;canvas.clientHeight=390;view.update([],undefined,undefined,150,false);assert.equal(resized,2);view.update([],undefined,undefined,200,false);assert.equal(resized,2);}finally{view.dispose();}
+});
+test('complete realm renderer mounts collision-world geometry and cleans changing player rigs',()=>{
+ const engine=new NullEngine(),view=new Realm3D(undefined,engine,false),game=new GameActions({x:20,y:2,z:0},{x:0,y:1,z:0}).snapshot('a',['a']);
+ try{assert.ok(view.scene.meshes.length>50);game.players=[{id:'a',skin:'seraphine',weapon:null}];view.update([{id:'a',position:{x:5,y:2,z:0}}],game,'a',0,false);assert.equal(view.heroes.get('a').skin,'seraphine');assert.deepEqual(view.halden.root.position.asArray(),[0,1,0]);const base=view.scene.meshes.length;for(let i=1;i<6;i++){game.players[0].skin=i%2?'adventurer':'seraphine';view.update([{id:'a',position:{x:5,y:2,z:0}}],game,'a',i*50,false);}assert.ok(view.scene.meshes.length<=base);view.update([],game,undefined,400,false);assert.equal(view.heroes.size,0);view.dispose();view.dispose();assert.equal(view.scene.meshes.length,0);}finally{view.dispose();}
+});

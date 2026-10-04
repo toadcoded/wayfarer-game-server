@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {AssetFetcher} from '../dist/asset-fetch.js';
+test('default fetch preserves the browser global receiver',async()=>{const original=globalThis.fetch;try{globalThis.fetch=function(){assert.equal(this,globalThis);return Promise.resolve(new Response(new Uint8Array([1,2]),{headers:{'content-type':'image/png'}}));};assert.deepEqual(await new AssetFetcher().load('/preview/assets/elder.png'),new Uint8Array([1,2]));}finally{globalThis.fetch=original;}});

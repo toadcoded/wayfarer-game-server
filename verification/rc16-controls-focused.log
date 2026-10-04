@@ -1,0 +1,22 @@
+✔ presentation springs respond to travel and settle without mutating authoritative position (2.956179ms)
+✔ long stalls, teleports, reduced motion and invalid clocks are bounded (0.322075ms)
+✔ irregular frame intervals keep springs finite and bounded (3.125114ms)
+✔ magenta key preserves character colors and existing transparency (0.245591ms)
+✔ animation uses frame durations and wraps at cycle boundary (0.230738ms)
+✔ rounded sphere triangles face outwards and remain within collider extents (0.671743ms)
+✔ all selectable source sheets match dimensions and crop bounds (0.735119ms)
+✔ walk jog and run presentation have distinct grounded stride weights (0.226171ms)
+BJS - [00:28:55]: Babylon.js v9.28.0 - Null engine
+✔ camera-relative input rotates correctly without diagonal speed advantage; turns take shortest arc (1.076023ms)
+✔ walk jog run accelerate to distinct host-owned speeds; releases and timeout stop immediately (4.16374ms)
+✔ run exhaustion falls back to jog, needs recovery and mode switch; input flood cannot change energy (5.972339ms)
+✔ staged movement preserves live speed and energy; enhanced replicated state is strict and detached (1.450788ms)
+✔ camera follow preserves orbit zoom and user pan; reset and zoom respect limits (228.971605ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1289.919692

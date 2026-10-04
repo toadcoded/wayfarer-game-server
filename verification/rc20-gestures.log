@@ -1,0 +1,18 @@
+BJS - [01:37:43]: Babylon.js v9.28.0 - Null engine
+BJS - [01:37:43]: Babylon.js v9.28.0 - Null engine
+BJS - [01:37:43]: Babylon.js v9.28.0 - Null engine
+BJS - [01:37:43]: Babylon.js v9.28.0 - Null engine
+BJS - [01:37:43]: Babylon.js v9.28.0 - Null engine
+✔ blink and ambient gestures change only presentation and reset under reduced motion (74.662699ms)
+✔ entire roster has distinct profiles, real geometry and disposable rigs (119.57729ms)
+✔ cape pins stay anchored, wind deforms the hem and all geometry remains finite (12.884543ms)
+✔ walking follows server positions, pause stabilizes secondary motion, equipment swaps do not leak meshes (16.049186ms)
+✔ active drill gestures articulate the rig and reset cleanly when paused (20.73934ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1294.539508

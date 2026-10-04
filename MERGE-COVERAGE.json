@@ -1,0 +1,23 @@
+{
+  "merge": "wayfarer-v0.9-rc3-unified",
+  "sources": {
+    "wayfarer-v0.9-rc2-xam-candidate.zip": {
+      "sha256": "60a2f69acf7200aeef4673690826ff9e0a39eec12bfd5e644880bf8ed930d472",
+      "files": 1068
+    },
+    "wayfarer-v0.8-rc8-xam-candidate.zip": {
+      "sha256": "bdebb098827fbda9170d8850ca42866415fe289a25d19352b7cfdb2c65da7ffe",
+      "files": 490
+    }
+  },
+  "premerge_relative_path_comparison": {
+    "shared": 483,
+    "identical": 419,
+    "evolved_same_path": 64,
+    "v0_9_only": 585,
+    "v0_8_only": 7
+  },
+  "legacy_rc8_manifest_entries_verified": 489,
+  "active_authority": "v0.9 rc.3 runtime; rc.8 snapshot is namespaced archival reference only",
+  "xam_policy": "single protected Xam; newer v0.9 agent with rc.8 hard-protection invariants ported forward"
+}

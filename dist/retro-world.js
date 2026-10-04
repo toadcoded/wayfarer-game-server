@@ -1,0 +1,40 @@
+import { Mesh, VertexData, StandardMaterial, Color3 } from '@babylonjs/core';
+export const RETRO_PALETTE = Object.freeze({ grass: '#75a342', grassLight: '#b2c96a', grassDark: '#3a6738', earth: '#85774f', sky: '#172b48', water: '#3f91ad', gold: '#d5b578' });
+/** Renderer-only deterministic foliage: at most256 tufts, three blades per tuft, one draw mesh. */
+export function grassGeometry(seed, anchors, ground) {
+    if (!Number.isSafeInteger(seed) || anchors.length > 8 || anchors.some(p => ![p.x, p.y, p.z].every(Number.isFinite)))
+        throw Error('Invalid grass anchors');
+    let state = seed >>> 0;
+    const random = () => { state = (Math.imul(state, 1664525) + 1013904223) >>> 0; return state / 4294967296; };
+    const positions = [], indices = [], colors = [], centres = [];
+    for (let i = 0; i < 256 && anchors.length; i++) {
+        const a = anchors[i % anchors.length], x = a.x + (random() - .5) * 12, z = a.z + (random() - .5) * 12;
+        if (Math.abs(z - a.z) < 2.25)
+            continue;
+        const g = ground(x, z);
+        if (![g.height, g.waterDepth, g.slopeDegrees].every(Number.isFinite) || g.waterDepth > .05 || g.slopeDegrees > 30)
+            continue;
+        const y = g.height + .025, height = .18 + random() * .22, width = .05 + random() * .04, angle = random() * Math.PI, shade = random();
+        centres.push({ x, y, z });
+        for (let blade = 0; blade < 3; blade++) {
+            const t = angle + blade * Math.PI / 3, dx = Math.cos(t) * width, dz = Math.sin(t) * width, n = positions.length / 3;
+            positions.push(x - dx, y, z - dz, x + dx, y, z + dz, x + Math.cos(t + .4) * .06, y + height, z + Math.sin(t + .4) * .06);
+            indices.push(n, n + 2, n + 1);
+            for (let v = 0; v < 3; v++) {
+                const c = Color3.FromHexString(v === 2 ? RETRO_PALETTE.grassLight : shade > .5 ? RETRO_PALETTE.grass : RETRO_PALETTE.grassDark);
+                colors.push(c.r, c.g, c.b, 1);
+            }
+        }
+    }
+    return { positions, indices, colors, centres };
+}
+export function createRetroGrass(scene, seed, anchors, ground) { const geometry = grassGeometry(seed, anchors, ground), mesh = new Mesh('retro-grass:batch', scene), material = new StandardMaterial('retro-grass:matte', scene), data = new VertexData(); data.positions = geometry.positions; data.indices = geometry.indices; data.colors = geometry.colors; const normals = []; VertexData.ComputeNormals(geometry.positions, geometry.indices, normals); data.normals = normals; data.applyToMesh(mesh); mesh.material = material; mesh.isPickable = false; mesh.checkCollisions = false; material.diffuseColor = Color3.White(); material.specularColor = Color3.Black(); material.backFaceCulling = false; return { mesh, count: geometry.centres.length, dispose() { mesh.dispose(); material.dispose(); } }; }
+/** Matte saturated colours and deterministic terrain vertex tint without moving any geometry. */
+export function styleRetroMesh(mesh, terrain = false) { const m = mesh.material; if (!(m instanceof StandardMaterial))
+    return; m.specularColor = Color3.Black(); const c = m.diffuseColor, l = (c.r + c.g + c.b) / 3; m.diffuseColor = new Color3(Math.min(1, Math.max(.03, l + (c.r - l) * 1.25)), Math.min(1, Math.max(.03, l + (c.g - l) * 1.25)), Math.min(1, Math.max(.03, l + (c.b - l) * 1.25))); if (!terrain)
+    return; const p = mesh.getVerticesData('position'); if (!p)
+    return; const colors = []; for (let i = 0; i < p.length; i += 3) {
+    const x = p[i], y = p[i + 1], z = p[i + 2], n = (Math.sin(x * .27 + z * .39) + 1) / 2, h = (Math.sin(y * .7) + 1) / 2, c = Color3.Lerp(Color3.FromHexString(RETRO_PALETTE.grassDark), Color3.FromHexString(RETRO_PALETTE.earth), h * .45);
+    const tint = Color3.Lerp(c, Color3.FromHexString(RETRO_PALETTE.grass), n * .65);
+    colors.push(tint.r, tint.g, tint.b, 1);
+} mesh.setVerticesData('color', colors, false, 4); m.diffuseColor = Color3.White(); }

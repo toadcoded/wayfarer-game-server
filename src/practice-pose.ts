@@ -1,0 +1,2 @@
+import type {SkillId} from './skill-directory.js';import type {HeroGesture} from './hero-3d.js';
+export function practiceGesture(skill:SkillId):HeroGesture {if(['woodcutting','mining','smithing','attack'].includes(skill))return 'chop';if(skill==='strength'||skill==='defence'||skill==='hitpoints')return 'brace';if(skill==='ranged'||skill==='fishing')return 'aim';if(skill==='magic'||skill==='prayer'||skill==='runecrafting')return 'focus';if(skill==='agility')return 'balance';return 'play';}

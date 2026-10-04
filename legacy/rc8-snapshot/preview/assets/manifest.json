@@ -1,0 +1,152 @@
+[
+  {
+    "id": "adventurer",
+    "width": 96,
+    "height": 96,
+    "frames": 4,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "selectable cosmetic",
+    "crop": {
+      "x": 24,
+      "y": 8,
+      "width": 47,
+      "height": 81
+    }
+  },
+  {
+    "id": "elder",
+    "width": 128,
+    "height": 128,
+    "frames": 4,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "selectable cosmetic",
+    "crop": {
+      "x": 19,
+      "y": 11,
+      "width": 90,
+      "height": 108
+    }
+  },
+  {
+    "id": "lantern",
+    "width": 128,
+    "height": 128,
+    "frames": 9,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "reference only",
+    "crop": {
+      "x": 10,
+      "y": 10,
+      "width": 108,
+      "height": 108
+    }
+  },
+  {
+    "id": "traveler",
+    "width": 128,
+    "height": 128,
+    "frames": 4,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "selectable cosmetic",
+    "crop": {
+      "x": 37,
+      "y": 11,
+      "width": 53,
+      "height": 108
+    }
+  },
+  {
+    "id": "villager",
+    "width": 128,
+    "height": 128,
+    "frames": 4,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "selectable cosmetic",
+    "crop": {
+      "x": 41,
+      "y": 11,
+      "width": 46,
+      "height": 108
+    }
+  },
+  {
+    "id": "boar",
+    "width": 128,
+    "height": 128,
+    "frames": 4,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "reference only",
+    "crop": {
+      "x": 10,
+      "y": 42,
+      "width": 108,
+      "height": 77
+    }
+  },
+  {
+    "id": "stump",
+    "width": 128,
+    "height": 128,
+    "frames": 9,
+    "durationsMs": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+    ],
+    "source": "User supplied GIF; original retained",
+    "role": "reference only",
+    "crop": {
+      "x": 10,
+      "y": 11,
+      "width": 108,
+      "height": 108
+    }
+  }
+]
