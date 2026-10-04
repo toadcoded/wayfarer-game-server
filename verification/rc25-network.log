@@ -1,0 +1,6 @@
+[{"events":6,"hash":"e9064b26f0fb24e9455d13d5f8114f1768450c9219a5144bf5e4ba2731f74623","complete":true},{"events":6,"hash":"e9064b26f0fb24e9455d13d5f8114f1768450c9219a5144bf5e4ba2731f74623","complete":true}]
+[{"events":113,"hash":"2288d34487fa267fc6aa5748507185a7d068fec3260e3f1a09ac22f6622f0c55","complete":true},{"events":78,"hash":"738fd6ad4bddffac4e539a409eedd1ba55dd6a622ed0409b7fa1f47e4d517eb6","complete":true}]
+{"passed":true,"results":[{"events":1414,"hash":"2b332be9eff97dcc5cf827fdcc27ac4a9a6d38ff8b8cef3eb30c17ef6c636c14","complete":true},{"events":2,"hash":"88f6305e318eb0cbf7c08dc4ddc14df8e4284254d1571d55e6cf01398ccd930d","complete":true}]}
+{"checks":["Restored earned maul deals authoritative 16 damage over WebSocket","Actual maul damage credits Strength only; Attack and Defence remain zero","Second transport attack is rejected by server cooldown without extra XP"],"events":6,"hash":"1d55c5ecb2eb5ff5ee5ae50845f2d056db24c118ee50fbc861fe85b07e46dd4a","complete":true}
+Reopened durable local profile retained the pure Strength build.
+{"passed":true,"events":100,"hash":"89103eb7be5c352658cd48a118dc25b9960af0df27488c2695d8b5b1c4c2465b","energy":95.8,"scope":"Fresh real WebSocket all three travel modes and deterministic replay"}

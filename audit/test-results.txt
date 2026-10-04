@@ -1,0 +1,68 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.4.0 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.4.0 build
+> tsc -p tsconfig.json
+
+✔ bridge supports replace deep-water walking only inside their footprint (1.276246ms)
+✔ submerged decks stay wet, and buried decks do not replace terrain (0.215714ms)
+✔ ramp top geometry and navigation agree along both axes (0.483766ms)
+✔ foundation interior is level and blend joins untouched ground continuously (0.248804ms)
+✔ edited terrain triangles match samples at fractional positions and shared mesh borders (2.894675ms)
+✔ conflicting earthworks, overlapping decks and invalid pad sizes are rejected (0.501603ms)
+✔ bridge rails block sideways exits while the walking center remains clear (4.42461ms)
+✔ all three themed plans cross real generated water with fitted dry landings (90.782255ms)
+✔ fixed-tick server walker completes a real bridge crossing without teleporting or sinking (31.35007ms)
+✔ planner rejects dry sites, clipped banks, multiple channels and invalid options (7.00298ms)
+✔ nearby inscriptions respect three-dimensional inspection distance (14.413672ms)
+✔ site reservations clear conflicting generated props and leave source chunks untouched (15.652292ms)
+✔ reference scene buffers are finite, indexed correctly and reproduce identically (46.372627ms)
+✔ adjacent ramps cannot silently register a discontinuous seam (0.410376ms)
+✔ reserved procedural props and neighboring structures do not block the verified crossing (41.790358ms)
+✔ thin walls cannot be tunneled through between samples (2.419862ms)
+✔ pathfinder goes around walls and every returned segment is traversable (33.724103ms)
+✔ sealed barriers and search budgets report explicit failures (53.42488ms)
+✔ water, steep slopes, steps, bounds and invalid ground are rejected (0.525078ms)
+✔ stronghold gate opening is passable while adjoining wall remains solid (11.309773ms)
+✔ adding and removing a gate collider updates routes immediately (0.396135ms)
+✔ mesh triangle sampling agrees at vertices and interiors including negative coordinates (7.91568ms)
+✔ diagonal movement is normalized and duplicate inputs are ignored (2.881354ms)
+✔ packet flooding does not advance simulation and stale held input stops (0.918689ms)
+✔ sliding follows wall without crossing it or increasing speed (0.493841ms)
+✔ movement codec rejects injected speed, timestamps, coordinates and invalid sequence (0.527622ms)
+✔ chunk collider lifetime includes props and preserves unrelated dynamic gates (7.99618ms)
+✔ all eight prop kinds generate valid shared geometry and unique ids (2.027603ms)
+✔ preview boots, changes all styles, resizes, and runs movement ticks without a DOM exception (3223.149329ms)
+✔ all reference grid centers round trip, including last cells (21.200143ms)
+✔ outside and non-finite coordinates are rejected rather than clamped (0.285819ms)
+✔ pixel to world conversion preserves tile identity (0.21979ms)
+✔ isometric projection is reversible (0.265959ms)
+✔ imported preferences sanitize malformed settings (0.461703ms)
+✔ packets cannot advance time or select another player (3.992502ms)
+✔ duplicate inputs, flood limit, capacity and disconnect (0.598127ms)
+✔ snapshot copies cannot mutate authoritative positions (0.235473ms)
+✔ v0.4 willowglass: session traverses with preview prop colliders (87.223764ms)
+✔ v0.4 saffron: session traverses with preview prop colliders (48.680499ms)
+✔ v0.4 mothlight: session traverses with preview prop colliders (21.069811ms)
+✔ same seed and coordinates reproduce all descriptors regardless of generation order (30.538352ms)
+✔ east and south edges match exactly across origin and region boundaries (28.481194ms)
+✔ generated props have stable unique ids, dry ground and finite geometry (165.601493ms)
+✔ catalog has ten complete biome recipes and every biome is reachable (0.57981ms)
+✔ negative positions floor into negative chunks (0.301453ms)
+✔ weather is deterministic and only changes at epoch boundaries (0.165868ms)
+✔ codec rejects malformed, oversized, unknown, fractional and dangerous fields (0.649084ms)
+✔ server rejects distant requests and client rejects different world recipes (10.547379ms)
+✔ client chunk view reuses existing chunks and disposes unloaded chunks (16.322316ms)
+✔ terrain mesh has valid upward-facing indices and finite vertex buffers (3.148475ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3316.10714

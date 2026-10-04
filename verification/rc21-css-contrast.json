@@ -1,0 +1,23 @@
+{
+  "scope": "Static representative CSS pairs, not rendered-page certification",
+  "pairs": [
+    {
+      "name": "body",
+      "foreground": "#fff0cc",
+      "background": "#172633",
+      "ratio": 13.65
+    },
+    {
+      "name": "muted",
+      "foreground": "#c4d3cf",
+      "background": "#172633",
+      "ratio": 9.96
+    },
+    {
+      "name": "selected tab",
+      "foreground": "#fff3c7",
+      "background": "#685434",
+      "ratio": 6.5
+    }
+  ]
+}

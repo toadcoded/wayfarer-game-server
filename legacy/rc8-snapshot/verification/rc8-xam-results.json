@@ -1,0 +1,19 @@
+{
+  "candidate": "0.8.0-rc.8",
+  "simulationRevision": 8,
+  "xam": {
+    "protected": true,
+    "untouchable": true,
+    "autoRetaliate": false,
+    "collision": "nonblocking",
+    "skillCount": 18,
+    "maxSkillTicks": 6000,
+    "maxSkillMinutes": 5,
+    "externalAiApiRequired": false
+  },
+  "verification": {
+    "typecheck": "passed",
+    "focused": {"passed": 66, "failed": 0},
+    "fullDiscovery": {"passed": 171, "failedToLoad": 7, "reason": "missing ws or @babylonjs/core package in execution environment"}
+  }
+}

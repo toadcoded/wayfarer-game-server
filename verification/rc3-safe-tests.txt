@@ -1,0 +1,1284 @@
+TAP version 13
+# Subtest: A points down, B points up; equal strengths cancel only in the center plane
+ok 1 - A points down, B points up; equal strengths cancel only in the center plane
+  ---
+  duration_ms: 0.791575
+  type: 'test'
+  ...
+# Subtest: C circulates tangentially, reverses cleanly and has a finite calm core
+ok 2 - C circulates tangentially, reverses cleanly and has a finite calm core
+  ---
+  duration_ms: 0.262175
+  type: 'test'
+  ...
+# Subtest: field has bounded cylindrical support and weakens toward its edges
+ok 3 - field has bounded cylindrical support and weakens toward its edges
+  ---
+  duration_ms: 0.650497
+  type: 'test'
+  ...
+# Subtest: pulse follows simulation time with known peak and trough
+ok 4 - pulse follows simulation time with known peak and trough
+  ---
+  duration_ms: 0.173966
+  type: 'test'
+  ...
+# Subtest: invalid fields reject before mutation and settings are defensively copied
+ok 5 - invalid fields reject before mutation and settings are defensively copied
+  ---
+  duration_ms: 0.532423
+  type: 'test'
+  ...
+# Subtest: combined field is capped separately from gravity; pulses freeze and reset with simulation
+ok 6 - combined field is capped separately from gravity; pulses freeze and reset with simulation
+  ---
+  duration_ms: 8.356308
+  type: 'test'
+  ...
+# Subtest: strong pulsing ABC fields remain finite and preserve all pinned points
+ok 7 - strong pulsing ABC fields remain finite and preserve all pinned points
+  ---
+  duration_ms: 70.269248
+  type: 'test'
+  ...
+# Subtest: player 1 failure leaves all committed walkers unchanged
+ok 8 - player 1 failure leaves all committed walkers unchanged
+  ---
+  duration_ms: 2.818297
+  type: 'test'
+  ...
+# Subtest: player 2 failure leaves all committed walkers unchanged
+ok 9 - player 2 failure leaves all committed walkers unchanged
+  ---
+  duration_ms: 1.485997
+  type: 'test'
+  ...
+# Subtest: player 3 failure leaves all committed walkers unchanged
+ok 10 - player 3 failure leaves all committed walkers unchanged
+  ---
+  duration_ms: 0.69288
+  type: 'test'
+  ...
+# Subtest: player 4 failure leaves all committed walkers unchanged
+ok 11 - player 4 failure leaves all committed walkers unchanged
+  ---
+  duration_ms: 0.620433
+  type: 'test'
+  ...
+# Subtest: invalid final candidate is discarded before commit
+ok 12 - invalid final candidate is discarded before commit
+  ---
+  duration_ms: 0.444404
+  type: 'test'
+  ...
+# Subtest: 100 deterministic staged input replays match
+ok 13 - 100 deterministic staged input replays match
+  ---
+  duration_ms: 79.519472
+  type: 'test'
+  ...
+# Subtest: default fetch preserves the browser global receiver
+ok 14 - default fetch preserves the browser global receiver
+  ---
+  duration_ms: 36.040877
+  type: 'test'
+  ...
+# Subtest: presentation springs respond to travel and settle without mutating authoritative position
+ok 15 - presentation springs respond to travel and settle without mutating authoritative position
+  ---
+  duration_ms: 1.984471
+  type: 'test'
+  ...
+# Subtest: long stalls, teleports, reduced motion and invalid clocks are bounded
+ok 16 - long stalls, teleports, reduced motion and invalid clocks are bounded
+  ---
+  duration_ms: 0.362934
+  type: 'test'
+  ...
+# Subtest: irregular frame intervals keep springs finite and bounded
+ok 17 - irregular frame intervals keep springs finite and bounded
+  ---
+  duration_ms: 4.84539
+  type: 'test'
+  ...
+# Subtest: magenta key preserves character colors and existing transparency
+ok 18 - magenta key preserves character colors and existing transparency
+  ---
+  duration_ms: 0.303126
+  type: 'test'
+  ...
+# Subtest: animation uses frame durations and wraps at cycle boundary
+ok 19 - animation uses frame durations and wraps at cycle boundary
+  ---
+  duration_ms: 0.273613
+  type: 'test'
+  ...
+# Subtest: rounded sphere triangles face outwards and remain within collider extents
+ok 20 - rounded sphere triangles face outwards and remain within collider extents
+  ---
+  duration_ms: 1.301796
+  type: 'test'
+  ...
+# Subtest: all selectable source sheets match dimensions and crop bounds
+ok 21 - all selectable source sheets match dimensions and crop bounds
+  ---
+  duration_ms: 2.993375
+  type: 'test'
+  ...
+# Subtest: walk jog and run presentation have distinct grounded stride weights
+ok 22 - walk jog and run presentation have distinct grounded stride weights
+  ---
+  duration_ms: 0.267553
+  type: 'test'
+  ...
+# node:internal/modules/package_json_reader:256
+#   throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+#         ^
+# Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'ws' imported from /mnt/data/wayfarer-v0.9-rc3-unified/tools/realm-server.mjs
+#     at Object.getPackageJSONURL (node:internal/modules/package_json_reader:256:9)
+#     at packageResolve (node:internal/modules/esm/resolve:768:81)
+#     at moduleResolve (node:internal/modules/esm/resolve:854:18)
+#     at defaultResolve (node:internal/modules/esm/resolve:984:11)
+#     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12)
+#     at \#cachedDefaultResolve (node:internal/modules/esm/loader:704:25)
+#     at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38)
+#     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38)
+#     at ModuleJob._link (node:internal/modules/esm/module_job:137:49) {
+#   code: 'ERR_MODULE_NOT_FOUND'
+# }
+# Node.js v22.16.0
+# Subtest: test/character-studio.test.mjs
+not ok 5 - test/character-studio.test.mjs
+  ---
+  duration_ms: 62.419673
+  type: 'test'
+  location: '/mnt/data/wayfarer-v0.9-rc3-unified/test/character-studio.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: comfort controls close reopen resize and restore hidden overlays
+ok 24 - comfort controls close reopen resize and restore hidden overlays
+  ---
+  duration_ms: 1.897342
+  type: 'test'
+  ...
+# Subtest: shallow wading remains grounded and deeper water blocks all traversals
+ok 25 - shallow wading remains grounded and deeper water blocks all traversals
+  ---
+  duration_ms: 32.492827
+  type: 'test'
+  ...
+# Subtest: cosmetic daylight cycles smoothly and rejects invalid clocks
+ok 26 - cosmetic daylight cycles smoothly and rejects invalid clocks
+  ---
+  duration_ms: 1.190942
+  type: 'test'
+  ...
+# Subtest: bridge supports replace deep-water walking only inside their footprint
+ok 27 - bridge supports replace deep-water walking only inside their footprint
+  ---
+  duration_ms: 1.264
+  type: 'test'
+  ...
+# Subtest: submerged decks stay wet, and buried decks do not replace terrain
+ok 28 - submerged decks stay wet, and buried decks do not replace terrain
+  ---
+  duration_ms: 0.219804
+  type: 'test'
+  ...
+# Subtest: ramp top geometry and navigation agree along both axes
+ok 29 - ramp top geometry and navigation agree along both axes
+  ---
+  duration_ms: 1.337809
+  type: 'test'
+  ...
+# Subtest: foundation interior is level and blend joins untouched ground continuously
+ok 30 - foundation interior is level and blend joins untouched ground continuously
+  ---
+  duration_ms: 0.293682
+  type: 'test'
+  ...
+# Subtest: edited terrain triangles match samples at fractional positions and shared mesh borders
+ok 31 - edited terrain triangles match samples at fractional positions and shared mesh borders
+  ---
+  duration_ms: 2.377969
+  type: 'test'
+  ...
+# Subtest: conflicting earthworks, overlapping decks and invalid pad sizes are rejected
+ok 32 - conflicting earthworks, overlapping decks and invalid pad sizes are rejected
+  ---
+  duration_ms: 0.358768
+  type: 'test'
+  ...
+# Subtest: bridge rails block sideways exits while the walking center remains clear
+ok 33 - bridge rails block sideways exits while the walking center remains clear
+  ---
+  duration_ms: 2.771158
+  type: 'test'
+  ...
+# Subtest: all three themed plans cross real generated water with fitted dry landings
+ok 34 - all three themed plans cross real generated water with fitted dry landings
+  ---
+  duration_ms: 61.335802
+  type: 'test'
+  ...
+# Subtest: fixed-tick server walker completes a real bridge crossing without teleporting or sinking
+ok 35 - fixed-tick server walker completes a real bridge crossing without teleporting or sinking
+  ---
+  duration_ms: 17.186252
+  type: 'test'
+  ...
+# Subtest: planner rejects dry sites, clipped banks, multiple channels and invalid options
+ok 36 - planner rejects dry sites, clipped banks, multiple channels and invalid options
+  ---
+  duration_ms: 1.157623
+  type: 'test'
+  ...
+# Subtest: nearby inscriptions respect three-dimensional inspection distance
+ok 37 - nearby inscriptions respect three-dimensional inspection distance
+  ---
+  duration_ms: 14.000383
+  type: 'test'
+  ...
+# Subtest: site reservations clear conflicting generated props and leave source chunks untouched
+ok 38 - site reservations clear conflicting generated props and leave source chunks untouched
+  ---
+  duration_ms: 22.678383
+  type: 'test'
+  ...
+# Subtest: reference scene buffers are finite, indexed correctly and reproduce identically
+ok 39 - reference scene buffers are finite, indexed correctly and reproduce identically
+  ---
+  duration_ms: 36.038324
+  type: 'test'
+  ...
+# Subtest: adjacent ramps cannot silently register a discontinuous seam
+ok 40 - adjacent ramps cannot silently register a discontinuous seam
+  ---
+  duration_ms: 0.3059
+  type: 'test'
+  ...
+# Subtest: reserved procedural props and neighboring structures do not block the verified crossing
+ok 41 - reserved procedural props and neighboring structures do not block the verified crossing
+  ---
+  duration_ms: 49.511121
+  type: 'test'
+  ...
+# Subtest: keyboard aliases and touch holds release independently
+ok 42 - keyboard aliases and touch holds release independently
+  ---
+  duration_ms: 0.677006
+  type: 'test'
+  ...
+# Subtest: weapons enforce range, cadence and immutable damage definitions
+ok 43 - weapons enforce range, cadence and immutable damage definitions
+  ---
+  duration_ms: 1.062864
+  type: 'test'
+  ...
+# Subtest: pulse can be guarded on impact or dodged outside the ring
+ok 44 - pulse can be guarded on impact or dodged outside the ring
+  ---
+  duration_ms: 0.226113
+  type: 'test'
+  ...
+# Subtest: knockout recovers while warden rests; camp heals without exceeding cap
+ok 45 - knockout recovers while warden rests; camp heals without exceeding cap
+  ---
+  duration_ms: 0.228817
+  type: 'test'
+  ...
+# Subtest: contributors receive one shared victory, spectators none, and warden respawns
+ok 46 - contributors receive one shared victory, spectators none, and warden respawns
+  ---
+  duration_ms: 0.676305
+  type: 'test'
+  ...
+# Subtest: burst commands cannot bypass cooldown; clients cannot submit damage or target
+ok 47 - burst commands cannot bypass cooldown; clients cannot submit damage or target
+  ---
+  duration_ms: 2.383828
+  type: 'test'
+  ...
+# Subtest: failed candidate leaves combat, results and clock unchanged
+ok 48 - failed candidate leaves combat, results and clock unchanged
+  ---
+  duration_ms: 1.594677
+  type: 'test'
+  ...
+# Subtest: combat is shared while fighter state stays private and session-only
+ok 49 - combat is shared while fighter state stays private and session-only
+  ---
+  duration_ms: 1.356145
+  type: 'test'
+  ...
+# Subtest: malformed health and impossible recovery clocks fail closed
+ok 50 - malformed health and impossible recovery clocks fail closed
+  ---
+  duration_ms: 0.347822
+  type: 'test'
+  ...
+# Subtest: passive pulse and health changes advance gameplay revision
+ok 51 - passive pulse and health changes advance gameplay revision
+  ---
+  duration_ms: 10.102377
+  type: 'test'
+  ...
+# Subtest: second-player failure prevents partial state publication and any further realm ticks
+ok 52 - second-player failure prevents partial state publication and any further realm ticks
+  ---
+  duration_ms: 2.759471
+  type: 'test'
+  ...
+# Subtest: clock reset and repaired sampler cannot revive a partially advanced realm
+ok 53 - clock reset and repaired sampler cannot revive a partially advanced realm
+  ---
+  duration_ms: 0.549378
+  type: 'test'
+  ...
+# Subtest: trusted hook failure faults realm without publishing hook mutations
+ok 54 - trusted hook failure faults realm without publishing hook mutations
+  ---
+  duration_ms: 0.263328
+  type: 'test'
+  ...
+# Subtest: invalid host deltas leave healthy realm available
+ok 55 - invalid host deltas leave healthy realm available
+  ---
+  duration_ms: 0.299751
+  type: 'test'
+  ...
+# Subtest: low-level WorldSession also blocks partial snapshots after tick failure
+ok 56 - low-level WorldSession also blocks partial snapshots after tick failure
+  ---
+  duration_ms: 0.824634
+  type: 'test'
+  ...
+# Subtest: catch-up fault preserves count of completed steps and stops remaining steps
+ok 57 - catch-up fault preserves count of completed steps and stops remaining steps
+  ---
+  duration_ms: 0.779737
+  type: 'test'
+  ...
+# Subtest: actions wait for tick, distance is authoritative and effects are idempotent
+ok 58 - actions wait for tick, distance is authoritative and effects are idempotent
+  ---
+  duration_ms: 5.509868
+  type: 'test'
+  ...
+# Subtest: identity fields, unknown skins and malformed commands fail closed
+ok 59 - identity fields, unknown skins and malformed commands fail closed
+  ---
+  duration_ms: 0.773238
+  type: 'test'
+  ...
+# Subtest: cosmetics replicate only for visible identities and queued actions are bounded
+ok 60 - cosmetics replicate only for visible identities and queued actions are bounded
+  ---
+  duration_ms: 2.591714
+  type: 'test'
+  ...
+# Subtest: failed action calculation preserves all game results and effects
+ok 61 - failed action calculation preserves all game results and effects
+  ---
+  duration_ms: 0.695143
+  type: 'test'
+  ...
+# Subtest: invalid server game messages are rejected
+ok 62 - invalid server game messages are rejected
+  ---
+  duration_ms: 0.834889
+  type: 'test'
+  ...
+# Subtest: inventory rejects sparse slots and item catalog cannot be changed
+ok 63 - inventory rejects sparse slots and item catalog cannot be changed
+  ---
+  duration_ms: 0.830362
+  type: 'test'
+  ...
+# Subtest: resource and gather clocks reject impossible snapshots
+ok 64 - resource and gather clocks reject impossible snapshots
+  ---
+  duration_ms: 2.566927
+  type: 'test'
+  ...
+# Subtest: duplicate player identity and malformed connections cannot enter gameplay
+ok 65 - duplicate player identity and malformed connections cannot enter gameplay
+  ---
+  duration_ms: 0.993822
+  type: 'test'
+  ...
+# Subtest: final candidate failure discards reward payment, item grant, result and tick
+ok 66 - final candidate failure discards reward payment, item grant, result and tick
+  ---
+  duration_ms: 10.113733
+  type: 'test'
+  ...
+# Subtest: realm discards clock divergence before publishing movement
+ok 67 - realm discards clock divergence before publishing movement
+  ---
+  duration_ms: 2.248429
+  type: 'test'
+  ...
+# Subtest: 5000 seeded mixed actions preserve inventory and resource invariants
+ok 68 - 5000 seeded mixed actions preserve inventory and resource invariants
+  ---
+  duration_ms: 482.89366
+  type: 'test'
+  ...
+# Subtest: HUD tabs, keyboard navigation and collapse preserve independent gameplay controls
+ok 69 - HUD tabs, keyboard navigation and collapse preserve independent gameplay controls
+  ---
+  duration_ms: 1.279302
+  type: 'test'
+  ...
+# Subtest: one reward consumes one token; repeated claims cannot duplicate items
+ok 70 - one reward consumes one token; repeated claims cannot duplicate items
+  ---
+  duration_ms: 17.64738
+  type: 'test'
+  ...
+# Subtest: equip and stow conserve item ownership and share only equipment
+ok 71 - equip and stow conserve item ownership and share only equipment
+  ---
+  duration_ms: 11.699046
+  type: 'test'
+  ...
+# Subtest: duplicate queued reward claims and replayed packet sequences grant only once
+ok 72 - duplicate queued reward claims and replayed packet sequences grant only once
+  ---
+  duration_ms: 11.709202
+  type: 'test'
+  ...
+# Subtest: candidate failure rolls back both payment and item grant
+ok 73 - candidate failure rolls back both payment and item grant
+  ---
+  duration_ms: 12.094989
+  type: 'test'
+  ...
+# Subtest: strict item codecs reject unknown IDs, client grants and inconsistent snapshots
+ok 74 - strict item codecs reject unknown IDs, client grants and inconsistent snapshots
+  ---
+  duration_ms: 0.717205
+  type: 'test'
+  ...
+# Subtest: inventory transitions and snapshots do not alias source arrays
+ok 75 - inventory transitions and snapshots do not alias source arrays
+  ---
+  duration_ms: 13.642046
+  type: 'test'
+  ...
+# Subtest: depth wins independently of face order, including overlaid terrain and bridge
+ok 76 - depth wins independently of face order, including overlaid terrain and bridge
+  ---
+  duration_ms: 1.666803
+  type: 'test'
+  ...
+# Subtest: raster bounds are capped
+ok 77 - raster bounds are capped
+  ---
+  duration_ms: 0.841208
+  type: 'test'
+  ...
+# Subtest: registry gates keyboard and ID dispatch identically and reports failures
+ok 78 - registry gates keyboard and ID dispatch identically and reports failures
+  ---
+  duration_ms: 2.071819
+  type: 'test'
+  ...
+# Subtest: wind is bounded, copied and reset with the cloth
+ok 79 - wind is bounded, copied and reset with the cloth
+  ---
+  duration_ms: 10.54637
+  type: 'test'
+  ...
+# Subtest: impulse affects nearby unpinned points and leaves anchors fixed
+ok 80 - impulse affects nearby unpinned points and leaves anchors fixed
+  ---
+  duration_ms: 0.757845
+  type: 'test'
+  ...
+# Subtest: repeated opposing impulses and large wind remain finite with bounded geometry
+ok 81 - repeated opposing impulses and large wind remain finite with bounded geometry
+  ---
+  duration_ms: 64.284241
+  type: 'test'
+  ...
+# Subtest: single step, reduced motion, pinned targets and reset use shared action rules
+ok 82 - single step, reduced motion, pinned targets and reset use shared action rules
+  ---
+  duration_ms: 0.721081
+  type: 'test'
+  ...
+# Subtest: toolbar button and keyboard dispatch share state; editing/repeat input is ignored; disposal removes handler
+ok 83 - toolbar button and keyboard dispatch share state; editing/repeat input is ignored; disposal removes handler
+  ---
+  duration_ms: 14.799368
+  type: 'test'
+  ...
+# Subtest: thin walls cannot be tunneled through between samples
+ok 84 - thin walls cannot be tunneled through between samples
+  ---
+  duration_ms: 2.092309
+  type: 'test'
+  ...
+# Subtest: pathfinder goes around walls and every returned segment is traversable
+ok 85 - pathfinder goes around walls and every returned segment is traversable
+  ---
+  duration_ms: 24.484051
+  type: 'test'
+  ...
+# Subtest: sealed barriers and search budgets report explicit failures
+ok 86 - sealed barriers and search budgets report explicit failures
+  ---
+  duration_ms: 30.994342
+  type: 'test'
+  ...
+# Subtest: water, steep slopes, steps, bounds and invalid ground are rejected
+ok 87 - water, steep slopes, steps, bounds and invalid ground are rejected
+  ---
+  duration_ms: 0.522048
+  type: 'test'
+  ...
+# Subtest: stronghold gate opening is passable while adjoining wall remains solid
+ok 88 - stronghold gate opening is passable while adjoining wall remains solid
+  ---
+  duration_ms: 8.636159
+  type: 'test'
+  ...
+# Subtest: adding and removing a gate collider updates routes immediately
+ok 89 - adding and removing a gate collider updates routes immediately
+  ---
+  duration_ms: 0.386329
+  type: 'test'
+  ...
+# Subtest: mesh triangle sampling agrees at vertices and interiors including negative coordinates
+ok 90 - mesh triangle sampling agrees at vertices and interiors including negative coordinates
+  ---
+  duration_ms: 6.866905
+  type: 'test'
+  ...
+# Subtest: diagonal movement is normalized and duplicate inputs are ignored
+ok 91 - diagonal movement is normalized and duplicate inputs are ignored
+  ---
+  duration_ms: 1.027572
+  type: 'test'
+  ...
+# Subtest: packet flooding does not advance simulation and stale held input stops
+ok 92 - packet flooding does not advance simulation and stale held input stops
+  ---
+  duration_ms: 1.226294
+  type: 'test'
+  ...
+# Subtest: sliding follows wall without crossing it or increasing speed
+ok 93 - sliding follows wall without crossing it or increasing speed
+  ---
+  duration_ms: 0.684067
+  type: 'test'
+  ...
+# Subtest: movement codec rejects injected speed, timestamps, coordinates and invalid sequence
+ok 94 - movement codec rejects injected speed, timestamps, coordinates and invalid sequence
+  ---
+  duration_ms: 0.581345
+  type: 'test'
+  ...
+# Subtest: chunk collider lifetime includes props and preserves unrelated dynamic gates
+ok 95 - chunk collider lifetime includes props and preserves unrelated dynamic gates
+  ---
+  duration_ms: 10.121655
+  type: 'test'
+  ...
+# Subtest: all eight prop kinds generate valid shared geometry and unique ids
+ok 96 - all eight prop kinds generate valid shared geometry and unique ids
+  ---
+  duration_ms: 1.568759
+  type: 'test'
+  ...
+# Subtest: preview boots, crosses every style, resizes, pauses and resumes with bounded catch-up
+ok 97 - preview boots, crosses every style, resizes, pauses and resumes with bounded catch-up
+  ---
+  duration_ms: 3612.183477
+  type: 'test'
+  ...
+# Subtest: player save codec is strict, bounded and detached
+ok 98 - player save codec is strict, bounded and detached
+  ---
+  duration_ms: 2.824125
+  type: 'test'
+  ...
+# Subtest: realm restores server-owned gameplay and position but resets packet sequence
+ok 99 - realm restores server-owned gameplay and position but resets packet sequence
+  ---
+  duration_ms: 3.971876
+  type: 'test'
+  ...
+# Subtest: saved gather cooldown is relative to the join tick, not a stale absolute tick
+ok 100 - saved gather cooldown is relative to the join tick, not a stale absolute tick
+  ---
+  duration_ms: 2.698802
+  type: 'test'
+  ...
+# Subtest: local profile store signs identity cookies and survives process-style reopen
+ok 101 - local profile store signs identity cookies and survives process-style reopen
+  ---
+  duration_ms: 16.389569
+  type: 'test'
+  ...
+# Subtest: profile batches validate completely before replacing the durable database
+ok 102 - profile batches validate completely before replacing the durable database
+  ---
+  duration_ms: 3.509044
+  type: 'test'
+  ...
+# Subtest: queued profile mutations serialize without losing concurrent sessions or saves
+ok 103 - queued profile mutations serialize without losing concurrent sessions or saves
+  ---
+  duration_ms: 4.602974
+  type: 'test'
+  ...
+# Subtest: replay v2 records restored gameplay without recording account or connection identity
+ok 104 - replay v2 records restored gameplay without recording account or connection identity
+  ---
+  duration_ms: 8.700995
+  type: 'test'
+  ...
+# Subtest: Strength-only training credits real damage without Attack or Defence XP
+ok 105 - Strength-only training credits real damage without Attack or Defence XP
+  ---
+  duration_ms: 3.922102
+  type: 'test'
+  ...
+# Subtest: explicit training changes affect only future resolved attacks
+ok 106 - explicit training changes affect only future resolved attacks
+  ---
+  duration_ms: 4.949874
+  type: 'test'
+  ...
+# Subtest: guard, cooldown and distant attacks cannot mint XP
+ok 107 - guard, cooldown and distant attacks cannot mint XP
+  ---
+  duration_ms: 1.417747
+  type: 'test'
+  ...
+# Subtest: overkill awards only remaining target health
+ok 108 - overkill awards only remaining target health
+  ---
+  duration_ms: 26.969409
+  type: 'test'
+  ...
+# Subtest: magic weapon requires explicit Magic mode and cannot train Attack
+ok 109 - magic weapon requires explicit Magic mode and cannot train Attack
+  ---
+  duration_ms: 1.199605
+  type: 'test'
+  ...
+# Subtest: save migration preserves old state, starts zero XP, and new saves retain builds
+ok 110 - save migration preserves old state, starts zero XP, and new saves retain builds
+  ---
+  duration_ms: 0.908327
+  type: 'test'
+  ...
+# Subtest: failed staged tick cannot expose XP or training changes
+ok 111 - failed staged tick cannot expose XP or training changes
+  ---
+  duration_ms: 0.933083
+  type: 'test'
+  ...
+# Subtest: XP schemas reject client grants, coercion, unknown skills and shared snapshot leaks
+ok 112 - XP schemas reject client grants, coercion, unknown skills and shared snapshot leaks
+  ---
+  duration_ms: 0.560955
+  type: 'test'
+  ...
+# Subtest: level thresholds, caps and combat brackets are deterministic and monotonic
+ok 113 - level thresholds, caps and combat brackets are deterministic and monotonic
+  ---
+  duration_ms: 0.388652
+  type: 'test'
+  ...
+# Subtest: weapon identity and requirements remain independent from tier and training mode
+ok 114 - weapon identity and requirements remain independent from tier and training mode
+  ---
+  duration_ms: 0.371677
+  type: 'test'
+  ...
+# Subtest: quest requires proximity, acceptance and complete inventory; reward cannot repeat
+ok 115 - quest requires proximity, acceptance and complete inventory; reward cannot repeat
+  ---
+  duration_ms: 16.529535
+  type: 'test'
+  ...
+# Subtest: shared finite patch and tick cooldown prevent packet harvesting; stock regrows
+ok 116 - shared finite patch and tick cooldown prevent packet harvesting; stock regrows
+  ---
+  duration_ms: 29.540002
+  type: 'test'
+  ...
+# Subtest: client cannot supply inventory, rewards, quantity or a target position
+ok 117 - client cannot supply inventory, rewards, quantity or a target position
+  ---
+  duration_ms: 0.663597
+  type: 'test'
+  ...
+# Subtest: failed candidate discards resource consumption and private quest transitions
+ok 118 - failed candidate discards resource consumption and private quest transitions
+  ---
+  duration_ms: 1.398198
+  type: 'test'
+  ...
+# Subtest: recipient inventory is detached and absent from other player records
+ok 119 - recipient inventory is detached and absent from other player records
+  ---
+  duration_ms: 0.67292
+  type: 'test'
+  ...
+# node:internal/modules/package_json_reader:256
+#   throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+#         ^
+# Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'ws' imported from /mnt/data/wayfarer-v0.9-rc3-unified/tools/realm-server.mjs
+#     at Object.getPackageJSONURL (node:internal/modules/package_json_reader:256:9)
+#     at packageResolve (node:internal/modules/esm/resolve:768:81)
+#     at moduleResolve (node:internal/modules/esm/resolve:854:18)
+#     at defaultResolve (node:internal/modules/esm/resolve:984:11)
+#     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12)
+#     at \#cachedDefaultResolve (node:internal/modules/esm/loader:704:25)
+#     at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38)
+#     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38)
+#     at ModuleJob._link (node:internal/modules/esm/module_job:137:49) {
+#   code: 'ERR_MODULE_NOT_FOUND'
+# }
+# Node.js v22.16.0
+# Subtest: test/retro-surface.test.mjs
+not ok 23 - test/retro-surface.test.mjs
+  ---
+  duration_ms: 49.594143
+  type: 'test'
+  location: '/mnt/data/wayfarer-v0.9-rc3-unified/test/retro-surface.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: fixed clock preserves cadence across irregular frame partitions
+ok 121 - fixed clock preserves cadence across irregular frame partitions
+  ---
+  duration_ms: 0.97835
+  type: 'test'
+  ...
+# Subtest: long stalls have four-step budget and no delayed catch-up debt
+ok 122 - long stalls have four-step budget and no delayed catch-up debt
+  ---
+  duration_ms: 0.17664
+  type: 'test'
+  ...
+# Subtest: invalid clock deltas leave accumulator unchanged
+ok 123 - invalid clock deltas leave accumulator unchanged
+  ---
+  duration_ms: 0.287604
+  type: 'test'
+  ...
+# Subtest: reset removes fractional tick and clock rejects recursive advancement
+ok 124 - reset removes fractional tick and clock rejects recursive advancement
+  ---
+  duration_ms: 0.266622
+  type: 'test'
+  ...
+# Subtest: realm packet flood cannot advance state or expose connection credentials
+ok 125 - realm packet flood cannot advance state or expose connection credentials
+  ---
+  duration_ms: 15.973126
+  type: 'test'
+  ...
+# Subtest: visibility originates at authoritative player location and snapshot copies are isolated
+ok 126 - visibility originates at authoritative player location and snapshot copies are isolated
+  ---
+  duration_ms: 0.867136
+  type: 'test'
+  ...
+# Subtest: realm rejects forged input fields and stale sequence numbers
+ok 127 - realm rejects forged input fields and stale sequence numbers
+  ---
+  duration_ms: 0.383875
+  type: 'test'
+  ...
+# Subtest: disconnect removes visibility and reconnect receives a new public id and sequence scope
+ok 128 - disconnect removes visibility and reconnect receives a new public id and sequence scope
+  ---
+  duration_ms: 0.372238
+  type: 'test'
+  ...
+# Subtest: late joins use realm snapshot clock while idle intent expires
+ok 129 - late joins use realm snapshot clock while idle intent expires
+  ---
+  duration_ms: 1.366922
+  type: 'test'
+  ...
+# Subtest: realm long stall is bounded and invalid delta does not move a player
+ok 130 - realm long stall is bounded and invalid delta does not move a player
+  ---
+  duration_ms: 0.483392
+  type: 'test'
+  ...
+# Subtest: realm enforces option and spawn limits without retaining failed joins
+ok 131 - realm enforces option and spawn limits without retaining failed joins
+  ---
+  duration_ms: 0.420379
+  type: 'test'
+  ...
+# Subtest: realm wall collisions remain authoritative for two independently moving players
+ok 132 - realm wall collisions remain authoritative for two independently moving players
+  ---
+  duration_ms: 2.469153
+  type: 'test'
+  ...
+# Subtest: snapshot codec roundtrips, copies state and rejects unexpected fields at every level
+ok 133 - snapshot codec roundtrips, copies state and rejects unexpected fields at every level
+  ---
+  duration_ms: 0.517922
+  type: 'test'
+  ...
+# Subtest: snapshot rejects duplicates, invalid clock, coordinates, identities and sequence values
+ok 134 - snapshot rejects duplicates, invalid clock, coordinates, identities and sequence values
+  ---
+  duration_ms: 0.306421
+  type: 'test'
+  ...
+# Subtest: snapshot rejects malformed, oversized and excessively populated data
+ok 135 - snapshot rejects malformed, oversized and excessively populated data
+  ---
+  duration_ms: 0.286892
+  type: 'test'
+  ...
+# Subtest: transport gate accounts for projected queue and drops cosmetics before state
+ok 136 - transport gate accounts for projected queue and drops cosmetics before state
+  ---
+  duration_ms: 0.177331
+  type: 'test'
+  ...
+# Subtest: transport gate rejects invalid budgets, sizes and priorities
+ok 137 - transport gate rejects invalid budgets, sizes and priorities
+  ---
+  duration_ms: 0.141478
+  type: 'test'
+  ...
+# Subtest: realm fixed-clock traversal: willowglass
+ok 138 - realm fixed-clock traversal: willowglass
+  ---
+  duration_ms: 51.946074
+  type: 'test'
+  ...
+# Subtest: realm fixed-clock traversal: saffron
+ok 139 - realm fixed-clock traversal: saffron
+  ---
+  duration_ms: 26.665727
+  type: 'test'
+  ...
+# Subtest: realm fixed-clock traversal: mothlight
+ok 140 - realm fixed-clock traversal: mothlight
+  ---
+  duration_ms: 17.427176
+  type: 'test'
+  ...
+# Subtest: all reference grid centers round trip, including last cells
+ok 141 - all reference grid centers round trip, including last cells
+  ---
+  duration_ms: 11.860474
+  type: 'test'
+  ...
+# Subtest: outside and non-finite coordinates are rejected rather than clamped
+ok 142 - outside and non-finite coordinates are rejected rather than clamped
+  ---
+  duration_ms: 0.309957
+  type: 'test'
+  ...
+# Subtest: pixel to world conversion preserves tile identity
+ok 143 - pixel to world conversion preserves tile identity
+  ---
+  duration_ms: 0.196449
+  type: 'test'
+  ...
+# Subtest: isometric projection is reversible
+ok 144 - isometric projection is reversible
+  ---
+  duration_ms: 0.206814
+  type: 'test'
+  ...
+# Subtest: imported preferences sanitize malformed settings
+ok 145 - imported preferences sanitize malformed settings
+  ---
+  duration_ms: 0.17658
+  type: 'test'
+  ...
+# Subtest: packets cannot advance time or select another player
+ok 146 - packets cannot advance time or select another player
+  ---
+  duration_ms: 1.228498
+  type: 'test'
+  ...
+# Subtest: duplicate inputs, flood limit, capacity and disconnect
+ok 147 - duplicate inputs, flood limit, capacity and disconnect
+  ---
+  duration_ms: 0.409403
+  type: 'test'
+  ...
+# Subtest: snapshot copies cannot mutate authoritative positions
+ok 148 - snapshot copies cannot mutate authoritative positions
+  ---
+  duration_ms: 0.172383
+  type: 'test'
+  ...
+# Subtest: v0.4 willowglass: session traverses with preview prop colliders
+ok 149 - v0.4 willowglass: session traverses with preview prop colliders
+  ---
+  duration_ms: 48.576606
+  type: 'test'
+  ...
+# Subtest: v0.4 saffron: session traverses with preview prop colliders
+ok 150 - v0.4 saffron: session traverses with preview prop colliders
+  ---
+  duration_ms: 25.912603
+  type: 'test'
+  ...
+# Subtest: v0.4 mothlight: session traverses with preview prop colliders
+ok 151 - v0.4 mothlight: session traverses with preview prop colliders
+  ---
+  duration_ms: 19.703606
+  type: 'test'
+  ...
+# Subtest: Seraphine appearance replicates and restores without granting equipment
+ok 152 - Seraphine appearance replicates and restores without granting equipment
+  ---
+  duration_ms: 3.94821
+  type: 'test'
+  ...
+# Subtest: Seraphine catalog matches unchanged PNG and both appearance selectors
+ok 153 - Seraphine catalog matches unchanged PNG and both appearance selectors
+  ---
+  duration_ms: 1.099458
+  type: 'test'
+  ...
+# Subtest: high-resolution catalog keeps strict dimension and pixel budgets
+ok 154 - high-resolution catalog keeps strict dimension and pixel budgets
+  ---
+  duration_ms: 0.391195
+  type: 'test'
+  ...
+# Subtest: three professions have exclusive XP, bounded pack, repeatable bank trips and no combat XP
+ok 155 - three professions have exclusive XP, bounded pack, repeatable bank trips and no combat XP
+  ---
+  duration_ms: 134.640448
+  type: 'test'
+  ...
+# Subtest: cooldowns, shared per-player skill clock, invalid commands and server range prevent client minting
+ok 156 - cooldowns, shared per-player skill clock, invalid commands and server range prevent client minting
+  ---
+  duration_ms: 4.737502
+  type: 'test'
+  ...
+# Subtest: artisan recipe consumes exact bank resources and essence once, yielding two resources
+ok 157 - artisan recipe consumes exact bank resources and essence once, yielding two resources
+  ---
+  duration_ms: 0.286873
+  type: 'test'
+  ...
+# Subtest: a full integrated gather/bank/PvM/craft route awards one essence per contributing clear
+ok 158 - a full integrated gather/bank/PvM/craft route awards one essence per contributing clear
+  ---
+  duration_ms: 144.213146
+  type: 'test'
+  ...
+# Subtest: strict saves migrate versions 1 and 2, preserve private banks and rebase gather cooldown on restore
+ok 159 - strict saves migrate versions 1 and 2, preserve private banks and rebase gather cooldown on restore
+  ---
+  duration_ms: 4.123097
+  type: 'test'
+  ...
+# Subtest: snapshot and save boundaries reject overflows, grants and private-state leakage
+ok 160 - snapshot and save boundaries reject overflows, grants and private-state leakage
+  ---
+  duration_ms: 4.0227
+  type: 'test'
+  ...
+# Subtest: bank capacity rejection and failed staged commits preserve all resources and XP
+ok 161 - bank capacity rejection and failed staged commits preserve all resources and XP
+  ---
+  duration_ms: 0.850862
+  type: 'test'
+  ...
+# Subtest: Masterwork requires the second milestone, spends once, persists and cannot bypass Artisan
+ok 162 - Masterwork requires the second milestone, spends once, persists and cannot bypass Artisan
+  ---
+  duration_ms: 0.320882
+  type: 'test'
+  ...
+# Subtest: presentation interpolates known positions and heights without modifying authority
+ok 163 - presentation interpolates known positions and heights without modifying authority
+  ---
+  duration_ms: 1.324249
+  type: 'test'
+  ...
+# Subtest: missing updates never extrapolate past last known position
+ok 164 - missing updates never extrapolate past last known position
+  ---
+  duration_ms: 0.225241
+  type: 'test'
+  ...
+# Subtest: out-of-order and duplicate samples do not refresh liveness or reverse motion
+ok 165 - out-of-order and duplicate samples do not refresh liveness or reverse motion
+  ---
+  duration_ms: 0.19691
+  type: 'test'
+  ...
+# Subtest: teleports and long gaps snap immediately instead of crossing the intervening world
+ok 166 - teleports and long gaps snap immediately instead of crossing the intervening world
+  ---
+  duration_ms: 0.34671
+  type: 'test'
+  ...
+# Subtest: latest membership removes departed players and introduces new ones immediately
+ok 167 - latest membership removes departed players and introduces new ones immediately
+  ---
+  duration_ms: 0.588656
+  type: 'test'
+  ...
+# Subtest: buffer retains at most 32 snapshots and clear removes prior connection history
+ok 168 - buffer retains at most 32 snapshots and clear removes prior connection history
+  ---
+  duration_ms: 1.001654
+  type: 'test'
+  ...
+# Subtest: invalid clocks and delay are rejected; backward arrival does not replace state
+ok 169 - invalid clocks and delay are rejected; backward arrival does not replace state
+  ---
+  duration_ms: 0.370215
+  type: 'test'
+  ...
+# Subtest: jitter and backward presentation timestamps never rewind the render timeline
+ok 170 - jitter and backward presentation timestamps never rewind the render timeline
+  ---
+  duration_ms: 0.169379
+  type: 'test'
+  ...
+# Subtest: flat terrain has one component and deterministic interior candidate in negative chunk
+ok 171 - flat terrain has one component and deterministic interior candidate in negative chunk
+  ---
+  duration_ms: 3.362688
+  type: 'test'
+  ...
+# Subtest: water wall separates components without row wrapping
+ok 172 - water wall separates components without row wrapping
+  ---
+  duration_ms: 0.946453
+  type: 'test'
+  ...
+# Subtest: grade boundary is inclusive and steeper ground has no candidate
+ok 173 - grade boundary is inclusive and steeper ground has no candidate
+  ---
+  duration_ms: 0.716274
+  type: 'test'
+  ...
+# Subtest: tiny dry islands cannot supply arrival patches and water wins classification
+ok 174 - tiny dry islands cannot supply arrival patches and water wins classification
+  ---
+  duration_ms: 0.220154
+  type: 'test'
+  ...
+# Subtest: survey rejects malformed grids and thresholds
+ok 175 - survey rejects malformed grids and thresholds
+  ---
+  duration_ms: 0.351578
+  type: 'test'
+  ...
+# Subtest: all atlas samples produce bounded honest surveys with open candidate neighborhoods
+ok 176 - all atlas samples produce bounded honest surveys with open candidate neighborhoods
+  ---
+  duration_ms: 22.516024
+  type: 'test'
+  ...
+# Subtest: movement, beacon and tick commit together at the first fixed tick
+ok 177 - movement, beacon and tick commit together at the first fixed tick
+  ---
+  duration_ms: 6.072126
+  type: 'test'
+  ...
+# Subtest: game reducer failure discards already-calculated movement and game candidates
+ok 178 - game reducer failure discards already-calculated movement and game candidates
+  ---
+  duration_ms: 2.008957
+  type: 'test'
+  ...
+# Subtest: final combined invariant failure discards both reducers
+ok 179 - final combined invariant failure discards both reducers
+  ---
+  duration_ms: 1.369455
+  type: 'test'
+  ...
+# Subtest: catch-up actions resolve on first tick, not end-of-batch position
+ok 180 - catch-up actions resolve on first tick, not end-of-batch position
+  ---
+  duration_ms: 1.657118
+  type: 'test'
+  ...
+# Subtest: diagnostic output is detached and excludes connection identifiers
+ok 181 - diagnostic output is detached and excludes connection identifiers
+  ---
+  duration_ms: 0.613964
+  type: 'test'
+  ...
+# Subtest: old candidate simulation contract is rejected
+ok 182 - old candidate simulation contract is rejected
+  ---
+  duration_ms: 4.213481
+  type: 'test'
+  ...
+# Subtest: atlas anchors cover ten actual distinct biomes deterministically across seeds
+ok 183 - atlas anchors cover ten actual distinct biomes deterministically across seeds
+  ---
+  duration_ms: 4.435587
+  type: 'test'
+  ...
+# Subtest: all itinerary pairs use connected planned edges without cycles
+ok 184 - all itinerary pairs use connected planned edges without cycles
+  ---
+  duration_ms: 1.541438
+  type: 'test'
+  ...
+# Subtest: anchor inspection reports generated chunk evidence including negative coordinates
+ok 185 - anchor inspection reports generated chunk evidence including negative coordinates
+  ---
+  duration_ms: 36.474175
+  type: 'test'
+  ...
+# Subtest: authored content cannot be mutated through exported catalog
+ok 186 - authored content cannot be mutated through exported catalog
+  ---
+  duration_ms: 0.270979
+  type: 'test'
+  ...
+# Subtest: atlas controls select all regions and redraw at mobile size using a stub canvas
+ok 187 - atlas controls select all regions and redraw at mobile size using a stub canvas
+  ---
+  duration_ms: 62.659731
+  type: 'test'
+  ...
+# Subtest: same seed and coordinates reproduce all descriptors regardless of generation order
+ok 188 - same seed and coordinates reproduce all descriptors regardless of generation order
+  ---
+  duration_ms: 14.563422
+  type: 'test'
+  ...
+# Subtest: east and south edges match exactly across origin and region boundaries
+ok 189 - east and south edges match exactly across origin and region boundaries
+  ---
+  duration_ms: 18.117536
+  type: 'test'
+  ...
+# Subtest: generated props have stable unique ids, dry ground and finite geometry
+ok 190 - generated props have stable unique ids, dry ground and finite geometry
+  ---
+  duration_ms: 111.724205
+  type: 'test'
+  ...
+# Subtest: catalog has ten complete biome recipes and every biome is reachable
+ok 191 - catalog has ten complete biome recipes and every biome is reachable
+  ---
+  duration_ms: 0.513626
+  type: 'test'
+  ...
+# Subtest: negative positions floor into negative chunks
+ok 192 - negative positions floor into negative chunks
+  ---
+  duration_ms: 0.227635
+  type: 'test'
+  ...
+# Subtest: weather is deterministic and only changes at epoch boundaries
+ok 193 - weather is deterministic and only changes at epoch boundaries
+  ---
+  duration_ms: 0.176129
+  type: 'test'
+  ...
+# Subtest: codec rejects malformed, oversized, unknown, fractional and dangerous fields
+ok 194 - codec rejects malformed, oversized, unknown, fractional and dangerous fields
+  ---
+  duration_ms: 0.644198
+  type: 'test'
+  ...
+# Subtest: server rejects distant requests and client rejects different world recipes
+ok 195 - server rejects distant requests and client rejects different world recipes
+  ---
+  duration_ms: 6.120837
+  type: 'test'
+  ...
+# Subtest: client chunk view reuses existing chunks and disposes unloaded chunks
+ok 196 - client chunk view reuses existing chunks and disposes unloaded chunks
+  ---
+  duration_ms: 15.720965
+  type: 'test'
+  ...
+# Subtest: terrain mesh has valid upward-facing indices and finite vertex buffers
+ok 197 - terrain mesh has valid upward-facing indices and finite vertex buffers
+  ---
+  duration_ms: 7.845756
+  type: 'test'
+  ...
+# Subtest: protected encounter participants are never targeted or damaged
+ok 198 - protected encounter participants are never targeted or damaged
+  ---
+  duration_ms: 0.883731
+  type: 'test'
+  ...
+# Subtest: GameActions preserves combat protection across staged commits
+ok 199 - GameActions preserves combat protection across staged commits
+  ---
+  duration_ms: 10.904227
+  type: 'test'
+  ...
+# Subtest: Xam joins protected and exposes the merged identity contract
+ok 200 - Xam joins protected and exposes the merged identity contract
+  ---
+  duration_ms: 1.892154
+  type: 'test'
+  ...
+# Subtest: exact exponential thresholds, every level boundary and99 cap
+ok 201 - exact exponential thresholds, every level boundary and99 cap
+  ---
+  duration_ms: 1.00559
+  type: 'test'
+  ...
+# Subtest: combat uses all seven skills, max126, and pure builds preserve untrained skills
+ok 202 - combat uses all seven skills, max126, and pure builds preserve untrained skills
+  ---
+  duration_ms: 0.579413
+  type: 'test'
+  ...
+# Subtest: all23 skills have separate capped XP, derived bonuses and strict level requirements
+ok 203 - all23 skills have separate capped XP, derived bonuses and strict level requirements
+  ---
+  duration_ms: 1.969008
+  type: 'test'
+  ...
+# Subtest: v3 save migration preserves original XP, bank, mode and gear and initializes added skills
+ok 204 - v3 save migration preserves original XP, bank, mode and gear and initializes added skills
+  ---
+  duration_ms: 0.337907
+  type: 'test'
+  ...
+# Subtest: earned levels affect actual combat health/damage and gathering speed without client XP grants
+ok 205 - earned levels affect actual combat health/damage and gathering speed without client XP grants
+  ---
+  duration_ms: 3.05097
+  type: 'test'
+  ...
+1..205
+# tests 205
+# suites 0
+# pass 203
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4726.747459

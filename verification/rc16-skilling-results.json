@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": [
+    "Real WebSocket walking across collision world without teleport",
+    "Server range rejection without XP",
+    "Three profession levels and full pack",
+    "Actual return trip and exact private bank deposit",
+    "Craft gate preserves materials without essence",
+    "Bank/XP/cooldown restoration after local host restart",
+    "Deterministic replay before and after reopen"
+  ],
+  "results": [
+    {
+      "events": 740,
+      "hash": "a3d7561390ce7b4d39f04cc49640e056093c3630a2a428d757468c23063843f1",
+      "complete": true
+    },
+    {
+      "events": 2,
+      "hash": "88f6305e318eb0cbf7c08dc4ddc14df8e4284254d1571d55e6cf01398ccd930d",
+      "complete": true
+    }
+  ],
+  "scope": "Real local transport, not browser/GPU evidence"
+}

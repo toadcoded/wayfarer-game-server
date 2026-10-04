@@ -1,0 +1,44 @@
+[
+  {
+    "file": "wayfarer-foundation-v0.1.zip",
+    "bytes": 26444,
+    "sha256": "f081fd1817cf1799f47d489d458366d904d2498fe40dc22a6ae895b11f1bd96c",
+    "entries": 41,
+    "crc_error": null
+  },
+  {
+    "file": "wayfarer-foundation-v0.2.zip",
+    "bytes": 61584,
+    "sha256": "db2712b9c54241e5d992059be2e72430066285904960d714aed4f5eeb7aa7d20",
+    "entries": 85,
+    "crc_error": null
+  },
+  {
+    "file": "wayfarer-foundation-v0.3.zip",
+    "bytes": 102528,
+    "sha256": "5c3d953d32cc27675727dcd7515ac57c257ae28576cb4a363c24cb07d87b45de",
+    "entries": 126,
+    "crc_error": null
+  },
+  {
+    "file": "reedhaven-playable-spine.zip",
+    "bytes": 7527,
+    "sha256": "1398c49c34c87c83f2fea9351ca3db6c348134bd49e20cbaa5064a94bd2ae937",
+    "entries": 11,
+    "crc_error": null
+  },
+  {
+    "file": "absolute_shitpile.zip",
+    "bytes": 95267831,
+    "sha256": "1ba798b1583b4688ce8737c63b5ad3f3392935c8c4164b9d424a363bfc49a8e3",
+    "entries": 627,
+    "crc_error": null
+  },
+  {
+    "file": "polypcodex-reedhaven-v0.8.0.zip",
+    "bytes": 95377268,
+    "sha256": "1ee308e12f517716c833a024fd1344b28f56111171ba349c407ae1e8df134aaf",
+    "entries": 641,
+    "crc_error": null
+  }
+]

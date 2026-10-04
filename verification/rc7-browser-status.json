@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "stage": "Chromium launch before page startup",
+  "failure": "SIGSEGV",
+  "freshBrowserGate": "open",
+  "runtime": "Bundled Chromium 153 with runtime libraries, multiprocess launch",
+  "agentBrowserCLI": "not installed",
+  "scope": "No page or combat UI assertions ran. rc7-browser.mjs provides the pending combat/persistence harness."
+}

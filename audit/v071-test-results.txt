@@ -1,0 +1,94 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.7.1 test
+> npm run build && node --test test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.7.1 build
+> tsc -p tsconfig.json
+
+✔ bridge supports replace deep-water walking only inside their footprint (1.95936ms)
+✔ submerged decks stay wet, and buried decks do not replace terrain (0.276821ms)
+✔ ramp top geometry and navigation agree along both axes (0.629334ms)
+✔ foundation interior is level and blend joins untouched ground continuously (0.418812ms)
+✔ edited terrain triangles match samples at fractional positions and shared mesh borders (4.555897ms)
+✔ conflicting earthworks, overlapping decks and invalid pad sizes are rejected (0.452742ms)
+✔ bridge rails block sideways exits while the walking center remains clear (6.224394ms)
+✔ all three themed plans cross real generated water with fitted dry landings (88.977565ms)
+✔ fixed-tick server walker completes a real bridge crossing without teleporting or sinking (37.697527ms)
+✔ planner rejects dry sites, clipped banks, multiple channels and invalid options (2.34284ms)
+✔ nearby inscriptions respect three-dimensional inspection distance (19.606159ms)
+✔ site reservations clear conflicting generated props and leave source chunks untouched (11.566598ms)
+✔ reference scene buffers are finite, indexed correctly and reproduce identically (38.822298ms)
+✔ adjacent ramps cannot silently register a discontinuous seam (0.339474ms)
+✔ reserved procedural props and neighboring structures do not block the verified crossing (47.373068ms)
+✔ second-player failure prevents partial state publication and any further realm ticks (3.286501ms)
+✔ clock reset and repaired sampler cannot revive a partially advanced realm (0.600051ms)
+✔ trusted hook failure faults realm without publishing hook mutations (0.348548ms)
+✔ invalid host deltas leave healthy realm available (0.344512ms)
+✔ low-level WorldSession also blocks partial snapshots after tick failure (0.476488ms)
+✔ catch-up fault preserves count of completed steps and stops remaining steps (0.503578ms)
+✔ thin walls cannot be tunneled through between samples (2.117345ms)
+✔ pathfinder goes around walls and every returned segment is traversable (25.280416ms)
+✔ sealed barriers and search budgets report explicit failures (52.780328ms)
+✔ water, steep slopes, steps, bounds and invalid ground are rejected (0.722112ms)
+✔ stronghold gate opening is passable while adjoining wall remains solid (15.135189ms)
+✔ adding and removing a gate collider updates routes immediately (0.312795ms)
+✔ mesh triangle sampling agrees at vertices and interiors including negative coordinates (6.758938ms)
+✔ diagonal movement is normalized and duplicate inputs are ignored (8.697237ms)
+✔ packet flooding does not advance simulation and stale held input stops (0.689274ms)
+✔ sliding follows wall without crossing it or increasing speed (0.331222ms)
+✔ movement codec rejects injected speed, timestamps, coordinates and invalid sequence (0.411271ms)
+✔ chunk collider lifetime includes props and preserves unrelated dynamic gates (3.719755ms)
+✔ all eight prop kinds generate valid shared geometry and unique ids (1.743369ms)
+✔ preview boots, crosses every style, resizes, pauses and resumes with bounded catch-up (3575.233748ms)
+✔ fixed clock preserves cadence across irregular frame partitions (1.745472ms)
+✔ long stalls have four-step budget and no delayed catch-up debt (0.312655ms)
+✔ invalid clock deltas leave accumulator unchanged (0.453684ms)
+✔ reset removes fractional tick and clock rejects recursive advancement (0.382679ms)
+✔ realm packet flood cannot advance state or expose connection credentials (9.508341ms)
+✔ visibility originates at authoritative player location and snapshot copies are isolated (1.275525ms)
+✔ realm rejects forged input fields and stale sequence numbers (1.322844ms)
+✔ disconnect removes visibility and reconnect receives a new public id and sequence scope (0.553382ms)
+✔ late joins use realm snapshot clock while idle intent expires (4.6897ms)
+✔ realm long stall is bounded and invalid delta does not move a player (1.306521ms)
+✔ realm enforces option and spawn limits without retaining failed joins (0.539331ms)
+✔ realm wall collisions remain authoritative for two independently moving players (2.548565ms)
+✔ snapshot codec roundtrips, copies state and rejects unexpected fields at every level (0.66653ms)
+✔ snapshot rejects duplicates, invalid clock, coordinates, identities and sequence values (0.481205ms)
+✔ snapshot rejects malformed, oversized and excessively populated data (0.537608ms)
+✔ transport gate accounts for projected queue and drops cosmetics before state (1.482411ms)
+✔ transport gate rejects invalid budgets, sizes and priorities (0.260717ms)
+✔ realm fixed-clock traversal: willowglass (73.632148ms)
+✔ realm fixed-clock traversal: saffron (41.78883ms)
+✔ realm fixed-clock traversal: mothlight (22.646624ms)
+✔ all reference grid centers round trip, including last cells (20.828178ms)
+✔ outside and non-finite coordinates are rejected rather than clamped (0.395177ms)
+✔ pixel to world conversion preserves tile identity (0.239886ms)
+✔ isometric projection is reversible (0.368918ms)
+✔ imported preferences sanitize malformed settings (0.272385ms)
+✔ packets cannot advance time or select another player (1.461741ms)
+✔ duplicate inputs, flood limit, capacity and disconnect (0.725097ms)
+✔ snapshot copies cannot mutate authoritative positions (0.236992ms)
+✔ v0.4 willowglass: session traverses with preview prop colliders (94.02447ms)
+✔ v0.4 saffron: session traverses with preview prop colliders (51.727335ms)
+✔ v0.4 mothlight: session traverses with preview prop colliders (29.915ms)
+✔ same seed and coordinates reproduce all descriptors regardless of generation order (27.982509ms)
+✔ east and south edges match exactly across origin and region boundaries (44.405045ms)
+✔ generated props have stable unique ids, dry ground and finite geometry (153.413028ms)
+✔ catalog has ten complete biome recipes and every biome is reachable (0.78828ms)
+✔ negative positions floor into negative chunks (0.297181ms)
+✔ weather is deterministic and only changes at epoch boundaries (0.250392ms)
+✔ codec rejects malformed, oversized, unknown, fractional and dangerous fields (0.705608ms)
+✔ server rejects distant requests and client rejects different world recipes (10.880519ms)
+✔ client chunk view reuses existing chunks and disposes unloaded chunks (11.64147ms)
+✔ terrain mesh has valid upward-facing indices and finite vertex buffers (4.182732ms)
+ℹ tests 76
+ℹ suites 0
+ℹ pass 76
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3666.35373

@@ -1,0 +1,112 @@
+[
+  {
+    "archive": "wayfarer-v0.4(1).zip",
+    "sha256": "a3e6a345f605780939e5dc801ba8885c877277956a22ef99e341d1a40b37fa28",
+    "files": 241,
+    "rejected": [],
+    "packages": [
+      {
+        "path": "wayfarer-v0.4/package.json",
+        "version": "0.4.0"
+      }
+    ],
+    "v07_modules": []
+  },
+  {
+    "archive": "wayfarer-v0.5-preparation(1).zip",
+    "sha256": "1a8e1d3a4d7c9644672148aad0625fbbdeeb62fa9a7525ed3e28df804d2508a5",
+    "files": 872,
+    "rejected": [],
+    "packages": [
+      {
+        "path": "v0.5-preparation/reference-source/ashfen-strav/package.json",
+        "version": null
+      },
+      {
+        "path": "v0.5-preparation/reference-source/girstlantern/package.json",
+        "version": null
+      },
+      {
+        "path": "v0.5-preparation/reference-source/grok-workspace/package.json",
+        "version": null
+      },
+      {
+        "path": "v0.5-preparation/reference-source/journalboard/package.json",
+        "version": null
+      },
+      {
+        "path": "v0.5-preparation/reference-source/newestbranch/package.json",
+        "version": null
+      },
+      {
+        "path": "v0.5-preparation/reference-source/wayfarer-next-strata/package.json",
+        "version": null
+      },
+      {
+        "path": "v0.5-preparation/reference-source/wayfarer-polycodex-handshake-strata/package.json",
+        "version": null
+      }
+    ],
+    "v07_modules": []
+  },
+  {
+    "archive": "wayfarer-v0.6-preparation(1).zip",
+    "sha256": "ab8a088a05168137e27768039809dc7b053e9541fcb266663c2c8fd1d71dad7f",
+    "files": 144,
+    "rejected": [],
+    "packages": [
+      {
+        "path": "v0.6-preparation/reference-source/wayfarer-osrs-refined/package.json",
+        "version": null
+      }
+    ],
+    "v07_modules": []
+  },
+  {
+    "archive": "wayfarer-v0.7-handoff(1).zip",
+    "sha256": "dbace2c2c768cf7c30c674b700d23e2721683cc3a213b66c365c2bc15f5bd3f5",
+    "files": 8,
+    "rejected": [],
+    "packages": [],
+    "v07_modules": []
+  },
+  {
+    "archive": "wayfarer-world-typescript.zip",
+    "sha256": "36660dba92b64c526bbd2194607242dbdbfb928a82c9a242c8c48a6bb0235c8c",
+    "files": 19,
+    "rejected": [],
+    "packages": [
+      {
+        "path": "wayfarer-world/package.json",
+        "version": "0.1.0"
+      }
+    ],
+    "v07_modules": []
+  },
+  {
+    "archive": "wayfarer-world-typescript2.zip",
+    "sha256": "a6ba01208d3d5dc986ca5b64ea1c19ebe1de3829285d358763c94f14114f8974",
+    "files": 34,
+    "rejected": [],
+    "packages": [
+      {
+        "path": "wayfarer-world/package.json",
+        "version": "0.2.0"
+      }
+    ],
+    "v07_modules": []
+  },
+  {
+    "archive": "wayfarer-world-typescript3.zip",
+    "sha256": "a6ba01208d3d5dc986ca5b64ea1c19ebe1de3829285d358763c94f14114f8974",
+    "files": 34,
+    "rejected": [],
+    "packages": [
+      {
+        "path": "wayfarer-world/package.json",
+        "version": "0.2.0"
+      }
+    ],
+    "v07_modules": []
+  }
+]

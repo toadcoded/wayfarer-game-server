@@ -1,0 +1,22 @@
+BJS - [00:46:52]: Babylon.js v9.28.0 - Null engine
+BJS - [00:46:52]: Babylon.js v9.28.0 - Null engine
+BJS - [00:46:52]: Babylon.js v9.28.0 - Null engine
+BJS - [00:46:52]: Babylon.js v9.28.0 - Null engine
+✔ blink and ambient gestures change only presentation and reset under reduced motion (85.565775ms)
+✔ entire roster has distinct profiles, real geometry and disposable rigs (141.433395ms)
+✔ cape pins stay anchored, wind deforms the hem and all geometry remains finite (15.562144ms)
+✔ walking follows server positions, pause stabilizes secondary motion, equipment swaps do not leak meshes (15.956599ms)
+BJS - [00:46:52]: Babylon.js v9.28.0 - Null engine
+BJS - [00:46:53]: Babylon.js v9.28.0 - Null engine
+BJS - [00:46:53]: Babylon.js v9.28.0 - Null engine
+✔ graphics context loss suspends rendering and restoration resumes with current quality (377.014405ms)
+✔ stable viewport avoids repeated resize while orientation changes resize once (261.123953ms)
+✔ complete realm renderer mounts collision-world geometry and cleans changing player rigs (327.370567ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2037.114013

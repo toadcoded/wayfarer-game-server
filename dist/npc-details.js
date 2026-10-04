@@ -1,0 +1,33 @@
+import { MeshBuilder, StandardMaterial, Color3 } from '@babylonjs/core';
+export function decorateRealmNPC(scene, id, root, role) {
+    const wood = new StandardMaterial(id + ':staff-wood', scene);
+    wood.diffuseColor = Color3.FromHexString(role === 'keeper' ? '#7b563a' : '#4e5b68');
+    wood.specularColor = Color3.Black();
+    const trim = new StandardMaterial(id + ':badge-trim', scene);
+    trim.diffuseColor = Color3.FromHexString(role === 'keeper' ? '#d2b56d' : '#99bcca');
+    trim.emissiveColor = role === 'warden' ? new Color3(.08, .2, .23) : new Color3(.05, .035, 0);
+    const staff = MeshBuilder.CreateCylinder(id + ':role-staff', { height: 1.75, diameter: .06, tessellation: 6 }, scene);
+    staff.parent = root;
+    staff.position.set(.45, .9, .1);
+    staff.material = wood;
+    const cap = MeshBuilder.CreateSphere(id + ':staff-cap', { diameter: role === 'keeper' ? .18 : .25, segments: 4 }, scene);
+    cap.parent = root;
+    cap.position.set(.45, 1.79, .1);
+    cap.material = trim;
+    const badge = MeshBuilder.CreateBox(id + ':role-badge', { width: .12, height: .16, depth: .025 }, scene);
+    badge.parent = root;
+    badge.position.set(-.16, 1.33, .27);
+    badge.material = trim;
+    const pouch = MeshBuilder.CreateSphere(id + ':belt-pouch', { diameter: 1, segments: 4 }, scene);
+    pouch.parent = root;
+    pouch.position.set(-.3, .88, .05);
+    pouch.scaling.set(.18, .22, .12);
+    pouch.material = wood;
+    const meshes = [staff, cap, badge, pouch];
+    for (const m of meshes) {
+        m.isPickable = false;
+        m.checkCollisions = false;
+    }
+    return { dispose() { for (const m of meshes)
+            m.dispose(); wood.dispose(); trim.dispose(); } };
+}

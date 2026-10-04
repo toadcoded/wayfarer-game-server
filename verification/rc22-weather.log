@@ -1,0 +1,12 @@
+BJS - [02:07:13]: Babylon.js v9.28.0 - Null engine
+✔ shared weather is deterministic, continuous, bounded and has gradual rain recovery (20.955607ms)
+✔ chunk moisture cache is bounded, detached, shares rain and invalidates by clock bucket (0.684052ms)
+✔ sky/cloud/rain meshes stay bounded and reduced motion pauses the climate without leaks (62.886297ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1166.35008

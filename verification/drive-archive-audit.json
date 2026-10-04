@@ -1,0 +1,64 @@
+[
+  {
+    "title": "wayfarer-v0.8-rc11-skilling-candidate.zip",
+    "bytes": 6938258,
+    "sha256": "2937602678e964728791bf877d1660e228c9b3d11e8d998e5b129d1358a45d6d",
+    "crcPassed": false,
+    "error": "File is not a zip file"
+  },
+  {
+    "title": "wayfarer-v0.8-rc10-3d-candidate.zip",
+    "bytes": 9423626,
+    "sha256": "b3c4d28cba5dec03f2f5f416422cfcacd4e95e8dfce0c9f8495c1dc1a623ed77",
+    "crcPassed": false,
+    "error": "File is not a zip file"
+  },
+  {
+    "title": "wayfarer-v0.8-rc9-builds-candidate.zip",
+    "bytes": 8835637,
+    "sha256": "6cb026c43c0a17d796d4c79d2dc2190aacd1b64f4b7d2081e77fa9e5b35ad324",
+    "entries": 510,
+    "expandedBytes": 30176046,
+    "crcPassed": true
+  },
+  {
+    "title": "appworkspace.zip",
+    "bytes": 903305,
+    "sha256": "32a084863f6d10ba6f89c4c156645c7f215cac7ba4340dd0e708495a1443f97d",
+    "entries": 257,
+    "expandedBytes": 1891792,
+    "crcPassed": true
+  },
+  {
+    "title": "ASHFEN_REEDHAVEN_CLOUD_SAVE_2026-10-01.zip",
+    "bytes": 1474963,
+    "sha256": "dca7e76ce744ba81edde9c6c656627ca1e9cd306756b7b77dc2e81be57572acc",
+    "entries": 255,
+    "expandedBytes": 4109856,
+    "crcPassed": true
+  },
+  {
+    "title": "reedhaven-playable-spine.zip",
+    "bytes": 7527,
+    "sha256": "1398c49c34c87c83f2fea9351ca3db6c348134bd49e20cbaa5064a94bd2ae937",
+    "entries": 11,
+    "expandedBytes": 14739,
+    "crcPassed": true
+  },
+  {
+    "title": "ashfen-multiplayer-slice.zip",
+    "bytes": 25775,
+    "sha256": "785f6aabf3dfe277ab5e8b6557cce5c16afd14f0ce0ee4c3c9b4664f47e03a52",
+    "entries": 31,
+    "expandedBytes": 64433,
+    "crcPassed": true
+  },
+  {
+    "title": "polycodex-npc-loop-integration-artifacts-2026-09-24.zip",
+    "bytes": 16052,
+    "sha256": "9f773b94b8382a483fe91e34c94262ae326ac1dd504a28fb3e9641bcf642acf1",
+    "entries": 8,
+    "expandedBytes": 49749,
+    "crcPassed": true
+  }
+]

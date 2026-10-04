@@ -1,0 +1,14 @@
+import { SKILLS, level, xpProgress, TIER_LEVELS, checkedProgression } from './progression.js';
+import { SKILLING_SKILLS, PROFESSIONS, checkedSkilling, gatheringBonuses } from './skilling.js';
+export const ALL_SKILLS = Object.freeze([...SKILLS, ...SKILLING_SKILLS]);
+const roles = { attack: 'Melee accuracy and weapon requirements', strength: 'Melee damage', defence: 'Incoming damage reduction and armour requirements', ranged: 'Ranged accuracy, damage and quiver requirements', magic: 'Magic damage and spell requirements', hitpoints: 'Maximum health', prayer: 'Prayer capacity and prayer requirements', woodcutting: 'Wood harvesting speed', mining: 'Ore harvesting speed', fishing: 'Fishing speed', agility: 'Mobility routes and stamina recovery', cooking: 'Food recipes and cooking reliability', crafting: 'Equipment and jewellery recipes', firemaking: 'Fire tiers and camp utility', fletching: 'Arrow and bow recipes', herblore: 'Potion recipes', runecrafting: 'Rune recipes', slayer: 'Creature tasks and target requirements', smithing: 'Metal equipment recipes', thieving: 'Theft targets and success requirements', farming: 'Crop and growth requirements', construction: 'Building recipes', hunter: 'Capture and trap requirements' };
+export const SKILL_DIRECTORY = Object.freeze(Object.fromEntries(ALL_SKILLS.map(id => [id, Object.freeze({ id, name: id[0].toUpperCase() + id.slice(1), role: roles[id], status: ['ranged', 'prayer', ...SKILLING_SKILLS.filter(k => !PROFESSIONS.includes(k))].includes(id) ? 'practice-only' : 'playable', maxLevel: 99 })])));
+export function skillBonuses(id, xp) {
+    if (!ALL_SKILLS.includes(id))
+        throw Error('Unknown skill');
+    const n = level(xp), tier = 1 + TIER_LEVELS.filter(t => t > 1 && t <= n).length;
+    return { level: n, tier, requirementLevel: n, flatDamage: id === 'strength' || id === 'magic' ? Math.floor((n - 1) / 10) : 0, damageReduction: id === 'defence' ? Math.floor((n - 1) / 20) : 0, maxHealth: id === 'hitpoints' ? 40 + Math.max(0, n - 10) : null, accuracyRating: ['attack', 'ranged', 'magic'].includes(id) ? n + 8 : null, gatheringCooldownTicks: PROFESSIONS.includes(id) ? gatheringBonuses(xp).cooldownTicks : null, capacity: id === 'prayer' ? n : null, status: SKILL_DIRECTORY[id].status };
+}
+/** One owner per XP field: combat in Progression, noncombat in Skilling. Detached read model only. */
+export function skillBook(p, s) { const combat = checkedProgression(p), noncombat = checkedSkilling(s); return ALL_SKILLS.map(id => { const xp = SKILLS.includes(id) ? combat.xp[id] : noncombat.xp[id]; return { ...SKILL_DIRECTORY[id], ...xpProgress(xp), bonuses: skillBonuses(id, xp) }; }); }
+export function meetsSkillRequirements(p, s, requirements) { const book = skillBook(p, s); return Object.entries(requirements).every(([id, n]) => Number.isInteger(n) && n >= 1 && n <= 99 && book.some(row => row.id === id && row.level >= n)); }

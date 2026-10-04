@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "tick": 30,
+  "simulationTimeMs": 1500,
+  "players": [
+    {
+      "id": "p1",
+      "position": {
+        "x": 1.5999999999999999,
+        "y": 0,
+        "z": 0
+      },
+      "lastInputSequence": 29,
+      "blocked": true
+    },
+    {
+      "id": "p2",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": 6.000000000000003
+      },
+      "lastInputSequence": 29,
+      "blocked": false
+    }
+  ]
+}

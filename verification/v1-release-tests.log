@@ -1,0 +1,23 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@1.0.0 test:release
+> node --test test/release-*.test.mjs
+
+✔ public host serves correct assets, rejects bad origins, saves connected players and restores after restart (257.535548ms)
+✔ profile-capacity errors and invalid asset requests do not fault the running realm or create identities (38.632128ms)
+✔ 16-player realm ticks at configured capacity; malformed peer cannot stop other players (782.614721ms)
+✔ actual entrypoint persists periodic saves across SIGKILL and flushes on SIGTERM (702.422613ms)
+✔ production configuration rejects missing HTTPS origin and invalid bounds (2.699577ms)
+✔ request limiter bounds memory, rejects excess and expires old windows (0.412803ms)
+✔ SQLite transactions roll back whole batches and cookies survive reopen (21.530266ms)
+✔ realm lease denies competing authorities and is released by process death (150.167837ms)
+✔ legacy migration preserves signed identities and rejects nonempty destinations (6.673981ms)
+✔ restore validates a backup, refuses a live realm lease and preserves the replaced database (27.55448ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1343.603162

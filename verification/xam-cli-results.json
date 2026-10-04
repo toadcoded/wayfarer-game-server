@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "Standalone CLI enables Xam without players",
+    "Monotonic host clock stays ticking",
+    "Read-only Xam endpoint is live",
+    "SIGTERM saves a validated profile and exits cleanly"
+  ],
+  "tick": 30,
+  "cursor": 0
+}

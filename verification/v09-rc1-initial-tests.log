@@ -1,0 +1,374 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.9.0-rc.1 test
+> npm run build && node --test --test-concurrency=2 test/*.test.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.9.0-rc.1 build
+> tsc -p tsconfig.json && npm run mesh:bundle && npm run realm:bundle && npm run visual:bundle && npm run characters:bundle
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.9.0-rc.1 mesh:bundle
+> esbuild src/mesh-lab.ts --bundle --format=esm --minify --legal-comments=linked --outfile=preview/mesh-lab.bundle.js
+
+
+  preview/mesh-lab.bundle.js  6.9mb ⚠️
+
+⚡ Done in 895ms
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.9.0-rc.1 realm:bundle
+> esbuild src/realm-3d.ts --bundle --format=esm --minify --legal-comments=linked --outfile=preview/realm-3d.bundle.js
+
+
+  preview/realm-3d.bundle.js  6.9mb ⚠️
+
+⚡ Done in 876ms
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.9.0-rc.1 visual:bundle
+> esbuild src/pglite-plugin.ts --bundle --platform=browser --format=esm --minify --legal-comments=linked --outfile=preview/pglite-plugin.bundle.js && esbuild src/pglite-worker.ts --bundle --platform=browser --format=esm --minify --legal-comments=linked --external:node:* --outfile=preview/pglite-worker.bundle.js && node tools/copy-pglite-assets.mjs
+
+
+  preview/pglite-plugin.bundle.js  33.1kb
+
+⚡ Done in 8ms
+
+  preview/pglite-worker.bundle.js  595.3kb
+
+⚡ Done in 51ms
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> wayfarer-world-kit@0.9.0-rc.1 characters:bundle
+> esbuild src/character-studio.ts --bundle --platform=browser --format=esm --minify --legal-comments=linked --outfile=preview/character-studio.bundle.js
+
+
+  preview/character-studio.bundle.js  6.9mb ⚠️
+
+⚡ Done in 912ms
+✔ A points down, B points up; equal strengths cancel only in the center plane (0.911676ms)
+✔ C circulates tangentially, reverses cleanly and has a finite calm core (0.290128ms)
+✔ field has bounded cylindrical support and weakens toward its edges (0.713186ms)
+✔ pulse follows simulation time with known peak and trough (0.147863ms)
+✔ invalid fields reject before mutation and settings are defensively copied (0.554407ms)
+✔ combined field is capped separately from gravity; pulses freeze and reset with simulation (6.168288ms)
+✔ strong pulsing ABC fields remain finite and preserve all pinned points (58.787274ms)
+✔ player 1 failure leaves all committed walkers unchanged (3.098076ms)
+✔ player 2 failure leaves all committed walkers unchanged (0.700787ms)
+✔ player 3 failure leaves all committed walkers unchanged (1.51731ms)
+✔ player 4 failure leaves all committed walkers unchanged (0.502749ms)
+✔ invalid final candidate is discarded before commit (0.481526ms)
+✔ 100 deterministic staged input replays match (62.730605ms)
+✔ default fetch preserves the browser global receiver (4.721896ms)
+✔ presentation springs respond to travel and settle without mutating authoritative position (2.761888ms)
+✔ long stalls, teleports, reduced motion and invalid clocks are bounded (0.33786ms)
+✔ irregular frame intervals keep springs finite and bounded (3.850371ms)
+✔ magenta key preserves character colors and existing transparency (0.199191ms)
+✔ animation uses frame durations and wraps at cycle boundary (0.882602ms)
+✔ rounded sphere triangles face outwards and remain within collider extents (0.803742ms)
+✔ all selectable source sheets match dimensions and crop bounds (0.707017ms)
+✔ walk jog and run presentation have distinct grounded stride weights (0.215806ms)
+✔ character studio and compiled renderer are served by the actual realm host with local preview controls (268.901934ms)
+✔ comfort controls close reopen resize and restore hidden overlays (1.505613ms)
+✔ shallow wading remains grounded and deeper water blocks all traversals (39.001606ms)
+✔ cosmetic daylight cycles smoothly and rejects invalid clocks (1.084326ms)
+✔ contract roundtrips within server input budget and matches simulation cadence (1.693035ms)
+✔ every contract-field mismatch is rejected with a compatibility reason (0.551612ms)
+✔ malformed handshakes and unknown fields are rejected on both sides (0.335446ms)
+✔ incompatible world never joins, receives snapshots, or reserves a player id (31.969144ms)
+✔ movement before hello is rejected before any player exists (7.36193ms)
+✔ missing or unsupported subprotocol cannot establish a realm connection (10.905808ms)
+✔ pending handshake expires and releases capacity without creating player (154.266445ms)
+✔ replayed hello cannot reset player identity or input sequence (19.711ms)
+✔ compatibility errors map to bounded user messages, not arbitrary server prose (0.687738ms)
+✔ bridge supports replace deep-water walking only inside their footprint (1.295855ms)
+✔ submerged decks stay wet, and buried decks do not replace terrain (0.546725ms)
+✔ ramp top geometry and navigation agree along both axes (0.507165ms)
+✔ foundation interior is level and blend joins untouched ground continuously (0.250248ms)
+✔ edited terrain triangles match samples at fractional positions and shared mesh borders (2.298519ms)
+✔ conflicting earthworks, overlapping decks and invalid pad sizes are rejected (0.370018ms)
+✔ bridge rails block sideways exits while the walking center remains clear (3.257886ms)
+✔ all three themed plans cross real generated water with fitted dry landings (59.98653ms)
+✔ fixed-tick server walker completes a real bridge crossing without teleporting or sinking (22.685891ms)
+✔ planner rejects dry sites, clipped banks, multiple channels and invalid options (0.890773ms)
+✔ nearby inscriptions respect three-dimensional inspection distance (8.867332ms)
+✔ site reservations clear conflicting generated props and leave source chunks untouched (11.595496ms)
+✔ reference scene buffers are finite, indexed correctly and reproduce identically (35.127825ms)
+✔ adjacent ramps cannot silently register a discontinuous seam (0.368656ms)
+✔ reserved procedural props and neighboring structures do not block the verified crossing (37.856619ms)
+✔ keyboard aliases and touch holds release independently (1.038901ms)
+✔ weapons enforce range, cadence and immutable damage definitions (1.112668ms)
+✔ pulse can be guarded on impact or dodged outside the ring (0.328636ms)
+✔ knockout recovers while warden rests; camp heals without exceeding cap (0.143016ms)
+✔ contributors receive one shared victory, spectators none, and warden respawns (0.700566ms)
+✔ burst commands cannot bypass cooldown; clients cannot submit damage or target (3.308479ms)
+✔ failed candidate leaves combat, results and clock unchanged (1.367222ms)
+✔ combat is shared while fighter state stays private and session-only (1.248723ms)
+✔ malformed health and impossible recovery clocks fail closed (0.25208ms)
+✔ passive pulse and health changes advance gameplay revision (7.350806ms)
+✔ second-player failure prevents partial state publication and any further realm ticks (2.646992ms)
+✔ clock reset and repaired sampler cannot revive a partially advanced realm (0.456068ms)
+✔ trusted hook failure faults realm without publishing hook mutations (0.283327ms)
+✔ invalid host deltas leave healthy realm available (0.432703ms)
+✔ low-level WorldSession also blocks partial snapshots after tick failure (0.36501ms)
+✔ catch-up fault preserves count of completed steps and stops remaining steps (0.58406ms)
+✔ actions wait for tick, distance is authoritative and effects are idempotent (6.305488ms)
+✔ identity fields, unknown skins and malformed commands fail closed (0.493725ms)
+✔ cosmetics replicate only for visible identities and queued actions are bounded (2.089541ms)
+✔ failed action calculation preserves all game results and effects (0.666786ms)
+✔ invalid server game messages are rejected (0.760327ms)
+✔ inventory rejects sparse slots and item catalog cannot be changed (0.942531ms)
+✔ resource and gather clocks reject impossible snapshots (1.985565ms)
+✔ duplicate player identity and malformed connections cannot enter gameplay (1.032307ms)
+✔ final candidate failure discards reward payment, item grant, result and tick (9.062116ms)
+✔ realm discards clock divergence before publishing movement (2.375352ms)
+✔ 5000 seeded mixed actions preserve inventory and resource invariants (425.209323ms)
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+✔ blink and ambient gestures change only presentation and reset under reduced motion (78.039517ms)
+✔ entire roster has distinct profiles, real geometry and disposable rigs (130.01302ms)
+✔ cape pins stay anchored, wind deforms the hem and all geometry remains finite (13.106194ms)
+✔ walking follows server positions, pause stabilizes secondary motion, equipment swaps do not leak meshes (18.820712ms)
+✔ active drill gestures articulate the rig and reset cleanly when paused (54.489383ms)
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:18]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:19]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:19]: Babylon.js v9.28.0 - Null engine
+✔ all roster models contain detailed faces, clothed anatomy and a bounded joint/mesh budget (216.286884ms)
+✔ appearance validation is strict, detached and palette-bounded before allocating a rig (149.918498ms)
+✔ knees and elbows articulate in motion, wrists and speaking gestures reset fully on pause (21.228524ms)
+✔ static batches retain anatomy labels and stable material/mesh counts through equipment and motion (22.933865ms)
+✔ host sleeps without players, starts on admission and stops after final departure (198.794786ms)
+✔ HUD tabs, keyboard navigation and collapse preserve independent gameplay controls (1.359209ms)
+✔ one reward consumes one token; repeated claims cannot duplicate items (18.093847ms)
+✔ equip and stow conserve item ownership and share only equipment (10.70238ms)
+✔ duplicate queued reward claims and replayed packet sequences grant only once (9.136529ms)
+✔ candidate failure rolls back both payment and item grant (11.112387ms)
+✔ strict item codecs reject unknown IDs, client grants and inconsistent snapshots (0.516929ms)
+✔ inventory transitions and snapshots do not alias source arrays (9.125642ms)
+✔ depth wins independently of face order, including overlaid terrain and bridge (1.704731ms)
+✔ raster bounds are capped (0.267213ms)
+✔ asset fetch deduplicates requests and returns isolated cached bytes (4.997777ms)
+✔ fetch caps concurrency at two and retries server errors only once (6.686603ms)
+BJS - [02:56:20]: Babylon.js v9.28.0 - Null engine
+✔ fetch rejects oversize, wrong MIME and timed-out transfers (12.581703ms)
+✔ runtime catalog validation rejects unsafe paths, bad crops, coercion and duplicate IDs (1.186148ms)
+✔ multipoint cloth preserves anchors and finite geometry under long stalls (64.402812ms)
+✔ real Babylon NullEngine mounts, updates and disposes a cloth mesh (18.802855ms)
+✔ static compression honors gzip refusal and preserves bytes (5.246001ms)
+✔ two loopback realms use distinct ports and serve the shared fetch and mesh assets (377.733502ms)
+✔ registry gates keyboard and ID dispatch identically and reports failures (1.65154ms)
+✔ wind is bounded, copied and reset with the cloth (7.620792ms)
+✔ impulse affects nearby unpinned points and leaves anchors fixed (0.89562ms)
+✔ repeated opposing impulses and large wind remain finite with bounded geometry (60.746147ms)
+✔ single step, reduced motion, pinned targets and reset use shared action rules (0.747998ms)
+✔ toolbar button and keyboard dispatch share state; editing/repeat input is ignored; disposal removes handler (1.424117ms)
+✔ thin walls cannot be tunneled through between samples (1.879494ms)
+✔ pathfinder goes around walls and every returned segment is traversable (20.176827ms)
+✔ sealed barriers and search budgets report explicit failures (22.895437ms)
+✔ water, steep slopes, steps, bounds and invalid ground are rejected (0.697312ms)
+✔ stronghold gate opening is passable while adjoining wall remains solid (4.329399ms)
+✔ adding and removing a gate collider updates routes immediately (0.253262ms)
+✔ mesh triangle sampling agrees at vertices and interiors including negative coordinates (4.372013ms)
+✔ diagonal movement is normalized and duplicate inputs are ignored (0.840037ms)
+✔ packet flooding does not advance simulation and stale held input stops (0.659064ms)
+✔ sliding follows wall without crossing it or increasing speed (0.312151ms)
+✔ movement codec rejects injected speed, timestamps, coordinates and invalid sequence (0.534546ms)
+✔ chunk collider lifetime includes props and preserves unrelated dynamic gates (2.421662ms)
+✔ all eight prop kinds generate valid shared geometry and unique ids (1.009472ms)
+✔ browser-client module uses real socket: join, input, snapshot, disconnect and rejoin (stub DOM) (251.759568ms)
+BJS - [02:56:20]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:21]: Babylon.js v9.28.0 - Null engine
+✔ eight prototype NPCs use stable safe separated landing positions (33.311395ms)
+✔ prototype outfits articulate without spawning extra meshes and release their materials (236.087504ms)
+✔ realm mounts one of each named friendly prototype and preserves ambient actors (424.410269ms)
+BJS - [02:56:22]: Babylon.js v9.28.0 - Null engine
+✔ all23 skills use themed three-step drills; start and partial actions award no XP (116.093821ms)
+✔ fixed-coordinate autoclicking and queued rapid steps cannot finish a drill (2.078215ms)
+✔ stale tokens, old steps, duplicate packets and another player cannot reuse a response (2.363665ms)
+✔ shared attempt recovery survives skill cycling, cancellation, disconnect and fresh clock (7.804801ms)
+✔ expiry and leaving the yard invalidate incomplete drills without XP (16.328926ms)
+✔ last-moment partial response ends gracefully rather than faulting the host (16.697112ms)
+✔ all existing gathering paths require three actions before any resource or25XP reward (8.83198ms)
+✔ unknown skills, client grants, identities, clocks, fabricated responses and extra fields fail closed (0.734598ms)
+✔ private challenges are detached, strictly validated and absent for other observers (1.287161ms)
+✔ XP cap cannot wrap; v4 saves migrate without restoring an active drill (0.528888ms)
+✔ dead players gain no XP; failed staged transition cannot partly start a drill (0.750302ms)
+✔ yard fixtures remain checked, small, nonpickable and disposable (41.305036ms)
+✔ preview boots, crosses every style, resizes, pauses and resumes with bounded catch-up (3811.670106ms)
+✔ player save codec is strict, bounded and detached (2.385888ms)
+✔ realm restores server-owned gameplay and position but resets packet sequence (4.176228ms)
+✔ saved gather cooldown is relative to the join tick, not a stale absolute tick (3.339838ms)
+✔ local profile store signs identity cookies and survives process-style reopen (10.672687ms)
+✔ profile batches validate completely before replacing the durable database (3.784698ms)
+✔ queued profile mutations serialize without losing concurrent sessions or saves (4.29675ms)
+✔ replay v2 records restored gameplay without recording account or connection identity (8.986403ms)
+✔ Strength-only training credits real damage without Attack or Defence XP (3.042579ms)
+✔ explicit training changes affect only future resolved attacks (5.474146ms)
+✔ guard, cooldown and distant attacks cannot mint XP (1.755037ms)
+✔ overkill awards only remaining target health (37.753439ms)
+✔ magic weapon requires explicit Magic mode and cannot train Attack (1.441243ms)
+✔ save migration preserves old state, starts zero XP, and new saves retain builds (1.051375ms)
+✔ failed staged tick cannot expose XP or training changes (0.887048ms)
+✔ XP schemas reject client grants, coercion, unknown skills and shared snapshot leaks (0.865335ms)
+✔ level thresholds, caps and combat brackets are deterministic and monotonic (0.471001ms)
+✔ weapon identity and requirements remain independent from tier and training mode (0.398101ms)
+✔ quest requires proximity, acceptance and complete inventory; reward cannot repeat (18.233249ms)
+✔ shared finite patch and tick cooldown prevent packet harvesting; stock regrows (26.742843ms)
+✔ client cannot supply inventory, rewards, quantity or a target position (0.654397ms)
+✔ failed candidate discards resource consumption and private quest transitions (1.536757ms)
+✔ recipient inventory is detached and absent from other player records (0.705705ms)
+✔ disconnect save gates reconnect; duplicate and tampered cookies fail; restart restores latest appearance (139.866735ms)
+✔ save failure faults health and shutdown rejects instead of reporting success (59.524544ms)
+BJS - [02:56:23]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:24]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:24]: Babylon.js v9.28.0 - Null engine
+✔ graphics context loss suspends rendering and restoration resumes with current quality (537.831099ms)
+✔ stable viewport avoids repeated resize while orientation changes resize once (403.376313ms)
+✔ complete realm renderer mounts collision-world geometry and cleans changing player rigs (531.055756ms)
+BJS - [02:56:26]: Babylon.js v9.28.0 - Null engine
+✔ seeded realm dressing is reproducible, diverse and separated from the walking lane (1.686183ms)
+✔ ambient schedule reaches every event without repeated-rate dependence; pause removes events (1.698712ms)
+✔ decorative meshes and NPCs stay bounded through long animation and dispose completely (169.757446ms)
+✔ heartbeat uses actual snapshot age and never labels a stalled realm live (0.185029ms)
+BJS - [02:56:26]: Babylon.js v9.28.0 - Null engine
+✔ shared weather is deterministic, continuous, bounded and has gradual rain recovery (24.141275ms)
+✔ chunk moisture cache is bounded, detached, shares rain and invalidates by clock bucket (0.665483ms)
+✔ sky/cloud/rain meshes stay bounded and reduced motion pauses the climate without leaks (143.624873ms)
+✔ 100 recorded replays reproduce every event and final SHA-256 (347.307675ms)
+✔ replay rejects tampering, wrong contracts and unknown opcodes (7.279228ms)
+✔ bounded recorder marks a valid prefix incomplete and does not stop gameplay (2.726312ms)
+✔ canonical state orders keys and rejects invalid numbers (0.220202ms)
+✔ journal output cannot mutate recorder and malformed clock is rejected (3.125864ms)
+✔ real socket recording includes shared actions and replays on the same scene (57.102501ms)
+✔ host serves the retro stylesheet and complete accessible HUD without losing gameplay IDs (73.302525ms)
+BJS - [02:56:28]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:28]: Babylon.js v9.28.0 - Null engine
+✔ seeded grass is bounded, deterministic, dry-ground only and clear of the bridge lane (35.283835ms)
+✔ foliage uses one noncolliding mesh and one disposable material (13.633612ms)
+✔ retro terrain tint leaves original positions and indices unchanged and has finite colours (2.769187ms)
+✔ fixed clock preserves cadence across irregular frame partitions (1.032327ms)
+✔ long stalls have four-step budget and no delayed catch-up debt (0.144598ms)
+✔ invalid clock deltas leave accumulator unchanged (0.275345ms)
+✔ reset removes fractional tick and clock rejects recursive advancement (0.350639ms)
+✔ realm packet flood cannot advance state or expose connection credentials (17.706415ms)
+✔ visibility originates at authoritative player location and snapshot copies are isolated (1.245859ms)
+✔ realm rejects forged input fields and stale sequence numbers (0.431451ms)
+✔ disconnect removes visibility and reconnect receives a new public id and sequence scope (0.80887ms)
+✔ late joins use realm snapshot clock while idle intent expires (1.667285ms)
+✔ realm long stall is bounded and invalid delta does not move a player (0.376678ms)
+✔ realm enforces option and spawn limits without retaining failed joins (0.436188ms)
+✔ realm wall collisions remain authoritative for two independently moving players (2.191956ms)
+✔ snapshot codec roundtrips, copies state and rejects unexpected fields at every level (0.367505ms)
+✔ snapshot rejects duplicates, invalid clock, coordinates, identities and sequence values (0.381636ms)
+✔ snapshot rejects malformed, oversized and excessively populated data (0.447855ms)
+✔ transport gate accounts for projected queue and drops cosmetics before state (0.191789ms)
+✔ transport gate rejects invalid budgets, sizes and priorities (0.207713ms)
+✔ realm fixed-clock traversal: willowglass (39.218779ms)
+✔ realm fixed-clock traversal: saffron (25.233167ms)
+✔ realm fixed-clock traversal: mothlight (15.154916ms)
+✔ all reference grid centers round trip, including last cells (16.133382ms)
+✔ outside and non-finite coordinates are rejected rather than clamped (0.551752ms)
+✔ pixel to world conversion preserves tile identity (0.191599ms)
+✔ isometric projection is reversible (0.228274ms)
+✔ imported preferences sanitize malformed settings (0.226462ms)
+✔ packets cannot advance time or select another player (1.29965ms)
+✔ duplicate inputs, flood limit, capacity and disconnect (0.419212ms)
+✔ snapshot copies cannot mutate authoritative positions (0.196867ms)
+✔ v0.4 willowglass: session traverses with preview prop colliders (47.681022ms)
+✔ v0.4 saffron: session traverses with preview prop colliders (28.948168ms)
+✔ v0.4 mothlight: session traverses with preview prop colliders (24.119056ms)
+✔ Seraphine appearance replicates and restores without granting equipment (5.183949ms)
+✔ Seraphine catalog matches unchanged PNG and both appearance selectors (2.607873ms)
+✔ high-resolution catalog keeps strict dimension and pixel budgets (0.420254ms)
+✔ three professions have exclusive XP, bounded pack, repeatable bank trips and no combat XP (129.065955ms)
+✔ cooldowns, shared per-player skill clock, invalid commands and server range prevent client minting (4.181086ms)
+✔ artisan recipe consumes exact bank resources and essence once, yielding two resources (0.286742ms)
+✔ a full integrated gather/bank/PvM/craft route awards one essence per contributing clear (137.815721ms)
+✔ strict saves migrate versions 1 and 2, preserve private banks and rebase gather cooldown on restore (3.995887ms)
+✔ snapshot and save boundaries reject overflows, grants and private-state leakage (3.780352ms)
+✔ bank capacity rejection and failed staged commits preserve all resources and XP (0.842701ms)
+✔ Masterwork requires the second milestone, spends once, persists and cannot bypass Artisan (0.217378ms)
+✔ presentation interpolates known positions and heights without modifying authority (1.460633ms)
+✔ missing updates never extrapolate past last known position (0.190627ms)
+✔ out-of-order and duplicate samples do not refresh liveness or reverse motion (0.182726ms)
+✔ teleports and long gaps snap immediately instead of crossing the intervening world (0.252881ms)
+✔ latest membership removes departed players and introduces new ones immediately (0.84202ms)
+✔ buffer retains at most 32 snapshots and clear removes prior connection history (0.438992ms)
+✔ invalid clocks and delay are rejected; backward arrival does not replace state (0.346132ms)
+✔ jitter and backward presentation timestamps never rewind the render timeline (0.273613ms)
+✔ flat terrain has one component and deterministic interior candidate in negative chunk (4.611375ms)
+✔ water wall separates components without row wrapping (1.296555ms)
+✔ grade boundary is inclusive and steeper ground has no candidate (0.692615ms)
+✔ tiny dry islands cannot supply arrival patches and water wins classification (0.317409ms)
+✔ survey rejects malformed grids and thresholds (0.364409ms)
+✔ all atlas samples produce bounded honest surveys with open candidate neighborhoods (19.93159ms)
+✔ two independent sockets receive shared authoritative movement and disconnect/rejoin (68.663617ms)
+✔ server rejects unexpected Origin and missing Origin before joining (12.422386ms)
+✔ capacity rejects excess peers and disconnect frees a slot (24.228201ms)
+✔ binary and oversized frames close offending connections without killing host (29.040007ms)
+✔ malformed and forged movement is rejected while healthy peer continues (24.101139ms)
+✔ wall-clock packet flood disconnects sender even with simulation paused (11.326202ms)
+✔ heartbeat reclaims a socket that stops answering ping (12.163885ms)
+✔ realm fault disconnects all sockets and prevents replacement joins (22.367205ms)
+✔ HTTP serves rehearsal assets, rejects metadata, and survives malformed target (32.59585ms)
+✔ real shared crossing scene accepts a socket and advances without fault (56.048351ms)
+BJS - [02:56:29]: Babylon.js v9.28.0 - Null engine
+✔ camera-relative input rotates correctly without diagonal speed advantage; turns take shortest arc (1.442436ms)
+✔ walk jog run accelerate to distinct host-owned speeds; releases and timeout stop immediately (4.028135ms)
+✔ run exhaustion falls back to jog, needs recovery and mode switch; input flood cannot change energy (5.986889ms)
+✔ staged movement preserves live speed and energy; enhanced replicated state is strict and detached (1.460152ms)
+✔ camera follow preserves orbit zoom and user pan; reset and zoom respect limits (551.373297ms)
+✔ movement, beacon and tick commit together at the first fixed tick (5.778956ms)
+✔ game reducer failure discards already-calculated movement and game candidates (2.372969ms)
+✔ final combined invariant failure discards both reducers (2.023111ms)
+✔ catch-up actions resolve on first tick, not end-of-batch position (1.814957ms)
+✔ diagnostic output is detached and excludes connection identifiers (0.56348ms)
+✔ old candidate simulation contract is rejected (0.911234ms)
+✔ development bridge keeps hello/action frames as text and rejects foreign Host (255.51874ms)
+✔ real PGlite persists only validated visual quality across database reopen (1870.880642ms)
+✔ same-origin worker and WASM assets are served with narrow compilation policy (93.484957ms)
+BJS - [02:56:31]: Babylon.js v9.28.0 - Null engine
+✔ framed portrait is bounded noncolliding geometry and releases owned resources (15.716633ms)
+✔ realm serves bundled original JPEG with correct type and unchanged bytes (63.948192ms)
+BJS - [02:56:32]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:32]: Babylon.js v9.28.0 - Null engine
+BJS - [02:56:32]: Babylon.js v9.28.0 - Null engine
+✔ all ten biomes have reproducible, budgeted non-attackable wildlife sites (10.439234ms)
+✔ playable realm has a finite wildlife pocket and bounded paused roaming (24.900433ms)
+✔ all wildlife rigs are non-pickable, stable under updates, streamed out and fully disposed (93.54015ms)
+✔ wildlife holds its last dry position when a roaming sample becomes water (3.736405ms)
+✔ enhanced species details are batched and blinking resets under pause (2.997411ms)
+✔ atlas anchors cover ten actual distinct biomes deterministically across seeds (4.142086ms)
+✔ all itinerary pairs use connected planned edges without cycles (2.394932ms)
+✔ anchor inspection reports generated chunk evidence including negative coordinates (24.994935ms)
+✔ authored content cannot be mutated through exported catalog (0.22569ms)
+✔ atlas controls select all regions and redraw at mobile size using a stub canvas (36.36314ms)
+✔ same seed and coordinates reproduce all descriptors regardless of generation order (11.350879ms)
+✔ east and south edges match exactly across origin and region boundaries (13.658479ms)
+✔ generated props have stable unique ids, dry ground and finite geometry (107.98188ms)
+✔ catalog has ten complete biome recipes and every biome is reachable (0.5635ms)
+✔ negative positions floor into negative chunks (0.246903ms)
+✔ weather is deterministic and only changes at epoch boundaries (0.169396ms)
+✔ codec rejects malformed, oversized, unknown, fractional and dangerous fields (0.652595ms)
+✔ server rejects distant requests and client rejects different world recipes (5.095985ms)
+✔ client chunk view reuses existing chunks and disposes unloaded chunks (14.040665ms)
+✔ terrain mesh has valid upward-facing indices and finite vertex buffers (3.22908ms)
+✔ exact exponential thresholds, every level boundary and99 cap (1.131066ms)
+✔ combat uses all seven skills, max126, and pure builds preserve untrained skills (0.383268ms)
+✔ all23 skills have separate capped XP, derived bonuses and strict level requirements (2.53337ms)
+✔ v3 save migration preserves original XP, bank, mode and gear and initializes added skills (0.427705ms)
+✔ earned levels affect actual combat health/damage and gathering speed without client XP grants (1.858022ms)
+ℹ tests 291
+ℹ suites 0
+ℹ pass 291
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16110.263046

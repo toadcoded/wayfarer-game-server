@@ -1,0 +1,10 @@
+/** Chat-scoped development bridge only. Never use for production or persisted profiles. */
+import http from 'node:http';import WS,{WebSocketServer} from 'ws';import {createLocalRealmServer} from './realm-server.mjs';
+const portIndex=process.argv.indexOf('--port'),port=Number(portIndex>=0?process.argv[portIndex+1]:4173);
+if(!Number.isInteger(port)||port<1024||port>65535)throw Error('Invalid preview port');
+const host=await createLocalRealmServer(),upstream=new URL(host.origin);
+const allowed=req=>['terminal.local','127.0.0.1','localhost'].includes((req.headers.host||'').split(':')[0]);
+const server=http.createServer((req,res)=>{if(!allowed(req)){res.writeHead(403);res.end();return;}const out=http.request({hostname:upstream.hostname,port:upstream.port,path:req.url,method:req.method,headers:{...req.headers,host:upstream.host}},r=>{res.writeHead(r.statusCode,r.headers);r.pipe(res);});out.on('error',()=>{res.writeHead(502);res.end();});req.pipe(out);});
+const sockets=new WebSocketServer({noServer:true,maxPayload:256});server.on('upgrade',(req,socket,head)=>{if(!allowed(req)||req.url!=='/socket'){socket.destroy();return;}sockets.handleUpgrade(req,socket,head,client=>{const remote=new WS(host.origin.replace('http:','ws:')+'/socket',req.headers['sec-websocket-protocol'],{headers:{Origin:host.origin}}),queue=[];client.on('message',(data,binary)=>{if(binary||data.length>256){client.close(1008);return;}const text=data.toString();if(remote.readyState===WS.OPEN)remote.send(text);else if(queue.length<8)queue.push(text);else client.close(1008);});remote.on('open',()=>{for(const packet of queue)remote.send(packet);queue.length=0;});remote.on('message',data=>{if(client.readyState===WS.OPEN)client.send(data.toString());});remote.on('close',()=>client.close());remote.on('error',()=>client.close());client.on('close',()=>remote.close());client.on('error',()=>remote.close());});});
+server.listen(port,'0.0.0.0',()=>console.log('Development preview bridge on '+port));
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,async()=>{for(const client of sockets.clients)client.terminate();server.close();await host.close();process.exit(0);});

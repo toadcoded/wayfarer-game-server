@@ -1,0 +1,119 @@
+{
+  "format": "wayfarer-interoperability-manifest",
+  "manifestVersion": 1,
+  "subprotocol": "wayfarer.realm.v2",
+  "contract": {
+    "protocolVersion": 2,
+    "simulationRevision": 8,
+    "worldSeed": 20260928,
+    "generatorVersion": 1,
+    "sceneRevision": 1,
+    "coordinateSystem": "xz-y-up-metres",
+    "tickMs": 50,
+    "snapshotVersion": 1
+  },
+  "endpoint": "/socket",
+  "handshakeDeadlineMs": 5000,
+  "maxInboundBytes": 256,
+  "examples": {
+    "hello": {
+      "kind": "hello",
+      "contract": {
+        "protocolVersion": 2,
+        "simulationRevision": 8,
+        "worldSeed": 20260928,
+        "generatorVersion": 1,
+        "sceneRevision": 1,
+        "coordinateSystem": "xz-y-up-metres",
+        "tickMs": 50,
+        "snapshotVersion": 1
+      }
+    },
+    "welcome": {
+      "kind": "welcome",
+      "id": "p1",
+      "contract": {
+        "protocolVersion": 2,
+        "simulationRevision": 8,
+        "worldSeed": 20260928,
+        "generatorVersion": 1,
+        "sceneRevision": 1,
+        "coordinateSystem": "xz-y-up-metres",
+        "tickMs": 50,
+        "snapshotVersion": 1
+      }
+    },
+    "movement": {
+      "sequence": 0,
+      "dx": 1,
+      "dz": 0
+    },
+    "appearance": {
+      "kind": "action",
+      "sequence": 0,
+      "action": "appearance",
+      "value": "elder"
+    },
+    "beacon": {
+      "kind": "action",
+      "sequence": 1,
+      "action": "beacon",
+      "value": "light"
+    },
+    "quest": {
+      "kind": "action",
+      "sequence": 2,
+      "action": "quest",
+      "value": "accept"
+    },
+    "claim": {
+      "kind": "action",
+      "sequence": 3,
+      "action": "claim",
+      "value": "reed_blade"
+    },
+    "equip": {
+      "kind": "action",
+      "sequence": 4,
+      "action": "equip",
+      "value": "reed_blade"
+    },
+    "unequip": {
+      "kind": "action",
+      "sequence": 5,
+      "action": "unequip",
+      "value": "weapon"
+    },
+    "attack": {
+      "kind": "action",
+      "sequence": 6,
+      "action": "combat",
+      "value": "attack"
+    },
+    "guard": {
+      "kind": "action",
+      "sequence": 7,
+      "action": "combat",
+      "value": "guard"
+    }
+  },
+  "lifecycle": [
+    "upgrade",
+    "hello",
+    "welcome",
+    "snapshot",
+    "movement-actions-and-game-state",
+    "disconnect"
+  ],
+  "rejectionReasons": [
+    "invalid_handshake",
+    "incompatible_contract",
+    "handshake_timeout"
+  ],
+  "limitations": [
+    "loopback-only",
+    "local-signed-cookie-is-not-production-auth",
+    "local-json-profile-store-not-cloud-database",
+    "shared-world-state-not-durable"
+  ]
+}
