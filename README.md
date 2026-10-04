@@ -1,4 +1,5 @@
-# Wayfarer v1.0 — official server package
+# wayfarer-game-server
+Wayfarer v1.0 persistent multiplayer game server
 
 A runnable, server-authoritative multiplayer realm derived from the supplied v0.9 rc.3 candidate. Version 1.0 names this source/server release; it does not mean a public host has been provisioned or every planned MMO feature is complete.
 
