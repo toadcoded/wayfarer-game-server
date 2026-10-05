@@ -32,3 +32,10 @@ export function awardWardenEssence(s:Skilling):void {checkedSkilling(s);s.bank.w
 export function gatheringBonuses(xp:number){const n=level(xp);return {level:n,cooldownTicks:Math.max(20,40-Math.floor((n-1)/5)),toolYieldBonus:0};}
 export function awardNoncombatXP(s:Skilling,skill:NoncombatSkill,amount:number):void{checkedSkilling(s);if(!(SKILLING_SKILLS as readonly string[]).includes(skill)||!Number.isSafeInteger(amount)||amount<0||amount>MAX_XP)throw Error('Invalid skilling award');s.xp[skill]=Math.min(MAX_XP,s.xp[skill]+amount);}
 export function migrateSkilling(value:unknown):Skilling{if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Invalid legacy skilling');const s=value as Skilling;if(Object.keys(s).sort().join()!=='bank,pack,readyTick,toolTier,xp'||!s.xp||typeof s.xp!=='object'||Object.keys(s.xp).sort().join()!==[...PROFESSIONS].sort().join())throw Error('Invalid legacy professions');if(!Object.values(s.xp).every(n=>Number.isSafeInteger(n)&&n>=0&&n<=960400))throw Error('Invalid legacy XP');return checkedSkilling({...s,xp:{...freshSkilling().xp,...s.xp}});}
+
+/** Server-only, atomic one-unit bonus for an active resonance effect. */
+export function grantResonanceGatherBonus(s:Skilling,profession:Profession,xp=10):boolean{
+ checkedSkilling(s);if(!PROFESSIONS.includes(profession)||!Number.isSafeInteger(xp)||xp<0||xp>1000)throw Error('Invalid resonance gathering bonus');
+ if(Object.values(s.pack).reduce((a,b)=>a+b,0)>=12)return false;
+ const resource={woodcutting:'logs',mining:'ore',fishing:'fish'} as const;s.pack[resource[profession]]+=1;awardNoncombatXP(s,profession,xp);return true;
+}

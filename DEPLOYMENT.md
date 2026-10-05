@@ -1,10 +1,10 @@
-# Deploy Wayfarer v1.0
+# Deploy Wayfarer v1.2
 
 The supported topology is one persistent Node 24.19 process and one HTTPS reverse proxy. The supplied stack keeps the browser/client and `/socket` on the same HTTPS origin. It stores the realm SQLite database on a Docker volume and automatically acquires HTTPS certificates through Caddy. You need a persistent Linux host, Docker Compose, a hostname you control and a certificate contact email.
 
 ## 1. Prepare the host
 
-Extract `wayfarer-v1.0-official-server.zip`, enter `wayfarer-v1.0`, and point your hostname's DNS A record to the host. Set an AAAA record only if IPv6 reaches that host. Allow inbound TCP 80/443; UDP 443 is optional for HTTP/3. Keep the game port private. Outbound HTTPS is needed for image/dependency downloads and certificate issuance.
+From the Wayfarer v1.2 repository root, point your hostname's DNS A record to the host. Set an AAAA record only if IPv6 reaches that host. Allow inbound TCP 80/443; UDP 443 is optional for HTTP/3. Keep the game port private. Outbound HTTPS is needed for image/dependency downloads and certificate issuance.
 
 ```sh
 cp .env.example .env
@@ -36,9 +36,9 @@ curl --fail https://YOUR_DOMAIN/health
 curl --fail -I https://YOUR_DOMAIN/dist/realm-client.js
 ```
 
-Expect health JSON containing `ready: true`, version `1.0.0`, capacity and a progressing tick. JavaScript must return a JavaScript MIME type, not an HTML fallback. Check the browser's Network panel: `/socket` upgrades with status 101 and the `wayfarer.realm.v2` subprotocol. Verify two players see each other, save a change, restart the realm and rejoin with the same browser cookie.
+Expect health JSON containing `ready: true`, version `1.2.0`, capacity and a progressing tick. JavaScript must return a JavaScript MIME type, not an HTML fallback. Check the browser's Network panel: `/socket` upgrades with status 101 and the `wayfarer.realm.v2` subprotocol. Verify two players see each other, save a change, restart the realm and rejoin with the same browser cookie.
 
-The source package was tested locally, but this exact Docker/Caddy stack and live DNS/TLS were not executed in the creation environment. Complete these host checks before announcing a public launch. Browser/device visual checks remain outstanding.
+The source passes the Node 24.19.0 build and automated test suite, but this exact Docker/Caddy stack and live DNS/TLS have not been executed in this task. Complete these host checks before announcing a public launch. Browser/device visual checks remain outstanding.
 
 ## Persistence and identity
 
@@ -105,7 +105,7 @@ HTTP requests are bounded to 300/address/minute, guest enrollments to 5/address/
 
 ## Migrate earlier JSON profiles
 
-Stop the old server. Preserve its files. Use an empty v1.0 destination and run:
+Stop the old server. Preserve its files. Use an empty v1.2 SQLite destination and run:
 
 ```sh
 DATA_DIR=runtime node tools/migrate-profiles.mjs /path/to/profiles.json /path/to/xam.json

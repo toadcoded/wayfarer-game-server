@@ -5,6 +5,7 @@ import { type Progression, type TrainingMode } from './progression.js';
 import { type PracticeChallenge } from './practice-interaction.js';
 import type { SkillId } from './skill-directory.js';
 import { type Skilling, type SkillCommand } from './skilling.js';
+import { type ResonanceState, type PersistentResonanceState } from './resonance-authority.js';
 export declare const SKINS: readonly ["adventurer", "elder", "traveler", "villager", "seraphine", "vector"];
 export type Skin = typeof SKINS[number];
 export type Action = {
@@ -57,6 +58,11 @@ export type Action = {
     sequence: number;
     action: 'training';
     value: TrainingMode;
+} | {
+    kind: 'action';
+    sequence: number;
+    action: 'resonance';
+    value: string;
 };
 export declare const RESULT_TEXT: {
     readonly practice_started: "Follow the three marked actions. XP is awarded only on completion.";
@@ -97,6 +103,11 @@ export declare const RESULT_TEXT: {
     readonly inventory_full: "You have all three bundles. Return to Halden.";
     readonly requirements_not_met: "Halden needs three reed bundles.";
     readonly quest_completed: "Quiet Tithe completed. You received one offering token.";
+    readonly resonance_cast: "The PolyCodex answers. Magic and Runecrafting XP awarded; one attunement effect is active.";
+    readonly resonance_wait: "The PolyCodex is still settling between chords.";
+    readonly resonance_range: "Stand at the celestial observatory PolyCodex to resonate a chord.";
+    readonly resonance_cap: "Your PolyCodex attunement ledger is full.";
+    readonly resonance_guard_bonus: "Ward Glimmer reinforced your guard and granted bonus Defence XP.";
 };
 export declare const SKILL_RESULT_TEXT: {
     readonly skill_range: "Gather within 8 metres of the far landing. Bank/craft within 3 metres of Halden.";
@@ -108,6 +119,7 @@ export declare const SKILL_RESULT_TEXT: {
     readonly skill_upgraded: "Next tool tier crafted! Resource yield increased.";
     readonly skill_requirements: "Check the next tool recipe: profession levels, banked materials and Warden essence are required.";
     readonly skill_max_tool: "Masterwork tools are already unlocked.";
+    readonly skill_resonance_bonus: "Resonance empowered the successful action with one bonus resource or bonus skill XP.";
 };
 export type Result = {
     sequence: number;
@@ -126,13 +138,14 @@ export interface PersistentQuestState {
     gatherCooldownTicks: number;
 }
 export interface PersistentPlayerState {
-    version: 5;
+    version: 6;
     practiceReadyTick: number;
     skin: Skin;
     quest: PersistentQuestState;
     inventory: Inventory;
     progression: Progression;
     skilling: Skilling;
+    resonance: PersistentResonanceState;
 }
 export interface GameState {
     kind: 'game';
@@ -143,6 +156,7 @@ export interface GameState {
         lit: boolean;
     };
     camp: Point;
+    codex: Point;
     patch: {
         stock: number;
         respawnTick: number;
@@ -152,6 +166,7 @@ export interface GameState {
     fighter: Fighter | null;
     progression: Progression | null;
     skilling: Skilling | null;
+    resonance: ResonanceState | null;
     practiceReadyTick: number | null;
     practiceChallenge: PracticeChallenge | null;
     encounter: Encounter;
@@ -178,7 +193,8 @@ export declare class GameActions {
     private encounter;
     private readonly beacon;
     private readonly camp;
-    constructor(beacon: Point, camp?: Point);
+    private readonly codex;
+    constructor(beacon: Point, camp?: Point, codex?: Point);
     join(connection: string, id: string, persisted?: PersistentPlayerState, protectedCombat?: boolean): void;
     leave(connection: string): void;
     receive(connection: string, text: string): boolean;
@@ -220,6 +236,7 @@ export declare class GameActions {
             fighter: Fighter;
             progression: Progression;
             skilling: Skilling;
+            resonance: ResonanceState;
             practiceReadyTick: number;
             practiceChallenge: PracticeChallenge | null;
         }[];

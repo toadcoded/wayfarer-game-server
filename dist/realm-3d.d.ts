@@ -1,6 +1,7 @@
 import { type NPCPlacement } from './npc-prototypes.js';
 import { AbstractEngine } from '@babylonjs/core';
 import { type VisualQuality } from './visual-surface.js';
+import { type ResonanceNodeId } from './resonance-codex.js';
 import type { Point } from './world.js';
 import type { GameState } from './game-actions.js';
 /** Alternate renderer consumes only validated/interpolated server state. */
@@ -59,7 +60,15 @@ export declare class Realm3D {
     private practiceYard;
     private xamId;
     private xamSkill;
+    private resonanceRoot;
+    private resonanceCore;
+    private resonanceLight;
+    private resonanceNodes;
+    private resonanceSelected;
+    private resonanceBurstUntil;
+    private expansion;
     setXam(id: string | undefined, skill: string | undefined): void;
+    setResonance(ids: readonly ResonanceNodeId[], effectId?: string): void;
     projectLabel(position: Point): {
         x: number;
         y: number;

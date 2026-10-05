@@ -1,7 +1,6 @@
-# wayfarer-game-server
-Wayfarer v1.0 persistent multiplayer game server
+# Wayfarer v1.2 — Celestial PolyCodex realm package
 
-A runnable, server-authoritative multiplayer realm derived from the supplied v0.9 rc.3 candidate. Version 1.0 names this source/server release; it does not mean a public host has been provisioned or every planned MMO feature is complete.
+A runnable, server-authoritative multiplayer realm derived from the supplied v0.9 rc.3 candidate. Version 1.2 makes the PolyCodex a server-owned magic/skilling system and expands Reedhaven/Ashfen with an original Celestial Observatory, Sunward Orchard, Prism Dew garden and Moonlight Cavern presentation layer. It does not mean a public host has been provisioned or every planned MMO feature is complete.
 
 ## Run locally
 
@@ -28,6 +27,17 @@ docker compose up -d --build
 
 Visit `https://YOUR_DOMAIN`. The game server has no published direct port. Player data and certificates use persistent Docker volumes. Read [DEPLOYMENT.md](DEPLOYMENT.md) for verification, backup, restore, upgrades, configuration, and hosting boundaries. A domain and persistent host are required; neither was created during this release.
 
+## v1.2 Celestial PolyCodex additions
+
+- Server-authoritative 12-node PolyCodex casting with range checks, tick cooldown, persistence and Magic/Runecrafting XP.
+- Six one-use resonance attunements that are consumed only by matching successful authoritative skilling/combat actions.
+- Original procedural Celestial Observatory, dodecahedral Codex, Sunward Orchard, Prism Dew garden and Moonlight Cavern art layers inspired by the supplied references.
+- Moonlight Cavern presentation includes cyan/violet crystals, timber walkways, moon pool, lanterns, glowshrooms, portal energy and an astral snail.
+- Circular minimap/HUD now exposes the authoritative Codex point and server resonance state.
+- Compatibility contract bumped to simulation revision 16 / scene revision 3; old clients fail closed instead of guessing new semantics.
+
+The note/color/dodecahedral motif is fictional game design. It makes no medical or physical-science claim. Visual effects cannot mutate authoritative movement, collision, inventory, combat or XP. See [V1.2-CELESTIAL-EXPANSION.md](V1.2-CELESTIAL-EXPANSION.md), [ART-INSPIRATION-V1.2.md](ART-INSPIRATION-V1.2.md) and [V1.2-VERIFICATION.md](V1.2-VERIFICATION.md).
+
 ## Included gameplay
 
 - A shared Willowglass Causeway, authoritative movement at 20 Hz, navigation, walking/jogging/running and energy.
@@ -45,12 +55,12 @@ Default capacity is 16 human players plus Xam; configuration accepts 1–32 huma
 
 ## Verification and limits
 
-Fresh evidence is in [V1-VERIFICATION.md](V1-VERIFICATION.md) and `verification/v1-*`. Strict TypeScript and browser bundles build successfully; the full Node suite, Python tests, asset checks and dependency audit were run. Real sockets and real child processes verify persistence after SIGKILL, shutdown saves after SIGTERM, backup restoration and exclusive realm ownership.
+Fresh v1.2 evidence is in [V1.2-VERIFICATION.md](V1.2-VERIFICATION.md). With Node 24.19.0 and npm 10.9.2, the canonical TypeScript/Babylon build and full automated suite pass **330/330 tests**. The Python asset validator passes **8/8 assets**. The full matrix includes client-to-server WebSocket integration, authoritative gameplay and resonance, SQLite save/restore, and process-restart coverage.
 
-Browser visual verification remains open: cloud browser localhost access was blocked, and local Chromium installation failed. Docker/Caddy execution was not possible because this environment has no Docker daemon. The Docker build is included as a CI check, but that CI has not run here. Physical iPhone/Android/GPU rendering, live DNS/TLS and Internet end-to-end checks remain unverified. This release has not been published online.
+The three initial failures were stale test assumptions: one expected the offline visual-bundle bridge after a canonical build, one used a DOM stub missing APIs used by the new HUD, and one asserted the old v1.0 page banner. Those test expectations/fixtures were corrected; no server-authority behavior was weakened. The v1.0 verification material remains historical baseline evidence, not proof of the new v1.2 code.
 
-The provided academy, moonlit realm and cavern images, and Seraphine video, are design references. They are not playable locations or rigged video assets in this release. Their hashes and intended role are recorded in `references/v1-design/`.
+The supplied orchard, crystal-mine, enchanted-book, luminous-fauna, neon-observatory and saturated-landscape images now influence original procedural gameplay presentation layers. They are not copied world textures or shipped as proprietary scene assets. See [ART-INSPIRATION-V1.2.md](ART-INSPIRATION-V1.2.md). Physical iPhone/Android/GPU visual review, live DNS/TLS and public Internet end-to-end operation remain unverified here.
 
-This is one persistent small realm, with guest identities. There is no multi-region/sharded authority, account recovery, PvP economy, signed native mobile app or public uptime guarantee. Shared encounter/world state resets at restart; player exports and Xam progress persist. Abrupt termination can lose the latest unsaved interval (one second by default); stopped servers award no offline XP. SQLite requires a reliable persistent local filesystem, not ephemeral function storage or a network filesystem shared by replicas.
+This remains one persistent small realm with guest identities. There is no multi-region/sharded authority, account recovery, PvP economy, signed native mobile app or public uptime guarantee. Shared encounter/world state resets at restart; player exports and Xam progress persist. Abrupt termination can lose the latest unsaved interval (one second by default); stopped servers award no offline XP. SQLite requires a reliable persistent local filesystem, not ephemeral function storage or a network filesystem shared by replicas.
 
-Historical rc.3 source, release notes, prior evidence and the older rc.8 snapshot remain included as reference material. [verification/v09-rc3-README.md](verification/v09-rc3-README.md) contains the previous README. The v1.0 entrypoint is solely `tools/server.mjs`; historical servers are not deployed by Docker.
+Historical rc.3 source, release notes, prior evidence and the older rc.8 snapshot remain included as reference material. [verification/v09-rc3-README.md](verification/v09-rc3-README.md) contains the previous README. The current production entrypoint remains `tools/server.mjs`; historical servers are not deployed by Docker.

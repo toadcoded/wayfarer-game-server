@@ -1,3 +1,21 @@
+## v1.2.0 — 2026-10-05
+
+- Moved PolyCodex casting into the authoritative gameplay reducer with server range/cooldown validation, persistence v6 and server-owned Magic/Runecrafting XP.
+- Added six one-use resonance attunements for Woodcutting, Mining, Fishing, Agility, Magic and Defence; gathering bonuses are atomic and cannot duplicate on partial capacity.
+- Added deterministic Celestial Observatory location, authoritative Codex point replication and compatibility revision 16 / scene revision 3.
+- Added original procedural Sunward Orchard, Prism Dew garden and Moonlight Cavern presentation inspired by the supplied coastal, crystal-mine, enchanted-book, luminous-fauna and orbital-observatory references.
+- Added a dodecahedral world Codex, twelve pylons/nodes, orbit rings, cavern crystals, timber walk, moon pool, portal, lanterns, glowshrooms and astral snail.
+- Added a dependency-free bridge that upgrades the checked-in Babylon bundle when the normal dependency-backed bundler is unavailable.
+- Fresh Node 24.19.0 / npm 10.9.2 verification: canonical build and full suite **330/330 passed**; Python asset validation **8/8 passed**. See `V1.2-VERIFICATION.md` for scope and remaining deployment/visual-review limits.
+
+## v1.1.0 — 2026-10-04
+
+- Added the original 12-node Resonance PolyCodex UI with deterministic three-node chord resolution, cooldowns, optional Web Audio tones and explicit fantasy-only framing.
+- Added a circular north-up minimap, compact system/public chat surface and a seventh Codex HUD tab with mobile/reduced-motion styling.
+- Added Babylon source for a dodecahedral PolyCodex world device whose nodes mirror HUD selections and can emit a local resonance light burst.
+- Kept the v1.0 authoritative movement/gameplay/persistence/network contract unchanged; resonance remains cosmetic/local in this release.
+- Added focused PolyCodex surface and logic tests.
+
 ## v1.0.0 — 2026-10-04
 
 Persistent single-realm server release: SQLite guest/Xam saves, HTTPS deployment stack, exclusive authority lease, public request safeguards, process recovery tests, backup/migration tools and deployment runbook. See README.md and V1-VERIFICATION.md for current evidence and limits.

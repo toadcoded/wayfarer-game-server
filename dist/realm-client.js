@@ -2,6 +2,7 @@ import { checkedXamView } from './xam-view.js';
 import { RenderRecovery } from './render-recovery.js';
 import { placeRealmCast, nearestNPC, NPC_PROTOTYPES } from './npc-prototypes.js';
 import { initRealmHud } from './hud-controls.js';
+import { initRealmInterface } from './realm-interface.js';
 import { PRACTICE_VERBS, practiceResponse } from './practice-interaction.js';
 import { PRACTICE_METHODS, isPracticeSkill } from './practice.js';
 import { WEAPONS } from './encounter.js';
@@ -148,6 +149,7 @@ document.querySelector('#retry-artwork')?.addEventListener('click', () => view3d
 void startGraphics();
 const scene = createRealmScene(), canvas = document.querySelector('#world'), ctx = canvas.getContext('2d');
 const castPlacements = placeRealmCast(scene.plan.start, scene.plan.goal, p => scene.navigation.check(p));
+const realmInterface = initRealmInterface(document, (nodes, effect) => view3d?.setResonance?.(nodes, effect?.id), value => action('resonance', value));
 const status = document.querySelector('#connection'), stats = document.querySelector('#players');
 const join = document.querySelector('#join'), leave = document.querySelector('#leave');
 let socket, id, snapshot, sequence = 0;
@@ -457,6 +459,7 @@ function render() {
         ctx.fillStyle = '#a9dc9a';
         ctx.fillText(`Reeds ${game.patch.stock}/3`, Math.min(r.x + 14, width - 100), r.y + 8);
     }
+    realmInterface.update({ snapshot, game, localId: id, npcs: castPlacements, now });
     stats.textContent = snapshot ? `${snapshot.players.length} nearby · tick ${snapshot.tick} · ${id ?? 'joining'}${frame.stale ? ' · waiting for server' : ''}` : 'No realm snapshot';
 }
 function sendDirection() {
@@ -524,6 +527,7 @@ function connect() {
                 const welcome = decodeWelcome(event.data);
                 id = welcome.id;
                 connectedAt = performance.now();
+                realmInterface.connection(true);
                 status.textContent = 'Connected. Explore the causeway and train at the far landing.';
                 return;
             }
@@ -554,7 +558,7 @@ function connect() {
     });
     ws.addEventListener('error', () => { status.textContent = 'Cannot reach the realm. Check your connection and try Join again.'; });
     ws.addEventListener('close', event => { if (socket !== ws)
-        return; sprintKeys.clear(); held.clear(); id = undefined; snapshot = undefined; game = undefined; buffer.clear(); characters.clear(); join.disabled = false; leave.disabled = true; status.textContent = failureMessage || (event.reason === 'snapshot_timeout' ? 'Server updates stopped. Join again to reconnect.' : compatibilityMessage(event.reason)); render(); });
+        return; sprintKeys.clear(); held.clear(); id = undefined; snapshot = undefined; game = undefined; buffer.clear(); characters.clear(); join.disabled = false; leave.disabled = true; status.textContent = failureMessage || (event.reason === 'snapshot_timeout' ? 'Server updates stopped. Join again to reconnect.' : compatibilityMessage(event.reason)); realmInterface.connection(false); render(); });
 }
 join.addEventListener('click', connect);
 leave.addEventListener('click', () => { stop(); socket?.close(); });
@@ -589,7 +593,7 @@ for (const button of Array.from(document.querySelectorAll('[data-direction]'))) 
 }
 const timer = setInterval(() => { if (!document.hidden)
     sendDirection(); }, 50);
-addEventListener('pagehide', () => { visualClosed = true; void visualSurface?.then(surface => surface.close()).catch(() => { }); clearInterval(timer); cancelAnimationFrame(animationId); socket?.close(); graphics.close(); view3d = undefined; overlay?.remove(); });
+addEventListener('pagehide', () => { visualClosed = true; void visualSurface?.then(surface => surface.close()).catch(() => { }); clearInterval(timer); cancelAnimationFrame(animationId); realmInterface.dispose(); socket?.close(); graphics.close(); view3d = undefined; overlay?.remove(); });
 addEventListener('resize', resize);
 resize();
 let lastPaint = 0;

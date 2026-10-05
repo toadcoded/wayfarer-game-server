@@ -1,3 +1,11 @@
+## v1.2.0 — 2026-10-05
+
+Celestial PolyCodex release: server-backed resonance magic/skilling, persistence v6, simulation revision 16 / scene revision 3, and original procedural Celestial Observatory + Moonlight Cavern + orchard/dew art layers. See V1.2-CELESTIAL-EXPANSION.md and V1.2-VERIFICATION.md.
+
+## v1.1.0 — 2026-10-04
+
+PolyCodex interface release: twelve-node resonance UI, minimap/chat/HUD expansion and presentation-only Codex world device. Server authority remained v1.0 at this point.
+
 ## v1.0.0 — 2026-10-04
 
 Persistent single-realm server release: SQLite guest/Xam saves, HTTPS deployment stack, exclusive authority lease, public request safeguards, process recovery tests, backup/migration tools and deployment runbook. See README.md and V1-VERIFICATION.md for current evidence and limits.

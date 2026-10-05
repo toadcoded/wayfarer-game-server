@@ -1,4 +1,4 @@
-export const HUD_TABS = ['practice', 'combat', 'gathering', 'quest', 'inventory', 'settings'];
+export const HUD_TABS = ['practice', 'combat', 'gathering', 'quest', 'inventory', 'codex', 'settings'];
 export const isHudTab = (x) => typeof x === 'string' && HUD_TABS.includes(x);
 export function initRealmHud(doc = document) {
     let compact = false, tab = 'practice', size = 'normal', height = 55, visual = true, living = true;

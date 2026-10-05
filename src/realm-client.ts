@@ -2,6 +2,7 @@ import {checkedXamView,type XamView} from './xam-view.js';
 import {RenderRecovery} from './render-recovery.js';
 import {placeRealmCast,nearestNPC,NPC_PROTOTYPES} from './npc-prototypes.js';
 import {initRealmHud} from './hud-controls.js';
+import {initRealmInterface} from './realm-interface.js';
 import {PRACTICE_VERBS,practiceResponse} from './practice-interaction.js';
 import {PRACTICE_METHODS,isPracticeSkill} from './practice.js';
 import {WEAPONS} from './encounter.js';
@@ -25,10 +26,14 @@ import {createRealmScene,REALM_WORLD} from './realm-scene.js';
 import {crossingScene} from './scene-meshes.js';
 import {toIso} from './adapters/iso.js';
 import type {Point} from './world.js';
-import type {Realm3D} from './realm-3d.js';
 import {DirectionInput} from './direction-input.js';
 import {realmHeartbeat} from './realm-heartbeat.js';
-import {isVisualQuality,type VisualSurface} from './visual-surface.js';
+import {isVisualQuality,type VisualSurface,type VisualQuality} from './visual-surface.js';
+type Realm3DPort={
+ setQuality(value:VisualQuality):void;setRetro(value:boolean):void;setFlashes(value:boolean):void;dispose():void;retryArtwork():void;zoomCamera(value:number):void;resetCamera():void;setResonance?(ids:readonly import('./resonance-codex.js').ResonanceNodeId[],effectId?:string):void;setXam(id:string|undefined,skill:string|undefined):void;
+ update(players:readonly {id:string;position:Point}[],game:GameState|undefined,local:string|undefined,now:number,paused:boolean,wind?:number):void;movementDirection(right:number,forward:number):{dx:number;dz:number};projectLabel(position:Point):{x:number;y:number;visible:boolean};
+ readonly renderState:'ready'|'recovering';readonly artworkState:readonly {title:string;state:string}[];readonly worldMetrics:{meshes:number;triangles:number;grassTufts:number;fps:number};readonly weatherState:{kind:string;cloudWater:number;humidity:number;wetness:number}|undefined;readonly ambienceText:string|undefined;
+};
 let visualSurface:Promise<VisualSurface>|undefined,visualClosed=false;
 const getVisualSurface=()=>visualSurface??=(async()=>{const url='/preview/pglite-plugin.bundle.js';const module=await import(url);const surface:VisualSurface=await module.createVisualSurface();if(visualClosed){await surface.close();throw new Error('Page closed');}return surface;})().catch(error=>{visualSurface=undefined;throw error;});
 const qualityChoice=()=>{const value=document.querySelector<HTMLSelectElement>('#visual-quality')?.value;return isVisualQuality(value)?value:'maximum';};
@@ -45,15 +50,15 @@ for(const operation of ['save','load','clear'] as const)document.querySelector<H
  try{const surface=await getVisualSurface();if(operation==='save')await surface.setQuality(qualityChoice());else if(operation==='clear')await surface.clear();else {const value=await surface.getQuality(),choice=document.querySelector<HTMLSelectElement>('#visual-quality');if(value){if(choice)choice.value=value;view3d?.setQuality(value);}}if(feedback)feedback.textContent=operation==='save'?'Visual quality saved on this device.':operation==='clear'?'Local visual preferences cleared.':'Local visual preferences loaded.';}
  catch{if(feedback)feedback.textContent='Local preferences unavailable; current visuals still work.';}finally{if(button)button.disabled=false;}
 });
-let view3d:Realm3D|undefined,overlay:HTMLCanvasElement|undefined;
-const graphics=new RenderRecovery<Realm3D>();
+let view3d:Realm3DPort|undefined,overlay:HTMLCanvasElement|undefined;
+const graphics=new RenderRecovery<Realm3DPort>();
 const fallbackGraphics=()=>{view3d=undefined;overlay?.remove();overlay=undefined;const base=document.querySelector<HTMLCanvasElement>('#world');if(base)base.style.display='';const hint=document.querySelector('#render-status');if(hint)hint.textContent='2D fallback active · retry 3D in Settings';};
 async function startGraphics(){
  if(visualClosed||graphics.state==='loading'||graphics.state==='ready')return;
  const button=document.querySelector<HTMLButtonElement>('#retry-graphics');if(button)button.disabled=true;
  try{if(typeof WebGLRenderingContext==='undefined'){fallbackGraphics();return;}
  overlay=document.createElement('canvas');overlay.id='world-3d';overlay.setAttribute('aria-label','3D multiplayer causeway');document.body.prepend(overlay);const target=overlay;
- const next=await graphics.load(async()=>{const moduleUrl='/preview/realm-3d.bundle.js',module=await import(moduleUrl);if(visualClosed)throw Error('Page closed');const view:Realm3D=module.Realm3D.create(target);try{view.setQuality(qualityChoice());view.setRetro(document.querySelector<HTMLInputElement>('#retro-style')?.checked??true);view.setFlashes(!!document.querySelector<HTMLInputElement>('#ambient-flashes')?.checked);return view;}catch(error){view.dispose();throw error;}});
+ const next=await graphics.load(async()=>{const moduleUrl='/preview/realm-3d.bundle.js',module=await import(moduleUrl);if(visualClosed)throw Error('Page closed');const view:Realm3DPort=module.Realm3D.create(target);try{view.setQuality(qualityChoice());view.setRetro(document.querySelector<HTMLInputElement>('#retro-style')?.checked??true);view.setFlashes(!!document.querySelector<HTMLInputElement>('#ambient-flashes')?.checked);return view;}catch(error){view.dispose();throw error;}});
  if(next&&!visualClosed){view3d=next;const base=document.querySelector<HTMLCanvasElement>('#world');if(base)base.style.display='none';}else fallbackGraphics();
  }catch{fallbackGraphics();}finally{if(button)button.disabled=false;}
 }
@@ -62,6 +67,7 @@ document.querySelector('#retry-artwork')?.addEventListener('click',()=>view3d?.r
 void startGraphics();
 const scene=createRealmScene(),canvas=document.querySelector<HTMLCanvasElement>('#world')!,ctx=canvas.getContext('2d')!;
 const castPlacements=placeRealmCast(scene.plan.start,scene.plan.goal,p=>scene.navigation.check(p));
+const realmInterface=initRealmInterface(document,(nodes,effect)=>view3d?.setResonance?.(nodes,effect?.id),value=>action('resonance',value));
 const status=document.querySelector<HTMLElement>('#connection')!,stats=document.querySelector<HTMLElement>('#players')!;
 const join=document.querySelector<HTMLButtonElement>('#join')!,leave=document.querySelector<HTMLButtonElement>('#leave')!;
 let socket:WebSocket|undefined,id:string|undefined,snapshot:RealmSnapshot|undefined,sequence=0;
@@ -174,6 +180,7 @@ function render(){
 
 
 
+ realmInterface.update({snapshot,game,localId:id,npcs:castPlacements,now});
  stats.textContent=snapshot?`${snapshot.players.length} nearby · tick ${snapshot.tick} · ${id??'joining'}${frame.stale?' · waiting for server':''}`:'No realm snapshot';
 }
 function sendDirection(){
@@ -203,7 +210,7 @@ function connect(){
   try{
    if(typeof event.data!=='string')throw new Error('Expected text');
    if(!id){
-    const welcome=decodeWelcome(event.data);id=welcome.id;connectedAt=performance.now();status.textContent='Connected. Explore the causeway and train at the far landing.';return;
+    const welcome=decodeWelcome(event.data);id=welcome.id;connectedAt=performance.now();realmInterface.connection(true);status.textContent='Connected. Explore the causeway and train at the far landing.';return;
    }
    if(JSON.parse(event.data)?.kind==='game'){const next=decodeGameState(event.data);if(!game){const choice=document.querySelector<HTMLSelectElement>('#appearance'),local=next.players.find(p=>p.id===id);if(choice&&local)choice.value=local.skin;}game=next;render();return;}
    const next=decodeRealmSnapshot(event.data);
@@ -213,7 +220,7 @@ function connect(){
   }catch(error){failureMessage=error instanceof CompatibilityError?compatibilityMessage(error.code):'Invalid server data. Connection stopped.';status.textContent=failureMessage;ws.close(1002);}
  });
  ws.addEventListener('error',()=>{status.textContent='Cannot reach the realm. Check your connection and try Join again.';});
- ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();id=undefined;snapshot=undefined;game=undefined;buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));render();});
+ ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();id=undefined;snapshot=undefined;game=undefined;buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));realmInterface.connection(false);render();});
 }
 join.addEventListener('click',connect);leave.addEventListener('click',()=>{stop();socket?.close();});
 addEventListener('keydown',e=>{if(typeof Element!=='undefined'&&e.target instanceof Element&&e.target.closest('input,select,textarea,button,summary,a'))return;if(held.keyDown(e.key,e.code))e.preventDefault();if(e.code==='Space'||e.code==='KeyG'){if(!e.repeat){e.preventDefault();action('combat',e.code==='Space'?'attack':'guard');}return;}if(e.code==='ShiftLeft'||e.code==='ShiftRight'){sprintKeys.add(e.code);e.preventDefault();}if(e.code==='KeyV'&&!e.repeat){chooseTravel(travelMode==='walk'?'jog':travelMode==='jog'?'run':'walk');e.preventDefault();}if(e.code==='KeyC'&&!e.repeat){view3d?.resetCamera();e.preventDefault();}});
@@ -225,7 +232,7 @@ for(const button of Array.from(document.querySelectorAll<HTMLButtonElement>('[da
  for(const event of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(event,e=>{held.pointerUp((e as PointerEvent).pointerId);sendDirection();});
 }
 const timer=setInterval(()=>{if(!document.hidden)sendDirection();},50);
-addEventListener('pagehide',()=>{visualClosed=true;void visualSurface?.then(surface=>surface.close()).catch(()=>{});clearInterval(timer);cancelAnimationFrame(animationId);socket?.close();graphics.close();view3d=undefined;overlay?.remove();});addEventListener('resize',resize);
+addEventListener('pagehide',()=>{visualClosed=true;void visualSurface?.then(surface=>surface.close()).catch(()=>{});clearInterval(timer);cancelAnimationFrame(animationId);realmInterface.dispose();socket?.close();graphics.close();view3d=undefined;overlay?.remove();});addEventListener('resize',resize);
 resize();
 let lastPaint=0;
 function animate(now:number){try{if(!document.hidden&&now-lastPaint>=1000/(view3d?60:30)){render();lastPaint=now;}}catch{const hint=document.querySelector('#render-status');if(hint)hint.textContent='Display update interrupted · controls and connection remain active';}finally{if(!visualClosed)animationId=requestAnimationFrame(animate);}}

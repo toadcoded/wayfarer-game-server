@@ -6,18 +6,19 @@ async function until(fn){const end=Date.now()+3000;while(!fn()){if(Date.now()>en
 test('browser-client module uses real socket: join, input, snapshot, disconnect and rejoin (stub DOM)',async()=>{
  const host=await createLocalRealmServer({autoTick:false}),old=new Map(),listeners={},docListeners={};let sendTick,now=0;
  const set=(k,v)=>{old.set(k,Object.getOwnPropertyDescriptor(globalThis,k));Object.defineProperty(globalThis,k,{value:v,writable:true,configurable:true});};
- const context=new Proxy({},{get:()=>()=>{}}),elements=new Map();
- function element(id){if(!elements.has(id))elements.set(id,{style:{},textContent:'',disabled:false,getContext:()=>context,listeners:{},addEventListener(type,fn){this.listeners[type]=fn;}});return elements.get(id);}
+ const context=new Proxy({},{get:()=>()=>{}}),elements=new Map(),created=[];let generated=0;
+ function element(id){if(!elements.has(id))elements.set(id,{style:{setProperty(){}},classList:{toggle(){}},dataset:{},textContent:'',disabled:false,hidden:false,value:'',title:'',children:[],listeners:{},attributes:{},getContext:()=>context,addEventListener(type,fn){this.listeners[type]=fn;},setAttribute(name,value){this.attributes[name]=String(value);},append(...nodes){this.children.push(...nodes);},replaceChildren(...nodes){this.children=nodes;}});return elements.get(id);}
  const practicePads=Array.from({length:4},(_,i)=>{const b=element('practice:'+i);b.dataset={practicePad:String(i)};return b;});
  const skillButtons=['woodcutting','mining','fishing','deposit','upgrade'].map(value=>{const b=element('skill:'+value);b.dataset={skilling:value};return b;});
  try{
-  set('document',{hidden:false,querySelector:element,querySelectorAll:selector=>selector==='[data-skilling]'?skillButtons:selector==='[data-practice-pad]'?practicePads:[],createElement:()=>({getContext:()=>context}),addEventListener:(type,fn)=>docListeners[type]=fn});
+  set('document',{hidden:false,querySelector:element,querySelectorAll:selector=>selector==='[data-skilling]'?skillButtons:selector==='[data-practice-pad]'?practicePads:selector==='[data-resonance-node]'?created.filter(b=>b.dataset.resonanceNode):[],createElement:()=>{const b=element('created:'+generated++);created.push(b);return b;},addEventListener:(type,fn)=>docListeners[type]=fn});
   set('performance',{now:()=>now});
   set('requestAnimationFrame',()=>1);set('cancelAnimationFrame',()=>{});
   set('innerWidth',390);set('innerHeight',844);set('devicePixelRatio',2);set('location',new URL(host.origin));set('addEventListener',(type,fn)=>listeners[type]=fn);
   set('setInterval',fn=>{sendTick=fn;return 12345;});set('clearInterval',()=>{});
   set('WebSocket',class extends WS{constructor(url,protocols){super(url,protocols,{origin:host.origin});}});
   await import('../dist/realm-client.js');
+  assert.equal(created.filter(b=>b.dataset.resonanceNode).length,12);
   element('#join').listeners.click();await until(()=>element('#connection').textContent.startsWith('Connected'));await until(()=>element('#players').textContent.includes('1 nearby'));
   assert.match(element('#realm-heartbeat').textContent,/live/);
   element('#retry-graphics').listeners.click();assert.match(element('#render-status').textContent,/2D fallback/);element('#hud-reset').listeners.click();assert.equal(element('#visual-surface').hidden,false);assert.equal(element('#living-realm').hidden,false);

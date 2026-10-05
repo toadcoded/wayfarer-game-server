@@ -4,10 +4,10 @@
   "subprotocol": "wayfarer.realm.v2",
   "contract": {
     "protocolVersion": 2,
-    "simulationRevision": 15,
+    "simulationRevision": 16,
     "worldSeed": 20260928,
     "generatorVersion": 1,
-    "sceneRevision": 2,
+    "sceneRevision": 3,
     "coordinateSystem": "xz-y-up-metres",
     "tickMs": 50,
     "snapshotVersion": 1
@@ -20,10 +20,10 @@
       "kind": "hello",
       "contract": {
         "protocolVersion": 2,
-        "simulationRevision": 15,
+        "simulationRevision": 16,
         "worldSeed": 20260928,
         "generatorVersion": 1,
-        "sceneRevision": 2,
+        "sceneRevision": 3,
         "coordinateSystem": "xz-y-up-metres",
         "tickMs": 50,
         "snapshotVersion": 1
@@ -34,10 +34,10 @@
       "id": "p1",
       "contract": {
         "protocolVersion": 2,
-        "simulationRevision": 15,
+        "simulationRevision": 16,
         "worldSeed": 20260928,
         "generatorVersion": 1,
-        "sceneRevision": 2,
+        "sceneRevision": 3,
         "coordinateSystem": "xz-y-up-metres",
         "tickMs": 50,
         "snapshotVersion": 1
@@ -132,6 +132,12 @@
       "sequence": 12,
       "action": "practice",
       "value": "agility"
+    },
+    "resonance": {
+      "kind": "action",
+      "sequence": 14,
+      "action": "resonance",
+      "value": "cinder+verdant+moon"
     }
   },
   "lifecycle": [

@@ -7,7 +7,7 @@ import { MAX_PLAYERS, WORLD_LIMIT, checkedSnapshot, type RealmSnapshot } from '.
 import type { PlayerSnapshot } from './movement.js';
 import {checkedPlayerSave, type PlayerSave} from './persistence.js';
 
-export interface RealmOptions { capacity?: number; visibilityRadius?: number; beacon?:Point; camp?:Point }
+export interface RealmOptions { capacity?: number; visibilityRadius?: number; beacon?:Point; camp?:Point; codex?:Point }
 export interface RealmJoinTraits { combatProtected?: boolean }
 /** In-process authoritative realm. Authentication and sockets belong to its host adapter. */
 export class RealmRuntime {
@@ -28,7 +28,7 @@ export class RealmRuntime {
         !Number.isFinite(this.visibilityRadius) || this.visibilityRadius <= 0 || this.visibilityRadius > 4096) throw new RangeError('Invalid realm options');
     const b = nav.options.bounds;
     if (Object.values(b).some(n => Math.abs(n) > WORLD_LIMIT)) throw new RangeError('World exceeds replication bounds');
-    this.committed={session:new WorldSession(nav,capacity),game:options.beacon?new GameActions(options.beacon,options.camp):undefined,tick:0};
+    this.committed={session:new WorldSession(nav,capacity),game:options.beacon?new GameActions(options.beacon,options.camp,options.codex):undefined,tick:0};
   }
 
   get tick(): number { return this.tickNumber; }

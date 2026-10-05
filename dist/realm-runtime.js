@@ -23,7 +23,7 @@ export class RealmRuntime {
         const b = nav.options.bounds;
         if (Object.values(b).some(n => Math.abs(n) > WORLD_LIMIT))
             throw new RangeError('World exceeds replication bounds');
-        this.committed = { session: new WorldSession(nav, capacity), game: options.beacon ? new GameActions(options.beacon, options.camp) : undefined, tick: 0 };
+        this.committed = { session: new WorldSession(nav, capacity), game: options.beacon ? new GameActions(options.beacon, options.camp, options.codex) : undefined, tick: 0 };
     }
     get tick() { return this.tickNumber; }
     get size() { return this.identities.size; }

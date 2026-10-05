@@ -1,9 +1,9 @@
 {
   "name": "wayfarer-world-kit",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
-  "description": "Wayfarer authoritative persistent multiplayer realm",
+  "description": "Wayfarer authoritative persistent multiplayer realm with server-backed PolyCodex resonance and Moonlight Cavern",
   "exports": {
     "./wildlife": "./dist/wildlife.js",
     ".": "./dist/world.js",
@@ -45,7 +45,9 @@
     "./art-directory": "./dist/art-directory.js",
     "./render-recovery": "./dist/render-recovery.js",
     "./xam-agent": "./dist/xam-agent.js",
-    "./xam-view": "./dist/xam-view.js"
+    "./xam-view": "./dist/xam-view.js",
+    "./resonance-codex": "./dist/resonance-codex.js",
+    "./resonance-authority": "./dist/resonance-authority.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && npm run mesh:bundle && npm run realm:bundle && npm run visual:bundle && npm run characters:bundle",
@@ -71,7 +73,8 @@
     "characters:bundle": "esbuild src/character-studio.ts --bundle --platform=browser --format=esm --minify --legal-comments=linked --outfile=preview/character-studio.bundle.js",
     "start:local": "node tools/realm-server.mjs",
     "test:release": "node --test test/release-*.test.mjs",
-    "backup": "node tools/backup.mjs"
+    "backup": "node tools/backup.mjs",
+    "test:polycodex": "node --test test/resonance-codex.test.mjs test/resonance-authority.test.mjs test/hud-controls.test.mjs test/polycodex-surface.test.mjs test/celestial-expansion-source.test.mjs"
   },
   "devDependencies": {
     "@types/emscripten": "1.41.6",

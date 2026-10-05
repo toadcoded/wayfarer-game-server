@@ -38,7 +38,7 @@ test('public host serves correct assets, rejects bad origins, saves connected pl
     assert.equal((await fetch(`http://127.0.0.1:${host.port}/health`)).status,200);
     const page=await request('/');assert.equal(page.status,200);assert.match(page.headers.get('content-security-policy'),/wss:\/\/play.example.com/);
     const first=page.headers.get('set-cookie');assert.match(first,/Secure/);const cookie=first.split(';')[0];
-    assert.match(await page.text(),/v1.0 \/ OFFICIAL REALM/);
+    assert.match(await page.text(),/WAYFARER \/ v1\.2 \/ CELESTIAL POLYCODEX/);
     const asset=await request('/dist/realm-client.js');assert.match(asset.headers.get('content-type'),/javascript/);assert.equal(asset.headers.get('set-cookie'),null);
     assert.equal((await request('/tools/server.mjs')).status,400);assert.equal((await request('/dist/.secret')).status,400);
     assert.equal((await request('/',{Host:'attacker.example'})).status,403);

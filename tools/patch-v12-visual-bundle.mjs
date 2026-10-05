@@ -1,0 +1,51 @@
+import {readFile,writeFile} from 'node:fs/promises';
+const url=new URL('../preview/realm-3d.bundle.js',import.meta.url);
+let s=await readFile(url,'utf8');
+if(s.includes('v12-celestial-runtime')){console.log('v1.2 visual bridge already present');process.exit(0);}
+const anchor='var Fst=class r{constructor';
+if(!s.includes(anchor))throw new Error('Unsupported realm bundle: class anchor missing');
+// This bridge only exists so the checked-in browser bundle can display the v1.2
+// source changes when the dependency-backed Babylon/esbuild rebuild is unavailable.
+// A normal npm build replaces it with src/celestial-expansion-3d.ts.
+const helper=String.raw`
+function V12create(R,S){
+ let root=new Oi("v12-celestial-runtime",R),obs=new Oi("celestial-observatory",R),cav=new Oi("moonlight-cavern",R),orch=new Oi("sunward-orchard",R);obs.parent=root;cav.parent=root;orch.parent=root;
+ let cp=S.navigation.check({x:S.plan.start.x+7,z:S.plan.start.z-5}),C=cp.ok?cp.position:S.plan.start,G=S.plan.goal;obs.position.set(C.x,C.y,C.z);cav.position.set(G.x,G.y,G.z);orch.position.set(S.plan.start.x,S.plan.start.y,S.plan.start.z);
+ let mats=[],M=(n,d,e=new Pe(0,0,0),a=1)=>{let m=new Hi(n,R);m.diffuseColor=d;m.emissiveColor=e;m.specularColor=d.scale(.2);m.alpha=a;mats.push(m);return m},stone=M("v12-stone",new Pe(.16,.2,.28)),gold=M("v12-gold",new Pe(.56,.39,.15),new Pe(.14,.08,.02)),cyan=M("v12-cyan",new Pe(.08,.45,.56),new Pe(.05,.72,.9)),violet=M("v12-violet",new Pe(.28,.11,.42),new Pe(.64,.08,.88)),wood=M("v12-wood",new Pe(.28,.16,.08)),leaf=M("v12-leaf",new Pe(.12,.36,.16)),flower=M("v12-flower",new Pe(.85,.47,.08),new Pe(.1,.04,0)),water=M("v12-water",new Pe(.04,.33,.46),new Pe(.02,.16,.24),.68),mush=M("v12-mushroom",new Pe(.33,.2,.5),new Pe(.18,.42,.72)),shell=M("v12-shell",new Pe(.24,.34,.58),new Pe(.08,.18,.4));
+ let P=(m,n)=>{m.parent=n;m.isPickable=!1;return m};
+ let dais=P(vs.CreateCylinder("observatory-dais",{height:.45,diameter:11,tessellation:12},R),obs);dais.position.y=.2;dais.material=stone;let inset=P(vs.CreateCylinder("observatory-inset",{height:.08,diameter:8.2,tessellation:24},R),obs);inset.position.y=.47;inset.material=cyan;
+ let rings=[];[8.8,10.6,12.4].forEach((d,i)=>{let q=P(vs.CreateTorus("observatory-orbit-"+i,{diameter:d,thickness:.055,tessellation:64},R),obs);q.position.y=3.6+i*.35;q.rotation.x=Math.PI/2+i*.38;q.rotation.z=i*.47;q.material=i%2?violet:cyan;rings.push(q)});
+ for(let i=0;i<12;i++){let a=i/12*Math.PI*2,p=P(vs.CreateCylinder("observatory-pylon-"+i,{height:2.3,diameter:.34,tessellation:6},R),obs);p.position.set(Math.cos(a)*4.5,1.55,Math.sin(a)*4.5);p.material=i%3===0?gold:stone;let g=P(vs.CreatePolyhedron("observatory-gem-"+i,{type:1,size:.34},R),obs);g.position.set(Math.cos(a)*4.5,2.85,Math.sin(a)*4.5);g.material=i%2?violet:cyan}
+ let lect=P(vs.CreateBox("codex-lectern",{width:2.2,height:.85,depth:1.4},R),obs);lect.position.set(0,.92,0);lect.material=stone;for(let side of[-1,1]){let page=P(vs.CreateBox("codex-page-"+side,{width:1.1,height:.08,depth:1.35},R),obs);page.position.set(side*.55,1.43,0);page.rotation.z=-side*.12;page.material=gold}
+ let codex=new Oi("polycodex-root",R);codex.parent=obs;codex.position.set(0,2.35,0);let core=P(vs.CreatePolyhedron("polycodex-dodecahedron",{type:2,size:1.25},R),codex),coreMat=M("polycodex-core",new Pe(.08,.18,.24),new Pe(.10,.48,.62));core.material=coreMat;let halo=P(vs.CreateTorus("polycodex-halo",{diameter:5,thickness:.035,tessellation:64},R),codex);halo.rotation.x=Math.PI/2;halo.material=cyan;
+ let nd=[["cinder","#ef5350"],["flare","#ff8f32"],["sunward","#ffd93d"],["verdant","#38c96b"],["bloom","#15a65b"],["tide","#2cb7c9"],["skyglass","#338ee8"],["dusk","#5f62d8"],["violet","#8e49d6"],["moon","#b05bd7"],["rose","#d95388"],["lantern","#ff6868"]],nodes=[];nd.forEach(([id,h],i)=>{let a=i/12*Math.PI*2,g=P(vs.CreateSphere("polycodex-node-"+id,{diameter:.33,segments:8},R),codex),base=Pe.FromHexString(h),mm=M("polycodex-node-mat-"+id,base.scale(.45),base.scale(.28));g.position.set(Math.cos(a)*2.5,Math.sin(a)*2.5,0);g.material=mm;nodes.push({id,mat:mm,base})});
+ let ol=new cC("observatory-light",new b(C.x,C.y+4,C.z),R);ol.diffuse=new Pe(.3,.8,1);ol.intensity=1.6;ol.range=18;
+ for(let i=0;i<7;i++){let a=i/7*Math.PI*2+.35,x=Math.cos(a)*(8.5+(i%2)*2.4),z=Math.sin(a)*(8.5+(i%2)*2.4),tr=P(vs.CreateCylinder("orchard-trunk-"+i,{height:3.8,diameter:.55,tessellation:7},R),orch);tr.position.set(x,1.9,z);tr.material=wood;for(let c=0;c<3;c++){let k=P(vs.CreateSphere("orchard-canopy-"+i+"-"+c,{diameter:2.6-c*.2,segments:7},R),orch);k.position.set(x+(c-1)*.62,3.7+(c%2)*.3,z+(c===1?.35:-.2));k.material=leaf}for(let f=0;f<5;f++){let fr=P(vs.CreateSphere("orchard-fruit-"+i+"-"+f,{diameter:.34,segments:6},R),orch);fr.position.set(x+((f*37)%11-5)*.17,3.25+((f*53)%10)*.13,z+((f*29)%9-4)*.16);fr.material=f%2?flower:violet}}
+ for(let i=0;i<12;i++){let a=i/12*Math.PI*2,rr=5.7+(i%3)*.5,stem=P(vs.CreateCylinder("sunflower-stem-"+i,{height:1.25,diameter:.08,tessellation:5},R),orch);stem.position.set(Math.cos(a)*rr,.63,Math.sin(a)*rr);stem.material=leaf;let bloom=P(vs.CreateSphere("sunflower-bloom-"+i,{diameter:.52,segments:8},R),orch);bloom.position.set(Math.cos(a)*rr,1.3,Math.sin(a)*rr);bloom.scaling.z=.22;bloom.material=flower}
+ for(let i=0;i<6;i++){let a=i/6*Math.PI*2,l=P(vs.CreateSphere("prism-leaf-"+i,{diameter:1.5,segments:6},R),obs);l.position.set(Math.cos(a)*3.1,.63,Math.sin(a)*3.1);l.scaling.set(1.25,.13,.58);l.rotation.y=a;l.material=i%2?violet:cyan;let d=P(vs.CreateSphere("prism-dew-"+i,{diameter:.42,segments:12},R),obs);d.position.set(Math.cos(a)*3.1,1.05,Math.sin(a)*3.1);d.material=gold}
+ let floor=P(vs.CreateCylinder("cavern-floor",{height:.12,diameter:18,tessellation:20},R),cav);floor.position.y=.02;floor.material=stone;for(let i=0;i<13;i++){let a=i/13*Math.PI*2,r=P(vs.CreatePolyhedron("cave-rock-"+i,{type:1,size:1.25+(i%3)*.38},R),cav);r.position.set(Math.cos(a)*7.2,1.1+(i%2)*.45,Math.sin(a)*7.2);r.scaling.y=1.4+(i%3)*.45;r.material=stone}
+ let cm=[cyan,violet,gold];for(let i=0;i<18;i++){let a=i/18*Math.PI*2+.12,rad=4.6+(i%4)*.7,cr=P(vs.CreateCylinder("moon-crystal-"+i,{height:1.6+(i%4)*.45,diameterTop:0,diameterBottom:.55+(i%2)*.2,tessellation:5},R),cav);cr.position.set(Math.cos(a)*rad,.8+(i%4)*.22,Math.sin(a)*rad);cr.rotation.z=(i%3-1)*.18;cr.material=cm[i%3]}
+ let pool=P(vs.CreateCylinder("moon-pool",{height:.08,diameter:6.2,tessellation:28},R),cav);pool.position.set(2.8,.1,2.7);pool.material=water;let bridge=P(vs.CreateBox("cavern-walkway",{width:8,height:.22,depth:1.7},R),cav);bridge.position.set(-1.2,.65,-2.4);bridge.rotation.y=-.28;bridge.material=wood;
+ let portal=P(vs.CreateTorus("cavern-portal",{diameter:4.7,thickness:.23,tessellation:40},R),cav);portal.position.set(-4.5,3.2,2.1);portal.rotation.y=Math.PI/2;portal.material=violet;
+ let lights=[];[[-3,2.4,-2.4],[1.2,2.4,-3.1],[4.4,2.2,1.6]].forEach((v,i)=>{let lamp=P(vs.CreatePolyhedron("cavern-lantern-"+i,{type:1,size:.32},R),cav);lamp.position.set(v[0],v[1],v[2]);lamp.material=gold;let l=new cC("cavern-lantern-light-"+i,new b(G.x+v[0],G.y+v[1],G.z+v[2]),R);l.diffuse=new Pe(1,.54,.18);l.intensity=1.35;l.range=9;lights.push(l)});
+ for(let i=0;i<9;i++){let a=i/9*Math.PI*2+.4,st=P(vs.CreateCylinder("glowshroom-stem-"+i,{height:.35,diameter:.09,tessellation:5},R),cav);st.position.set(Math.cos(a)*5.7,.2,Math.sin(a)*5.7);st.material=cyan;let cap=P(vs.CreateSphere("glowshroom-cap-"+i,{diameter:.42,segments:7},R),cav);cap.position.set(Math.cos(a)*5.7,.5,Math.sin(a)*5.7);cap.scaling.y=.45;cap.material=mush}
+ let snail=new Oi("astral-snail",R);snail.parent=cav;snail.position.set(3.9,.35,-.2);let body=P(vs.CreateSphere("astral-snail-body",{diameter:1,segments:8},R),snail);body.scaling.set(.8,.24,.28);body.material=cyan;let sh=P(vs.CreateTorus("astral-snail-shell",{diameter:1.05,thickness:.26,tessellation:22},R),snail);sh.rotation.y=Math.PI/2;sh.position.set(0,.58,0);sh.material=shell;let ml=new cC("moonlight-cavern-blue",new b(G.x,G.y+6,G.z),R);ml.diffuse=new Pe(.25,.72,1);ml.intensity=2;ml.range=24;
+ let selected=new Set,burst=0,durs={"lantern-bloom":8e3,"pathfinders-gleam":6e3,"miners-echo":7e3,"tide-whisper":7e3,"ward-glimmer":6e3,"starlight-trace":9e3};
+ return {setResonance(ids,effect){selected=new Set(Array.isArray(ids)?ids:[]);nodes.forEach(n=>n.mat.emissiveColor=selected.has(n.id)?n.base.scale(1.35):n.base.scale(.28));if(effect&&durs[effect])burst=performance.now()+durs[effect]},update(now,paused,active){let pulse=.5+.5*Math.sin(now*.0024);rings.forEach((r,i)=>{r.rotation.y=(i%2?1:-1)*now*.00012*(i+1)});codex.rotation.y=now*.00017;coreMat.emissiveColor=now<burst?new Pe(.35,.9,1):new Pe(.10,.48,.62);ol.intensity=1.35+pulse*.55+(active?1:0)+(now<burst?.8:0);ml.intensity=1.7+pulse*.55;portal.scaling.setAll(1+pulse*.035);portal.rotation.z=now*.00018;snail.rotation.y=Math.sin(now*.0007)*.25;lights.forEach((l,i)=>l.intensity=1+.45*Math.sin(now*.004+i))},dispose(){lights.forEach(l=>l.dispose());ol.dispose();ml.dispose();root.dispose();mats.forEach(m=>m.dispose())}};
+}
+`;
+s=s.replace(anchor,helper+anchor);
+const ctor='d.emissiveColor=new Pe(.4,.8,.75),this.ring.material=d}canvas;engine;scene;camera;';
+if(!s.includes(ctor))throw new Error('Unsupported realm bundle: constructor tail missing');
+s=s.replace(ctor,'d.emissiveColor=new Pe(.4,.8,.75),this.ring.material=d,this.v12=V12create(this.scene,a)}canvas;engine;scene;camera;');
+const xam='setXam(e,t){this.xamId=e,this.xamSkill=t}projectLabel';
+if(!s.includes(xam))throw new Error('Unsupported realm bundle: method anchor missing');
+s=s.replace(xam,'setXam(e,t){this.xamId=e,this.xamSkill=t}setResonance(e,t){this.v12?.setResonance(e,t)}projectLabel');
+const upd='let c=this.sky.daylight.day;';
+if(!s.includes(upd))throw new Error('Unsupported realm bundle: update anchor missing');
+s=s.replace(upd,'this.v12?.update(s,n,t?.resonance?.activeEffect);let c=this.sky.daylight.day;');
+const disp='this.practiceYard.dispose(),this.shadows?.dispose()';
+if(!s.includes(disp))throw new Error('Unsupported realm bundle: dispose anchor missing');
+s=s.replace(disp,'this.practiceYard.dispose(),this.v12?.dispose(),this.shadows?.dispose()');
+await writeFile(url,s);
+console.log('Patched checked-in Babylon bundle with v1.2 Celestial/Moonlight presentation bridge.');

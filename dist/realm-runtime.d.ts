@@ -10,6 +10,7 @@ export interface RealmOptions {
     visibilityRadius?: number;
     beacon?: Point;
     camp?: Point;
+    codex?: Point;
 }
 export interface RealmJoinTraits {
     combatProtected?: boolean;
@@ -103,6 +104,7 @@ export declare class RealmRuntime {
                 fighter: import("./encounter.js").Fighter;
                 progression: import("./progression.js").Progression;
                 skilling: import("./skilling.js").Skilling;
+                resonance: import("./resonance-authority.js").ResonanceState;
                 practiceReadyTick: number;
                 practiceChallenge: import("./practice-interaction.js").PracticeChallenge | null;
             }[];

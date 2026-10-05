@@ -62,3 +62,15 @@ export function migrateSkilling(value) { if (!value || typeof value !== 'object'
     throw Error('Invalid legacy skilling'); const s = value; if (Object.keys(s).sort().join() !== 'bank,pack,readyTick,toolTier,xp' || !s.xp || typeof s.xp !== 'object' || Object.keys(s.xp).sort().join() !== [...PROFESSIONS].sort().join())
     throw Error('Invalid legacy professions'); if (!Object.values(s.xp).every(n => Number.isSafeInteger(n) && n >= 0 && n <= 960400))
     throw Error('Invalid legacy XP'); return checkedSkilling({ ...s, xp: { ...freshSkilling().xp, ...s.xp } }); }
+/** Server-only, atomic one-unit bonus for an active resonance effect. */
+export function grantResonanceGatherBonus(s, profession, xp = 10) {
+    checkedSkilling(s);
+    if (!PROFESSIONS.includes(profession) || !Number.isSafeInteger(xp) || xp < 0 || xp > 1000)
+        throw Error('Invalid resonance gathering bonus');
+    if (Object.values(s.pack).reduce((a, b) => a + b, 0) >= 12)
+        return false;
+    const resource = { woodcutting: 'logs', mining: 'ore', fishing: 'fish' };
+    s.pack[resource[profession]] += 1;
+    awardNoncombatXP(s, profession, xp);
+    return true;
+}

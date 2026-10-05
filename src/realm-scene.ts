@@ -18,3 +18,8 @@ export function createRealmScene(){
  }
  return {plan,...mounted};
 }
+
+export function realmCodexPoint(realm:ReturnType<typeof createRealmScene>){
+ for(const candidate of [{x:realm.plan.start.x+7,z:realm.plan.start.z-5},{x:realm.plan.start.x+5,z:realm.plan.start.z-3},realm.plan.start]){const p=realm.navigation.check(candidate);if(p.ok)return p.position;}
+ throw new Error('PolyCodex needs a walkable observatory point');
+}

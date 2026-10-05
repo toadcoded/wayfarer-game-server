@@ -5,7 +5,7 @@ import { placeRealmCast } from './npc-prototypes.js';
 import { RealmSky3D } from './realm-sky-3d.js';
 import { WeatherChunkCache } from './realm-weather.js';
 import { decorateRealmNPC } from './npc-details.js';
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, DirectionalLight, PointLight, Color3, Color4, MeshBuilder, StandardMaterial, DefaultRenderingPipeline, LinesMesh, ShadowGenerator, Matrix } from '@babylonjs/core';
+import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, DirectionalLight, PointLight, Color3, Color4, MeshBuilder, StandardMaterial, DefaultRenderingPipeline, LinesMesh, ShadowGenerator, Matrix, TransformNode } from '@babylonjs/core';
 import { QUALITY_PRESETS, isVisualQuality } from './visual-surface.js';
 import { cameraDirection } from './travel-controls.js';
 import { createHero3D } from './hero-3d.js';
@@ -15,9 +15,11 @@ import { practiceGesture } from './practice-pose.js';
 import { createPracticeYard } from './practice-yard-3d.js';
 import { Wildlife3D } from './wildlife-3d.js';
 import { wildlifeForRealm } from './wildlife.js';
-import { createRealmScene, REALM_WORLD } from './realm-scene.js';
+import { createRealmScene, realmCodexPoint, REALM_WORLD } from './realm-scene.js';
 import { crossingScene } from './scene-meshes.js';
 import { mountBabylonMesh } from './babylon-mesh.js';
+import { RESONANCE_NODES, isResonanceEffectId, resonanceEffect } from './resonance-codex.js';
+import { createCelestialExpansion } from './celestial-expansion-3d.js';
 /** Alternate renderer consumes only validated/interpolated server state. */
 export class Realm3D {
     canvas;
@@ -61,7 +63,17 @@ export class Realm3D {
     practiceYard;
     xamId;
     xamSkill;
+    resonanceRoot;
+    resonanceCore;
+    resonanceLight;
+    resonanceNodes = [];
+    resonanceSelected = new Set();
+    resonanceBurstUntil = 0;
+    expansion;
     setXam(id, skill) { this.xamId = id; this.xamSkill = skill; }
+    setResonance(ids, effectId) { this.resonanceSelected = new Set(ids.filter(id => RESONANCE_NODES.some(node => node.id === id))); for (const node of this.resonanceNodes)
+        node.material.emissiveColor = this.resonanceSelected.has(node.id) ? node.base.scale(1.35) : node.base.scale(.28); if (effectId && isResonanceEffectId(effectId))
+        this.resonanceBurstUntil = performance.now() + resonanceEffect(effectId).durationMs; }
     projectLabel(position) { const width = this.canvas?.clientWidth ?? this.engine.getRenderWidth(), height = this.canvas?.clientHeight ?? this.engine.getRenderHeight(), v = Vector3.Project(new Vector3(position.x, position.y + 2.35, position.z), Matrix.Identity(), this.scene.getTransformMatrix(), this.camera.viewport.toGlobal(width, height)); return { x: v.x, y: v.y, visible: v.z >= 0 && v.z <= 1 && v.x >= 0 && v.x <= width && v.y >= 0 && v.y <= height }; }
     follow;
     followId;
@@ -205,6 +217,40 @@ export class Realm3D {
         const m = new StandardMaterial('pulse', this.scene);
         m.emissiveColor = new Color3(.4, .8, .75);
         this.ring.material = m;
+        const codexPoint = realmCodexPoint(realm), codexX = codexPoint.x, codexZ = codexPoint.z, codexY = codexPoint.y;
+        this.resonanceRoot = new TransformNode('polycodex-root', this.scene);
+        this.resonanceRoot.position.set(codexX, codexY + 2.35, codexZ);
+        const core = MeshBuilder.CreatePolyhedron('polycodex-dodecahedron', { type: 2, size: 1.25 }, this.scene);
+        core.parent = this.resonanceRoot;
+        this.resonanceCore = new StandardMaterial('polycodex-core', this.scene);
+        this.resonanceCore.diffuseColor = new Color3(.08, .18, .24);
+        this.resonanceCore.emissiveColor = new Color3(.10, .48, .62);
+        this.resonanceCore.specularColor = new Color3(.6, .7, .8);
+        core.material = this.resonanceCore;
+        const halo = MeshBuilder.CreateTorus('polycodex-halo', { diameter: 5, thickness: .035, tessellation: 64 }, this.scene);
+        halo.parent = this.resonanceRoot;
+        halo.rotation.x = Math.PI / 2;
+        const haloMat = new StandardMaterial('polycodex-halo-mat', this.scene);
+        haloMat.emissiveColor = new Color3(.18, .55, .65);
+        haloMat.alpha = .75;
+        halo.material = haloMat;
+        for (const [index, node] of RESONANCE_NODES.entries()) {
+            const angle = index / RESONANCE_NODES.length * Math.PI * 2;
+            const gem = MeshBuilder.CreateSphere('polycodex-node-' + node.id, { diameter: .33, segments: 8 }, this.scene);
+            gem.parent = this.resonanceRoot;
+            gem.position.set(Math.cos(angle) * 2.5, Math.sin(angle) * 2.5, 0);
+            const mat = new StandardMaterial('polycodex-node-mat-' + node.id, this.scene), base = Color3.FromHexString(node.color);
+            mat.diffuseColor = base.scale(.45);
+            mat.emissiveColor = base.scale(.28);
+            mat.specularColor = base.scale(.6);
+            gem.material = mat;
+            this.resonanceNodes.push({ id: node.id, material: mat, base });
+        }
+        this.resonanceLight = new PointLight('polycodex-light', this.resonanceRoot.position.clone(), this.scene);
+        this.resonanceLight.diffuse = new Color3(.2, .75, .95);
+        this.resonanceLight.intensity = 1.15;
+        this.resonanceLight.range = 11;
+        this.expansion = createCelestialExpansion(this.scene, realm.plan.start, { x: codexX, y: codexY, z: codexZ }, realm.plan.goal);
     }
     update(players, game, local, now, paused, wind = 0) {
         if (this.disposed || this.contextLost || now - this.lastPaint < 1000 / QUALITY_PRESETS[this.quality].fps || (typeof document !== 'undefined' && document.hidden))
@@ -266,6 +312,13 @@ export class Realm3D {
                 entry.material.specularColor.set(w * .08, w * .08, w * .08);
             }
         }
+        const burst = now < this.resonanceBurstUntil;
+        this.resonanceRoot.rotation.y = now * .00017;
+        this.resonanceRoot.rotation.z = Math.sin(now * .00045) * .035;
+        this.resonanceRoot.scaling.setAll(burst ? 1.04 + Math.sin(now * .01) * .025 : 1);
+        this.resonanceCore.emissiveColor = burst ? new Color3(.35, .9, 1) : new Color3(.10, .48, .62);
+        this.resonanceLight.intensity = burst ? 2.6 : 1.15;
+        this.expansion.update(now, paused, game?.resonance?.activeEffect ?? undefined);
         const day = this.sky.daylight.day;
         if (this.ambientLight)
             this.ambientLight.intensity = .55 + day * .4;
@@ -322,6 +375,9 @@ export class Realm3D {
         this.wildlife.dispose();
         this.grass.dispose();
         this.practiceYard.dispose();
+        this.expansion.dispose();
+        this.resonanceRoot.dispose();
+        this.resonanceLight.dispose();
         this.shadows?.dispose();
         this.waterMaterials.length = 0;
         this.pipeline?.dispose();

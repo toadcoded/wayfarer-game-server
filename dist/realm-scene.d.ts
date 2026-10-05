@@ -8,3 +8,4 @@ export declare function createRealmScene(): {
     navigation: import("./navigation.js").NavigationWorld;
     plan: import("./crossings.js").CrossingPlan;
 };
+export declare function realmCodexPoint(realm: ReturnType<typeof createRealmScene>): import("./world.js").Point;

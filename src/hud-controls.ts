@@ -1,4 +1,4 @@
-export const HUD_TABS=['practice','combat','gathering','quest','inventory','settings'] as const;
+export const HUD_TABS=['practice','combat','gathering','quest','inventory','codex','settings'] as const;
 export type HudTab=typeof HUD_TABS[number];
 export const isHudTab=(x:unknown):x is HudTab=>typeof x==='string'&&(HUD_TABS as readonly string[]).includes(x);
 export function initRealmHud(doc:Document=document){let compact=false,tab:HudTab='practice',size='normal',height=55,visual=true,living=true;try{const raw=globalThis.localStorage?.getItem('wayfarer.hud.v1')??'null';const saved=raw.length<=1024?JSON.parse(raw):null;if(saved&&isHudTab(saved.tab)&&typeof saved.compact==='boolean'){tab=saved.tab;compact=saved.compact;if(['small','normal','large'].includes(saved.size))size=saved.size;if(Number.isInteger(saved.height)&&saved.height>=35&&saved.height<=80)height=saved.height;if(typeof saved.visual==='boolean')visual=saved.visual;if(typeof saved.living==='boolean')living=saved.living;}}catch{}

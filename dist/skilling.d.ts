@@ -40,3 +40,5 @@ export declare function gatheringBonuses(xp: number): {
 };
 export declare function awardNoncombatXP(s: Skilling, skill: NoncombatSkill, amount: number): void;
 export declare function migrateSkilling(value: unknown): Skilling;
+/** Server-only, atomic one-unit bonus for an active resonance effect. */
+export declare function grantResonanceGatherBonus(s: Skilling, profession: Profession, xp?: number): boolean;

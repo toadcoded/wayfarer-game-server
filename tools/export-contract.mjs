@@ -14,5 +14,6 @@ manifest.examples.bank={kind:'action',sequence:10,action:'skilling',value:'depos
 manifest.examples.craft={kind:'action',sequence:11,action:'skilling',value:'upgrade'};
 manifest.examples.practiceStep={kind:'action',sequence:13,action:'practice-step',value:'p1-1-12/0/2'};
 manifest.examples.practice={kind:'action',sequence:12,action:'practice',value:'agility'};
+manifest.examples.resonance={kind:'action',sequence:14,action:'resonance',value:'cinder+verdant+moon'};
 await writeFile(new URL('../REALM-CONTRACT.json',import.meta.url),JSON.stringify(manifest,null,2)+'\n');
 console.log('Wrote REALM-CONTRACT.json from compiled contract constants.');
