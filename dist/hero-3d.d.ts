@@ -65,7 +65,7 @@ export declare const HERO_PROFILES: Readonly<{
         cadence: 1;
     }>;
 }>;
-/** Procedural faceted prototype rig; all motion is cosmetic and never changes collision. */
+/** Procedural softly-contoured prototype rig; all motion is cosmetic and never changes collision. */
 export declare function createHero3D(scene: Scene, id: string, skin: Skin, customAppearance?: HeroAppearance, wardrobe?: {
     coat: string;
     trim: string;

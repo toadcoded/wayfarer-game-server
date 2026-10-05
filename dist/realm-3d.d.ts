@@ -81,6 +81,7 @@ export declare class Realm3D {
         dx: number;
         dz: number;
     };
+    pickGround(x: number, y: number): Point | undefined;
     zoomCamera(factor: number): void;
     resetCamera(): void;
     get wildlifeCount(): number;

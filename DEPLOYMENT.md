@@ -1,10 +1,10 @@
-# Deploy Wayfarer v1.2
+# Deploy Wayfarer v1.3
 
 The supported topology is one persistent Node 24.19 process and one HTTPS reverse proxy. The supplied stack keeps the browser/client and `/socket` on the same HTTPS origin. It stores the realm SQLite database on a Docker volume and automatically acquires HTTPS certificates through Caddy. You need a persistent Linux host, Docker Compose, a hostname you control and a certificate contact email.
 
 ## 1. Prepare the host
 
-From the Wayfarer v1.2 repository root, point your hostname's DNS A record to the host. Set an AAAA record only if IPv6 reaches that host. Allow inbound TCP 80/443; UDP 443 is optional for HTTP/3. Keep the game port private. Outbound HTTPS is needed for image/dependency downloads and certificate issuance.
+From the Wayfarer v1.3 repository root, point your hostname's DNS A record to the host. Set an AAAA record only if IPv6 reaches that host. Allow inbound TCP 80/443; UDP 443 is optional for HTTP/3. Keep the game port private. Outbound HTTPS is needed for image/dependency downloads and certificate issuance.
 
 ```sh
 cp .env.example .env
@@ -36,9 +36,9 @@ curl --fail https://YOUR_DOMAIN/health
 curl --fail -I https://YOUR_DOMAIN/dist/realm-client.js
 ```
 
-Expect health JSON containing `ready: true`, version `1.2.0`, capacity and a progressing tick. JavaScript must return a JavaScript MIME type, not an HTML fallback. Check the browser's Network panel: `/socket` upgrades with status 101 and the `wayfarer.realm.v2` subprotocol. Verify two players see each other, save a change, restart the realm and rejoin with the same browser cookie.
+Expect health JSON containing `ready: true`, version `1.3.0`, capacity and a progressing tick. JavaScript must return a JavaScript MIME type, not an HTML fallback. Check the browser's Network panel: `/socket` upgrades with status 101 and the `wayfarer.realm.v2` subprotocol. Verify two players see each other, save a change, restart the realm and rejoin with the same browser cookie.
 
-The source passes the Node 24.19.0 build and automated test suite, but this exact Docker/Caddy stack and live DNS/TLS have not been executed in this task. Complete these host checks before announcing a public launch. Browser/device visual checks remain outstanding.
+The source includes click-to-walk through authoritative navigation, shared tree-trunk collision, selective bank transfers and clickable equipment slots. Automated test evidence is recorded in [V1.3-VERIFICATION.md](V1.3-VERIFICATION.md). This exact Docker/Caddy stack, live DNS/TLS and physical device/GPU visuals still require host-side checks before announcing a public launch.
 
 ## Persistence and identity
 

@@ -1,4 +1,5 @@
 import { Color3, MeshBuilder, PointLight, StandardMaterial, TransformNode, Vector3 } from '@babylonjs/core';
+import { ORCHARD_TREE_OFFSETS } from './world-sites.js';
 const mat = (scene, name, diffuse, emissive = Color3.Black(), alpha = 1) => { const material = new StandardMaterial(name, scene); material.diffuseColor = diffuse; material.emissiveColor = emissive; material.specularColor = diffuse.scale(.25); material.alpha = alpha; return material; };
 const parent = (mesh, node) => { mesh.parent = node; return mesh; };
 const seeded = (seed) => { let n = seed >>> 0; return () => ((n = Math.imul(n ^ n >>> 15, 1 | n) + 0x6d2b79f5 | 0, n = (n ^ n >>> 7) * 61 + n ^ n, n ^ n >>> 14) >>> 0) / 4294967296; };
@@ -14,7 +15,7 @@ export function createCelestialExpansion(scene, camp, codex, cavernPoint) {
     observatory.position.set(codex.x, codex.y, codex.z);
     cavern.position.set(cavernPoint.x, cavernPoint.y, cavernPoint.z);
     const stone = mat(scene, 'v12-stone', new Color3(.16, .20, .28)), gold = mat(scene, 'v12-gold', new Color3(.56, .39, .15), new Color3(.13, .08, .02)), cyan = mat(scene, 'v12-cyan', new Color3(.08, .45, .56), new Color3(.05, .72, .9)), violet = mat(scene, 'v12-violet', new Color3(.28, .11, .42), new Color3(.64, .08, .88)), wood = mat(scene, 'v12-wood', new Color3(.28, .16, .08)), leaf = mat(scene, 'v12-leaf', new Color3(.12, .36, .16)), flower = mat(scene, 'v12-flower', new Color3(.85, .47, .08), new Color3(.1, .04, 0)), water = mat(scene, 'v12-water', new Color3(.04, .33, .46), new Color3(.02, .16, .24), .68), mushroom = mat(scene, 'v12-mushroom', new Color3(.33, .20, .5), new Color3(.18, .42, .72)), shell = mat(scene, 'v12-shell', new Color3(.24, .34, .58), new Color3(.08, .18, .4));
-    // Celestial observatory: layered dais, orbit cages, twelve columns and an open codex.
+    // Celestial observatory: layered dais, orbit cages, eight columns and an open codex.
     const dais = parent(MeshBuilder.CreateCylinder('observatory-dais', { height: .45, diameter: 11, tessellation: 12 }, scene), observatory);
     dais.position.y = .2;
     dais.material = stone;
@@ -30,8 +31,8 @@ export function createCelestialExpansion(scene, camp, codex, cavernPoint) {
         ring.material = i % 2 ? violet : cyan;
         rings.push(ring);
     }
-    for (let i = 0; i < 12; i++) {
-        const a = i / 12 * Math.PI * 2, pylon = parent(MeshBuilder.CreateCylinder('observatory-pylon-' + i, { height: 2.3, diameter: .34, tessellation: 6 }, scene), observatory);
+    for (let i = 0; i < 8; i++) {
+        const a = i / 8 * Math.PI * 2, pylon = parent(MeshBuilder.CreateCylinder('observatory-pylon-' + i, { height: 2.3, diameter: .34, tessellation: 6 }, scene), observatory);
         pylon.position.set(Math.cos(a) * 4.5, 1.55, Math.sin(a) * 4.5);
         pylon.material = i % 3 === 0 ? gold : stone;
         const gem = parent(MeshBuilder.CreatePolyhedron('observatory-gem-' + i, { type: 1, size: .34 }, scene), observatory);
@@ -56,8 +57,7 @@ export function createCelestialExpansion(scene, camp, codex, cavernPoint) {
     orchard.parent = root;
     orchard.position.set(camp.x, camp.y, camp.z);
     const rnd = seeded(0x51f17a);
-    for (let i = 0; i < 7; i++) {
-        const a = (i / 7) * Math.PI * 2 + .35, rad = 8.5 + (i % 2) * 2.4, x = Math.cos(a) * rad, z = Math.sin(a) * rad;
+    for (const [i, { x, z }] of ORCHARD_TREE_OFFSETS.entries()) {
         const trunk = parent(MeshBuilder.CreateCylinder('orchard-trunk-' + i, { height: 3.8, diameter: .55, tessellation: 7 }, scene), orchard);
         trunk.position.set(x, 1.9, z);
         trunk.rotation.z = (rnd() - .5) * .12;
@@ -73,8 +73,8 @@ export function createCelestialExpansion(scene, camp, codex, cavernPoint) {
             fruit.material = f % 2 ? flower : violet;
         }
     }
-    for (let i = 0; i < 12; i++) {
-        const a = i / 12 * Math.PI * 2, rad = 5.7 + (i % 3) * .5, stem = parent(MeshBuilder.CreateCylinder('sunflower-stem-' + i, { height: 1.25, diameter: .08, tessellation: 5 }, scene), orchard);
+    for (let i = 0; i < 6; i++) {
+        const a = i / 6 * Math.PI * 2, rad = 5.7 + (i % 2) * .5, stem = parent(MeshBuilder.CreateCylinder('sunflower-stem-' + i, { height: 1.25, diameter: .08, tessellation: 5 }, scene), orchard);
         stem.position.set(Math.cos(a) * rad, .63, Math.sin(a) * rad);
         stem.material = leaf;
         const bloom = parent(MeshBuilder.CreateDisc('sunflower-bloom-' + i, { radius: .28, tessellation: 10 }, scene), orchard);
@@ -99,15 +99,15 @@ export function createCelestialExpansion(scene, camp, codex, cavernPoint) {
     caveFloor.rotation.x = Math.PI / 2;
     caveFloor.position.y = .05;
     caveFloor.material = stone;
-    for (let i = 0; i < 13; i++) {
-        const a = (i / 13) * Math.PI * 2, rock = parent(MeshBuilder.CreatePolyhedron('cave-rock-' + i, { type: 1, size: 1.25 + (i % 3) * .38 }, scene), cavern);
+    for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2, rock = parent(MeshBuilder.CreatePolyhedron('cave-rock-' + i, { type: 1, size: 1.25 + (i % 3) * .38 }, scene), cavern);
         rock.position.set(Math.cos(a) * 7.2, 1.1 + (i % 2) * .45, Math.sin(a) * 7.2);
         rock.scaling.y = 1.4 + (i % 3) * .45;
         rock.material = stone;
     }
     const crystalMats = [cyan, violet, gold];
-    for (let i = 0; i < 18; i++) {
-        const a = (i / 18) * Math.PI * 2 + .12, rad = 4.6 + (i % 4) * .7, crystal = parent(MeshBuilder.CreateCylinder('moon-crystal-' + i, { height: 1.6 + (i % 4) * .45, diameterTop: 0, diameterBottom: .55 + (i % 2) * .2, tessellation: 5 }, scene), cavern);
+    for (let i = 0; i < 12; i++) {
+        const a = (i / 12) * Math.PI * 2 + .12, rad = 4.6 + (i % 3) * .7, crystal = parent(MeshBuilder.CreateCylinder('moon-crystal-' + i, { height: 1.6 + (i % 3) * .45, diameterTop: 0, diameterBottom: .55 + (i % 2) * .2, tessellation: 5 }, scene), cavern);
         crystal.position.set(Math.cos(a) * rad, .8 + (i % 4) * .22, Math.sin(a) * rad);
         crystal.rotation.z = (i % 3 - 1) * .18;
         crystal.material = crystalMats[i % crystalMats.length];
@@ -141,8 +141,8 @@ export function createCelestialExpansion(scene, camp, codex, cavernPoint) {
         light.range = 9;
         cavernLights.push(light);
     }
-    for (let i = 0; i < 9; i++) {
-        const a = i / 9 * Math.PI * 2 + .4, stem = parent(MeshBuilder.CreateCylinder('glowshroom-stem-' + i, { height: .35, diameter: .09, tessellation: 5 }, scene), cavern);
+    for (let i = 0; i < 6; i++) {
+        const a = i / 6 * Math.PI * 2 + .4, stem = parent(MeshBuilder.CreateCylinder('glowshroom-stem-' + i, { height: .35, diameter: .09, tessellation: 5 }, scene), cavern);
         stem.position.set(Math.cos(a) * 5.7, .2, Math.sin(a) * 5.7);
         stem.material = cyan;
         const cap = parent(MeshBuilder.CreateSphere('glowshroom-cap-' + i, { diameter: .42, segments: 7, slice: .55 }, scene), cavern);

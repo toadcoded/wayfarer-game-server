@@ -1,6 +1,6 @@
 {
   "name": "wayfarer-world-kit",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "type": "module",
   "description": "Wayfarer authoritative persistent multiplayer realm with server-backed PolyCodex resonance and Moonlight Cavern",
@@ -16,6 +16,7 @@
     "./construction": "./dist/construction.js",
     "./crossings": "./dist/crossings.js",
     "./site-placement": "./dist/site-placement.js",
+    "./world-sites": "./dist/world-sites.js",
     "./scene-meshes": "./dist/scene-meshes.js",
     "./session": "./dist/session.js",
     "./adapters/coordinates": "./dist/adapters/coordinates.js",

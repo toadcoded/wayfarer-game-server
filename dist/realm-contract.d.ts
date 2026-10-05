@@ -2,10 +2,10 @@
 export declare const REALM_SUBPROTOCOL = "wayfarer.realm.v2";
 export declare const REALM_CONTRACT: Readonly<{
     readonly protocolVersion: 2;
-    readonly simulationRevision: 16;
+    readonly simulationRevision: 17;
     readonly worldSeed: 20260928;
     readonly generatorVersion: 1;
-    readonly sceneRevision: 3;
+    readonly sceneRevision: 4;
     readonly coordinateSystem: "xz-y-up-metres";
     readonly tickMs: 50;
     readonly snapshotVersion: 1;

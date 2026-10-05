@@ -21,7 +21,7 @@ test('actual entrypoint persists periodic saves across SIGKILL and flushes on SI
     child=launch(dir);await until(()=>child.logs.includes('"event":"ready"')||child.exitCode!==null);
     assert.equal(child.exitCode,null,child.errors);
     const ready=JSON.parse(child.logs.trim().split('\n').find(l=>l.includes('"event":"ready"')));
-    assert.equal(ready.version,'1.2.0');
+    assert.equal(ready.version,'1.3.0');
     const origin=ready.origin;
     const response=await fetch(origin),cookie=response.headers.get('set-cookie').split(';')[0];
     const connect=async()=>{

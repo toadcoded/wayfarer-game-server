@@ -17,6 +17,7 @@ import {encodeRealmSnapshot} from '../dist/replication.js';
 import {SocketFlowGate} from '../dist/transport-guard.js';
 function realmPosition(scene){const p=scene.navigation.check(scene.plan.goal??scene.plan.start);if(!p.ok)throw new Error('Beacon needs a walkable landing');return p.position;}
 const root=fileURLToPath(new URL('../',import.meta.url));
+const version=JSON.parse(await readFile(path.join(root,'package.json'),'utf8')).version;
 const mime={'.jpeg':'image/jpeg','.jpg':'image/jpeg','.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.gif':'image/gif','.json':'application/json','.css':'text/css; charset=utf-8','.wasm':'application/wasm'};
 /** Loopback-only transport rehearsal. Optional local durable profiles remain server-owned. */
 export async function createLocalRealmServer({port=0,capacity=8,heartbeatMs=15000,scene=createRealmScene(),autoTick=true,handshakeMs=5000,recordReplay=false,profilePath=false,profileFlushMs=1000,xam=false,xamPath=false,bindHost='127.0.0.1',publicOrigin=false,profileStoreOverride,xamStoreOverride,trustProxy=false,guestRegistrationsPerMinute=5}={}){
@@ -42,8 +43,8 @@ export async function createLocalRealmServer({port=0,capacity=8,heartbeatMs=1500
   const address=requestAddress(req,trustProxy);
   if(publicOrigin&&!requests.allow(address)){res.writeHead(429,{'Retry-After':'60'});res.end();return;}
   // Internal health probes carry the container Host, never create identities.
-  if(req.url==='/live'){res.writeHead(stopped||failed?503:200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(req.method==='HEAD'?undefined:JSON.stringify({live:!stopped&&!failed,version:'1.2.0'}));return;}
-  if(publicOrigin&&req.url==='/health'){res.writeHead(stopped||failed?503:200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(req.method==='HEAD'?undefined:JSON.stringify({ready:!stopped&&!failed,version:'1.2.0',players:realm.size-Number(!!bot),capacity,tick:realm.tick,persistence:profileStore?'sqlite':'disabled'}));return;}
+  if(req.url==='/live'){res.writeHead(stopped||failed?503:200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(req.method==='HEAD'?undefined:JSON.stringify({live:!stopped&&!failed,version}));return;}
+  if(publicOrigin&&req.url==='/health'){res.writeHead(stopped||failed?503:200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(req.method==='HEAD'?undefined:JSON.stringify({ready:!stopped&&!failed,version,players:realm.size-Number(!!bot),capacity,tick:realm.tick,persistence:profileStore?'sqlite':'disabled'}));return;}
   if(req.headers.host!==new URL(origin).host){res.writeHead(403);res.end();return;}
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405,{'Allow':'GET, HEAD'});res.end();return;}
   if(req.url==='/npc/xam'){if(!bot||failed){res.writeHead(bot?503:404);res.end();return;}res.writeHead(200,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(req.method==='HEAD'?undefined:JSON.stringify(bot.examine()));return;}
@@ -141,7 +142,7 @@ export async function createLocalRealmServer({port=0,capacity=8,heartbeatMs=1500
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const host=await createLocalRealmServer({port:Number(process.env.PORT??8081),recordReplay:!!process.env.REPLAY_OUT,profilePath:process.env.PROFILE_DB||false,xam:true,xamPath:process.env.XAM_DB||path.join(root,'runtime/xam.json')});
- console.log(`Wayfarer v1.2 PolyCodex authority realm · Xam active: ${host.origin}`);
+ console.log(`Wayfarer v${version} PolyCodex authority realm · Xam active: ${host.origin}`);
  console.log(process.env.PROFILE_DB?'Local signed-cookie profiles enabled. Loopback rehearsal only; not Internet authentication.':'Open two tabs at that exact address. Set PROFILE_DB to enable local durable profiles.');
  for(const signal of ['SIGINT','SIGTERM'])process.once(signal,()=>{host.close().then(async()=>{if(process.env.REPLAY_OUT)await writeFile(process.env.REPLAY_OUT,JSON.stringify(host.exportReplay())+'\n',{flag:'wx'});process.exit(0);}).catch(error=>{console.error(error.message);process.exit(1);});});
 }

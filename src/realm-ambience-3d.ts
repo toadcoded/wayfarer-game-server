@@ -11,7 +11,7 @@ export class RealmAmbience3D {
   this.root=new TransformNode('realm-ambience',scene);const anchor=anchors[0]!;
   const mat=(color:string)=>{let m=this.materials.get(color);if(!m){m=new StandardMaterial('detail:'+color,scene);m.diffuseColor=Color3.FromHexString(color);m.specularColor=Color3.Black();this.materials.set(color,m);}return m;};
   const part=(parent:TransformNode,name:string,shape:'box'|'sphere'|'cylinder',p:number[],s:number[],color:string)=>{const mesh=shape==='box'?MeshBuilder.CreateBox(name,{size:1},scene):shape==='sphere'?MeshBuilder.CreateSphere(name,{diameter:1,segments:4},scene):MeshBuilder.CreateCylinder(name,{height:1,diameter:1,tessellation:8},scene);mesh.parent=parent;mesh.position.set(p[0]!,p[1]!,p[2]!);mesh.scaling.set(s[0]!,s[1]!,s[2]!);mesh.material=mat(color);mesh.isPickable=false;return mesh;};
-  for(const detail of realmDetails(seed,anchors)){
+  for(const detail of realmDetails(seed,anchors).filter(d=>['birdhouse','mushroom','bench','toy','balloon'].includes(d.kind))){
    const root=new TransformNode(detail.id,scene);root.parent=this.root;root.position.set(detail.position.x,height(detail.position),detail.position.z);
    const box=(n:string,p:number[],s:number[],c='#866446')=>part(root,detail.id+n,'box',p,s,c),round=(n:string,p:number[],s:number[],c:string)=>part(root,detail.id+n,'sphere',p,s,c),cylinder=(n:string,p:number[],s:number[],c='#866446')=>part(root,detail.id+n,'cylinder',p,s,c);
    switch(detail.kind){

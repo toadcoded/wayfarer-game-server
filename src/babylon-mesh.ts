@@ -4,7 +4,7 @@ import type {MeshData} from './construction.js';
 export function mountBabylonMesh(scene:Scene,id:string,data:MeshData,updatable=false){
  if(!data.positions.length||data.positions.length%3||!data.indices.length||data.indices.length%3||data.positions.length>300000||data.indices.length>600000||
  !Array.from(data.positions).every(Number.isFinite)||!Array.from(data.indices).every(i=>Number.isInteger(i)&&i>=0&&i<data.positions.length/3)||!/^#[0-9a-f]{6}$/i.test(data.color))throw new Error('Invalid mesh data');
- const mesh=new Mesh(id,scene),material=new StandardMaterial(id+':material',scene);
+ const mesh=new Mesh(id,scene),material=new StandardMaterial(id+':material',scene);mesh.isPickable=data.walkable===true;mesh.metadata={walkable:data.walkable===true};
  try{
   material.diffuseColor=Color3.FromHexString(data.color);material.backFaceCulling=false;mesh.material=material;
   const vertices=new VertexData();vertices.positions=Array.from(data.positions);vertices.indices=Array.from(data.indices);const normals:number[]=[];

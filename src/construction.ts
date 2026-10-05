@@ -10,7 +10,7 @@ export interface WalkSurface {
  id:string; bounds:Bounds; axis:'x'|'z'; startY:number; endY:number;
  thickness:number; color:string;
 }
-export interface MeshData { positions:Float32Array; indices:Uint32Array; color:string }
+export interface MeshData { positions:Float32Array; indices:Uint32Array; color:string; walkable?:boolean }
 const finite=(v:number)=>Number.isFinite(v);
 function checkedBounds(b:Bounds):void {
  if(![b.minX,b.maxX,b.minZ,b.maxZ].every(finite)||b.minX>=b.maxX||b.minZ>=b.maxZ||
@@ -110,7 +110,7 @@ export class ConstructionWorld {
   let n=0;for(let z=0;z<nz;z++)for(let x=0;x<nx;x++){
    const a=z*(nx+1)+x,b=a+1,c=a+nx+1,d=c+1;indices.set([a,c,b,b,c,d],n);n+=6;
   }
-  return {positions,indices,color};
+  return {positions,indices,color,walkable:true};
  }
 }
 /** Closed six-face prism. Its top is exactly surfaceHeight at every point. */
@@ -123,7 +123,7 @@ export function surfaceMesh(s:WalkSurface):MeshData {
   0,2,1,1,2,3, 4,5,6,5,7,6,
   0,1,4,1,5,4, 2,6,3,3,6,7,
   0,4,2,2,4,6, 1,3,5,3,7,5,
- ]),color:s.color};
+ ]),color:s.color,walkable:true};
 }
 /** Side rails are conservative solid bounds; the deck/ramp itself is a support, not an obstacle. */
 export function railColliders(s:WalkSurface,railHeight=1.2,railWidth=.3):Collider[] {
@@ -141,7 +141,7 @@ export function railMeshes(s:WalkSurface,height=1.2,width=.3):MeshData[] {
  const sides=s.axis==='x'?[
   {...b,minZ:b.minZ-width,maxZ:b.minZ},{...b,minZ:b.maxZ,maxZ:b.maxZ+width},
  ]:[{...b,minX:b.minX-width,maxX:b.minX},{...b,minX:b.maxX,maxX:b.maxX+width}];
- return sides.map((bounds,i)=>surfaceMesh({...s,id:`${s.id}:rail:${i}`,bounds,startY:s.startY+height,endY:s.endY+height,thickness:height}));
+ return sides.map((bounds,i)=>({...surfaceMesh({...s,id:`${s.id}:rail:${i}`,bounds,startY:s.startY+height,endY:s.endY+height,thickness:height}),walkable:false}));
 }
 /** Foundation facing ends below the ground plane, avoiding duplicate coplanar floor faces. */
 export function foundationStones(base:GroundSampler,pad:FoundationPad,color:string):Primitive[] {

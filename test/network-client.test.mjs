@@ -36,7 +36,7 @@ test('browser-client module uses real socket: join, input, snapshot, disconnect 
   document.hidden=true;docListeners.visibilitychange();assert.match(element('#realm-heartbeat').textContent,/page resting/);document.hidden=false;docListeners.visibilitychange();
   listeners.pagehide();await until(()=>host.connections===0&&element('#join').disabled===false);
  }finally{
-  for(const [k,d] of old)d?Object.defineProperty(globalThis,k,d):delete globalThis[k];
   await host.close();
+  for(const [k,d] of old)d?Object.defineProperty(globalThis,k,d):delete globalThis[k];
  }
 });

@@ -5,6 +5,8 @@ export function mountBabylonMesh(scene, id, data, updatable = false) {
         !Array.from(data.positions).every(Number.isFinite) || !Array.from(data.indices).every(i => Number.isInteger(i) && i >= 0 && i < data.positions.length / 3) || !/^#[0-9a-f]{6}$/i.test(data.color))
         throw new Error('Invalid mesh data');
     const mesh = new Mesh(id, scene), material = new StandardMaterial(id + ':material', scene);
+    mesh.isPickable = data.walkable === true;
+    mesh.metadata = { walkable: data.walkable === true };
     try {
         material.diffuseColor = Color3.FromHexString(data.color);
         material.backFaceCulling = false;

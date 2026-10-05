@@ -23,6 +23,7 @@ export interface MeshData {
     positions: Float32Array;
     indices: Uint32Array;
     color: string;
+    walkable?: boolean;
 }
 export declare const contains: (b: Bounds, x: number, z: number) => boolean;
 export declare function surfaceHeight(surface: WalkSurface, x: number, z: number): number;

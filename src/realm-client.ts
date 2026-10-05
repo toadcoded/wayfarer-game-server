@@ -24,14 +24,14 @@ import {isTravelMode,type TravelMode} from './movement.js';
 import {encodeMoveIntent} from './movement.js';
 import {createRealmScene,REALM_WORLD} from './realm-scene.js';
 import {crossingScene} from './scene-meshes.js';
-import {toIso} from './adapters/iso.js';
+import {fromIso,toIso} from './adapters/iso.js';
 import type {Point} from './world.js';
 import {DirectionInput} from './direction-input.js';
 import {realmHeartbeat} from './realm-heartbeat.js';
 import {isVisualQuality,type VisualSurface,type VisualQuality} from './visual-surface.js';
 type Realm3DPort={
  setQuality(value:VisualQuality):void;setRetro(value:boolean):void;setFlashes(value:boolean):void;dispose():void;retryArtwork():void;zoomCamera(value:number):void;resetCamera():void;setResonance?(ids:readonly import('./resonance-codex.js').ResonanceNodeId[],effectId?:string):void;setXam(id:string|undefined,skill:string|undefined):void;
- update(players:readonly {id:string;position:Point}[],game:GameState|undefined,local:string|undefined,now:number,paused:boolean,wind?:number):void;movementDirection(right:number,forward:number):{dx:number;dz:number};projectLabel(position:Point):{x:number;y:number;visible:boolean};
+ update(players:readonly {id:string;position:Point}[],game:GameState|undefined,local:string|undefined,now:number,paused:boolean,wind?:number):void;movementDirection(right:number,forward:number):{dx:number;dz:number};projectLabel(position:Point):{x:number;y:number;visible:boolean};pickGround?(x:number,y:number):Point|undefined;
  readonly renderState:'ready'|'recovering';readonly artworkState:readonly {title:string;state:string}[];readonly worldMetrics:{meshes:number;triangles:number;grassTufts:number;fps:number};readonly weatherState:{kind:string;cloudWater:number;humidity:number;wetness:number}|undefined;readonly ambienceText:string|undefined;
 };
 let visualSurface:Promise<VisualSurface>|undefined,visualClosed=false;
@@ -57,9 +57,9 @@ async function startGraphics(){
  if(visualClosed||graphics.state==='loading'||graphics.state==='ready')return;
  const button=document.querySelector<HTMLButtonElement>('#retry-graphics');if(button)button.disabled=true;
  try{if(typeof WebGLRenderingContext==='undefined'){fallbackGraphics();return;}
- overlay=document.createElement('canvas');overlay.id='world-3d';overlay.setAttribute('aria-label','3D multiplayer causeway');document.body.prepend(overlay);const target=overlay;
+ overlay=document.createElement('canvas');overlay.id='world-3d';overlay.setAttribute('aria-label','3D multiplayer causeway. Click the ground to walk; use arrow keys or direction buttons for direct movement.');document.body.prepend(overlay);const target=overlay;
  const next=await graphics.load(async()=>{const moduleUrl='/preview/realm-3d.bundle.js',module=await import(moduleUrl);if(visualClosed)throw Error('Page closed');const view:Realm3DPort=module.Realm3D.create(target);try{view.setQuality(qualityChoice());view.setRetro(document.querySelector<HTMLInputElement>('#retro-style')?.checked??true);view.setFlashes(!!document.querySelector<HTMLInputElement>('#ambient-flashes')?.checked);return view;}catch(error){view.dispose();throw error;}});
- if(next&&!visualClosed){view3d=next;const base=document.querySelector<HTMLCanvasElement>('#world');if(base)base.style.display='none';}else fallbackGraphics();
+ if(next&&!visualClosed){view3d=next;attachWorldPointer(target);const base=document.querySelector<HTMLCanvasElement>('#world');if(base)base.style.display='none';}else fallbackGraphics();
  }catch{fallbackGraphics();}finally{if(button)button.disabled=false;}
 }
 document.querySelector('#retry-graphics')?.addEventListener('click',()=>{void startGraphics();});
@@ -91,16 +91,18 @@ document.querySelector('#practice-action')?.addEventListener('click',()=>{const 
 for(const b of document.querySelectorAll<HTMLButtonElement>('[data-practice-pad]'))b.addEventListener('click',()=>{const c=game?.practiceChallenge;if(c)action('practice-step',practiceResponse(c,Number(b.dataset.practicePad)));});
 document.querySelector('#practice-cancel')?.addEventListener('click',()=>action('practice-step','cancel'));
 for(const button of document.querySelectorAll<HTMLButtonElement>('[data-skilling]'))button.addEventListener('click',()=>action('skilling',button.dataset.skilling!));
+for(const button of document.querySelectorAll<HTMLButtonElement>('[data-bank-transfer]'))button.addEventListener('click',()=>{const operation=button.dataset.bankTransfer,resource=document.querySelector<HTMLSelectElement>('#bank-resource')?.value,amount=document.querySelector<HTMLSelectElement>('#bank-amount')?.value;if((operation!=='deposit'&&operation!=='withdraw')||!(RESOURCES as readonly string[]).includes(resource??'')||!(amount==='all'||/^[1-9][0-9]{0,6}$/.test(amount??'')))return;action('skilling',`${operation}:${resource}:${amount}`);});
+for(const button of document.querySelectorAll<HTMLButtonElement>('[data-inventory-slot]'))button.addEventListener('click',()=>{const item=game?.inventory?.slots[Number(button.dataset.inventorySlot)];if(item)action('equip',item);});
 const buffer=new SnapshotBuffer();let connectedAt=0,animationId=0;
 let travelMode:TravelMode='jog';const sprintKeys=new Set<string>();
 function chooseTravel(value:unknown){if(isTravelMode(value)){travelMode=value;const choice=document.querySelector<HTMLSelectElement>('#travel-mode');if(choice)choice.value=value;sendDirection();}}
 document.querySelector('#travel-mode')?.addEventListener('change',()=>chooseTravel(document.querySelector<HTMLSelectElement>('#travel-mode')?.value));
 for(const [id,factor] of [['camera-in',.85],['camera-out',1.18]] as const)document.querySelector('#'+id)?.addEventListener('click',()=>view3d?.zoomCamera(factor));
 document.querySelector('#camera-reset')?.addEventListener('click',()=>view3d?.resetCamera());
-const held=new DirectionInput();let width=1,height=1,scale=1,ox=0,oy=0;
+const held=new DirectionInput();let clickRoute:{x:number;z:number}[]=[],width=1,height=1,scale=1,ox=0,oy=0;
 type Face={points:Point[];color:string;depth:number};
 const faces:Face[]=[];
-for(const m of crossingScene(REALM_WORLD,scene.plan))for(let i=0;i<m.indices.length;i+=3){
+for(const m of crossingScene(REALM_WORLD,scene.plan,scene.worldPrimitives))for(let i=0;i<m.indices.length;i+=3){
  const points=Array.from(m.indices.slice(i,i+3),v=>({x:m.positions[v*3]!,y:m.positions[v*3+1]!,z:m.positions[v*3+2]!}));
  faces.push({points,color:m.color,depth:points.reduce((n,p)=>n+p.x+p.z+p.y*.02,0)/3});
 }
@@ -113,11 +115,10 @@ function resize(){
  if(view3d){render();return;}
  for(const c of [canvas,scenery]){c.width=width*dpr;c.height=height*dpr;}
  ctx.setTransform(dpr,0,0,dpr,0,0);sc.setTransform(dpr,0,0,dpr,0,0);
- const points=faces.flatMap(f=>f.points.map(p=>{const q=toIso(p.x,p.z);return {x:q.isoX,y:q.isoY-p.y};}));
- const xs=points.map(p=>p.x),ys=points.map(p=>p.y),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+ let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;for(const face of faces)for(const p of face.points){const q=toIso(p.x,p.z),x=q.isoX,y=q.isoY-p.y;minX=Math.min(minX,x);maxX=Math.max(maxX,x);minY=Math.min(minY,y);maxY=Math.max(maxY,y);}
  scale=Math.max(.5,Math.min((width-30)/(maxX-minX),(height-220)/(maxY-minY)));ox=width/2-(minX+maxX)/2*scale;oy=height/2-(minY+maxY)/2*scale-(width<=650?85:0);
  const pixels=sc.createImageData(scenery.width,scenery.height);
- if(pixels){pixels.data.set(rasterIso(scenery.width,scenery.height,faces,p=>{const q=project(p);return {x:q.x*dpr,y:q.y*dpr};}));sc.putImageData(pixels,0,0);}
+ if(pixels?.data){pixels.data.set(rasterIso(scenery.width,scenery.height,faces,p=>{const q=project(p);return {x:q.x*dpr,y:q.y*dpr};}));sc.putImageData(pixels,0,0);}
  else {sc.fillStyle='#142923';sc.fillRect(0,0,width,height);for(const f of faces){sc.beginPath();f.points.map(project).forEach((p,i)=>i?sc.lineTo(p.x,p.y):sc.moveTo(p.x,p.y));sc.closePath();sc.fillStyle=f.color;sc.fill();}}
  render();
 }
@@ -126,7 +127,7 @@ function render(){
  const heartbeat=document.querySelector<HTMLElement>('#realm-heartbeat'),health=realmHeartbeat(!!id,snapshot?frame.ageMs:now-connectedAt,document.hidden,!!snapshot);if(heartbeat){heartbeat.textContent=health.text;heartbeat.style.color=health.state==='live'?'#b7d6a0':health.state==='waiting'||health.state==='lost'?'#e4b075':'#aab4c6';}
  view3d?.setXam(xamView?.id,xamView?.phase.startsWith('training ')?xamView.phase.slice(9):undefined);
  if(view3d&&!graphics.run(view=>view.update(players,game,id,now,effectPaused(),cape.patch.getABC().enabled?cape.patch.getABC().c+cape.patch.getABC().b-cape.patch.getABC().a:0)))fallbackGraphics();
- if(view3d){const hint=document.querySelector('#render-status');if(hint)hint.textContent=view3d.renderState==='recovering'?'Graphics context interrupted · recovering…':`3D · ${qualityChoice()} · drag orbit · right-drag pan · scroll/pinch zoom`;}
+ if(view3d){const hint=document.querySelector('#render-status');if(hint)hint.textContent=view3d.renderState==='recovering'?'Graphics context interrupted · recovering…':`3D · ${qualityChoice()} · click ground to walk · drag orbit · right-drag pan · scroll/pinch zoom`;}
  const energy=document.querySelector<HTMLElement>('#run-energy'),self=snapshot?.players.find(p=>p.id===id);if(energy)energy.textContent=self?`${self.travelMode??'jog'} · Run energy ${Math.round(self.runEnergy??100)}%`: 'Jog · Join to move';
  if(id&&now-xamChecked>5000){xamChecked=now;void examineXam();}const xamButton=document.querySelector<HTMLButtonElement>('#xam-action'),me=snapshot?.players.find(p=>p.id===id)?.position;if(xamButton)xamButton.disabled=!me||!xamView||Math.hypot(me.x-xamView.position.x,me.z-xamView.position.z)>4;
  const nameplate=document.querySelector<HTMLElement>('#xam-nameplate'),xamPosition=players.find(p=>p.id===xamView?.id)?.position;if(nameplate){const label=view3d&&xamPosition?view3d.projectLabel(xamPosition):undefined;nameplate.hidden=!label?.visible;if(label){nameplate.style.left=label.x+'px';nameplate.style.top=label.y+'px';}}
@@ -152,7 +153,7 @@ function render(){
  const feedback=document.querySelector<HTMLElement>('#action-result');
  if(feedback)feedback.textContent=!id?'Join to meet Halden.':game?.result?ALL_RESULT_TEXT[game.result.code]:'Speak to Halden at the near landing.';
  const inv=game?.inventory,choice=document.querySelector<HTMLSelectElement>('#item-choice')?.value as ItemId;
- const inventoryText=document.querySelector<HTMLElement>('#inventory-state');if(inventoryText)inventoryText.textContent=inv?`Pack ${inv.slots.filter(Boolean).length}/20: ${inv.slots.filter((v):v is ItemId=>v!==null).map(v=>ITEMS[v].name).join(', ')||'empty'} · Equipped: ${inv.weapon?ITEMS[inv.weapon].name:'none'}`:'Join to open your pack.';
+ const inventoryText=document.querySelector<HTMLElement>('#inventory-state');if(inventoryText)inventoryText.textContent=inv?`Pack ${inv.slots.filter(Boolean).length}/20 · click a filled slot to equip or swap · Equipped: ${inv.weapon?ITEMS[inv.weapon].name:'none'}`:'Join to open your pack.';for(const b of document.querySelectorAll<HTMLButtonElement>('[data-inventory-slot]')){const slot=Number(b.dataset.inventorySlot),item=inv?.slots[slot]??null;b.textContent=item?ITEMS[item].name:`${slot+1}`;b.disabled=!id||!item;b.title=item?`Equip or swap ${ITEMS[item].name}`:`Empty pack slot ${slot+1}`;b.setAttribute('aria-label',item?`Pack slot ${slot+1}: ${ITEMS[item].name}; click to equip or swap`:`Pack slot ${slot+1}: empty`);b.setAttribute('aria-pressed',String(!!item&&inv?.weapon===item));}
  const claim=document.querySelector<HTMLButtonElement>('#item-claim'),equip=document.querySelector<HTMLButtonElement>('#item-equip'),unequip=document.querySelector<HTMLButtonElement>('#item-unequip');if(claim)claim.disabled=!id||game?.quest?.tithes!==1||!!inv?.rewardClaimed;if(equip)equip.disabled=!id||!inv?.slots.includes(choice);if(unequip)unequip.disabled=!id||!inv?.weapon;
  const f=game?.fighter,e=game?.encounter,tick=game?.tick??0,w=WEAPONS[inv?.weapon??'unarmed'];
  const combat=document.querySelector<HTMLElement>('#combat-state');if(combat)combat.textContent=f&&e?`You ${f.hp}/${game?.progression?combatBonuses(game.progression).maxHealth:40} · Warden ${e.hp}/80 · Victories ${f.wins} · ${f.hp===0?'Recovering':e.hp===0?'Warden resting':e.strikeAt?'Pulse in '+Math.max(0,(e.strikeAt-tick)/20).toFixed(1)+'s — guard or step away':'Approach the far landing'}`:'Join to train at the far landing.';
@@ -171,7 +172,7 @@ function render(){
  const cancel=document.querySelector<HTMLButtonElement>('#practice-cancel');if(cancel)cancel.disabled=!id||!c;
  const padNames=['Left','Upper','Right','Lower'];for(const b of document.querySelectorAll<HTMLButtonElement>('[data-practice-pad]')){const pad=Number(b.dataset.practicePad),marked=!!c&&pad===c.target;b.disabled=!id||!c||waiting||!(c?.reward==='gathering'?nearTarget(game?.beacon.position,8):practiceNear)||!game?.fighter?.hp;b.textContent=(marked?'★ ':'')+(c?PRACTICE_VERBS[c.skill][c.step]+' · ':'')+padNames[pad];b.style.background=marked?'#66592c':'';b.style.borderColor=marked?'#f7df87':'';}
  if(practiceText){if(c)practiceText.textContent=`${c.skill} · action ${c.step+1}/3: ${PRACTICE_VERBS[c.skill][c.step]} at ${padNames[c.target]}. ${waiting?'Settling… ':''}${Math.ceil((c.expiresTick-tick)/20)}s remaining. Follow the marked target.`;else{const choice=practiceChoice?.value;practiceText.textContent=isPracticeSkill(choice)?`${PRACTICE_METHODS[choice].description}. ${!practiceNear?'Move to Halden’s practice yard.':practiceRemaining>0?`Recovering: ${(practiceRemaining/20).toFixed(1)}s`:'Ready · three actions for 1 XP.'}`:'Join to practise.';}}
- for(const b of document.querySelectorAll<HTMLButtonElement>('[data-skilling]')){const atCamp=b.dataset.skilling==='deposit'||b.dataset.skilling==='upgrade';b.disabled=!id||!professions||!game?.fighter?.hp||!nearTarget(atCamp?game?.camp:game?.beacon.position,atCamp?3:8)||(!atCamp&&(tick<professions.readyTick||tick<(game?.practiceReadyTick??0)||!!game?.practiceChallenge));}
+ for(const b of document.querySelectorAll<HTMLButtonElement>('[data-skilling]')){const atCamp=b.dataset.skilling==='deposit'||b.dataset.skilling==='upgrade';b.disabled=!id||!professions||!game?.fighter?.hp||!nearTarget(atCamp?game?.camp:game?.beacon.position,atCamp?3:8)||(!atCamp&&(tick<professions.readyTick||tick<(game?.practiceReadyTick??0)||!!game?.practiceChallenge));}const bankResource=document.querySelector<HTMLSelectElement>('#bank-resource')?.value as (typeof RESOURCES)[number]|undefined,bankAmount=document.querySelector<HTMLSelectElement>('#bank-amount')?.value??'all';for(const b of document.querySelectorAll<HTMLButtonElement>('[data-bank-transfer]')){const resource=bankResource&&RESOURCES.includes(bankResource)?bankResource:undefined,operation=b.dataset.bankTransfer,packCount=resource?professions?.pack[resource]??0:0,bankCount=resource?professions?.bank[resource]??0:0,packTotal=professions?Object.values(professions.pack).reduce((a,n)=>a+n,0):12,capacity=12-packTotal,quantity=bankAmount==='all'?(operation==='deposit'?packCount:Math.min(bankCount,capacity)):/^[1-9][0-9]{0,6}$/.test(bankAmount)?Number(bankAmount):0,valid=!!resource&&quantity>0&&(operation==='deposit'?quantity<=packCount&&(professions?.bank[resource]??1000000)+quantity<=1000000:operation==='withdraw'&&quantity<=bankCount&&quantity<=capacity);b.disabled=!id||!professions||!game?.fighter?.hp||!nearTarget(game?.camp,3)||!valid;b.title=operation==='deposit'?'Move the chosen resource from your pack to your private bank.':'Move the chosen resource from your private bank to your pack.';}
  const build=WEAPON_BUILDS[inv?.weapon??'unarmed'];if(weaponText)weaponText.textContent+=` · tier ${build.tier} · ${Object.entries(build.requirements).map(([k,v])=>k+' '+v).join(', ')||'no requirements'}`;
  const quest=game?.quest, panel=document.querySelector<HTMLElement>('#quest-progress');
  if(panel)panel.textContent=quest?.status==='completed'?`Completed · ${quest.tithes} offering token${game?.inventory?.rewardClaimed?' · reward claimed':''}`:quest?.status==='active'?`Reeds ${quest.reeds}/3 · ${quest.reeds===3?'Return to Halden':'Gather at the far landing'} · patch ${game!.patch.stock}/3`:'Halden needs three reed bundles from across the causeway.';
@@ -187,20 +188,23 @@ function sendDirection(){
  if(socket?.readyState!==WebSocket.OPEN||!id)return;
  const frame=buffer.sample(performance.now());
  const age=snapshot?frame.ageMs:performance.now()-connectedAt;
- if(age>=500)held.clear();
+ if(age>=500){held.clear();clickRoute=[];}
  if(age>=5000){status.textContent='Server updates stopped. Rejoin to reconnect.';socket.close(1000,'snapshot_timeout');return;}
  // The client's queue is bounded too. Rejoin manually after a stalled connection.
  if(socket.bufferedAmount>=65536){status.textContent='Connection stalled. Disconnect and join again.';socket.close();return;}
- let dx=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));
- let dz=-Number(held.has('ArrowRight'))+Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));
- const n=Math.max(1,Math.hypot(dx,dz));dx/=n;dz/=n;
- if(view3d){const right=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft')),forward=Number(held.has('ArrowUp'))-Number(held.has('ArrowDown'));({dx,dz}=view3d.movementDirection(right,forward));}
+ const manual=['ArrowRight','ArrowLeft','ArrowUp','ArrowDown'].some(key=>held.has(key));if(manual)clickRoute=[];
+ let dx=0,dz=0;
+ if(clickRoute.length&&snapshot){const me=snapshot.players.find(p=>p.id===id)?.position;if(me){while(clickRoute.length&&Math.hypot(clickRoute[0]!.x-me.x,clickRoute[0]!.z-me.z)<.55)clickRoute.shift();const target=clickRoute[0];if(target){dx=target.x-me.x;dz=target.z-me.z;const n=Math.hypot(dx,dz)||1;dx/=n;dz/=n;}else status.textContent='Arrived at your destination. Click to choose another spot.';}}
+ else {dx=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));dz=-Number(held.has('ArrowRight'))+Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));const n=Math.max(1,Math.hypot(dx,dz));dx/=n;dz/=n;if(view3d){const right=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft')),forward=Number(held.has('ArrowUp'))-Number(held.has('ArrowDown'));({dx,dz}=view3d.movementDirection(right,forward));}}
  socket.send(encodeMoveIntent({sequence:sequence++,dx,dz,mode:sprintKeys.size?'run':travelMode}));
 }
-function stop(){sprintKeys.clear();held.clear();sendDirection();}
+function walkTo(target:Point){if(!id||!snapshot){status.textContent='Join the realm before choosing a walking destination.';return;}const me=snapshot.players.find(p=>p.id===id)?.position;if(!me)return;const route=scene.navigation.findPath(me,target);if(route.status!=='found'){clickRoute=[];status.textContent='No clear route to that spot. Click open ground to try again.';return;}clickRoute=route.points.slice(1).map(p=>({x:p.x,z:p.z}));status.textContent=clickRoute.length?'Walking to your destination · click elsewhere to redirect.':'You are already at that spot.';sendDirection();}
+function attachWorldPointer(element:HTMLCanvasElement){let down:{id:number;x:number;y:number}|undefined;element.addEventListener('pointerdown',event=>{if(event.button!==0)return;down={id:event.pointerId,x:event.clientX,y:event.clientY};});element.addEventListener('pointerup',event=>{if(!down||down.id!==event.pointerId)return;const origin=down;down=undefined;if(Math.hypot(event.clientX-origin.x,event.clientY-origin.y)>7)return;const rect=element.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top;if(x<0||y<0||x>rect.width||y>rect.height)return;const target=view3d?.pickGround?.(x,y);if(target){walkTo(target);return;}if(view3d)return;const isoX=(x-ox)/scale,screenIsoY=(y-oy)/scale;let world=fromIso(isoX,screenIsoY),ground=scene.construction.terrainAt(world.tx,world.tz);for(let i=0;i<3;i++){world=fromIso(isoX,screenIsoY+ground.height);ground=scene.construction.terrainAt(world.tx,world.tz);}walkTo({x:world.tx,y:ground.height,z:world.tz});});}
+attachWorldPointer(canvas);
+function stop(){sprintKeys.clear();held.clear();clickRoute=[];sendDirection();}
 function connect(){
  if(socket&&socket.readyState<WebSocket.CLOSING)return;
- id=undefined;snapshot=undefined;game=undefined;sequence=0;actionSequence=0;cape.reset();configureWind();buffer.clear();characters.clear();sprintKeys.clear();held.clear();render();join.disabled=true;
+ id=undefined;snapshot=undefined;game=undefined;sequence=0;actionSequence=0;cape.reset();configureWind();buffer.clear();characters.clear();sprintKeys.clear();held.clear();clickRoute=[];render();join.disabled=true;
  status.textContent='Joining the realm…';
  const ws=new WebSocket(`${location.protocol==='https:'?'wss':'ws'}://${location.host}/socket`,REALM_SUBPROTOCOL);socket=ws;
  let failureMessage='';
@@ -220,15 +224,15 @@ function connect(){
   }catch(error){failureMessage=error instanceof CompatibilityError?compatibilityMessage(error.code):'Invalid server data. Connection stopped.';status.textContent=failureMessage;ws.close(1002);}
  });
  ws.addEventListener('error',()=>{status.textContent='Cannot reach the realm. Check your connection and try Join again.';});
- ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();id=undefined;snapshot=undefined;game=undefined;buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));realmInterface.connection(false);render();});
+ ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();clickRoute=[];id=undefined;snapshot=undefined;game=undefined;buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));realmInterface.connection(false);render();});
 }
 join.addEventListener('click',connect);leave.addEventListener('click',()=>{stop();socket?.close();});
-addEventListener('keydown',e=>{if(typeof Element!=='undefined'&&e.target instanceof Element&&e.target.closest('input,select,textarea,button,summary,a'))return;if(held.keyDown(e.key,e.code))e.preventDefault();if(e.code==='Space'||e.code==='KeyG'){if(!e.repeat){e.preventDefault();action('combat',e.code==='Space'?'attack':'guard');}return;}if(e.code==='ShiftLeft'||e.code==='ShiftRight'){sprintKeys.add(e.code);e.preventDefault();}if(e.code==='KeyV'&&!e.repeat){chooseTravel(travelMode==='walk'?'jog':travelMode==='jog'?'run':'walk');e.preventDefault();}if(e.code==='KeyC'&&!e.repeat){view3d?.resetCamera();e.preventDefault();}});
+addEventListener('keydown',e=>{if(typeof Element!=='undefined'&&e.target instanceof Element&&e.target.closest('input,select,textarea,button,summary,a'))return;if(held.keyDown(e.key,e.code)){clickRoute=[];e.preventDefault();}if(e.code==='Space'||e.code==='KeyG'){if(!e.repeat){e.preventDefault();action('combat',e.code==='Space'?'attack':'guard');}return;}if(e.code==='ShiftLeft'||e.code==='ShiftRight'){sprintKeys.add(e.code);e.preventDefault();}if(e.code==='KeyV'&&!e.repeat){chooseTravel(travelMode==='walk'?'jog':travelMode==='jog'?'run':'walk');e.preventDefault();}if(e.code==='KeyC'&&!e.repeat){view3d?.resetCamera();e.preventDefault();}});
 addEventListener('keyup',e=>{if(e.code==='ShiftLeft'||e.code==='ShiftRight')sprintKeys.delete(e.code);held.keyUp(e.key,e.code);});addEventListener('blur',stop);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();render();});
 for(const button of Array.from(document.querySelectorAll<HTMLButtonElement>('[data-direction]'))){
  const direction=button.dataset.direction!;
- button.addEventListener('pointerdown',e=>{e.preventDefault();button.setPointerCapture(e.pointerId);held.pointerDown(e.pointerId,direction);});
+ button.addEventListener('pointerdown',e=>{e.preventDefault();clickRoute=[];button.setPointerCapture(e.pointerId);held.pointerDown(e.pointerId,direction);});
  for(const event of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(event,e=>{held.pointerUp((e as PointerEvent).pointerId);sendDirection();});
 }
 const timer=setInterval(()=>{if(!document.hidden)sendDirection();},50);

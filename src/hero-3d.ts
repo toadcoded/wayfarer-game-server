@@ -13,7 +13,7 @@ export const HERO_PROFILES=Object.freeze({
  villager:Object.freeze({coat:'#55764a',trim:'#b5a27a',hair:'#634733',skin:'#d3a783',idle:.026,stride:.42,cape:.07,cadence:.9}),
  vector:Object.freeze({coat:'#637895',trim:'#b8c7cf',hair:'#494b54',skin:'#d0af92',idle:.015,stride:.5,cape:.08,cadence:1})
 });
-/** Procedural faceted prototype rig; all motion is cosmetic and never changes collision. */
+/** Procedural softly-contoured prototype rig; all motion is cosmetic and never changes collision. */
 export function createHero3D(scene:Scene,id:string,skin:Skin,customAppearance?:HeroAppearance,wardrobe?:{coat:string;trim:string}){
  const appearance=customAppearance===undefined?appearanceForSkin(skin):checkedAppearance(customAppearance);
  if(wardrobe&&(Object.keys(wardrobe).sort().join()!=='coat,trim'||![wardrobe.coat,wardrobe.trim].every(c=>/^#[0-9a-f]{6}$/i.test(c))))throw new Error('Invalid NPC wardrobe');
@@ -22,7 +22,7 @@ export function createHero3D(scene:Scene,id:string,skin:Skin,customAppearance?:H
  const joints:Record<string,TransformNode>={};
  const materials=new Map<string,StandardMaterial>();
  const material=(color:string)=>{let m=materials.get(color);if(!m){m=new StandardMaterial(id+':'+color,scene);m.diffuseColor=Color3.FromHexString(color);m.specularColor=new Color3(.08,.08,.08);materials.set(color,m);}return m;};
- const shape=(name:string,parent:TransformNode,x:number,y:number,z:number,sx:number,sy:number,sz:number,color:string,round=false)=>{const m=round?MeshBuilder.CreateSphere(id+name,{diameter:1,segments:6},scene):MeshBuilder.CreateCylinder(id+name,{height:1,diameterTop:.75,diameterBottom:1,tessellation:6},scene);m.parent=parent;m.position.set(x,y,z);m.scaling.set(sx,sy,sz);m.material=material(color);m.isPickable=false;m.checkCollisions=false;if(assembling){details.push(name.slice(1));staticParts.push(m);}
+ const shape=(name:string,parent:TransformNode,x:number,y:number,z:number,sx:number,sy:number,sz:number,color:string,round=false)=>{const m=round?MeshBuilder.CreateSphere(id+name,{diameter:1,segments:16},scene):MeshBuilder.CreateCylinder(id+name,{height:1,diameterTop:.84,diameterBottom:1,tessellation:12},scene);m.parent=parent;m.position.set(x,y,z);m.scaling.set(sx,sy,sz);m.material=material(color);m.isPickable=false;m.checkCollisions=false;if(assembling){details.push(name.slice(1));staticParts.push(m);}
   if(color===profile.skin){const count=m.getTotalVertices(),colors=new Float32Array(count*4);for(let i=0;i<count;i++){const tone=.96+((i*37+name.length*13)%29)/700;colors.set([tone,tone*.99,tone*.98,1],i*4);}m.setVerticesData('color',colors);}
   return m;};
  const build=appearance.build==='strong'?1.12:appearance.build==='lean'?.92:1,shoulder=.34*build;
@@ -31,7 +31,7 @@ export function createHero3D(scene:Scene,id:string,skin:Skin,customAppearance?:H
  shape(':hips',pelvis,0,0,-.015,.45*build,.28,.32,profile.coat,true);
  for(const side of [-1,1])shape(':seat'+side,pelvis,side*.105,-.03,-.095,.22,.23,.2,profile.coat,true);
  shape(':waist',torso,0,-.035,0,.42*build,.22,.31,profile.coat,true);
- shape(':tunic',torso,0,.18,0,.58*build,.65,.36,profile.coat);shape(':belt',torso,0,-.08,0,.64*build,.07,.4,profile.trim);
+ shape(':tunic',torso,0,.18,0,.58*build,.65,.36,profile.coat,true);shape(':belt',torso,0,-.08,0,.64*build,.07,.4,profile.trim);
  shape(':ribcage',torso,0,.25,0,.5*build,.34,.35,profile.coat,true);
  shape(':abdomen',torso,0,.045,.12,.33*build,.22,.1,profile.coat,true);
  for(const side of [-1,1]){shape(':chest'+side,torso,side*.13,.32,.14,.25*build,.24,.13,skin==='seraphine'?'#efe2c9':profile.coat,true);shape(':scapula'+side,torso,side*.14,.28,-.14,.27,.32,.12,profile.coat,true);shape(':clavicle'+side,torso,side*.11,.46,.11,.24,.055,.09,profile.trim,true);shape(':underarm-seam'+side,torso,side*shoulder*.85,.29,0,.09,.115,.2,profile.coat,true);}

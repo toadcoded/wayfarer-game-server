@@ -1,6 +1,6 @@
 import {BIOMES,CHUNK_SIZE,GRID,type Chunk,type Point,type WorldConfig,surfaceAt,type BiomeId} from './world.js';
 /** Engine-independent triangle buffers. Each vertex stores three world coordinates. */
-export interface TerrainMesh { positions:Float32Array; indices:Uint32Array; color:string }
+export interface TerrainMesh { positions:Float32Array; indices:Uint32Array; color:string; walkable?:boolean }
 export function terrainMesh(chunk:Chunk):TerrainMesh {
  const positions=new Float32Array((GRID+1)*(GRID+1)*3),indices=new Uint32Array(GRID*GRID*6);
  const step=CHUNK_SIZE/GRID;

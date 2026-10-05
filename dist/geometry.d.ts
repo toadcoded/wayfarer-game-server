@@ -4,6 +4,7 @@ export interface TerrainMesh {
     positions: Float32Array;
     indices: Uint32Array;
     color: string;
+    walkable?: boolean;
 }
 export declare function terrainMesh(chunk: Chunk): TerrainMesh;
 export interface Primitive {

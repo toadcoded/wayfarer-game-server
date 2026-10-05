@@ -5,7 +5,18 @@ export const RESOURCES = ['logs', 'ore', 'fish', 'warden_essence'];
 export const TOOL_RECIPES = Object.freeze({ 2: Object.freeze({ level: 2, material: 3, essence: 1, name: 'Artisan' }), 3: Object.freeze({ level: 5, material: 20, essence: 5, name: 'Masterwork' }) });
 const empty = () => ({ logs: 0, ore: 0, fish: 0, warden_essence: 0 });
 export const freshSkilling = () => ({ xp: Object.fromEntries(SKILLING_SKILLS.map(k => [k, 0])), pack: empty(), bank: empty(), toolTier: 1, readyTick: 0 });
-export const isSkillCommand = (v) => typeof v === 'string' && [...PROFESSIONS, 'deposit', 'upgrade'].includes(v);
+export function parseBankTransfer(value) {
+    if (typeof value !== 'string')
+        return;
+    const match = /^(deposit|withdraw):(logs|ore|fish|warden_essence):(all|[1-9][0-9]{0,6})$/.exec(value);
+    if (!match)
+        return;
+    const amount = match[3] === 'all' ? 'all' : Number(match[3]);
+    if (typeof amount === 'number' && (!Number.isSafeInteger(amount) || amount > 1000000))
+        return;
+    return { operation: match[1], resource: match[2], amount };
+}
+export const isSkillCommand = (v) => typeof v === 'string' && ([...PROFESSIONS, 'deposit', 'upgrade'].includes(v) || !!parseBankTransfer(v));
 export function checkedSkilling(value) {
     if (!value || typeof value !== 'object' || Array.isArray(value))
         throw Error('Invalid skilling');
@@ -43,15 +54,47 @@ export function skillAction(s, command, tick) {
         s.toolTier = nextTier;
         return 'skill_upgraded';
     }
+    const transfer = parseBankTransfer(command);
+    if (transfer) {
+        const { operation, resource, amount } = transfer;
+        if (operation === 'deposit') {
+            const quantity = amount === 'all' ? Math.min(s.pack[resource], 1000000 - s.bank[resource]) : amount;
+            if (quantity === 0)
+                return s.pack[resource] === 0 ? 'skill_pack_empty' : 'skill_bank_full';
+            if (quantity > s.pack[resource])
+                return 'skill_transfer_unavailable';
+            if (s.bank[resource] + quantity > 1000000)
+                return 'skill_bank_full';
+            s.pack[resource] -= quantity;
+            s.bank[resource] += quantity;
+            return 'skill_banked';
+        }
+        const capacity = 12 - Object.values(s.pack).reduce((a, b) => a + b, 0), available = s.bank[resource];
+        if (available === 0)
+            return 'skill_bank_empty';
+        if (capacity === 0)
+            return 'skill_pack_full';
+        const quantity = amount === 'all' ? Math.min(available, capacity) : amount;
+        if (quantity > available)
+            return 'skill_bank_empty';
+        if (quantity > capacity)
+            return 'skill_pack_full';
+        s.bank[resource] -= quantity;
+        s.pack[resource] += quantity;
+        return 'skill_withdrawn';
+    }
+    if (!PROFESSIONS.includes(command))
+        throw new Error('Invalid skill command');
+    const profession = command;
     if (tick < s.readyTick)
         return 'skill_wait';
     const yieldCount = s.toolTier;
     if (Object.values(s.pack).reduce((a, b) => a + b, 0) + yieldCount > 12)
         return 'skill_pack_full';
     const resource = { woodcutting: 'logs', mining: 'ore', fishing: 'fish' };
-    s.pack[resource[command]] += yieldCount;
-    s.xp[command] = Math.min(MAX_XP, s.xp[command] + 25);
-    s.readyTick = tick + gatheringBonuses(s.xp[command]).cooldownTicks;
+    s.pack[resource[profession]] += yieldCount;
+    s.xp[profession] = Math.min(MAX_XP, s.xp[profession] + 25);
+    s.readyTick = tick + gatheringBonuses(s.xp[profession]).cooldownTicks;
     return 'skill_gathered';
 }
 export function awardWardenEssence(s) { checkedSkilling(s); s.bank.warden_essence = Math.min(1000000, s.bank.warden_essence + 1); }

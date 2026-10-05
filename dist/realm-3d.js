@@ -15,7 +15,7 @@ import { practiceGesture } from './practice-pose.js';
 import { createPracticeYard } from './practice-yard-3d.js';
 import { Wildlife3D } from './wildlife-3d.js';
 import { wildlifeForRealm } from './wildlife.js';
-import { createRealmScene, realmCodexPoint, REALM_WORLD } from './realm-scene.js';
+import { createRealmScene, realmCodexPoint, realmCavernPoint, REALM_WORLD } from './realm-scene.js';
 import { crossingScene } from './scene-meshes.js';
 import { mountBabylonMesh } from './babylon-mesh.js';
 import { RESONANCE_NODES, isResonanceEffectId, resonanceEffect } from './resonance-codex.js';
@@ -79,6 +79,10 @@ export class Realm3D {
     followId;
     followTime;
     movementDirection(right, forward) { return cameraDirection(right, forward, this.camera.alpha); }
+    pickGround(x, y) { if (!this.canvas || !Number.isFinite(x) || !Number.isFinite(y))
+        return; const rect = this.canvas.getBoundingClientRect?.(), width = rect?.width ?? this.canvas.clientWidth, height = rect?.height ?? this.canvas.clientHeight; if (!width || !height || x < 0 || y < 0 || x > width || y > height)
+        return; const px = x * this.engine.getRenderWidth() / width, py = y * this.engine.getRenderHeight() / height, pick = this.scene.pick(px, py, mesh => mesh.metadata?.walkable === true, false, this.camera); if (!pick?.hit || !pick.pickedPoint)
+        return; const p = pick.pickedPoint; return { x: p.x, y: p.y, z: p.z }; }
     zoomCamera(factor) { if (!Number.isFinite(factor) || factor <= 0)
         throw new Error('Invalid zoom'); this.camera.radius = Math.max(6, Math.min(75, this.camera.radius * factor)); this.camera.inertialRadiusOffset = 0; }
     resetCamera() { this.camera.alpha = -Math.PI / 2; this.camera.beta = Math.PI / 3; this.camera.radius = 23; this.camera.inertialAlphaOffset = 0; this.camera.inertialBetaOffset = 0; this.camera.inertialRadiusOffset = 0; this.camera.inertialPanningX = 0; this.camera.inertialPanningY = 0; if (this.follow)
@@ -163,7 +167,7 @@ export class Realm3D {
             moon.shadowMaxZ = 200;
         }
         const realm = createRealmScene();
-        crossingScene(REALM_WORLD, realm.plan).forEach((data, i) => { const mounted = mountBabylonMesh(this.scene, 'world:' + i, data); styleRetroMesh(mounted.mesh, i === 0); mounted.mesh.receiveShadows = true; if (data.color === '#487F87' && mounted.mesh.material instanceof StandardMaterial) {
+        crossingScene(REALM_WORLD, realm.plan, realm.worldPrimitives).forEach((data, i) => { const mounted = mountBabylonMesh(this.scene, 'world:' + i, data); styleRetroMesh(mounted.mesh, i === 0); mounted.mesh.receiveShadows = true; if (data.color === '#487F87' && mounted.mesh.material instanceof StandardMaterial) {
             mounted.mesh.material.alpha = .88;
             mounted.mesh.material.specularPower = 64;
             this.waterMaterials.push(mounted.mesh.material);
@@ -250,7 +254,7 @@ export class Realm3D {
         this.resonanceLight.diffuse = new Color3(.2, .75, .95);
         this.resonanceLight.intensity = 1.15;
         this.resonanceLight.range = 11;
-        this.expansion = createCelestialExpansion(this.scene, realm.plan.start, { x: codexX, y: codexY, z: codexZ }, realm.plan.goal);
+        this.expansion = createCelestialExpansion(this.scene, realm.plan.start, { x: codexX, y: codexY, z: codexZ }, realmCavernPoint(realm));
     }
     update(players, game, local, now, paused, wind = 0) {
         if (this.disposed || this.contextLost || now - this.lastPaint < 1000 / QUALITY_PRESETS[this.quality].fps || (typeof document !== 'undefined' && document.hidden))

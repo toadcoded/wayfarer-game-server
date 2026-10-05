@@ -114,7 +114,11 @@ export declare const SKILL_RESULT_TEXT: {
     readonly skill_gathered: "Resource gathered. +25 profession XP.";
     readonly skill_wait: "Your gathering tool is recovering.";
     readonly skill_pack_full: "Your 12-unit resource pack is full. Bank at Halden.";
-    readonly skill_banked: "Resource pack deposited in your personal bank.";
+    readonly skill_banked: "Resources deposited in your personal bank.";
+    readonly skill_withdrawn: "Resources moved from your personal bank into your pack.";
+    readonly skill_pack_empty: "That resource is not in your pack.";
+    readonly skill_bank_empty: "That amount is not available in your bank.";
+    readonly skill_transfer_unavailable: "That amount is not available in your pack.";
     readonly skill_bank_full: "Bank resource limit reached.";
     readonly skill_upgraded: "Next tool tier crafted! Resource yield increased.";
     readonly skill_requirements: "Check the next tool recipe: profession levels, banked materials and Warden essence are required.";

@@ -6,7 +6,8 @@ test('celestial expansion is procedural presentation only and carries the suppli
  const source=await readFile(new URL('../src/celestial-expansion-3d.ts',import.meta.url),'utf8');
  for(const marker of ['celestial-observatory','sunward-orchard','prism-leaf','moonlight-cavern','moon-crystal','cavern-walkway','glowshroom','astral-snail'])assert.ok(source.includes(marker),marker);
  assert.ok(source.includes('state and cannot award XP, move actors, or mutate collision.'));
- assert.match(source,/twelve columns and an open codex/i);
+ assert.match(source,/eight columns and an open codex/i);
+ assert.match(source,/ORCHARD_TREE_OFFSETS/);
  assert.match(source,/Moonlight Cavern/i);
 });
 

@@ -29,7 +29,7 @@ export class RealmAmbience3D {
             this.materials.set(color, m);
         } return m; };
         const part = (parent, name, shape, p, s, color) => { const mesh = shape === 'box' ? MeshBuilder.CreateBox(name, { size: 1 }, scene) : shape === 'sphere' ? MeshBuilder.CreateSphere(name, { diameter: 1, segments: 4 }, scene) : MeshBuilder.CreateCylinder(name, { height: 1, diameter: 1, tessellation: 8 }, scene); mesh.parent = parent; mesh.position.set(p[0], p[1], p[2]); mesh.scaling.set(s[0], s[1], s[2]); mesh.material = mat(color); mesh.isPickable = false; return mesh; };
-        for (const detail of realmDetails(seed, anchors)) {
+        for (const detail of realmDetails(seed, anchors).filter(d => ['birdhouse', 'mushroom', 'bench', 'toy', 'balloon'].includes(d.kind))) {
             const root = new TransformNode(detail.id, scene);
             root.parent = this.root;
             root.position.set(detail.position.x, height(detail.position), detail.position.z);

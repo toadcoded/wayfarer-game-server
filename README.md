@@ -1,6 +1,14 @@
-# Wayfarer v1.2 — Celestial PolyCodex realm package
+# Wayfarer v1.3 — Celestial PolyCodex realm package
 
-A runnable, server-authoritative multiplayer realm derived from the supplied v0.9 rc.3 candidate. Version 1.2 makes the PolyCodex a server-owned magic/skilling system and expands Reedhaven/Ashfen with an original Celestial Observatory, Sunward Orchard, Prism Dew garden and Moonlight Cavern presentation layer. It does not mean a public host has been provisioned or every planned MMO feature is complete.
+A runnable, server-authoritative multiplayer realm derived from the supplied v0.9 rc.3 candidate. Version 1.3 adds click-to-walk pathfinding, solid tree-trunk collision, a wider/opened-up map, softer character silhouettes and selective bank/slot-based inventory interactions on top of the v1.2 authoritative PolyCodex and Celestial Observatory/Moonlight Cavern world. It does not mean a public host has been provisioned or every planned MMO feature is complete.
+
+## v1.3 movement, map and storage improvements
+
+- Click open ground to walk; the client uses the same route checks as the authoritative server, avoids trees/props/water, and lets keyboard/direction controls take over immediately.
+- Expanded the playable bounds from the original causeway and spaced landmarks into readable clearings; the visible orchard trunks and their server collision shapes share one deterministic placement list. Decorative dressing is intentionally sparser.
+- Increased character mesh tessellation and replaced the blocky tunic profile with a rounded, softly contoured shape.
+- Added per-resource, partial or “all that fits” deposits/withdrawals at Halden with server-validated amounts, camp range, bank limits and the 12-unit pack cap. The 20-slot item pack is clickable to equip/swap a claimed weapon.
+- Compatibility contract advanced to simulation revision 17 / scene revision 4.
 
 ## Run locally
 
@@ -55,9 +63,9 @@ Default capacity is 16 human players plus Xam; configuration accepts 1–32 huma
 
 ## Verification and limits
 
-Fresh v1.2 evidence is in [V1.2-VERIFICATION.md](V1.2-VERIFICATION.md). With Node 24.19.0 and npm 10.9.2, the canonical TypeScript/Babylon build and full automated suite pass **331/331 tests**. The Python asset validator passes **8/8 assets**. The full matrix includes client-to-server WebSocket integration, authoritative gameplay and resonance, SQLite save/restore, guest-enrollment throttling and process-restart coverage.
+Fresh v1.3 evidence is in [V1.3-VERIFICATION.md](V1.3-VERIFICATION.md). With Node 24.19.0 and npm 10.9.2, the canonical TypeScript/Babylon build and complete suite pass **337/337 tests**; the Python asset validator passes **8/8 assets**. Coverage includes renderer/UI regression checks, map tree-routing, resource-transfer conservation, WebSocket integration, persistence and process restart. v1.2 validation remains documented separately in [V1.2-VERIFICATION.md](V1.2-VERIFICATION.md).
 
-The three initial failures were stale test assumptions: one expected the offline visual-bundle bridge after a canonical build, one used a DOM stub missing APIs used by the new HUD, and one asserted the old v1.0 page banner. Those test expectations/fixtures were corrected; no server-authority behavior was weakened. The v1.0 verification material remains historical baseline evidence, not proof of the new v1.2 code.
+The full suite was run against the final v1.3 source and rebuilt bundles; v1.0 and v1.2 verification notes are historical evidence for those earlier releases, not substitutes for this v1.3 report.
 
 The supplied orchard, crystal-mine, enchanted-book, luminous-fauna, neon-observatory and saturated-landscape images now influence original procedural gameplay presentation layers. They are not copied world textures or shipped as proprietary scene assets. See [ART-INSPIRATION-V1.2.md](ART-INSPIRATION-V1.2.md). Physical iPhone/Android/GPU visual review, live DNS/TLS and public Internet end-to-end operation remain unverified here.
 

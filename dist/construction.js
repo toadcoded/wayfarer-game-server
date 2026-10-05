@@ -133,7 +133,7 @@ export class ConstructionWorld {
                 indices.set([a, c, b, b, c, d], n);
                 n += 6;
             }
-        return { positions, indices, color };
+        return { positions, indices, color, walkable: true };
     }
 }
 /** Closed six-face prism. Its top is exactly surfaceHeight at every point. */
@@ -148,7 +148,7 @@ export function surfaceMesh(s) {
             0, 2, 1, 1, 2, 3, 4, 5, 6, 5, 7, 6,
             0, 1, 4, 1, 5, 4, 2, 6, 3, 3, 6, 7,
             0, 4, 2, 2, 4, 6, 1, 3, 5, 3, 7, 5,
-        ]), color: s.color };
+        ]), color: s.color, walkable: true };
 }
 /** Side rails are conservative solid bounds; the deck/ramp itself is a support, not an obstacle. */
 export function railColliders(s, railHeight = 1.2, railWidth = .3) {
@@ -166,7 +166,7 @@ export function railMeshes(s, height = 1.2, width = .3) {
     const sides = s.axis === 'x' ? [
         { ...b, minZ: b.minZ - width, maxZ: b.minZ }, { ...b, minZ: b.maxZ, maxZ: b.maxZ + width },
     ] : [{ ...b, minX: b.minX - width, maxX: b.minX }, { ...b, minX: b.maxX, maxX: b.maxX + width }];
-    return sides.map((bounds, i) => surfaceMesh({ ...s, id: `${s.id}:rail:${i}`, bounds, startY: s.startY + height, endY: s.endY + height, thickness: height }));
+    return sides.map((bounds, i) => ({ ...surfaceMesh({ ...s, id: `${s.id}:rail:${i}`, bounds, startY: s.startY + height, endY: s.endY + height, thickness: height }), walkable: false }));
 }
 /** Foundation facing ends below the ground plane, avoiding duplicate coplanar floor faces. */
 export function foundationStones(base, pad, color) {

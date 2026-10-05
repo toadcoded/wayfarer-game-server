@@ -4,10 +4,10 @@
   "subprotocol": "wayfarer.realm.v2",
   "contract": {
     "protocolVersion": 2,
-    "simulationRevision": 16,
+    "simulationRevision": 17,
     "worldSeed": 20260928,
     "generatorVersion": 1,
-    "sceneRevision": 3,
+    "sceneRevision": 4,
     "coordinateSystem": "xz-y-up-metres",
     "tickMs": 50,
     "snapshotVersion": 1
@@ -20,10 +20,10 @@
       "kind": "hello",
       "contract": {
         "protocolVersion": 2,
-        "simulationRevision": 16,
+        "simulationRevision": 17,
         "worldSeed": 20260928,
         "generatorVersion": 1,
-        "sceneRevision": 3,
+        "sceneRevision": 4,
         "coordinateSystem": "xz-y-up-metres",
         "tickMs": 50,
         "snapshotVersion": 1
@@ -34,10 +34,10 @@
       "id": "p1",
       "contract": {
         "protocolVersion": 2,
-        "simulationRevision": 16,
+        "simulationRevision": 17,
         "worldSeed": 20260928,
         "generatorVersion": 1,
-        "sceneRevision": 3,
+        "sceneRevision": 4,
         "coordinateSystem": "xz-y-up-metres",
         "tickMs": 50,
         "snapshotVersion": 1
@@ -114,6 +114,18 @@
       "sequence": 10,
       "action": "skilling",
       "value": "deposit"
+    },
+    "bankSelectedDeposit": {
+      "kind": "action",
+      "sequence": 18,
+      "action": "skilling",
+      "value": "deposit:logs:all"
+    },
+    "bankSelectedWithdrawal": {
+      "kind": "action",
+      "sequence": 19,
+      "action": "skilling",
+      "value": "withdraw:ore:5"
     },
     "craft": {
       "kind": "action",

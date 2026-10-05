@@ -4,7 +4,8 @@ export type NoncombatSkill = typeof SKILLING_SKILLS[number];
 export type Profession = typeof PROFESSIONS[number];
 export declare const RESOURCES: readonly ["logs", "ore", "fish", "warden_essence"];
 export type Resource = typeof RESOURCES[number];
-export type SkillCommand = Profession | 'deposit' | 'upgrade';
+export type BankTransferCommand = `${'deposit' | 'withdraw'}:${Resource}:${number | 'all'}`;
+export type SkillCommand = Profession | 'deposit' | 'upgrade' | BankTransferCommand;
 export interface Skilling {
     xp: Record<NoncombatSkill, number>;
     pack: Record<Resource, number>;
@@ -27,9 +28,14 @@ export declare const TOOL_RECIPES: Readonly<{
     }>;
 }>;
 export declare const freshSkilling: () => Skilling;
+export declare function parseBankTransfer(value: unknown): {
+    operation: 'deposit' | 'withdraw';
+    resource: Resource;
+    amount: number | 'all';
+} | undefined;
 export declare const isSkillCommand: (v: unknown) => v is SkillCommand;
 export declare function checkedSkilling(value: unknown): Skilling;
-export type SkillResult = 'skill_gathered' | 'skill_wait' | 'skill_pack_full' | 'skill_banked' | 'skill_bank_full' | 'skill_upgraded' | 'skill_requirements' | 'skill_max_tool';
+export type SkillResult = 'skill_gathered' | 'skill_wait' | 'skill_pack_full' | 'skill_banked' | 'skill_bank_full' | 'skill_withdrawn' | 'skill_pack_empty' | 'skill_bank_empty' | 'skill_transfer_unavailable' | 'skill_upgraded' | 'skill_requirements' | 'skill_max_tool';
 /** Called only inside the detached server transaction after a range check. */
 export declare function skillAction(s: Skilling, command: SkillCommand, tick: number): SkillResult;
 export declare function awardWardenEssence(s: Skilling): void;

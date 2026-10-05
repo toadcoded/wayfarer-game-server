@@ -1,3 +1,12 @@
+## v1.3.0 — 2026-10-05
+
+- Added click-to-walk ground picking for Babylon and isometric fallback, with path waypoints computed by shared server navigation; direct controls override a route.
+- Expanded the causeway's map bounds, spaced landmark clearings and reduced ambient/world dressing. Visible orchard trees and matching trunk colliders are generated from the same deterministic positions; props/water/rails cannot become click targets.
+- Softened the character silhouette with higher tessellation and a rounded tunic profile.
+- Added partial/all-per-resource deposits and withdrawals, amount/capacity-aware bank controls, and a clickable 20-slot equipment pack; server range, resource conservation and storage limits remain authoritative.
+- Compatibility contract advanced to simulation revision 17 / scene revision 4. Added regressions for bank atomicity, tree blocking/pathfinding and walkable mesh tags.
+- Node 24.19.0 / npm 10.9.2: canonical build, **337/337 tests passed**, and Python validation **8/8 assets passed**. Full scope and hosting limits: `V1.3-VERIFICATION.md`.
+
 ## v1.2.0 — 2026-10-05
 
 - Moved PolyCodex casting into the authoritative gameplay reducer with server range/cooldown validation, persistence v6 and server-owned Magic/Runecrafting XP.

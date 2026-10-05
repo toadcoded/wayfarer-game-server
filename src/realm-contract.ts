@@ -1,7 +1,7 @@
 /** Private rehearsal subprotocol; application compatibility is checked before any realm join. */
 export const REALM_SUBPROTOCOL = 'wayfarer.realm.v2';
 export const REALM_CONTRACT = Object.freeze({
- protocolVersion:2,simulationRevision:16,worldSeed:20260928,generatorVersion:1,sceneRevision:3,
+ protocolVersion:2,simulationRevision:17,worldSeed:20260928,generatorVersion:1,sceneRevision:4,
  coordinateSystem:'xz-y-up-metres',tickMs:50,snapshotVersion:1,
 } as const);
 export type RealmContract = typeof REALM_CONTRACT;
