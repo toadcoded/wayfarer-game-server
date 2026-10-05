@@ -1,0 +1,215 @@
+{
+  "id": "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-09T21:15:55.515Z",
+  "name": "polycodex/ingestion/google_drive/",
+  "parents": [
+    "0ACD26DtNil73Uk9PVA"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+}
+{
+  "id": "1DURKUZTKViL8uj2UplHXEWdBaFlmCeAT",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-11T02:26:38.602Z",
+  "name": "05_CHANGE_LOGS",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1DURKUZTKViL8uj2UplHXEWdBaFlmCeAT"
+}
+{
+  "id": "1ztP9AHakHFZOQ-tTjRReQ-RYXHTrUK6U",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-11T02:26:37.843Z",
+  "name": "04_CONNECTOR_REGISTRY",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1ztP9AHakHFZOQ-tTjRReQ-RYXHTrUK6U"
+}
+{
+  "id": "197CPxYJGI4bRSgFZ4RGXoKzC7ntPQKv8",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-11T02:26:37.008Z",
+  "name": "03_FORMATTERS_AND_TEMPLATES",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/197CPxYJGI4bRSgFZ4RGXoKzC7ntPQKv8"
+}
+{
+  "id": "1RX4TqQmWZ84GAX3zzygOnwGdms_ieV0m",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-11T02:26:36.109Z",
+  "name": "02_VALIDATION",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1RX4TqQmWZ84GAX3zzygOnwGdms_ieV0m"
+}
+{
+  "id": "1uK8-t5M9fEmzT12k_OMSdqa2410lxrjm",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-11T02:26:35.338Z",
+  "name": "01_TASK_MANAGEMENT",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1uK8-t5M9fEmzT12k_OMSdqa2410lxrjm"
+}
+{
+  "id": "1D4njGiJLKn533TV4JK0cIcgb7rfclwc-",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-11T02:26:34.495Z",
+  "name": "00_INDEX_AND_GUIDANCE",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1D4njGiJLKn533TV4JK0cIcgb7rfclwc-"
+}
+{
+  "id": "1TRdBdS3pJ-djrHyTS50nAXEJ2W_1ifCx",
+  "mimeType": "application/zip",
+  "modifiedTime": "2026-09-11T02:56:47.777Z",
+  "name": "polycodex-crosshatch.zip",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "size": "311703",
+  "webViewLink": "https://drive.google.com/file/d/1TRdBdS3pJ-djrHyTS50nAXEJ2W_1ifCx/view?usp=drivesdk"
+}
+{
+  "id": "1vqpzzjOPsrMVSPPqbJp7lylDiCPFXg38",
+  "mimeType": "application/x-gzip",
+  "modifiedTime": "2026-09-11T02:53:41.451Z",
+  "name": "polycodex-custom-realm-70f7e870.tar.gz",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "size": "9665",
+  "webViewLink": "https://drive.google.com/file/d/1vqpzzjOPsrMVSPPqbJp7lylDiCPFXg38/view?usp=drivesdk"
+}
+{
+  "id": "1JDtr4vVFUiVO6T2HS7_snpYIV4OTarhj",
+  "mimeType": "text/markdown",
+  "modifiedTime": "2026-09-11T02:37:12.577Z",
+  "name": "Care-Package Drive Optimization Change Log.md",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "size": "1078",
+  "webViewLink": "https://drive.google.com/file/d/1JDtr4vVFUiVO6T2HS7_snpYIV4OTarhj/view?usp=drivesdk"
+}
+{
+  "id": "1UxiW26fTX9sUE8QxwVKTG0U071SwiUAL",
+  "mimeType": "application/json",
+  "modifiedTime": "2026-09-11T02:36:47.679Z",
+  "name": "connector_registry.json",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "size": "87529",
+  "webViewLink": "https://drive.google.com/file/d/1UxiW26fTX9sUE8QxwVKTG0U071SwiUAL/view?usp=drivesdk"
+}
+{
+  "id": "1kPEKsrabmZ-R6HwRgJTvunQmfizW8U6H",
+  "mimeType": "text/markdown",
+  "modifiedTime": "2026-09-11T02:19:19.937Z",
+  "name": "Connector Orchestrator.md",
+  "parents": [
+    "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+  ],
+  "size": "2317",
+  "webViewLink": "https://drive.google.com/file/d/1kPEKsrabmZ-R6HwRgJTvunQmfizW8U6H/view?usp=drivesdk"
+}
+{
+  "id": "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-07-28T17:13:55.020Z",
+  "name": "PolycodexServerClientApp",
+  "parents": [
+    "0ACD26DtNil73Uk9PVA"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+}
+{
+  "id": "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-09T21:15:55.515Z",
+  "name": "polycodex/ingestion/google_drive/",
+  "parents": [
+    "0ACD26DtNil73Uk9PVA"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+}
+{
+  "id": "15NCgpMrNbK0xlYUtyl27ci3F3ITPBLAd",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-08T23:02:54.235Z",
+  "name": "polycodex/ingestion/google_drive/",
+  "parents": [
+    "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/15NCgpMrNbK0xlYUtyl27ci3F3ITPBLAd"
+}
+{
+  "id": "1iRG0-YsLxhUuUe26atNaVie-mNocX49G",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-08-28T19:00:09.475Z",
+  "name": "polycodex",
+  "parents": [
+    "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1iRG0-YsLxhUuUe26atNaVie-mNocX49G"
+}
+{
+  "id": "1_8uAIy-xTU3M6TacDRZ5dCv_BNHKihDm",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-08-16T19:18:39.621Z",
+  "name": "PolyCodex-RSPS",
+  "parents": [
+    "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1_8uAIy-xTU3M6TacDRZ5dCv_BNHKihDm"
+}
+{
+  "id": "12OZdM_CniJ50zoHrhOjUbzQh4XcttBxSvDa2OeLJ9OQ",
+  "mimeType": "application/vnd.google-apps.document",
+  "modifiedTime": "2026-09-10T13:14:53.943Z",
+  "name": "Copy of chatcrates",
+  "parents": [
+    "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+  ],
+  "size": "25276",
+  "webViewLink": "https://docs.google.com/document/d/12OZdM_CniJ50zoHrhOjUbzQh4XcttBxSvDa2OeLJ9OQ/edit?usp=drivesdk"
+}
+{
+  "id": "14z8dQkU8UtVtDgBAUb-PtaTSxl3P_wv1",
+  "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "modifiedTime": "2026-09-10T03:32:47.549Z",
+  "name": "Coordinate Grid Consistency and Invariants.docx",
+  "parents": [
+    "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+  ],
+  "size": "14930",
+  "webViewLink": "https://docs.google.com/document/d/14z8dQkU8UtVtDgBAUb-PtaTSxl3P_wv1/edit?usp=drivesdk&ouid=111245538812701366049&rtpof=true&sd=true"
+}
+{
+  "error": {
+    "code": 404,
+    "message": "File not found: 13CjMMsgsKQqnK7h69s1xi3E0Ku5JNm6t3HdLWD6rU-.",
+    "reason": "notFound"
+  }
+}
+{
+  "id": "1fagAMOcdMuIRTcFggcfPmsvSg3zmzCKp",
+  "mimeType": "application/zip",
+  "modifiedTime": "2026-09-08T20:41:35.048Z",
+  "name": "Go-workspace.zip",
+  "parents": [
+    "1qYDrO0MZD3Q5NKLtL8Y2BvJg4Nqz-6Ux"
+  ],
+  "size": "23515395",
+  "webViewLink": "https://drive.google.com/file/d/1fagAMOcdMuIRTcFggcfPmsvSg3zmzCKp/view?usp=drivesdk"
+}

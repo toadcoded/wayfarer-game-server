@@ -1,0 +1,94 @@
+{
+  "contentId": "ashfen-expansion-v1",
+  "worldSpace": "ashfen-frontier",
+  "sourceBoundary": "original-authored-clean-room-content",
+  "tileSizeMeters": 1.5,
+  "levels": [
+    {
+      "id": "ashfen-lowlands",
+      "width": 24,
+      "height": 20,
+      "theme": "wetland-frontier",
+      "tiles": [
+        { "x": 2, "y": 10, "support": "floor", "tag": "spawn" },
+        { "x": 3, "y": 10, "support": "floor", "tag": "main-road" },
+        { "x": 4, "y": 10, "support": "floor", "tag": "main-road" },
+        { "x": 5, "y": 10, "support": "ramp", "tag": "ramp-to-watchtower" },
+        { "x": 6, "y": 9, "support": "ramp", "tag": "ramp-to-watchtower" },
+        { "x": 7, "y": 8, "support": "ramp", "tag": "ramp-to-watchtower" },
+        { "x": 8, "y": 7, "support": "portal-landing", "tag": "tower-foot" },
+        { "x": 8, "y": 8, "support": "floor", "tag": "tower-foot" },
+        { "x": 9, "y": 8, "support": "floor", "tag": "tower-foot" },
+        { "x": 10, "y": 8, "support": "floor", "tag": "tower-foot" },
+        { "x": 11, "y": 8, "support": "floor", "tag": "tower-foot" },
+        { "x": 12, "y": 8, "support": "floor", "tag": "tunnel-hub" },
+        { "x": 13, "y": 8, "support": "floor", "tag": "tunnel-hub" },
+        { "x": 14, "y": 8, "support": "floor", "tag": "tunnel-hub" },
+        { "x": 15, "y": 8, "support": "floor", "tag": "tunnel-mouth" },
+        { "x": 16, "y": 8, "support": "portal-landing", "tag": "dungeon-entrance" }
+      ],
+      "structures": [
+        { "id": "ashfen-watchtower", "kind": "tower", "footprint": { "x": 8, "y": 7, "width": 4, "height": 4 }, "levels": ["tower-ground", "tower-platform", "tower-roof"] },
+        { "id": "ashfen-sunken-tunnel", "kind": "tunnel", "footprint": { "x": 12, "y": 8, "width": 5, "height": 2 }, "levels": ["tunnel-entry"] }
+      ]
+    },
+    {
+      "id": "ashfen-watchtower-platform",
+      "width": 8,
+      "height": 8,
+      "theme": "windy-watchtower",
+      "tiles": [
+        { "x": 3, "y": 3, "support": "portal-landing", "tag": "ladder-arrival" },
+        { "x": 4, "y": 3, "support": "floor", "tag": "platform" },
+        { "x": 5, "y": 3, "support": "floor", "tag": "platform" },
+        { "x": 4, "y": 4, "support": "floor", "tag": "platform" },
+        { "x": 5, "y": 4, "support": "floor", "tag": "platform" },
+        { "x": 5, "y": 5, "support": "ladder", "tag": "roof-ladder" }
+      ],
+      "structures": [
+        { "id": "watchtower-railing", "kind": "guard-rail", "footprint": { "x": 3, "y": 3, "width": 3, "height": 3 } }
+      ]
+    },
+    {
+      "id": "ashfen-tunnel-entry",
+      "width": 14,
+      "height": 8,
+      "theme": "stone-tunnel",
+      "tiles": [
+        { "x": 1, "y": 4, "support": "portal-landing", "tag": "surface-arrival" },
+        { "x": 2, "y": 4, "support": "floor", "tag": "tunnel" },
+        { "x": 3, "y": 4, "support": "floor", "tag": "tunnel" },
+        { "x": 4, "y": 4, "support": "crawl", "tag": "crawl-branch" },
+        { "x": 5, "y": 4, "support": "crawl", "tag": "crawl-branch" },
+        { "x": 6, "y": 4, "support": "floor", "tag": "tunnel-hub" },
+        { "x": 7, "y": 3, "support": "floor", "tag": "dungeon-hub" },
+        { "x": 7, "y": 4, "support": "floor", "tag": "dungeon-hub" },
+        { "x": 8, "y": 4, "support": "portal-landing", "tag": "dungeon-entrance" }
+      ],
+      "structures": [
+        { "id": "ashfen-dungeon-mouth", "kind": "dungeon-entrance", "footprint": { "x": 7, "y": 3, "width": 2, "height": 2 } }
+      ]
+    },
+    {
+      "id": "copperroot-dungeon-entry",
+      "width": 10,
+      "height": 10,
+      "theme": "dungeon-threshold",
+      "tiles": [
+        { "x": 2, "y": 2, "support": "portal-landing", "tag": "locked-dungeon-arrival" },
+        { "x": 3, "y": 2, "support": "floor", "tag": "dungeon-threshold" },
+        { "x": 4, "y": 2, "support": "floor", "tag": "dungeon-threshold" }
+      ],
+      "structures": [
+        { "id": "copperroot-threshold", "kind": "dungeon-entry", "footprint": { "x": 2, "y": 2, "width": 3, "height": 2 } }
+      ]
+    }
+  ],
+  "connectors": [
+    { "id": "lowlands-watchtower-ramp", "kind": "ramp", "from": { "level": "ashfen-lowlands", "x": 5, "y": 10 }, "to": { "level": "ashfen-watchtower-platform", "x": 3, "y": 3 }, "open": true, "requiredClearance": 2, "verticalSpan": 3, "bidirectional": true },
+    { "id": "watchtower-roof-ladder", "kind": "ladder", "from": { "level": "ashfen-watchtower-platform", "x": 5, "y": 5 }, "to": { "level": "ashfen-watchtower-platform", "x": 5, "y": 6 }, "open": true, "requiredClearance": 1, "verticalSpan": 2, "minSpan": 1, "maxSpan": 3, "bidirectional": true },
+    { "id": "lowlands-sunken-tunnel", "kind": "tunnel", "from": { "level": "ashfen-lowlands", "x": 16, "y": 8 }, "to": { "level": "ashfen-tunnel-entry", "x": 1, "y": 4 }, "open": true, "requiredClearance": 2, "verticalSpan": 1, "bidirectional": true },
+    { "id": "tunnel-crawl-branch", "kind": "crawl-space", "from": { "level": "ashfen-tunnel-entry", "x": 4, "y": 4 }, "to": { "level": "ashfen-tunnel-entry", "x": 5, "y": 4 }, "open": true, "requiredClearance": 1, "verticalSpan": 0, "bidirectional": true },
+    { "id": "tunnel-dungeon-entrance", "kind": "dungeon-entrance", "from": { "level": "ashfen-tunnel-entry", "x": 8, "y": 4 }, "to": { "level": "copperroot-dungeon-entry", "x": 2, "y": 2 }, "open": false, "locked": true, "requiredClearance": 2, "verticalSpan": 1, "bidirectional": false }
+  ]
+}

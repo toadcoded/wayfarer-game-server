@@ -1,0 +1,114 @@
+{
+  "capabilities": {
+    "canAcceptOwnership": false,
+    "canAccessViaGenAi": true,
+    "canAddChildren": true,
+    "canAddMyDriveParent": false,
+    "canChangeCopyRequiresWriterPermission": false,
+    "canChangeItemDownloadRestriction": false,
+    "canChangeSecurityUpdateEnabled": false,
+    "canChangeViewersCanCopyContent": false,
+    "canComment": true,
+    "canCopy": false,
+    "canDelete": true,
+    "canDisableInheritedPermissions": true,
+    "canDownload": true,
+    "canEdit": true,
+    "canEnableInheritedPermissions": true,
+    "canListChildren": true,
+    "canModifyContent": true,
+    "canModifyContentRestriction": false,
+    "canModifyEditorContentRestriction": false,
+    "canModifyLabels": false,
+    "canModifyOwnerContentRestriction": false,
+    "canMoveChildrenWithinDrive": true,
+    "canMoveItemIntoTeamDrive": true,
+    "canMoveItemOutOfDrive": true,
+    "canMoveItemWithinDrive": true,
+    "canReadLabels": false,
+    "canReadRevisions": false,
+    "canRemoveChildren": true,
+    "canRemoveContentRestriction": false,
+    "canRemoveMyDriveParent": true,
+    "canRename": true,
+    "canShare": true,
+    "canStartApproval": false,
+    "canTrash": true,
+    "canUntrash": true
+  },
+  "id": "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ",
+  "mimeType": "application/vnd.google-apps.folder",
+  "modifiedTime": "2026-09-09T21:15:55.515Z",
+  "name": "polycodex/ingestion/google_drive/",
+  "owners": [
+    {
+      "displayName": "Sole Scrunch",
+      "emailAddress": "solescrunch@gmail.com",
+      "kind": "drive#user",
+      "me": true,
+      "permissionId": "15935719214978870210",
+      "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocKXLgto8-av-2_0mLMoRWCxGiHouVgGKiBmg_J7Q0mICNcTXMQY=s64"
+    }
+  ],
+  "parents": [
+    "0ACD26DtNil73Uk9PVA"
+  ],
+  "permissions": [
+    {
+      "allowFileDiscovery": false,
+      "id": "anyoneWithLink",
+      "kind": "drive#permission",
+      "permissionDetails": [
+        {
+          "inherited": false,
+          "permissionType": "file",
+          "role": "writer"
+        }
+      ],
+      "role": "writer",
+      "type": "anyone"
+    },
+    {
+      "deleted": false,
+      "displayName": "Sole Scrunch",
+      "emailAddress": "solescrunch@gmail.com",
+      "id": "15935719214978870210",
+      "kind": "drive#permission",
+      "pendingOwner": false,
+      "permissionDetails": [
+        {
+          "inherited": true,
+          "permissionType": "file",
+          "role": "writer"
+        },
+        {
+          "inherited": false,
+          "permissionType": "file",
+          "role": "owner"
+        }
+      ],
+      "photoLink": "https://lh3.googleusercontent.com/a/ACg8ocKXLgto8-av-2_0mLMoRWCxGiHouVgGKiBmg_J7Q0mICNcTXMQY=s64",
+      "role": "owner",
+      "type": "user"
+    },
+    {
+      "deleted": false,
+      "displayName": "M. Elf",
+      "emailAddress": "MuffleElf@gmail.com",
+      "id": "04850880596284663783",
+      "kind": "drive#permission",
+      "pendingOwner": false,
+      "permissionDetails": [
+        {
+          "inherited": false,
+          "permissionType": "file",
+          "role": "writer"
+        }
+      ],
+      "photoLink": "https://lh3.googleusercontent.com/a-/ALV-UjXAchggIFnt-8wl2if6gHndH_guVR3k3-52j03VOomwG247Lrs-=s64",
+      "role": "writer",
+      "type": "user"
+    }
+  ],
+  "webViewLink": "https://drive.google.com/drive/folders/1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+}

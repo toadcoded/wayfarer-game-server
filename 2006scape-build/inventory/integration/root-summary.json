@@ -1,0 +1,187 @@
+{
+  "count": 264,
+  "folders": [
+    {
+      "id": "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf",
+      "name": "99_QUARANTINE_EXACT_DUPLICATES"
+    },
+    {
+      "id": "1FeHnmhg7GEWJorTyIOIJyGnac4Ls0OWL",
+      "name": "06_10_10_OPTIMIZATION"
+    },
+    {
+      "id": "1tSnElNKaY1QzcI2SNO1CuEKCZCpvXqN-",
+      "name": "01_CLEAN_ROOM_PHASE_1"
+    },
+    {
+      "id": "1akUeBgdoUARDVM0lEpF6r2zZClLfVefs",
+      "name": "00_AUDIT_AND_PROVENANCE"
+    },
+    {
+      "id": "1DURKUZTKViL8uj2UplHXEWdBaFlmCeAT",
+      "name": "05_CHANGE_LOGS"
+    },
+    {
+      "id": "1ztP9AHakHFZOQ-tTjRReQ-RYXHTrUK6U",
+      "name": "04_CONNECTOR_REGISTRY"
+    },
+    {
+      "id": "197CPxYJGI4bRSgFZ4RGXoKzC7ntPQKv8",
+      "name": "03_FORMATTERS_AND_TEMPLATES"
+    },
+    {
+      "id": "1RX4TqQmWZ84GAX3zzygOnwGdms_ieV0m",
+      "name": "02_VALIDATION"
+    },
+    {
+      "id": "1uK8-t5M9fEmzT12k_OMSdqa2410lxrjm",
+      "name": "01_TASK_MANAGEMENT"
+    },
+    {
+      "id": "1D4njGiJLKn533TV4JK0cIcgb7rfclwc-",
+      "name": "00_INDEX_AND_GUIDANCE"
+    }
+  ],
+  "recent": [
+    {
+      "id": "1XIJ6oIdutrQxlkXx0vMQh6BYpSVPBR7M",
+      "name": "second-best-so-far.zip",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-21T11:10:26.976Z",
+      "size": "58763186"
+    },
+    {
+      "id": "1TBQv7mKvGz39FE5XWs1ODMRUDJzAAaUD",
+      "name": "bestAPP-so-far.zip",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-21T10:45:14.268Z",
+      "size": "23865139"
+    },
+    {
+      "id": "1H4VY-SdPwBwCQmtaFFFHSWXerU66gq4fjC100OIjgJk",
+      "name": "GameRarityTypescripts",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-21T09:33:16.054Z",
+      "size": "11209"
+    },
+    {
+      "id": "1FFmqlI3EVgHPGwT1uMYjcHECpUeg3MWhCCuw-ajrkkM",
+      "name": "jesustypescripts",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-21T09:17:13.727Z",
+      "size": "9725"
+    },
+    {
+      "id": "1p0F4NftE74D3VXSsNHvYoGPaxEwddRnp",
+      "name": "resource-system.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T08:04:42.217Z",
+      "size": "14473"
+    },
+    {
+      "id": "1FTHFIQvRSfFmnr60uOasUVI9yH-5O2nK",
+      "name": "welcome-garden-slice.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:50:42.364Z",
+      "size": "21354"
+    },
+    {
+      "id": "1eCdXTbAUdjknrx1Glf1Ie_32Ep_9Wfoc",
+      "name": "resource-system.test.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:50:09.897Z",
+      "size": "2370"
+    },
+    {
+      "id": "1mP9aJgTeb2w6tv1w3qr3HK0_uJ5nVyt5",
+      "name": "welcome-garden-slice.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:22:24.400Z",
+      "size": "21072"
+    },
+    {
+      "id": "1j_TX6cwJ4a-Q4rIXP0lZ337sTQBGec-f",
+      "name": "npc-system.test.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:22:09.685Z",
+      "size": "2508"
+    },
+    {
+      "id": "1NJMVqTEaQknHc4Ll6YK1nkhWlFo9EANq",
+      "name": "npc-system.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:21:51.316Z",
+      "size": "12403"
+    },
+    {
+      "id": "1wHuh4tbyHvCC3op-Yo27hy3-mYgDt-76",
+      "name": "welcome-garden-slice.test.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:18:58.912Z",
+      "size": "9833"
+    },
+    {
+      "id": "1m18Y2vB54AfGuueVUAWK8nuQbTaakgl6",
+      "name": "welcome-garden-slice.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:18:38.689Z",
+      "size": "20868"
+    },
+    {
+      "id": "11gNiTAMbywClWcB8QObWYCFYXz0hPXLa",
+      "name": "bank-system.test.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:18:23.702Z",
+      "size": "2436"
+    },
+    {
+      "id": "1W-JtCibro2oI8s3NT_9XvxjtDZ6ZZ4WV",
+      "name": "bank-system.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:18:08.612Z",
+      "size": "10101"
+    },
+    {
+      "id": "18PE7nmj2DGpZzXTGdmG_UssOuAiGMZf2",
+      "name": "welcome-garden-slice.test.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:15:09.656Z",
+      "size": "9636"
+    },
+    {
+      "id": "19X5_CI3e0Mpug7CBPYIgQNTGzGmwvNz1",
+      "name": "welcome-garden-slice.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:14:53.318Z",
+      "size": "20665"
+    },
+    {
+      "id": "18hMDndmlCr07X89GZrkJ3_dMOwgVtjlQ",
+      "name": "roof-visibility.ts",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:14:34.514Z",
+      "size": "791"
+    },
+    {
+      "id": "12bRCzVt87mQjwJGZaSZgcrZyVXVzS1Mv",
+      "name": "Exact-Duplicate Quarantine Notice.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-21T01:13:10.610Z",
+      "size": "557"
+    },
+    {
+      "id": "1D_4ENSXGFGx4TSbUihHwFmHccYHiNPKS",
+      "name": "Polycodex _ Copper Lantern Canonical Filing Index.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-21T01:12:30.939Z",
+      "size": "1639"
+    },
+    {
+      "id": "1TmvET3YfOMz7Vv04jitr-VP1nkIoqQb3",
+      "name": "Drive 10_10 Optimization Change Log.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-21T01:12:15.910Z",
+      "size": "1330"
+    }
+  ]
+}

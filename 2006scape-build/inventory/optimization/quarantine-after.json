@@ -1,0 +1,94 @@
+{
+  "files": [
+    {
+      "id": "1GYJ9K_QZ505Y2Rhf0p3LTvp8hKR4q-hx",
+      "md5Checksum": "c8e00164738761334c3f7fc5961fa89a",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-21T01:09:07.092Z",
+      "name": "NOTICE-QUARANTINE-EXACT-DUPLICATES.md",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1a8ZJOdI0KCqdACmi1VrzsQD7AIk2GNpZ",
+      "md5Checksum": "94a6646d72e5c7d97202ea9b4069e575",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-21T01:05:16.730Z",
+      "name": "realm-expansion.ts",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1uRHLcIHmCJHOHfyU0dgXXbmNbAELybgE",
+      "md5Checksum": "84fd50e6d5809e99ecb49727482ffc9c",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T11:17:14.037Z",
+      "name": "Drive tidy candidates — read-only manifest.md",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1PBa0RGmgdo5P0JmRRk4qijVnIZKatajE",
+      "md5Checksum": "d2e70d36921f9978d30e47d66987ec07",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T16:35:34.285Z",
+      "name": "ashfen-map-art-pass.zip",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "133KTd15kLr_dfYzI0XYKAjLT-Z7occdA",
+      "md5Checksum": "dd4f6673aefb427efb6a246b8fb71b72",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:41:52.836Z",
+      "name": "ashfen-multiplayer-slice.zip",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1BhSH-U-NfvsPxLidG1HPreLk4kXewGYu",
+      "md5Checksum": "80a9a7730d4eae7379a7c2b2806ba601",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:41:34.822Z",
+      "name": "ASHFEN_MULTIPLAYER_DELIVERY.md",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1k0shYOgNRc2EqG9FCvjs5RCeFyml2oku",
+      "md5Checksum": "e5187403a835e13b4a0482ecf19b6211",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:06:38.633Z",
+      "name": "ashfen-enhancement-pass.zip",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1gR9ZQ_-t5opLWlzr3Jv3Ss6Kp0yOMsa-",
+      "md5Checksum": "853d2bafa0f8f1985b0ba2c613dc97b3",
+      "mimeType": "application/x-ndjson",
+      "modifiedTime": "2026-09-11T13:05:18.134Z",
+      "name": "drive-metadata.ndjson",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    },
+    {
+      "id": "1-IKmGEJpCrdBjoG7edK7Hvn5qPkO5rxX",
+      "md5Checksum": "a28180bb6734f6a521733603471186eb",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-11T13:01:46.617Z",
+      "name": "Implementation Brief — 2006-Era Fantasy MMO Build.md",
+      "parents": [
+        "1bIcv25TezTcAGpRukbYGF2ZaldLaAWBf"
+      ]
+    }
+  ]
+}

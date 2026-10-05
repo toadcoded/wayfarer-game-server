@@ -1,0 +1,731 @@
+{
+  "count": 249,
+  "folders": [
+    {
+      "id": "1akUeBgdoUARDVM0lEpF6r2zZClLfVefs",
+      "name": "00_AUDIT_AND_PROVENANCE"
+    },
+    {
+      "id": "1D4njGiJLKn533TV4JK0cIcgb7rfclwc-",
+      "name": "00_INDEX_AND_GUIDANCE"
+    },
+    {
+      "id": "1tSnElNKaY1QzcI2SNO1CuEKCZCpvXqN-",
+      "name": "01_CLEAN_ROOM_PHASE_1"
+    },
+    {
+      "id": "1uK8-t5M9fEmzT12k_OMSdqa2410lxrjm",
+      "name": "01_TASK_MANAGEMENT"
+    },
+    {
+      "id": "1RX4TqQmWZ84GAX3zzygOnwGdms_ieV0m",
+      "name": "02_VALIDATION"
+    },
+    {
+      "id": "197CPxYJGI4bRSgFZ4RGXoKzC7ntPQKv8",
+      "name": "03_FORMATTERS_AND_TEMPLATES"
+    },
+    {
+      "id": "1ztP9AHakHFZOQ-tTjRReQ-RYXHTrUK6U",
+      "name": "04_CONNECTOR_REGISTRY"
+    },
+    {
+      "id": "1DURKUZTKViL8uj2UplHXEWdBaFlmCeAT",
+      "name": "05_CHANGE_LOGS"
+    }
+  ],
+  "duplicates": [
+    [
+      {
+        "id": "1CgNVJ15YK9FpAazPMxs4eSUl03_MU7da",
+        "name": "Ashfen Enhancement Pass.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-18T14:20:13.275Z",
+        "size": "4290",
+        "starred": true
+      },
+      {
+        "id": "1a-LEV0_Rvzj31-QjR3BBd31KFsMpGda0",
+        "name": "Ashfen Enhancement Pass.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-18T14:08:38.956Z",
+        "size": "3223",
+        "starred": true
+      },
+      {
+        "id": "1iZM6SOi4jweCQQIQssEZfdMDG2bZ-GZ_",
+        "name": "Ashfen Enhancement Pass.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-18T14:03:05.846Z",
+        "size": "2660",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1Y7I5RqLRRWuaEE2OvduuRYMvO-E3V3aI",
+        "name": "ashfen-enhancement-pass.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T14:18:44.586Z",
+        "size": "20556",
+        "starred": true
+      },
+      {
+        "id": "1k0shYOgNRc2EqG9FCvjs5RCeFyml2oku",
+        "name": "ashfen-enhancement-pass.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T14:06:38.633Z",
+        "size": "20556",
+        "starred": true
+      },
+      {
+        "id": "1sq85KLAKMIFotw3pgh7mXL5EpDnHtPvN",
+        "name": "ashfen-enhancement-pass.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T14:02:21.785Z",
+        "size": "20154",
+        "starred": true
+      },
+      {
+        "id": "1S7mV4RG57_thJI2wSMb7YBMzhiLQP3_e",
+        "name": "ashfen-enhancement-pass.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T13:56:38.697Z",
+        "size": "19233",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1CqUMlbevTYRMSDNyFqAcjvr_uOiyP2nR",
+        "name": "ashfen-map-art-pass.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T16:37:03.218Z",
+        "size": "10853",
+        "starred": true
+      },
+      {
+        "id": "1PBa0RGmgdo5P0JmRRk4qijVnIZKatajE",
+        "name": "ashfen-map-art-pass.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T16:35:34.285Z",
+        "size": "10853",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1hylOFKcAGuVxORsCyswLEGmzIQkJE-wv",
+        "name": "ashfen-multiplayer-slice.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T14:56:30.191Z",
+        "size": "25775",
+        "starred": true
+      },
+      {
+        "id": "133KTd15kLr_dfYzI0XYKAjLT-Z7occdA",
+        "name": "ashfen-multiplayer-slice.zip",
+        "mimeType": "application/zip",
+        "modifiedTime": "2026-09-18T14:41:52.836Z",
+        "size": "25775",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1ri2UQkpJ8FGk3jOKi0-cdIgM97aeM5Xk",
+        "name": "ASHFEN_MULTIPLAYER_DELIVERY.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-18T14:55:49.910Z",
+        "size": "1998",
+        "starred": true
+      },
+      {
+        "id": "1BhSH-U-NfvsPxLidG1HPreLk4kXewGYu",
+        "name": "ASHFEN_MULTIPLAYER_DELIVERY.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-18T14:41:34.822Z",
+        "size": "1998",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1Mge0bawIvAAai2vEGRPUVX8dYUpLtjvR",
+        "name": "Drive tidy candidates — read-only manifest.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-20T12:10:12.253Z",
+        "size": "5425",
+        "starred": true
+      },
+      {
+        "id": "1uRHLcIHmCJHOHfyU0dgXXbmNbAELybgE",
+        "name": "Drive tidy candidates — read-only manifest.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-20T11:17:14.037Z",
+        "size": "5425",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "11xpNKXTH4y3VnCt9RogNCae1ppHXEjld",
+        "name": "drive-metadata.ndjson",
+        "mimeType": "application/x-ndjson",
+        "modifiedTime": "2026-09-11T13:06:23.072Z",
+        "size": "7096",
+        "starred": true
+      },
+      {
+        "id": "1gR9ZQ_-t5opLWlzr3Jv3Ss6Kp0yOMsa-",
+        "name": "drive-metadata.ndjson",
+        "mimeType": "application/x-ndjson",
+        "modifiedTime": "2026-09-11T13:05:18.134Z",
+        "size": "7096",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1vt_J2uohxSMNTwpk0niUHRCFgseHTltE",
+        "name": "game-store.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-19T00:08:20.457Z",
+        "size": "11542",
+        "starred": true
+      },
+      {
+        "id": "1j9NWw2x4dL8f7fQjAwgxtfz33qZHPmyS",
+        "name": "game-store.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-18T20:08:00.649Z",
+        "size": "11118",
+        "starred": true
+      },
+      {
+        "id": "1Iq4bxrMeHZfKUKvt-R-SyWvQOJoiKTML",
+        "name": "game-store.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-18T17:04:16.091Z",
+        "size": "9537",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1rlGIfwXlPcmWb61ZtQbXlvyMcZgb0XgH",
+        "name": "Implementation Brief — 2006-Era Fantasy MMO Build.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-11T13:03:36.767Z",
+        "size": "11877",
+        "starred": true
+      },
+      {
+        "id": "1-IKmGEJpCrdBjoG7edK7Hvn5qPkO5rxX",
+        "name": "Implementation Brief — 2006-Era Fantasy MMO Build.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-11T13:01:46.617Z",
+        "size": "11877",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1GJr54nfkPNSAEqZWQlvMLZaX48OMxHT0",
+        "name": "last_report.json",
+        "mimeType": "application/json",
+        "modifiedTime": "2026-09-19T07:16:47.992Z",
+        "size": "1954",
+        "starred": true
+      },
+      {
+        "id": "1_YDCVP0C0QDZfPfmRcBAESvOuo07rkYl",
+        "name": "last_report.json",
+        "mimeType": "application/json",
+        "modifiedTime": "2026-09-19T06:50:52.841Z",
+        "size": "1054",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1gejmqhvUvQZO_H4QUkf6JjB1gq8hd7fR",
+        "name": "manifest.sha256",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-19T07:17:04.550Z",
+        "size": "2691",
+        "starred": true
+      },
+      {
+        "id": "1LZovVDxIzQA3fNeuTGKMYiunxwU3T_yG",
+        "name": "manifest.sha256",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-19T06:51:11.026Z",
+        "size": "998",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1qpBovpguwYy3d8rwkvsqYjpnj8I3Hzfp",
+        "name": "player-appearance.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T21:43:58.993Z",
+        "size": "9852",
+        "starred": true
+      },
+      {
+        "id": "1uC68A1YALIgB7lKWyNwXZVLD_hImYY5C",
+        "name": "player-appearance.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T21:40:54.291Z",
+        "size": "8872",
+        "starred": true
+      },
+      {
+        "id": "1_xDo7W4aMF4mBLcl4oWjpQsruzDIRvLe",
+        "name": "player-appearance.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T18:22:57.101Z",
+        "size": "7503",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1jUjMP0ZhT2iifE37I-2zthFyPfOThKnR",
+        "name": "player-motion.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T18:30:25.573Z",
+        "size": "11785",
+        "starred": true
+      },
+      {
+        "id": "1pj_EDl2BXxp3InqHKoN8fFTBBe-Da7OV",
+        "name": "player-motion.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T18:24:43.259Z",
+        "size": "11272",
+        "starred": true
+      },
+      {
+        "id": "1kBOw4S0bsOijG69rMJKUNgzr4J9YsIXn",
+        "name": "player-motion.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T18:20:51.753Z",
+        "size": "10229",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1TXLUGoc0M6zErv1toBdodo6aA4mxK5Kp",
+        "name": "PolyCodex / Crosshatch Relay",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T08:57:16.289Z",
+        "size": "370519",
+        "starred": true
+      },
+      {
+        "id": "1YWWUa7iIAq-sjzn_UGX_eoVGC17XBs7f",
+        "name": "PolyCodex / Crosshatch Relay",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-19T07:37:47.400Z",
+        "size": "370519",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1NfALFLyXG6nsuXmHq7M7LJtc-JBsDAD9",
+        "name": "PolyCodex Care Package Index.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-19T07:17:33.463Z",
+        "size": "4390",
+        "starred": true
+      },
+      {
+        "id": "12uyHi2-eOY5g4OqRSaM_n8OaXNI9dcCo",
+        "name": "PolyCodex Care Package Index.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-19T06:48:54.956Z",
+        "size": "3513",
+        "starred": true
+      },
+      {
+        "id": "1E9cxRxQyoZLKMYKElseVDofXYgGgv7YV",
+        "name": "PolyCodex Care Package Index.md",
+        "mimeType": "text/markdown",
+        "modifiedTime": "2026-09-11T02:36:02.155Z",
+        "size": "2342",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "19GLOD5ExCMg_f3UiJUkoDFDsjaL2ZtJH",
+        "name": "realm-expansion.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T01:05:59.419Z",
+        "size": "6168",
+        "starred": true
+      },
+      {
+        "id": "1a8ZJOdI0KCqdACmi1VrzsQD7AIk2GNpZ",
+        "name": "realm-expansion.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T01:05:16.730Z",
+        "size": "6168",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1Gfxs8VhMCY3TPUlbsk5NyVxooILecYsf",
+        "name": "rpg-ui.test.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-19T00:08:43.392Z",
+        "size": "2720",
+        "starred": true
+      },
+      {
+        "id": "1DuKlz4pJ_qWyoCbFmT2fJCjYXH2d9ECx",
+        "name": "rpg-ui.test.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-18T20:08:11.814Z",
+        "size": "1895",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1TrAy9NEIJoHnwFIeOcDZ2MLWrXEMrnTN",
+        "name": "rpg.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-18T20:12:12.889Z",
+        "size": "9863",
+        "starred": true
+      },
+      {
+        "id": "1Ykc69fgDsHKzsH5MXLkyFvH2jmKFj-Uc",
+        "name": "rpg.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-18T20:10:18.000Z",
+        "size": "6498",
+        "starred": true
+      },
+      {
+        "id": "1DeB_pXeiM-ijoF-jTUAJDA4bneUFwP8Q",
+        "name": "rpg.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-18T20:07:49.945Z",
+        "size": "3859",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1pXSkijKF3IWGbh9PDuZQyAjd80peTLLr",
+        "name": "starter-loadout.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T21:52:47.031Z",
+        "size": "2396",
+        "starred": true
+      },
+      {
+        "id": "1-7wHKyoFBHYczrEYnyMRrASfwnALM6Es",
+        "name": "starter-loadout.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T21:48:25.199Z",
+        "size": "1023",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1dTG4e0QtnuowY5qo21jX8Di-OlhRapNL",
+        "name": "welcome-garden-map.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T01:00:24.945Z",
+        "size": "1047",
+        "starred": true
+      },
+      {
+        "id": "1_DyLASENqTGkes3STw4oHQLVGMWmHQ58",
+        "name": "welcome-garden-map.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:56:38.968Z",
+        "size": "1033",
+        "starred": true
+      },
+      {
+        "id": "12HD3HDElSIXDslDNEmTdhPAru_7vmLaQ",
+        "name": "welcome-garden-map.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:53:35.860Z",
+        "size": "1032",
+        "starred": true
+      },
+      {
+        "id": "1ldwnutIzqinFvfDD_1ChFfroo3clpqkM",
+        "name": "welcome-garden-map.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:51:00.205Z",
+        "size": "1020",
+        "starred": true
+      },
+      {
+        "id": "1A7AaUxObBiHkT5_BZUPGG7H28bhA14DY",
+        "name": "welcome-garden-map.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:47:06.823Z",
+        "size": "1007",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1B2YnrKxlNRRUdSTf1KeAQX96LvTn6X5f",
+        "name": "welcome-garden-slice.test.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:57:13.975Z",
+        "size": "6988",
+        "starred": true
+      },
+      {
+        "id": "1Q3A3hmkbHqYShgFmkLuKE8USBoga_NXw",
+        "name": "welcome-garden-slice.test.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T21:53:57.689Z",
+        "size": "3132",
+        "starred": true
+      },
+      {
+        "id": "1YbVnMhUL1zB-tqWCHI_fTt-dnQ6vdG1E",
+        "name": "welcome-garden-slice.test.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T19:40:54.131Z",
+        "size": "2673",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1J2xZS7ckHKOQ3rUcbz5Sn1BX35Yuf5YF",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T01:05:35.190Z",
+        "size": "20140",
+        "starred": true
+      },
+      {
+        "id": "1OkD508__YhitEOCTJDbwns3w1hsLD91A",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T01:00:42.970Z",
+        "size": "19705",
+        "starred": true
+      },
+      {
+        "id": "18pRndvIgwcn9RYYO9oC_W-REgOCYZK9B",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:56:54.086Z",
+        "size": "19535",
+        "starred": true
+      },
+      {
+        "id": "16IOkmCWJoQ5afbSiihaM_5Lk-s69zthd",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:53:55.103Z",
+        "size": "19393",
+        "starred": true
+      },
+      {
+        "id": "1DFjKsLLCs_qyLHi7gOr0tmY9Wfn5bIkt",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:51:14.022Z",
+        "size": "19251",
+        "starred": true
+      },
+      {
+        "id": "16bW8kpAjioxYlw-u1Eudr_eT5_YnXA9v",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-21T00:48:28.311Z",
+        "size": "18919",
+        "starred": true
+      },
+      {
+        "id": "1QmGv9BMsfecPma4dgSyTvxeOz4ccVpAr",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T21:53:38.776Z",
+        "size": "18524",
+        "starred": true
+      },
+      {
+        "id": "1ZxFPDOkoN6yEOHD2-I3hu7vSirRmeW8W",
+        "name": "welcome-garden-slice.ts",
+        "mimeType": "text/texmacs",
+        "modifiedTime": "2026-09-20T19:40:24.290Z",
+        "size": "18184",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1BPr-SXW2w8Q-yyK7bRmjYmJMnvLYLnTY",
+        "name": "world.go",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T18:32:42.269Z",
+        "size": "5855",
+        "starred": true
+      },
+      {
+        "id": "1v152SjfkG1uLTGtLSjSDmFk1y-AV2CSi",
+        "name": "world.go",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T18:28:47.783Z",
+        "size": "5586",
+        "starred": true
+      },
+      {
+        "id": "1AoSJdip3oAgTdXQYOadKzNR8ZNvscMF7",
+        "name": "world.go",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T18:16:41.395Z",
+        "size": "4953",
+        "starred": true
+      }
+    ],
+    [
+      {
+        "id": "1tcbA4v_oHKLxPYm76AjcLP4vMBu4TWjl",
+        "name": "world_test.go",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T18:32:55.404Z",
+        "size": "4582",
+        "starred": true
+      },
+      {
+        "id": "1hjJLnbtFaE3MlkN9R-5uRQdNwYHzTZJ9",
+        "name": "world_test.go",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T18:29:00.444Z",
+        "size": "4515",
+        "starred": true
+      },
+      {
+        "id": "1fp-NLs5VaJkMFRtYoHgE-ZkQIwjMejf-",
+        "name": "world_test.go",
+        "mimeType": "application/octet-stream",
+        "modifiedTime": "2026-09-20T18:16:56.730Z",
+        "size": "3065",
+        "starred": true
+      }
+    ]
+  ],
+  "auditArtifacts": [
+    {
+      "id": "1akUeBgdoUARDVM0lEpF6r2zZClLfVefs",
+      "name": "00_AUDIT_AND_PROVENANCE",
+      "mimeType": "application/vnd.google-apps.folder",
+      "modifiedTime": "2026-09-11T15:39:25.473Z",
+      "size": null
+    },
+    {
+      "id": "1DURKUZTKViL8uj2UplHXEWdBaFlmCeAT",
+      "name": "05_CHANGE_LOGS",
+      "mimeType": "application/vnd.google-apps.folder",
+      "modifiedTime": "2026-09-11T02:26:38.602Z",
+      "size": null
+    },
+    {
+      "id": "1JDtr4vVFUiVO6T2HS7_snpYIV4OTarhj",
+      "name": "Care-Package Drive Optimization Change Log.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-11T02:37:12.577Z",
+      "size": "1078"
+    },
+    {
+      "id": "16Iv2J8gB6stePV7eb_WF8Tk98LyFrjkx",
+      "name": "drive_audit_summary.json",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:13:52.374Z",
+      "size": "4156"
+    },
+    {
+      "id": "1NpkuVv42P_EQsZnq8HAmJ6uG6GTc7jLH",
+      "name": "Google Drive Delta Audit — Polycodex _ Wayfarer _ Ashfen _ Copper Lantern.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-11T15:50:47.356Z",
+      "size": "11625"
+    },
+    {
+      "id": "1l_ZKzTv1rwNni4Tnsv2O3SoRW12ZyKP8",
+      "name": "Polycodex QoL Artifact Change Log — 2026-09-18.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T13:30:16.682Z",
+      "size": "1405"
+    },
+    {
+      "id": "1aNDRvLo-J3YpIkUOfM0lnf-p2Lzc39W7",
+      "name": "POLYCODEX_CANONICAL_FILING_INDEX.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-17T18:23:47.665Z",
+      "size": "3732"
+    },
+    {
+      "id": "10fFE_-au5jHhmsjCZ4UKSzQM8iZvnOkr",
+      "name": "POLYCODEX_CHANGE_LOG_2026-09-17.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-17T18:24:02.202Z",
+      "size": "1651"
+    },
+    {
+      "id": "1J55Hs42AbLvfQY_FyrRVvFhicGgYKG7B",
+      "name": "polycodex_drive_audit.json",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-17T18:24:17.332Z",
+      "size": "36015"
+    },
+    {
+      "id": "1fuLuKjFb9CDdVQM96G_MFbJrFztX35h5",
+      "name": "polycodex_drive_audit.txt",
+      "mimeType": "text/plain",
+      "modifiedTime": "2026-09-17T18:24:55.536Z",
+      "size": "3189"
+    },
+    {
+      "id": "124p-XsgYrceW4PUS9HLqe289JaGOI6QJ",
+      "name": "POLYCODEX_NEXT_DECISION_AUDIT_2026-09-18.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T01:40:52.343Z",
+      "size": "9008"
+    },
+    {
+      "id": "1ks4P4nCAmFwQCjwCbwwMuTudddYSe8Mh",
+      "name": "Wide Audit 03 — Ashfen Task_Game Guide.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:11:21.200Z",
+      "size": "15942"
+    },
+    {
+      "id": "10mNPIXq_-4ANE0A0WQe-zLpPSIE5XyUD",
+      "name": "Wide audit 04 — repository code boundaries and organization.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:11:37.065Z",
+      "size": "16210"
+    },
+    {
+      "id": "1wJiQUsjf0fbIXEnoUGMVZfmsPc6zTmM1",
+      "name": "Wide Drive Root Audit — Ashfen _ PolyCodex _ TypeScript _ Schema _ JavaScript _ Node _ Integration _ Archive.md",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:11:08.629Z",
+      "size": "11800"
+    }
+  ]
+}

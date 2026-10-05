@@ -1,0 +1,30 @@
+{
+  "product": "Project Copper Lantern",
+  "release": "clean-room-runtime-2026-09-25",
+  "sourcePolicy": "original-project-files-only",
+  "client": {
+    "language": "TypeScript",
+    "systems": ["welcome-garden", "movement", "appearance", "resources", "npcs", "inventory", "bank", "hud", "realm-expansion", "vertical-layers", "session-v1-websocket-adapter"]
+  },
+  "server": {
+    "language": "Go 1.22+",
+    "systems": ["validated-world-topology", "session-v1-websocket-gateway", "movement", "traversal", "resource-harvesting", "cooldowns", "inventory", "bank-ledger", "replay-receipts", "starter-armour", "moderator-special-policy"]
+  },
+  "entrypoints": {
+    "gateway": "src/cleanroom-world/cmd/copper-lantern-gateway/main.go",
+    "validation": "scripts/check-cleanroom.sh",
+    "launcher": "scripts/run-gateway.sh"
+  },
+  "content": ["src/cleanroom-world/content/ashfen-expansion-v1.json"],
+  "tests": {
+    "typescript": "find src/cleanroom-client -name '*.test.ts'",
+    "go": "cd src/cleanroom-world && go test ./..."
+  },
+  "excluded": {
+    "driveImports": true,
+    "legacyRspsAssets": true,
+    "proprietaryProtocols": true,
+    "separateReferencedPapyrusBundle": true,
+    "reason": "Unverified or separate artifacts are not clean-room source dependencies."
+  }
+}

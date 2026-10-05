@@ -1,0 +1,1204 @@
+{
+  "files": [
+    {
+      "id": "1s1f5Kwbs2XCGi_D4wXAT0o5xJIH1RhF0",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T18:11:27.923Z",
+      "name": "world-expansion-architecture.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "16418",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1s1f5Kwbs2XCGi_D4wXAT0o5xJIH1RhF0/view?usp=drivesdk"
+    },
+    {
+      "id": "1D7w4rImwXFef3ZMVV2CKRmesTSEd2z34",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-20T13:36:36.283Z",
+      "name": "mapman64.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "76482229",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1D7w4rImwXFef3ZMVV2CKRmesTSEd2z34/view?usp=drivesdk"
+    },
+    {
+      "id": "1CeJgEhQcarr1HfIT5UK29XwapCTxOsOW",
+      "mimeType": "text/html",
+      "modifiedTime": "2026-09-20T13:34:05.895Z",
+      "name": "c2hhcmQtNQ_c6a888eb-b264-4036-9e42-3a2ed89831c8",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "549514",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1CeJgEhQcarr1HfIT5UK29XwapCTxOsOW/view?usp=drivesdk"
+    },
+    {
+      "id": "10mNPIXq_-4ANE0A0WQe-zLpPSIE5XyUD",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:11:37.065Z",
+      "name": "Wide audit 04 — repository code boundaries and organization.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "16210",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/10mNPIXq_-4ANE0A0WQe-zLpPSIE5XyUD/view?usp=drivesdk"
+    },
+    {
+      "id": "1ks4P4nCAmFwQCjwCbwwMuTudddYSe8Mh",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:11:21.200Z",
+      "name": "Wide Audit 03 — Ashfen Task_Game Guide.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "15942",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1ks4P4nCAmFwQCjwCbwwMuTudddYSe8Mh/view?usp=drivesdk"
+    },
+    {
+      "id": "1wJiQUsjf0fbIXEnoUGMVZfmsPc6zTmM1",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:11:08.629Z",
+      "name": "Wide Drive Root Audit — Ashfen _ PolyCodex _ TypeScript _ Schema _ JavaScript _ Node _ Integration _ Archive.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11800",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1wJiQUsjf0fbIXEnoUGMVZfmsPc6zTmM1/view?usp=drivesdk"
+    },
+    {
+      "id": "1QTvQU6uLhesQ0qLJEaMunpY6vBhP3-Fq",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:10:49.655Z",
+      "name": "Wide Drive and TypeScript_Node Tidy Plan.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "17606",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1QTvQU6uLhesQ0qLJEaMunpY6vBhP3-Fq/view?usp=drivesdk"
+    },
+    {
+      "id": "1ipJEWn6Tp7na7Y0XH7TQdrXCCNsAqwOg",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-20T12:10:29.665Z",
+      "name": "drive-root-manifest-2026-09-20.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "83862",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1ipJEWn6Tp7na7Y0XH7TQdrXCCNsAqwOg/view?usp=drivesdk"
+    },
+    {
+      "id": "1Mge0bawIvAAai2vEGRPUVX8dYUpLtjvR",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T12:10:12.253Z",
+      "name": "Drive tidy candidates — read-only manifest.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "5425",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Mge0bawIvAAai2vEGRPUVX8dYUpLtjvR/view?usp=drivesdk"
+    },
+    {
+      "id": "1uRHLcIHmCJHOHfyU0dgXXbmNbAELybgE",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T11:17:14.037Z",
+      "name": "Drive tidy candidates — read-only manifest.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "5425",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1uRHLcIHmCJHOHfyU0dgXXbmNbAELybgE/view?usp=drivesdk"
+    },
+    {
+      "id": "1BakSwmfDOyOX9ybqaxU62_rsh4uQPbuT",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-20T10:57:00.228Z",
+      "name": "Ashfen Remaster Integration Plan.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11998",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1BakSwmfDOyOX9ybqaxU62_rsh4uQPbuT/view?usp=drivesdk"
+    },
+    {
+      "id": "1Zz2IqA5ZOJHwxz-b0DGpN1Gfp-hh-dQfBIqpTI4YRCg",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-20T09:37:54.931Z",
+      "name": "RustTableTurnCurl",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11300",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1Zz2IqA5ZOJHwxz-b0DGpN1Gfp-hh-dQfBIqpTI4YRCg/edit?usp=drivesdk"
+    },
+    {
+      "id": "1WiZOgNnyxmdkbB8JxYJvWERxUCkQxZ95GgTa2m7VYEc",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-20T09:21:00.314Z",
+      "name": "SummarizedBitPiece",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "40699",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1WiZOgNnyxmdkbB8JxYJvWERxUCkQxZ95GgTa2m7VYEc/edit?usp=drivesdk"
+    },
+    {
+      "id": "1TXLUGoc0M6zErv1toBdodo6aA4mxK5Kp",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-20T08:57:16.289Z",
+      "name": "PolyCodex / Crosshatch Relay",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "370519",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1TXLUGoc0M6zErv1toBdodo6aA4mxK5Kp/view?usp=drivesdk"
+    },
+    {
+      "id": "1OvPG4zvzZhdvVzZ1JrnW-QuqB6nAIZ5HQIbuzy81DkU",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-19T21:53:09.016Z",
+      "name": "Yobro",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2841",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1OvPG4zvzZhdvVzZ1JrnW-QuqB6nAIZ5HQIbuzy81DkU/edit?usp=drivesdk"
+    },
+    {
+      "id": "1OQS8DWrw0C74CHmAEHevGmsxT3bPPdg9-UDtko-5XEQ",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-19T21:11:41.243Z",
+      "name": "pastednotations",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "17829",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1OQS8DWrw0C74CHmAEHevGmsxT3bPPdg9-UDtko-5XEQ/edit?usp=drivesdk"
+    },
+    {
+      "id": "1AUSiXqjYmA_Ve_AAcUrPABz7-xiDiYdqkbz5sepEhHE",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-19T18:26:30.889Z",
+      "name": "SuperPolyCodex64",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "50007",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1AUSiXqjYmA_Ve_AAcUrPABz7-xiDiYdqkbz5sepEhHE/edit?usp=drivesdk"
+    },
+    {
+      "id": "1mT4v8UaU_GBx3VxbIpvmTGb0nRDLwuGJ",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-19T14:17:53.026Z",
+      "name": "brokengame.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "54995053",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1mT4v8UaU_GBx3VxbIpvmTGb0nRDLwuGJ/view?usp=drivesdk"
+    },
+    {
+      "id": "1DgLrdZZE-IzeXONgyJFjz-qKbWoTiBMK",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-19T13:48:49.673Z",
+      "name": "3d2dgameclient.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "25960491",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1DgLrdZZE-IzeXONgyJFjz-qKbWoTiBMK/view?usp=drivesdk"
+    },
+    {
+      "id": "1Coi2e52kZDvnul41n75g0zolDDuPvmc9",
+      "mimeType": "text/html",
+      "modifiedTime": "2026-09-19T13:12:03.140Z",
+      "name": "bGVnYWN5_2ab2d803-a678-40da-887f-079a62410707",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "549517",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Coi2e52kZDvnul41n75g0zolDDuPvmc9/view?usp=drivesdk"
+    },
+    {
+      "id": "1V2lHD93qL05XZFIPBZqZ5TBnXk8OHeen",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-19T07:46:22.273Z",
+      "name": "polyteal",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "370519",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1V2lHD93qL05XZFIPBZqZ5TBnXk8OHeen/view?usp=drivesdk"
+    },
+    {
+      "id": "1YWWUa7iIAq-sjzn_UGX_eoVGC17XBs7f",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-19T07:37:47.400Z",
+      "name": "PolyCodex / Crosshatch Relay",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "370519",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1YWWUa7iIAq-sjzn_UGX_eoVGC17XBs7f/view?usp=drivesdk"
+    },
+    {
+      "id": "1cJ0Waub45RXA0PaK8OQmzQzIKs56bVfc",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-19T07:36:58.607Z",
+      "name": "manus-website-polycodex-crosshatch",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "370519",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1cJ0Waub45RXA0PaK8OQmzQzIKs56bVfc/view?usp=drivesdk"
+    },
+    {
+      "id": "1NfALFLyXG6nsuXmHq7M7LJtc-JBsDAD9",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T07:17:33.463Z",
+      "name": "PolyCodex Care Package Index.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "4390",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1NfALFLyXG6nsuXmHq7M7LJtc-JBsDAD9/view?usp=drivesdk"
+    },
+    {
+      "id": "1gejmqhvUvQZO_H4QUkf6JjB1gq8hd7fR",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-19T07:17:04.550Z",
+      "name": "manifest.sha256",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2691",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1gejmqhvUvQZO_H4QUkf6JjB1gq8hd7fR/view?usp=drivesdk"
+    },
+    {
+      "id": "1GJr54nfkPNSAEqZWQlvMLZaX48OMxHT0",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:16:47.992Z",
+      "name": "last_report.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1954",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1GJr54nfkPNSAEqZWQlvMLZaX48OMxHT0/view?usp=drivesdk"
+    },
+    {
+      "id": "10prMnoqM-YolaksoHaK3Xpw7BPjjVekD",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:16:33.046Z",
+      "name": "manus-task-create-d6f82c66f0bc.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1063",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/10prMnoqM-YolaksoHaK3Xpw7BPjjVekD/view?usp=drivesdk"
+    },
+    {
+      "id": "1o0ycLXva_AyZSOpNpl-OIDSWpZt8S-L3",
+      "mimeType": "text/x-python-script",
+      "modifiedTime": "2026-09-19T07:16:15.103Z",
+      "name": "validate_manus_plan.py",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2613",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1o0ycLXva_AyZSOpNpl-OIDSWpZt8S-L3/view?usp=drivesdk"
+    },
+    {
+      "id": "1T4ZCS8XpaZE_o0lljUaQHmAzQGVuRLTc",
+      "mimeType": "text/x-python-script",
+      "modifiedTime": "2026-09-19T07:16:01.884Z",
+      "name": "manus_task_preview.py",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2576",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1T4ZCS8XpaZE_o0lljUaQHmAzQGVuRLTc/view?usp=drivesdk"
+    },
+    {
+      "id": "1V09ZRDO5PYla6BAnR1Aw4_aWknp5khOD",
+      "mimeType": "text/x-python-script",
+      "modifiedTime": "2026-09-19T07:15:42.478Z",
+      "name": "classify_drive_sources.py",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "3691",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1V09ZRDO5PYla6BAnR1Aw4_aWknp5khOD/view?usp=drivesdk"
+    },
+    {
+      "id": "1ZnhUtCekqBjnz_ZA00YuEO2-g-BXTs2g",
+      "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "modifiedTime": "2026-09-19T07:15:24.066Z",
+      "name": "repository_hash_laboratory_tracker.xlsx",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11645",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/spreadsheets/d/1ZnhUtCekqBjnz_ZA00YuEO2-g-BXTs2g/edit?usp=drivesdk&ouid=111245538812701366049&rtpof=true&sd=true"
+    },
+    {
+      "id": "1Bf9Yh_V1zr4STnvDOZNm4NdQciF-5nS8",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:14:35.781Z",
+      "name": "build_backlog.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1883",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Bf9Yh_V1zr4STnvDOZNm4NdQciF-5nS8/view?usp=drivesdk"
+    },
+    {
+      "id": "1i0xKDgQDAcGbOPQyT60kt1lvf-Gez6sI",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:14:15.403Z",
+      "name": "source_classification.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "150113",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1i0xKDgQDAcGbOPQyT60kt1lvf-Gez6sI/view?usp=drivesdk"
+    },
+    {
+      "id": "16Iv2J8gB6stePV7eb_WF8Tk98LyFrjkx",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:13:52.374Z",
+      "name": "drive_audit_summary.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "4156",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/16Iv2J8gB6stePV7eb_WF8Tk98LyFrjkx/view?usp=drivesdk"
+    },
+    {
+      "id": "1mhT_bfjbkHM4pT1-MSQSQ3PNEVSBSznF",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T07:13:24.203Z",
+      "name": "repository_registry.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1588",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1mhT_bfjbkHM4pT1-MSQSQ3PNEVSBSznF/view?usp=drivesdk"
+    },
+    {
+      "id": "1jFsS_UYqVgEPWQy5y7JFaM-xGSaL7ai3",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T07:13:05.953Z",
+      "name": "POLY_LAB_01_PLAN.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2503",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1jFsS_UYqVgEPWQy5y7JFaM-xGSaL7ai3/view?usp=drivesdk"
+    },
+    {
+      "id": "11nCu9EuHEEnaVp-w0yOPSW7a8x81uAlB",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T07:12:50.958Z",
+      "name": "POLY_LAB_01_REPORT.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "4471",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/11nCu9EuHEEnaVp-w0yOPSW7a8x81uAlB/view?usp=drivesdk"
+    },
+    {
+      "id": "1KsZPl_twcsyCO4VSrVPzmKlgeOqVGFHO",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T06:51:24.227Z",
+      "name": "netlify-deploy_create-8d408dc8287d.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "571",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1KsZPl_twcsyCO4VSrVPzmKlgeOqVGFHO/view?usp=drivesdk"
+    },
+    {
+      "id": "1LZovVDxIzQA3fNeuTGKMYiunxwU3T_yG",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-19T06:51:11.026Z",
+      "name": "manifest.sha256",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "998",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1LZovVDxIzQA3fNeuTGKMYiunxwU3T_yG/view?usp=drivesdk"
+    },
+    {
+      "id": "1_YDCVP0C0QDZfPfmRcBAESvOuo07rkYl",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T06:50:52.841Z",
+      "name": "last_report.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1054",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1_YDCVP0C0QDZfPfmRcBAESvOuo07rkYl/view?usp=drivesdk"
+    },
+    {
+      "id": "15WuTSqwgW2JZqVvxgDy5Kmo7L05q-1ty",
+      "mimeType": "text/x-python-script",
+      "modifiedTime": "2026-09-19T06:50:23.592Z",
+      "name": "plan_connector_action.py",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2482",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/15WuTSqwgW2JZqVvxgDy5Kmo7L05q-1ty/view?usp=drivesdk"
+    },
+    {
+      "id": "1wHibpqd0kMrZfQjs9B5niWD-8EaAVACz",
+      "mimeType": "text/x-python-script",
+      "modifiedTime": "2026-09-19T06:49:55.800Z",
+      "name": "latch_package.py",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1729",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1wHibpqd0kMrZfQjs9B5niWD-8EaAVACz/view?usp=drivesdk"
+    },
+    {
+      "id": "1m_FliXFQUdUIqLv3eraVsaEwx81JHU1a",
+      "mimeType": "application/json",
+      "modifiedTime": "2026-09-19T06:49:23.164Z",
+      "name": "connector_policies.json",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1534",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1m_FliXFQUdUIqLv3eraVsaEwx81JHU1a/view?usp=drivesdk"
+    },
+    {
+      "id": "12uyHi2-eOY5g4OqRSaM_n8OaXNI9dcCo",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T06:48:54.956Z",
+      "name": "PolyCodex Care Package Index.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "3513",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/12uyHi2-eOY5g4OqRSaM_n8OaXNI9dcCo/view?usp=drivesdk"
+    },
+    {
+      "id": "1dN6LebGIPbV2Hn8ryYAdn04EQuc1A9As",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T06:48:24.978Z",
+      "name": "LABORATORY_BLUEPRINT.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "8734",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1dN6LebGIPbV2Hn8ryYAdn04EQuc1A9As/view?usp=drivesdk"
+    },
+    {
+      "id": "1s-OBfcHsj4hXqJNiSYO8FRd_fux3O3rh",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T01:47:22.747Z",
+      "name": "Polycodex Human Characters Pass — 2026-09-18.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1419",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1s-OBfcHsj4hXqJNiSYO8FRd_fux3O3rh/view?usp=drivesdk"
+    },
+    {
+      "id": "1hDG5MiUvfCZDIGcAWOXUCePJaZsECCG0",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-19T01:46:59.949Z",
+      "name": "polycodex-human-characters-artifacts-2026-09-18.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "7881",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1hDG5MiUvfCZDIGcAWOXUCePJaZsECCG0/view?usp=drivesdk"
+    },
+    {
+      "id": "18-JxQMe5qg32yjapFNYFIrJANLXgUALU",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T01:44:02.774Z",
+      "name": "Polycodex Camera Traction Pass — 2026-09-18.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1377",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/18-JxQMe5qg32yjapFNYFIrJANLXgUALU/view?usp=drivesdk"
+    },
+    {
+      "id": "1Cg66ybmdKsT-N6d3mj05zZsvH3NKTWfU",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-19T01:43:44.417Z",
+      "name": "polycodex-camera-traction-artifacts-2026-09-18.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "14141",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Cg66ybmdKsT-N6d3mj05zZsvH3NKTWfU/view?usp=drivesdk"
+    },
+    {
+      "id": "124p-XsgYrceW4PUS9HLqe289JaGOI6QJ",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T01:40:52.343Z",
+      "name": "POLYCODEX_NEXT_DECISION_AUDIT_2026-09-18.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "9008",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/124p-XsgYrceW4PUS9HLqe289JaGOI6QJ/view?usp=drivesdk"
+    },
+    {
+      "id": "1s9yMK8DrETnrYb2bnUYD5cMTXK9TQvxd",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-19T01:34:48.008Z",
+      "name": "Polycodex Gradient Art Upgrade — 2026-09-18.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1834",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1s9yMK8DrETnrYb2bnUYD5cMTXK9TQvxd/view?usp=drivesdk"
+    },
+    {
+      "id": "1ATIcr25hZZLHrfHj7F4aKSuUXd1mTQZh",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-19T01:34:16.028Z",
+      "name": "polycodex-gradient-art-artifacts-2026-09-18.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "9347",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1ATIcr25hZZLHrfHj7F4aKSuUXd1mTQZh/view?usp=drivesdk"
+    },
+    {
+      "id": "1lKbGSFJslAv6nge3wOmAOiMEdvS_JOEd",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-19T00:16:58.851Z",
+      "name": "wayforge.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "75440424",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1lKbGSFJslAv6nge3wOmAOiMEdvS_JOEd/view?usp=drivesdk"
+    },
+    {
+      "id": "1Gfxs8VhMCY3TPUlbsk5NyVxooILecYsf",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-19T00:08:43.392Z",
+      "name": "rpg-ui.test.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2720",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Gfxs8VhMCY3TPUlbsk5NyVxooILecYsf/view?usp=drivesdk"
+    },
+    {
+      "id": "1vt_J2uohxSMNTwpk0niUHRCFgseHTltE",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-19T00:08:20.457Z",
+      "name": "game-store.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11542",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1vt_J2uohxSMNTwpk0niUHRCFgseHTltE/view?usp=drivesdk"
+    },
+    {
+      "id": "1TrAy9NEIJoHnwFIeOcDZ2MLWrXEMrnTN",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T20:12:12.889Z",
+      "name": "rpg.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "9863",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1TrAy9NEIJoHnwFIeOcDZ2MLWrXEMrnTN/view?usp=drivesdk"
+    },
+    {
+      "id": "1Ykc69fgDsHKzsH5MXLkyFvH2jmKFj-Uc",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T20:10:18.000Z",
+      "name": "rpg.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "6498",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Ykc69fgDsHKzsH5MXLkyFvH2jmKFj-Uc/view?usp=drivesdk"
+    },
+    {
+      "id": "1DuKlz4pJ_qWyoCbFmT2fJCjYXH2d9ECx",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T20:08:11.814Z",
+      "name": "rpg-ui.test.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1895",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1DuKlz4pJ_qWyoCbFmT2fJCjYXH2d9ECx/view?usp=drivesdk"
+    },
+    {
+      "id": "1j9NWw2x4dL8f7fQjAwgxtfz33qZHPmyS",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T20:08:00.649Z",
+      "name": "game-store.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11118",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1j9NWw2x4dL8f7fQjAwgxtfz33qZHPmyS/view?usp=drivesdk"
+    },
+    {
+      "id": "1DeB_pXeiM-ijoF-jTUAJDA4bneUFwP8Q",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T20:07:49.945Z",
+      "name": "rpg.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "3859",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1DeB_pXeiM-ijoF-jTUAJDA4bneUFwP8Q/view?usp=drivesdk"
+    },
+    {
+      "id": "1ljMwP49miMCnuJJyru7cYfmXN3nyr0ty",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T20:07:38.525Z",
+      "name": "audio.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "3061",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1ljMwP49miMCnuJJyru7cYfmXN3nyr0ty/view?usp=drivesdk"
+    },
+    {
+      "id": "1MIAyG-X1wxsMk_NXJVPlxIVGN3cs3wBI67I9wHZSE-Q",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-18T20:02:41.742Z",
+      "name": "StyleCaster",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "16328",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1MIAyG-X1wxsMk_NXJVPlxIVGN3cs3wBI67I9wHZSE-Q/edit?usp=drivesdk"
+    },
+    {
+      "id": "1F7euIYUCmdnEQieM08ug_puoYKLU5-5fIDOfVyUXonQ",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-18T19:50:39.925Z",
+      "name": "StyleCastPending",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "12012",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1F7euIYUCmdnEQieM08ug_puoYKLU5-5fIDOfVyUXonQ/edit?usp=drivesdk"
+    },
+    {
+      "id": "1CeYKvZiR7b2O6yiR1kjXoZH0vTnyuD1N6w2MJ12Crk4",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-18T19:44:54.884Z",
+      "name": "StyleCastPend",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "13720",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/1CeYKvZiR7b2O6yiR1kjXoZH0vTnyuD1N6w2MJ12Crk4/edit?usp=drivesdk"
+    },
+    {
+      "id": "1E4Y2_3d6tejguOWo9ufWMK6D5ftXqmrp",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T18:34:54.397Z",
+      "name": "player.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1672",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1E4Y2_3d6tejguOWo9ufWMK6D5ftXqmrp/view?usp=drivesdk"
+    },
+    {
+      "id": "1DmYTTG2V7c5Jny_k0NJ5-u6vxQBnCzrT",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T18:34:39.624Z",
+      "name": "cosmetics.test.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1242",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1DmYTTG2V7c5Jny_k0NJ5-u6vxQBnCzrT/view?usp=drivesdk"
+    },
+    {
+      "id": "1eKD7J8ABZdnYPgokrVcjLaxkILeqIZA9",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T18:34:22.087Z",
+      "name": "cosmetics.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "3497",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1eKD7J8ABZdnYPgokrVcjLaxkILeqIZA9/view?usp=drivesdk"
+    },
+    {
+      "id": "1v0uzXMeqvY0_VVDLsXv6YWAP-Eoo5TVj",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T18:34:00.620Z",
+      "name": "polycodex-cosmetics-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "24171",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1v0uzXMeqvY0_VVDLsXv6YWAP-Eoo5TVj/view?usp=drivesdk"
+    },
+    {
+      "id": "10xejXmfQ1-OuIqxHz7DRdj82REgqoXji",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T18:33:36.673Z",
+      "name": "COSMETICS_PASS.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1165",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/10xejXmfQ1-OuIqxHz7DRdj82REgqoXji/view?usp=drivesdk"
+    },
+    {
+      "id": "1uutCcv-TJtSprVZlpUzlKVbV4x18PGzx",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-18T17:05:04.863Z",
+      "name": "Hud.tsx",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "24312",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1uutCcv-TJtSprVZlpUzlKVbV4x18PGzx/view?usp=drivesdk"
+    },
+    {
+      "id": "1iVQUeqPOtigMecPBjlOdM-DoKZDnTY0t",
+      "mimeType": "application/octet-stream",
+      "modifiedTime": "2026-09-18T17:04:44.442Z",
+      "name": "GameCanvas.tsx",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "41581",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1iVQUeqPOtigMecPBjlOdM-DoKZDnTY0t/view?usp=drivesdk"
+    },
+    {
+      "id": "1Iq4bxrMeHZfKUKvt-R-SyWvQOJoiKTML",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T17:04:16.091Z",
+      "name": "game-store.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "9537",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Iq4bxrMeHZfKUKvt-R-SyWvQOJoiKTML/view?usp=drivesdk"
+    },
+    {
+      "id": "1gW0BAlMQt1Yk7QaZZvINj9mX7HLAn5l8",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T17:04:00.526Z",
+      "name": "input.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "869",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1gW0BAlMQt1Yk7QaZZvINj9mX7HLAn5l8/view?usp=drivesdk"
+    },
+    {
+      "id": "1tLPT7jzhqYwYHNL0U22vjZMhnrJmEEfy",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T17:03:24.054Z",
+      "name": "actions.test.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "901",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1tLPT7jzhqYwYHNL0U22vjZMhnrJmEEfy/view?usp=drivesdk"
+    },
+    {
+      "id": "1fKdngImH2zxSIdBB1NceQKAUOzkFbesk",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T17:03:07.669Z",
+      "name": "actions.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1751",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1fKdngImH2zxSIdBB1NceQKAUOzkFbesk/view?usp=drivesdk"
+    },
+    {
+      "id": "1N463gvV3FoO_pl3GBTVLY8S5IK_k8irK",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T17:02:47.645Z",
+      "name": "physics.test.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1412",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1N463gvV3FoO_pl3GBTVLY8S5IK_k8irK/view?usp=drivesdk"
+    },
+    {
+      "id": "1k5wP1htf4kApVVsXD324h0TDhOx10YkJ",
+      "mimeType": "text/texmacs",
+      "modifiedTime": "2026-09-18T17:02:22.948Z",
+      "name": "physics.ts",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "4270",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1k5wP1htf4kApVVsXD324h0TDhOx10YkJ/view?usp=drivesdk"
+    },
+    {
+      "id": "1V5QhxWk6JwbcHoIYpnhHIjr_6v0hHXhn",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T17:02:00.575Z",
+      "name": "polycodex-physics-action-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "25105",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1V5QhxWk6JwbcHoIYpnhHIjr_6v0hHXhn/view?usp=drivesdk"
+    },
+    {
+      "id": "1rLw8xh3gx9x1rGHuO0y9gzouhHTKp4tf",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T17:01:39.495Z",
+      "name": "PHYSICS_ACTION_PASS.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2025",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1rLw8xh3gx9x1rGHuO0y9gzouhHTKp4tf/view?usp=drivesdk"
+    },
+    {
+      "id": "18cxDFpV3zYDiMMoYBOOaebkgm3oxvPdv9stDlWvDCxg",
+      "mimeType": "application/vnd.google-apps.document",
+      "modifiedTime": "2026-09-18T16:43:29.936Z",
+      "name": "ManusCommands",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1024",
+      "starred": true,
+      "webViewLink": "https://docs.google.com/document/d/18cxDFpV3zYDiMMoYBOOaebkgm3oxvPdv9stDlWvDCxg/edit?usp=drivesdk"
+    },
+    {
+      "id": "1zwpR3wtmLs3fHc59S0J3c2rLopEc7LX2",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T16:42:21.408Z",
+      "name": "polycodex-login-account-cache-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "11219",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1zwpR3wtmLs3fHc59S0J3c2rLopEc7LX2/view?usp=drivesdk"
+    },
+    {
+      "id": "1Gt28lSVtMtuUmz1aBQ9eioXtxpl74eA9",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T16:42:07.703Z",
+      "name": "AUTH_LOGIN_PASS.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1459",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Gt28lSVtMtuUmz1aBQ9eioXtxpl74eA9/view?usp=drivesdk"
+    },
+    {
+      "id": "1CqUMlbevTYRMSDNyFqAcjvr_uOiyP2nR",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T16:37:03.218Z",
+      "name": "ashfen-map-art-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "10853",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1CqUMlbevTYRMSDNyFqAcjvr_uOiyP2nR/view?usp=drivesdk"
+    },
+    {
+      "id": "1PBa0RGmgdo5P0JmRRk4qijVnIZKatajE",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T16:35:34.285Z",
+      "name": "ashfen-map-art-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "10853",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1PBa0RGmgdo5P0JmRRk4qijVnIZKatajE/view?usp=drivesdk"
+    },
+    {
+      "id": "12YNlJJzV02HIUMvvBvNj5zPhCUO8BUne",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T16:35:17.553Z",
+      "name": "Ashfen Authored Map Art Pass.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1200",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/12YNlJJzV02HIUMvvBvNj5zPhCUO8BUne/view?usp=drivesdk"
+    },
+    {
+      "id": "1I9CqGbrquPPM7CLXLKiiuFD4r1VzcHLk",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T16:29:41.414Z",
+      "name": "Ashfen Multiplayer Slice.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2749",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1I9CqGbrquPPM7CLXLKiiuFD4r1VzcHLk/view?usp=drivesdk"
+    },
+    {
+      "id": "1uC6FX6RDhNVCd5eJ-y5gkBto_3LvxOzR",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T16:28:56.096Z",
+      "name": "ashfen-authoritative-presence-slice.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "36722",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1uC6FX6RDhNVCd5eJ-y5gkBto_3LvxOzR/view?usp=drivesdk"
+    },
+    {
+      "id": "1TPX0lUlqnDaEDULF6_A0DQrBuMaAJ_NI",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T16:28:34.914Z",
+      "name": "ASHFEN_AUTHORITATIVE_PRESENCE_DELIVERY.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1654",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1TPX0lUlqnDaEDULF6_A0DQrBuMaAJ_NI/view?usp=drivesdk"
+    },
+    {
+      "id": "18HVe4ChjTu9rbnqhuaFKXFUebCaKhz_-",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:56:55.078Z",
+      "name": "MULTIPLAYER_README.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1700",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/18HVe4ChjTu9rbnqhuaFKXFUebCaKhz_-/view?usp=drivesdk"
+    },
+    {
+      "id": "1hylOFKcAGuVxORsCyswLEGmzIQkJE-wv",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:56:30.191Z",
+      "name": "ashfen-multiplayer-slice.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "25775",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1hylOFKcAGuVxORsCyswLEGmzIQkJE-wv/view?usp=drivesdk"
+    },
+    {
+      "id": "1ri2UQkpJ8FGk3jOKi0-cdIgM97aeM5Xk",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:55:49.910Z",
+      "name": "ASHFEN_MULTIPLAYER_DELIVERY.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1998",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1ri2UQkpJ8FGk3jOKi0-cdIgM97aeM5Xk/view?usp=drivesdk"
+    },
+    {
+      "id": "133KTd15kLr_dfYzI0XYKAjLT-Z7occdA",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:41:52.836Z",
+      "name": "ashfen-multiplayer-slice.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "25775",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/133KTd15kLr_dfYzI0XYKAjLT-Z7occdA/view?usp=drivesdk"
+    },
+    {
+      "id": "1BhSH-U-NfvsPxLidG1HPreLk4kXewGYu",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:41:34.822Z",
+      "name": "ASHFEN_MULTIPLAYER_DELIVERY.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "1998",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1BhSH-U-NfvsPxLidG1HPreLk4kXewGYu/view?usp=drivesdk"
+    },
+    {
+      "id": "1CgNVJ15YK9FpAazPMxs4eSUl03_MU7da",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:20:13.275Z",
+      "name": "Ashfen Enhancement Pass.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "4290",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1CgNVJ15YK9FpAazPMxs4eSUl03_MU7da/view?usp=drivesdk"
+    },
+    {
+      "id": "1Y7I5RqLRRWuaEE2OvduuRYMvO-E3V3aI",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:18:44.586Z",
+      "name": "ashfen-enhancement-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "20556",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1Y7I5RqLRRWuaEE2OvduuRYMvO-E3V3aI/view?usp=drivesdk"
+    },
+    {
+      "id": "1a-LEV0_Rvzj31-QjR3BBd31KFsMpGda0",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:08:38.956Z",
+      "name": "Ashfen Enhancement Pass.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "3223",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1a-LEV0_Rvzj31-QjR3BBd31KFsMpGda0/view?usp=drivesdk"
+    },
+    {
+      "id": "1k0shYOgNRc2EqG9FCvjs5RCeFyml2oku",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:06:38.633Z",
+      "name": "ashfen-enhancement-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "20556",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1k0shYOgNRc2EqG9FCvjs5RCeFyml2oku/view?usp=drivesdk"
+    },
+    {
+      "id": "1iZM6SOi4jweCQQIQssEZfdMDG2bZ-GZ_",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T14:03:05.846Z",
+      "name": "Ashfen Enhancement Pass.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2660",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1iZM6SOi4jweCQQIQssEZfdMDG2bZ-GZ_/view?usp=drivesdk"
+    },
+    {
+      "id": "1sq85KLAKMIFotw3pgh7mXL5EpDnHtPvN",
+      "mimeType": "application/zip",
+      "modifiedTime": "2026-09-18T14:02:21.785Z",
+      "name": "ashfen-enhancement-pass.zip",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "20154",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1sq85KLAKMIFotw3pgh7mXL5EpDnHtPvN/view?usp=drivesdk"
+    },
+    {
+      "id": "1ejHhuaPta5QvGPeWHVczws8l3s3n1qBx",
+      "mimeType": "text/markdown",
+      "modifiedTime": "2026-09-18T13:57:13.397Z",
+      "name": "ASHFEN_ENHANCEMENT_NOTES.md",
+      "parents": [
+        "1cEG70HH2X_ezs9zbWfRAmxEX1rzzxegQ"
+      ],
+      "size": "2025",
+      "starred": true,
+      "webViewLink": "https://drive.google.com/file/d/1ejHhuaPta5QvGPeWHVczws8l3s3n1qBx/view?usp=drivesdk"
+    }
+  ]
+}
