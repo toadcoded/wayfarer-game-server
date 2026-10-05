@@ -78,6 +78,20 @@ test('profile-capacity errors and invalid asset requests do not fault the runnin
   }finally{await host?.close();store?.close();await rm(dir,{recursive:true,force:true});}
 });
 
+test('guest enrollment limit is configurable per address and existing guests can reuse their cookie',async()=>{
+  const dir=await mkdtemp(path.join(os.tmpdir(),'wayfarer-enrollment-limit-'));let host,store;
+  try {
+    store=await SqliteRealmStore.open(path.join(dir,'realm.sqlite'),{maxProfiles:10});
+    host=await createLocalRealmServer({publicOrigin,profileStoreOverride:store,autoTick:false,guestRegistrationsPerMinute:2});
+    const req=(url,headers={})=>requestAt(host,url,headers);
+    const first=await req('/');assert.equal(first.status,200);const cookie=first.headers.get('set-cookie').split(';')[0];
+    const second=await req('/');assert.equal(second.status,200);
+    const limited=await req('/');assert.equal(limited.status,429);assert.equal(limited.headers.get('retry-after'),'60');assert.match(await limited.text(),/from this network.*reuse its existing guest session/);
+    assert.equal((await req('/',{Cookie:cookie})).status,200);
+    assert.equal(store.count,2);assert.equal(host.faulted,false);
+  }finally{await host?.close();store?.close();await rm(dir,{recursive:true,force:true});}
+});
+
 test('16-player realm ticks at configured capacity; malformed peer cannot stop other players',async()=>{
   const dir=await mkdtemp(path.join(os.tmpdir(),'wayfarer-capacity-'));let host,store;const sockets=[];
   try {

@@ -15,9 +15,10 @@ const save=(x=1)=>checkedPlayerSave({version:1,position:{x,z:0},gameplay:freshPe
 const temp=()=>mkdtemp(path.join(os.tmpdir(),'wayfarer-v1-'));
 
 test('production configuration rejects missing HTTPS origin and invalid bounds',()=>{
-  for(const env of [{NODE_ENV:'production'},{PUBLIC_ORIGIN:'http://example.com'},{PUBLIC_ORIGIN:'https://example.com/'},{PORT:'0'},{REALM_CAPACITY:'33'},{SAVE_INTERVAL_MS:'NaN'},{TRUST_PROXY:'yes'}]) assert.throws(()=>serverConfig(env));
+  for(const env of [{NODE_ENV:'production'},{PUBLIC_ORIGIN:'http://example.com'},{PUBLIC_ORIGIN:'https://example.com/'},{PORT:'0'},{REALM_CAPACITY:'33'},{SAVE_INTERVAL_MS:'NaN'},{TRUST_PROXY:'yes'},{GUEST_REGISTRATIONS_PER_MINUTE:'0'},{GUEST_REGISTRATIONS_PER_MINUTE:'101'},{GUEST_REGISTRATIONS_PER_MINUTE:'NaN'}]) assert.throws(()=>serverConfig(env));
   const cfg=serverConfig({NODE_ENV:'production',PUBLIC_ORIGIN:'https://play.example.com'});
-  assert.equal(cfg.bindHost,'0.0.0.0');assert.equal(cfg.trustProxy,false);assert.equal(cfg.capacity,16);
+  assert.equal(cfg.bindHost,'0.0.0.0');assert.equal(cfg.trustProxy,false);assert.equal(cfg.capacity,16);assert.equal(cfg.guestRegistrationsPerMinute,5);
+  assert.equal(serverConfig({GUEST_REGISTRATIONS_PER_MINUTE:'20'}).guestRegistrationsPerMinute,20);
 });
 
 test('request limiter bounds memory, rejects excess and expires old windows',()=>{

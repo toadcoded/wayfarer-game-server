@@ -19,15 +19,15 @@ function realmPosition(scene){const p=scene.navigation.check(scene.plan.goal??sc
 const root=fileURLToPath(new URL('../',import.meta.url));
 const mime={'.jpeg':'image/jpeg','.jpg':'image/jpeg','.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.png':'image/png','.gif':'image/gif','.json':'application/json','.css':'text/css; charset=utf-8','.wasm':'application/wasm'};
 /** Loopback-only transport rehearsal. Optional local durable profiles remain server-owned. */
-export async function createLocalRealmServer({port=0,capacity=8,heartbeatMs=15000,scene=createRealmScene(),autoTick=true,handshakeMs=5000,recordReplay=false,profilePath=false,profileFlushMs=1000,xam=false,xamPath=false,bindHost='127.0.0.1',publicOrigin=false,profileStoreOverride,xamStoreOverride,trustProxy=false}={}){
- if(!Number.isInteger(port)||port<0||port>65535||!Number.isInteger(heartbeatMs)||heartbeatMs<50||!Number.isInteger(handshakeMs)||handshakeMs<50||handshakeMs>30000||!Number.isInteger(profileFlushMs)||profileFlushMs<100||profileFlushMs>60000)throw new Error('Invalid host options');
+export async function createLocalRealmServer({port=0,capacity=8,heartbeatMs=15000,scene=createRealmScene(),autoTick=true,handshakeMs=5000,recordReplay=false,profilePath=false,profileFlushMs=1000,xam=false,xamPath=false,bindHost='127.0.0.1',publicOrigin=false,profileStoreOverride,xamStoreOverride,trustProxy=false,guestRegistrationsPerMinute=5}={}){
+ if(!Number.isInteger(port)||port<0||port>65535||!Number.isInteger(heartbeatMs)||heartbeatMs<50||!Number.isInteger(handshakeMs)||handshakeMs<50||handshakeMs>30000||!Number.isInteger(profileFlushMs)||profileFlushMs<100||profileFlushMs>60000||!Number.isInteger(guestRegistrationsPerMinute)||guestRegistrationsPerMinute<1||guestRegistrationsPerMinute>100)throw new Error('Invalid host options');
  if(typeof xam!=='boolean'||(xamPath!==false&&(typeof xamPath!=='string'||!xamPath)))throw Error('Invalid Xam configuration');
  if(!Number.isInteger(capacity)||capacity<1||capacity>32)throw Error('Realm capacity must be 1–32');
  if(publicOrigin){const url=new URL(publicOrigin);if(url.protocol!=='https:'||url.origin!==publicOrigin)throw Error('PUBLIC_ORIGIN must be an exact HTTPS origin');}
  const xamStore=xamStoreOverride??(xam&&xamPath?await XamStore.open(xamPath):undefined);
  const runtimeCapacity=capacity+Number(xam);
  const profileStore=profileStoreOverride??(profilePath?await LocalProfileStore.open(profilePath):undefined);
- const requests=new RequestLimits(),registrations=new RequestLimits({limit:5}),upgrades=new RequestLimits({limit:30});
+ const requests=new RequestLimits(),registrations=new RequestLimits({limit:guestRegistrationsPerMinute}),upgrades=new RequestLimits({limit:30});
  const codex=realmCodexPoint(scene);const realm=new RealmRuntime(scene.navigation,{capacity:runtimeCapacity,visibilityRadius:256,beacon:realmPosition(scene),camp:scene.plan.start,codex});
  const journal=recordReplay?new ReplayJournal(realm,{capacity:runtimeCapacity,visibilityRadius:256,beacon:realmPosition(scene),camp:scene.plan.start,codex}):undefined;
  const restoredXam=xamStore?.value;const bot=xam?new XamAgent(realm,scene.navigation,scene.plan.start,realmPosition(scene),restoredXam?.save,restoredXam?.cursor??0,packet=>journal?.input(bot.connection,packet,realm)):undefined;
@@ -60,7 +60,7 @@ export async function createLocalRealmServer({port=0,capacity=8,heartbeatMs=1500
   try{
    let data=await readFile(path.join(root,relative));
    if(profileStore&&relative==='preview/realm.html'&&req.method==='GET'){
-    if(publicOrigin&&!profileStore.resolveCookie(req.headers.cookie)&&!registrations.allow(address)){res.writeHead(429,{'Retry-After':'60'});res.end('Too many new guest profiles. Retry in a minute.');return;}
+    if(publicOrigin&&!profileStore.resolveCookie(req.headers.cookie)&&!registrations.allow(address)){res.writeHead(429,{'Retry-After':'60'});res.end('Too many new guest profiles from this network. Wait a minute and retry, or reopen the same browser to reuse its existing guest session.');return;}
     try{identity=await profileStore.ensureSession(req.headers.cookie);}catch(error){
      if(error.constructor.name==='ProfileCapacityError'){res.writeHead(503,{'Retry-After':'60'});res.end('Guest profile capacity reached. Existing guests can still play.');return;}
      persistenceFailed=true;fault();res.writeHead(503);res.end();return;

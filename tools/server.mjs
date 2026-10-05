@@ -21,6 +21,7 @@ export function serverConfig(env=process.env) {
   return {port:number('PORT',8081,1,65535),capacity:number('REALM_CAPACITY',16,1,32),
     profileFlushMs:number('SAVE_INTERVAL_MS',1000,100,60000),
     maxProfiles:number('MAX_PROFILES',10000,1,10000),
+    guestRegistrationsPerMinute:number('GUEST_REGISTRATIONS_PER_MINUTE',5,1,100),
     bindHost:origin?'0.0.0.0':'127.0.0.1',publicOrigin:origin,
     trustProxy:boolean('TRUST_PROXY',false),xam:boolean('XAM_ENABLED',true),
     dataDir:path.resolve(env.DATA_DIR||'runtime')};

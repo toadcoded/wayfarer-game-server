@@ -6,7 +6,8 @@
 - Added original procedural Sunward Orchard, Prism Dew garden and Moonlight Cavern presentation inspired by the supplied coastal, crystal-mine, enchanted-book, luminous-fauna and orbital-observatory references.
 - Added a dodecahedral world Codex, twelve pylons/nodes, orbit rings, cavern crystals, timber walk, moon pool, portal, lanterns, glowshrooms and astral snail.
 - Added a dependency-free bridge that upgrades the checked-in Babylon bundle when the normal dependency-backed bundler is unavailable.
-- Fresh Node 24.19.0 / npm 10.9.2 verification: canonical build and full suite **330/330 passed**; Python asset validation **8/8 passed**. See `V1.2-VERIFICATION.md` for scope and remaining deployment/visual-review limits.
+- Made the per-address new-guest enrollment limit configurable (5/minute by default), clarified its retry response, and kept existing guest cookies usable when the new-guest throttle is reached.
+- Fresh Node 24.19.0 / npm 10.9.2 verification: canonical build and full suite **331/331 passed**; Python asset validation **8/8 passed**. See `V1.2-VERIFICATION.md` for scope and remaining deployment/visual-review limits.
 
 ## v1.1.0 — 2026-10-04
 

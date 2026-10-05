@@ -55,7 +55,7 @@ Default capacity is 16 human players plus Xam; configuration accepts 1–32 huma
 
 ## Verification and limits
 
-Fresh v1.2 evidence is in [V1.2-VERIFICATION.md](V1.2-VERIFICATION.md). With Node 24.19.0 and npm 10.9.2, the canonical TypeScript/Babylon build and full automated suite pass **330/330 tests**. The Python asset validator passes **8/8 assets**. The full matrix includes client-to-server WebSocket integration, authoritative gameplay and resonance, SQLite save/restore, and process-restart coverage.
+Fresh v1.2 evidence is in [V1.2-VERIFICATION.md](V1.2-VERIFICATION.md). With Node 24.19.0 and npm 10.9.2, the canonical TypeScript/Babylon build and full automated suite pass **331/331 tests**. The Python asset validator passes **8/8 assets**. The full matrix includes client-to-server WebSocket integration, authoritative gameplay and resonance, SQLite save/restore, guest-enrollment throttling and process-restart coverage.
 
 The three initial failures were stale test assumptions: one expected the offline visual-bundle bridge after a canonical build, one used a DOM stub missing APIs used by the new HUD, and one asserted the old v1.0 page banner. Those test expectations/fixtures were corrected; no server-authority behavior was weakened. The v1.0 verification material remains historical baseline evidence, not proof of the new v1.2 code.
 

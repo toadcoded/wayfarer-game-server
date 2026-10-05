@@ -96,12 +96,13 @@ For the supplied stack, `.env` controls DOMAIN, EMAIL and REALM_CAPACITY. Other 
 | REALM_CAPACITY | 16 | Human players, 1–32; Xam is additional |
 | SAVE_INTERVAL_MS | 1000 | Integer 100–60000; longer intervals risk more unsaved progress |
 | MAX_PROFILES | 10000 | Guest enrollment cap, 1–10000; existing guests remain usable at the cap |
+| GUEST_REGISTRATIONS_PER_MINUTE | 5 | New guest profiles per source address per minute, 1–100; existing guest cookies bypass this limit |
 | XAM_ENABLED | true | Literal `true` or `false` |
 | TRUST_PROXY | false | Literal `true` or `false`; only enable behind an exclusive trusted gateway |
 
 The stack enables TRUST_PROXY because only its internal gateway reaches the realm port. The gateway supplies the final forwarded client address. Never expose that realm port directly with TRUST_PROXY enabled. Native public hosting must provide TLS termination and preserve Host/Origin; untrusted forwarded headers are ignored by default.
 
-HTTP requests are bounded to 300/address/minute, guest enrollments to 5/address/minute and socket upgrades to 30/address/minute. Each limiter holds at most 4096 address windows. Socket frames retain the existing 256-byte cap, 60-frame/second limit, handshake timeout, heartbeat and output backpressure. These are application safeguards, not a substitute for a hosting provider's network-level protection.
+HTTP requests are bounded to 300/address/minute, new guest enrollments to `GUEST_REGISTRATIONS_PER_MINUTE` (5/address/minute by default, configurable up to 100), and socket upgrades to 30/address/minute. Existing guest cookies bypass the new-profile enrollment limit. Each limiter holds at most 4096 address windows. Socket frames retain the existing 256-byte cap, 60-frame/second limit, handshake timeout, heartbeat and output backpressure. These are application safeguards, not a substitute for a hosting provider's network-level protection.
 
 ## Migrate earlier JSON profiles
 

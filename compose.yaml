@@ -8,6 +8,7 @@ services:
       PUBLIC_ORIGIN: https://${DOMAIN:?Set DOMAIN in .env}
       TRUST_PROXY: "true"
       REALM_CAPACITY: ${REALM_CAPACITY:-16}
+      GUEST_REGISTRATIONS_PER_MINUTE: ${GUEST_REGISTRATIONS_PER_MINUTE:-5}
       SAVE_INTERVAL_MS: "1000"
       XAM_ENABLED: "true"
     volumes:
