@@ -1,0 +1,33 @@
+Project Copper Lantern full-game validation — 2026-10-05
+
+WAYFARER
+Command: npm test
+Result: PASS
+Tests: 316
+Pass: 316
+Fail: 0
+
+COPPER LANTERN TYPESCRIPT
+Command: 2006scape-build/scripts/check-cleanroom.sh (strict TypeScript compilation plus standalone tests)
+Result: PASS
+Standalone TypeScript regression files passed: 8
+- bank-system.test.ts
+- bank-ui-dom.test.ts
+- bank-ui.test.ts
+- cleanroom-runtime.test.ts
+- network-protocol.test.ts
+- npc-system.test.ts
+- resource-system.test.ts
+- welcome-garden-slice.test.ts
+
+COPPER LANTERN GO AUTHORITATIVE SERVER
+Command: cd 2006scape-build/src/cleanroom-world && go test -v ./...
+Result: PASS
+Top-level Go tests: 17
+Go pass events including the 10 vertical-connector subtests: 38
+
+COMBINED TOP-LEVEL CHECK COUNT
+316 Wayfarer + 8 Copper Lantern TypeScript files + 17 Copper Lantern Go tests = 341
+
+PACKAGE COUNTS
+The repository contained 1,731 tracked files before adding this release manifest and validation record. The full-game archive is built from the complete tracked repository snapshot, excluding only .git history, node_modules installations, and the full-game ZIP itself to avoid recursive packaging.
