@@ -2,12 +2,14 @@ import { daylightAt } from './daylight.js';
 import { Mesh, MeshBuilder, VertexData, StandardMaterial, Color3, Vector3 } from '@babylonjs/core';
 import { realmWeather } from './realm-weather.js';
 import { isVisualQuality } from './visual-surface.js';
-/** Bounded sky/cloud/rain dressing; render clock is supplied by the realm client. */
+/** Bounded sky/cloud/rain dressing. All weather transitions are smoothed to avoid flashing. */
 export class RealmSky3D {
     scene;
     seed;
     skyPaint = -Infinity;
     light = daylightAt(0);
+    cloudWater = .45;
+    lastClock = 0;
     get daylight() { return { ...this.light }; }
     dome;
     clouds;
@@ -26,9 +28,9 @@ export class RealmSky3D {
             throw Error('Invalid sky seed');
         const mat = (name, color) => { const m = new StandardMaterial(name, scene); m.diffuseColor = Color3.FromHexString(color); m.specularColor = Color3.Black(); this.materials.push(m); return m; };
         this.dome = MeshBuilder.CreateSphere('realm-sky:gradient', { diameter: 600, segments: 12 }, scene);
-        const sky = mat('realm-sky:mat', '#ffffff');
+        const sky = mat('realm-sky:mat', '#6d8a87');
         sky.disableLighting = true;
-        sky.emissiveColor = Color3.White();
+        sky.emissiveColor = Color3.FromHexString('#6d8a87');
         sky.backFaceCulling = false;
         sky.fogEnabled = false;
         this.dome.material = sky;
@@ -36,7 +38,7 @@ export class RealmSky3D {
         this.dome.isPickable = false;
         const p = this.dome.getVerticesData('position'), colors = [];
         for (let i = 0; i < p.length; i += 3) {
-            const n = Math.max(0, Math.min(1, (p[i + 1] + 60) / 320)), c = Color3.Lerp(Color3.FromHexString('#638aa0'), Color3.FromHexString('#172b55'), n);
+            const n = Math.max(0, Math.min(1, (p[i + 1] + 60) / 320)), c = Color3.Lerp(Color3.FromHexString('#6d8a87'), Color3.FromHexString('#203d58'), n);
             colors.push(c.r, c.g, c.b, 1);
         }
         this.dome.setVerticesData('color', colors, true, 4);
@@ -99,38 +101,41 @@ export class RealmSky3D {
         }
         else
             this.frozenTime = undefined;
-        const clock = this.frozenTime ?? timeMs, w = realmWeather(this.seed, clock);
+        const clock = this.frozenTime ?? timeMs, w = realmWeather(this.seed, clock), dt = Math.max(0, Math.min(250, clock - this.lastClock));
+        this.lastClock = clock;
+        const blend = paused ? 0 : 1 - Math.exp(-dt / 2600);
+        this.cloudWater += (w.cloudWater - this.cloudWater) * blend;
         this.light = daylightAt(clock);
         const day = this.light.day;
         if (Math.abs(clock - this.skyPaint) >= 1000) {
             this.skyPaint = clock;
             const positions = this.dome.getVerticesData('position'), colors = [];
             for (let i = 0; i < positions.length; i += 3) {
-                const n = Math.max(0, Math.min(1, (positions[i + 1] + 60) / 320)), nightColor = Color3.Lerp(new Color3(.2, .3, .4), new Color3(.025, .055, .14), n), dayColor = Color3.Lerp(new Color3(.65, .78, .83), new Color3(.15, .44, .74), n), c = Color3.Lerp(nightColor, dayColor, day);
+                const n = Math.max(0, Math.min(1, (positions[i + 1] + 60) / 320)), nightColor = Color3.Lerp(new Color3(.2, .3, .4), new Color3(.025, .055, .14), n), dayColor = Color3.Lerp(new Color3(.48, .62, .64), new Color3(.12, .34, .48), n), c = Color3.Lerp(nightColor, dayColor, day);
                 colors.push(c.r, c.g, c.b, 1);
             }
             this.dome.updateVerticesData('color', colors);
         }
         this.scene.fogDensity = w.fogDensity * (retro ? 1 : .8);
-        this.scene.fogColor = Color3.Lerp(new Color3(.22, .35, .43), new Color3(.12, .2, .28), w.cloudWater);
+        this.scene.fogColor = Color3.Lerp(new Color3(.22, .35, .43), new Color3(.12, .2, .28), this.cloudWater);
         this.clouds.position.x = Math.sin(clock / 120000) * 8;
-        this.clouds.visibility = .4 + w.cloudWater * .6;
-        this.clouds.material.diffuseColor = Color3.Lerp(Color3.FromHexString('#b2c5c7'), Color3.FromHexString('#596c80'), w.cloudWater);
-        this.stars.visibility = (1 - w.cloudWater * .8) * (1 - day);
-        this.moon.visibility = 1 - w.cloudWater * .65;
+        this.clouds.visibility = .52 + this.cloudWater * .28;
+        this.clouds.material.diffuseColor = Color3.Lerp(Color3.FromHexString('#b2c5c7'), Color3.FromHexString('#596c80'), this.cloudWater);
+        this.stars.visibility = (1 - this.cloudWater * .8) * (1 - day);
+        this.moon.visibility = 1 - this.cloudWater * .65;
         this.moon.material.emissiveColor = Color3.Lerp(new Color3(.57, .67, .75), new Color3(1, .85, .48), day);
-        this.scene.fogColor = Color3.Lerp(this.scene.fogColor, new Color3(.55, .68, .74), day * .8);
         this.rain.setEnabled(!paused && w.rain > .02);
-        this.rain.alpha = w.rain * .5;
+        this.rain.alpha = Math.min(.38, w.rain * .32);
         if (this.rain.isEnabled() && Math.abs(clock - this.lastRain) >= 100) {
             this.lastRain = clock;
-            const count = quality === 'balanced' ? 24 : quality === 'high' ? 48 : 64;
+            const count = quality === 'balanced' ? 24 : quality === 'high' ? 48 : 64, positions = [];
             for (let i = 0; i < 64; i++) {
-                const x = focus.x + Math.sin(i * 17 + this.seed) * 9, z = focus.z + Math.cos(i * 13 + this.seed) * 9, y = focus.y + 1 + ((i * .618 + clock / 550) % 1) * 9;
+                const x = focus.x + Math.sin(i * 17 + this.seed) * 9, z = focus.z + Math.cos(i * 13 + this.seed) * 9, y = focus.y + 1 + ((i * .618 + clock / 550) % 1) * 9, drop = i < count ? .65 : 0;
                 this.lines[i][0].set(x, y, z);
-                this.lines[i][1].set(x + w.wind * .2, y - (i < count ? .65 : 0), z);
+                this.lines[i][1].set(x + w.wind * .2, y - drop, z);
+                positions.push(x, y, z, x + w.wind * .2, y - drop, z);
             }
-            MeshBuilder.CreateLineSystem('realm-sky:rain', { lines: this.lines, instance: this.rain });
+            this.rain.updateVerticesData('position', new Float32Array(positions));
         }
         return w;
     }

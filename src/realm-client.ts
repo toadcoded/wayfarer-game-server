@@ -29,7 +29,9 @@ import type {Realm3D} from './realm-3d.js';
 import {DirectionInput} from './direction-input.js';
 import {realmHeartbeat} from './realm-heartbeat.js';
 import {isVisualQuality,type VisualSurface} from './visual-surface.js';
+import {RealmAudio} from './realm-audio.js';
 let visualSurface:Promise<VisualSurface>|undefined,visualClosed=false;
+const realmAudio=new RealmAudio();
 const getVisualSurface=()=>visualSurface??=(async()=>{const url='/preview/pglite-plugin.bundle.js';const module=await import(url);const surface:VisualSurface=await module.createVisualSurface();if(visualClosed){await surface.close();throw new Error('Page closed');}return surface;})().catch(error=>{visualSurface=undefined;throw error;});
 const qualityChoice=()=>{const value=document.querySelector<HTMLSelectElement>('#visual-quality')?.value;return isVisualQuality(value)?value:'maximum';};
 document.querySelector('#visual-quality')?.addEventListener('change',()=>view3d?.setQuality(qualityChoice()));
@@ -101,20 +103,20 @@ for(const m of crossingScene(REALM_WORLD,scene.plan))for(let i=0;i<m.indices.len
 faces.sort((a,b)=>a.depth-b.depth);
 const project=(p:Point)=>{const q=toIso(p.x,p.z);return {x:ox+q.isoX*scale,y:oy+(q.isoY-p.y)*scale};};
 // Static scenery is rasterized only on resize, not once per network snapshot.
-const scenery=document.createElement('canvas'),sc=scenery.getContext('2d')!;
-function resize(){
+const scenery=document.createElement('canvas'),sc=scenery.getContext('2d')!;let resizing=false;
+function resize(){if(resizing)return;resizing=true;try{
  width=innerWidth;height=innerHeight;const dpr=Math.min(devicePixelRatio||1,2);
  if(view3d){render();return;}
  for(const c of [canvas,scenery]){c.width=width*dpr;c.height=height*dpr;}
  ctx.setTransform(dpr,0,0,dpr,0,0);sc.setTransform(dpr,0,0,dpr,0,0);
  const points=faces.flatMap(f=>f.points.map(p=>{const q=toIso(p.x,p.z);return {x:q.isoX,y:q.isoY-p.y};}));
- const xs=points.map(p=>p.x),ys=points.map(p=>p.y),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+ const xs=points.map(p=>p.x),ys=points.map(p=>p.y),minX=xs.reduce((a,b)=>Math.min(a,b),Infinity),maxX=xs.reduce((a,b)=>Math.max(a,b),-Infinity),minY=ys.reduce((a,b)=>Math.min(a,b),Infinity),maxY=ys.reduce((a,b)=>Math.max(a,b),-Infinity);
  scale=Math.max(.5,Math.min((width-30)/(maxX-minX),(height-220)/(maxY-minY)));ox=width/2-(minX+maxX)/2*scale;oy=height/2-(minY+maxY)/2*scale-(width<=650?85:0);
  const pixels=sc.createImageData(scenery.width,scenery.height);
  if(pixels){pixels.data.set(rasterIso(scenery.width,scenery.height,faces,p=>{const q=project(p);return {x:q.x*dpr,y:q.y*dpr};}));sc.putImageData(pixels,0,0);}
  else {sc.fillStyle='#142923';sc.fillRect(0,0,width,height);for(const f of faces){sc.beginPath();f.points.map(project).forEach((p,i)=>i?sc.lineTo(p.x,p.y):sc.moveTo(p.x,p.y));sc.closePath();sc.fillStyle=f.color;sc.fill();}}
  render();
-}
+}finally{resizing=false;}}
 function render(){
  const now=performance.now(),frame=buffer.sample(now),players=frame.players;characters.retain(players.map(p=>p.id));
  const heartbeat=document.querySelector<HTMLElement>('#realm-heartbeat'),health=realmHeartbeat(!!id,snapshot?frame.ageMs:now-connectedAt,document.hidden,!!snapshot);if(heartbeat){heartbeat.textContent=health.text;heartbeat.style.color=health.state==='live'?'#b7d6a0':health.state==='waiting'||health.state==='lost'?'#e4b075':'#aab4c6';}
@@ -215,7 +217,7 @@ function connect(){
  ws.addEventListener('error',()=>{status.textContent='Cannot reach the realm. Check your connection and try Join again.';});
  ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();id=undefined;snapshot=undefined;game=undefined;buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));render();});
 }
-join.addEventListener('click',connect);leave.addEventListener('click',()=>{stop();socket?.close();});
+join.addEventListener('click',()=>{void realmAudio.start();realmAudio.play('click');connect();});leave.addEventListener('click',()=>{realmAudio.play('click');stop();socket?.close();});
 addEventListener('keydown',e=>{if(typeof Element!=='undefined'&&e.target instanceof Element&&e.target.closest('input,select,textarea,button,summary,a'))return;if(held.keyDown(e.key,e.code))e.preventDefault();if(e.code==='Space'||e.code==='KeyG'){if(!e.repeat){e.preventDefault();action('combat',e.code==='Space'?'attack':'guard');}return;}if(e.code==='ShiftLeft'||e.code==='ShiftRight'){sprintKeys.add(e.code);e.preventDefault();}if(e.code==='KeyV'&&!e.repeat){chooseTravel(travelMode==='walk'?'jog':travelMode==='jog'?'run':'walk');e.preventDefault();}if(e.code==='KeyC'&&!e.repeat){view3d?.resetCamera();e.preventDefault();}});
 addEventListener('keyup',e=>{if(e.code==='ShiftLeft'||e.code==='ShiftRight')sprintKeys.delete(e.code);held.keyUp(e.key,e.code);});addEventListener('blur',stop);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();render();});
@@ -238,3 +240,8 @@ document.querySelector<HTMLButtonElement>('#npc-talk')?.addEventListener('click'
  const position=snapshot?.players.find(p=>p.id===id)?.position,npc=nearestNPC(castPlacements,position),text=document.querySelector<HTMLElement>('#npc-dialogue');
  if(text)text.textContent=npc?NPC_PROTOTYPES[npc.id].name+' · '+NPC_PROTOTYPES[npc.id].lines[dialogueIndex++%NPC_PROTOTYPES[npc.id].lines.length]:'Move within three metres of a villager to talk.';
 });
+
+const accountStatus=document.querySelector<HTMLElement>('#account-status'),accountCode=document.querySelector<HTMLOutputElement>('#account-code');
+async function accountRequest(path:string,body?:unknown){const init:RequestInit={method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin'};if(body!==undefined)init.body=JSON.stringify(body);const response=await fetch(path,init);const value=await response.json().catch(()=>({}));if(!response.ok)throw Error(typeof value.error==='string'?value.error:'request_failed');return value as Record<string,unknown>;}
+document.querySelector('#account-create-code')?.addEventListener('click',async()=>{try{const value=await accountRequest('/api/profile/link-code');if(accountCode)accountCode.textContent=`Your link code: ${String(value.code)} · expires in 10 minutes`;if(accountStatus)accountStatus.textContent='Use this one-time code on another device, then reload the realm.';}catch{if(accountStatus)accountStatus.textContent='Cloud login is unavailable until the persistent realm server is running.';}});
+document.querySelector('#account-use-code')?.addEventListener('click',async()=>{const input=document.querySelector<HTMLInputElement>('#account-link-code'),code=input?.value.trim().toUpperCase();if(!code){if(accountStatus)accountStatus.textContent='Enter the 10-character link code first.';return;}try{await accountRequest('/api/profile/link-login',{code});if(accountStatus)accountStatus.textContent='Cloud save connected. Reloading your character…';setTimeout(()=>location.reload(),300);}catch{if(accountStatus)accountStatus.textContent='That link code is invalid or expired.';}});

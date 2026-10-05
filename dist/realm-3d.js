@@ -73,6 +73,9 @@ export class Realm3D {
         this.camera.setTarget(this.follow.clone(), false, true, true); }
     get wildlifeCount() { return this.wildlife.count; }
     get ambienceText() { return this.ambientText; }
+    pickGround(clientX, clientY) { if (!Number.isFinite(clientX) || !Number.isFinite(clientY))
+        return; const pick = this.scene.pick(clientX, clientY); const p = pick?.pickedPoint; if (!p)
+        return; return { x: p.x, y: p.y, z: p.z }; }
     setFlashes(enabled) { this.flashes = enabled; }
     setRetro(enabled) { this.retro = enabled; this.scene.fogColor = enabled ? new Color3(.09, .17, .25) : new Color3(.055, .085, .17); if (this.pipeline)
         this.pipeline.bloomEnabled = !enabled && QUALITY_PRESETS[this.quality].bloom; }

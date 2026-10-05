@@ -1,4 +1,4 @@
-import {DatabaseSync, backup} from 'node:sqlite';
+import {DatabaseSync} from 'node:sqlite';
 import {mkdir, chmod} from 'node:fs/promises';
 import path from 'node:path';
 import {createHmac, randomBytes, timingSafeEqual} from 'node:crypto';
@@ -33,6 +33,7 @@ export class SqliteRealmStore {
         this.db.exec(`CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL) STRICT;
           CREATE TABLE IF NOT EXISTS profiles (id TEXT PRIMARY KEY, revision INTEGER NOT NULL CHECK(revision>=0), save TEXT) STRICT;
           CREATE TABLE IF NOT EXISTS agents (id TEXT PRIMARY KEY, save TEXT NOT NULL) STRICT;
+          CREATE TABLE IF NOT EXISTS link_codes (code TEXT PRIMARY KEY, profile_id TEXT NOT NULL, expires INTEGER NOT NULL) STRICT;
           PRAGMA user_version=1;`);
         this.db.prepare('INSERT OR IGNORE INTO metadata VALUES (?, ?)').run('cookie_secret',randomBytes(32).toString('hex'));
       });
@@ -89,6 +90,14 @@ export class SqliteRealmStore {
     return row?.save ? checkedPlayerSave(JSON.parse(row.save)) : undefined;
   }
   revision(id) {return this.db.prepare('SELECT revision FROM profiles WHERE id=?').get(id)?.revision;}
+  sessionCookie(id) {if(!validId(id)) throw Error('Invalid profile identity');return `${PROFILE_COOKIE}=${id}.${this.sign(id)}; HttpOnly; SameSite=Strict; Path=/; Max-Age=31536000${this.secure?'; Secure':''}`;}
+  createLinkCode(id) {
+    if(!validId(id)||!this.db.prepare('SELECT 1 FROM profiles WHERE id=?').get(id)) throw Error('Unknown profile');
+    const alphabet='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let code;
+    this.transaction(()=>{this.db.prepare('DELETE FROM link_codes WHERE expires<?').run(Date.now());for(let attempt=0;attempt<5;attempt++){code=Array.from({length:10},()=>alphabet[randomBytes(1)[0]%alphabet.length]).join('');if(!this.db.prepare('SELECT 1 FROM link_codes WHERE code=?').get(code))break;}if(!code||this.db.prepare('SELECT 1 FROM link_codes WHERE code=?').get(code))throw Error('Unable to create link code');this.db.prepare('INSERT INTO link_codes VALUES (?, ?, ?)').run(code,id,Date.now()+10*60*1000);});
+    return {code,expiresAt:Date.now()+10*60*1000};
+  }
+  resolveLinkCode(value) {if(typeof value!=='string'||!/^[A-Z2-9]{10}$/.test(value))return;return this.transaction(()=>{const row=this.db.prepare('SELECT profile_id,expires FROM link_codes WHERE code=?').get(value);this.db.prepare('DELETE FROM link_codes WHERE code=?').run(value);if(!row||row.expires<Date.now()||!validId(row.profile_id))return;return row.profile_id;});}
   async save(id,save) {return this.saveMany([{accountId:id,save}]);}
   async saveMany(entries) {
     if (!Array.isArray(entries) || entries.length<1 || entries.length>256) throw Error('Invalid profile batch');
@@ -104,7 +113,7 @@ export class SqliteRealmStore {
       return {accountId:e.id,revision:old+1};
     }));
   }
-  async backup(filename) {await backup(this.db,filename);}
+  async backup(filename) {if(typeof this.db.backup==='function')return this.db.backup(filename);this.db.exec(`VACUUM INTO '${String(filename).replaceAll("'","''")}'`);}
   importLegacy(db,xam) {
     if (!db || db.format!=='wayfarer-local-profile-db' || db.version!==1 || !/^[0-9a-f]{64}$/.test(db.secret) || !db.profiles || Array.isArray(db.profiles)) throw Error('Invalid legacy database');
     const entries=Object.entries(db.profiles);

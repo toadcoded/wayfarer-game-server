@@ -11,4 +11,4 @@ const server=http.createServer(async(req,res)=>{
  if(!(relative.startsWith('dist/')||relative.startsWith('preview/'))||relative.includes('..')){res.writeHead(404);res.end();return;}
  try{const data=await readFile(path.join(root,relative));const type=types[path.extname(relative)]||'application/octet-stream';const payload=await staticPayload(data,type,req.headers['accept-encoding']);res.writeHead(200,{...payload.headers,'Content-Type':type,'X-Content-Type-Options':'nosniff'});res.end(payload.bytes);}catch{res.writeHead(404);res.end();}
 });
-server.listen(Number(process.env.PORT||8080),'127.0.0.1',()=>console.log('Wayfarer v0.7.9 ABC local preview: http://127.0.0.1:'+server.address().port));
+server.listen(Number(process.env.PORT||8080),process.env.HOST||'0.0.0.0',()=>console.log('Wayfarer static preview: http://'+(process.env.HOST||'0.0.0.0')+':'+server.address().port));

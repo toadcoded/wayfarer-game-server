@@ -171,6 +171,15 @@ export function createHero3D(scene, id, skin, customAppearance, wardrobe) {
         const thumb = shape(':thumb' + side, wrist, -side * .067, -.102, .026, .036, .08, .044, profile.skin, true);
         thumb.rotation.z = side * .4;
     }
+    if (skin === 'adventurer') {
+        shape(':hood-collar', torso, 0, .5, -.09, .44, .12, .22, profile.trim, true);
+        shape(':scarf', torso, 0, .39, .22, .28, .08, .08, '#d95672', true);
+        shape(':pendant', torso, 0, .27, .28, .055, .09, .04, '#ffd166', true);
+        for (const side of [-1, 1]) {
+            shape(':street-bracer' + side, wrists[side === -1 ? 0 : 1], 0, -.13, .01, .16, .13, .18, '#9b7bff', true);
+            shape(':boot-stripe' + side, ankles[side === -1 ? 0 : 1], 0, -.1, .2, .25, .035, .035, '#44e6e0', true);
+        }
+    }
     if (skin === 'seraphine') {
         shape(':collar', torso, 0, .47, .04, .37, .075, .3, profile.trim);
         shape(':chest-gem', torso, 0, .28, .22, .08, .13, .045, '#629cff');
@@ -281,19 +290,23 @@ export function createHero3D(scene, id, skin, customAppearance, wardrobe) {
         previous = { ...position };
         root.position.set(position.x, position.y, position.z);
         root.rotation.y = facing;
-        const t = paused ? 0 : now / 1000, phase = pose.phase * profile.cadence, breathe = paused ? 0 : Math.sin(t * 1.8) * profile.idle;
-        torso.position.y = 1.12 + breathe - Math.abs(Math.sin(phase)) * pose.stride * .035;
-        head.rotation.y = paused ? 0 : Math.sin(t * .65) * .055 * (1 - pose.stride);
+        const t = paused ? 0 : now / 1000, phase = pose.phase * profile.cadence, breathe = paused ? 0 : pose.breath * profile.idle * .8;
+        torso.position.y = 1.12 + breathe + pose.headBob * .018 - Math.abs(Math.sin(phase)) * pose.stride * .035;
+        torso.position.x = paused ? 0 : pose.sway * .012 * (1 - pose.stride);
+        head.rotation.y = paused ? 0 : Math.sin(t * .65) * .055 * (1 - pose.stride) + pose.sway * .035;
+        head.rotation.x = paused ? 0 : pose.headBob * .035;
         legs.forEach((l, i) => l.rotation.x = Math.sin(phase + i * Math.PI) * pose.stride * profile.stride);
         arms.forEach((a, i) => a.rotation.x = -Math.sin(phase + i * Math.PI) * pose.stride * profile.stride * .8);
-        head.rotation.x = 0;
-        torso.rotation.x = pose.stride * .055;
-        arms.forEach(a => a.rotation.z = 0);
+        head.rotation.z = paused ? 0 : pose.sway * .018;
+        torso.rotation.x = pose.stride * .055 + pose.headBob * .018;
+        torso.rotation.z = paused ? 0 : pose.sway * .025;
+        arms.forEach((a, i) => a.rotation.z = paused ? 0 : (i ? -.015 : .015) * pose.sway);
         knees.forEach((k, i) => { const swing = Math.sin(phase + i * Math.PI); k.rotation.x = paused ? 0 : Math.max(0, swing) * pose.stride * .55; });
         ankles.forEach((a, i) => a.rotation.x = paused ? 0 : -Math.sin(phase + i * Math.PI) * pose.stride * .12);
         elbows.forEach(e => e.rotation.x = paused ? 0 : -.10 - pose.stride * .22);
         wrists.forEach(w => w.rotation.set(0, 0, 0));
-        pelvis.rotation.y = paused ? 0 : Math.sin(phase) * pose.stride * .035;
+        pelvis.rotation.y = paused ? 0 : Math.sin(phase) * pose.stride * .035 + pose.sway * .018;
+        pelvis.rotation.z = paused ? 0 : -pose.sway * .012;
         jaw.rotation.x = paused ? 0 : gesture === 'sneeze' ? .14 : gesture === 'wave' ? Math.max(0, Math.sin(t * 5)) * .08 : 0;
         teeth.setEnabled(!paused && (gesture === 'wave' || gesture === 'sneeze'));
         const blink = paused ? 1 : (t + blinkOffset) % 4.7 < .12 ? .12 : 1;

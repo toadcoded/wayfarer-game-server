@@ -76,6 +76,7 @@ export declare class Realm3D {
     resetCamera(): void;
     get wildlifeCount(): number;
     get ambienceText(): string | undefined;
+    pickGround(clientX: number, clientY: number): Point | undefined;
     setFlashes(enabled: boolean): void;
     setRetro(enabled: boolean): void;
     get renderState(): "recovering" | "ready";

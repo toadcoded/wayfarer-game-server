@@ -5,6 +5,9 @@ export interface CharacterPose {
     lean: number;
     cloth: number;
     facing: number;
+    breath: number;
+    sway: number;
+    headBob: number;
 }
 /** Bounded presentation simulation. Never feeds back into authoritative position or collision. */
 export declare class CharacterMotion {
@@ -17,6 +20,7 @@ export declare class CharacterMotion {
     private cloth;
     private clothVelocity;
     private facing;
+    private idleTime;
     reset(): void;
     sample(position: Point, now: number, reduced?: boolean): CharacterPose;
 }

@@ -1,6 +1,6 @@
 import { generateChunk, CHUNK_SIZE } from './world.js';
 import { terrainSampler } from './navigation.js';
-import { propPrimitives } from './geometry.js';
+import { propPrimitives, landmarkPrimitives } from './geometry.js';
 import { surfaceMesh, railMeshes } from './construction.js';
 import { CROSSING_STYLES, mountCrossing } from './crossings.js';
 import { reserveSites } from './site-placement.js';
@@ -75,7 +75,8 @@ export function crossingScene(world, plan) {
             const chunk = reserveSites(generateChunk(world, cx, cz), [plan]);
             const props = chunk.props.filter(p => p.position.x >= b.minX && p.position.x <= b.maxX && p.position.z >= b.minZ && p.position.z <= b.maxZ)
                 .map(p => ({ ...p, position: { ...p.position, y: construction.terrainAt(p.position.x, p.position.z).height } }));
-            for (const p of propPrimitives({ ...chunk, props }))
+            const visibleChunk = { ...chunk, props };
+            for (const p of [...propPrimitives(visibleChunk), ...landmarkPrimitives({ ...visibleChunk, landmarks: chunk.landmarks })])
                 meshes.push(primitiveMesh(p));
         }
     return meshes;

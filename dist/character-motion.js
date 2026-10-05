@@ -9,7 +9,8 @@ export class CharacterMotion {
     cloth = 0;
     clothVelocity = 0;
     facing = 1;
-    reset() { this.previous = undefined; this.clock = undefined; this.phase = 0; this.stride = 0; this.lean = 0; this.velocity = 0; this.cloth = 0; this.clothVelocity = 0; this.facing = 1; }
+    idleTime = 0;
+    reset() { this.previous = undefined; this.clock = undefined; this.phase = 0; this.stride = 0; this.lean = 0; this.velocity = 0; this.cloth = 0; this.clothVelocity = 0; this.facing = 1; this.idleTime = 0; }
     sample(position, now, reduced = false) {
         if (![position.x, position.y, position.z, now].every(Number.isFinite) || now < 0)
             throw new RangeError('Invalid character sample');
@@ -21,6 +22,7 @@ export class CharacterMotion {
             this.reset();
         }
         else if (elapsed > 0) {
+            this.idleTime += Math.min(elapsed, .25);
             const speed = Math.min(8, distance / elapsed), target = Math.min(1, speed / 6.25);
             this.stride += (target - this.stride) * (1 - Math.exp(-10 * elapsed));
             if (distance > .001) {
@@ -43,7 +45,10 @@ export class CharacterMotion {
         }
         this.previous = { ...position };
         this.clock = now;
-        return { phase: this.phase, stride: reduced ? 0 : this.stride, lean: reduced ? 0 : this.lean, cloth: reduced ? 0 : this.cloth, facing: this.facing };
+        const breath = reduced ? 0 : Math.sin(this.idleTime * 1.65) * .5 + Math.sin(this.idleTime * 3.31) * .08;
+        const sway = reduced ? 0 : Math.sin(this.idleTime * .71 + this.phase * .08) * .65 + Math.sin(this.idleTime * 1.13) * .12;
+        const headBob = reduced ? 0 : Math.sin(this.phase) * this.stride * .7;
+        return { phase: this.phase, stride: reduced ? 0 : this.stride, lean: reduced ? 0 : this.lean, cloth: reduced ? 0 : this.cloth, facing: this.facing, breath, sway, headBob };
     }
 }
 /** Remove the supplied assets' saturated magenta matte only at rendering time. */

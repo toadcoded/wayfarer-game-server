@@ -16,9 +16,9 @@ export class CharacterRenderer {
  retain(ids:readonly string[]):void{const keep=new Set(ids);for(const id of this.motions.keys())if(!keep.has(id))this.motions.delete(id);}
  draw(ctx:CanvasRenderingContext2D,id:string,position:Point,q:{x:number;y:number},now:number,skin='adventurer',local=true,paused=false):void {
   let motion=this.motions.get(id);if(!motion){motion=new CharacterMotion();this.motions.set(id,motion);}
-  const pose=motion.sample(position,now,this.reduced?.matches||paused),bob=Math.abs(Math.sin(pose.phase))*pose.stride*1.5;
-  ctx.save();ctx.translate(q.x,q.y);ctx.fillStyle='#0e211a88';ctx.beginPath();ctx.ellipse(0,0,9,3,0,0,Math.PI*2);ctx.fill();
-  ctx.translate(0,-bob);ctx.rotate(pose.lean*.3);
+  const pose=motion.sample(position,now,this.reduced?.matches||paused),bob=Math.abs(Math.sin(pose.phase))*pose.stride*1.5+pose.breath*.35;
+  ctx.save();ctx.translate(q.x+pose.sway*.45,q.y);ctx.fillStyle='#0e211a88';ctx.beginPath();ctx.ellipse(0,0,9,3,0,0,Math.PI*2);ctx.fill();
+  ctx.translate(0,-bob);ctx.rotate(pose.lean*.3+pose.sway*.012);
   const asset=CHARACTER_ASSETS.find(a=>a.id===skin),sheet=asset?sheets.get(asset.id):undefined;
   if(asset&&sheet){
    const crop=asset.crop,h=asset.id==='seraphine'?60:46,w=h*crop.width/crop.height;

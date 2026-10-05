@@ -25,15 +25,15 @@ export class CharacterRenderer {
             motion = new CharacterMotion();
             this.motions.set(id, motion);
         }
-        const pose = motion.sample(position, now, this.reduced?.matches || paused), bob = Math.abs(Math.sin(pose.phase)) * pose.stride * 1.5;
+        const pose = motion.sample(position, now, this.reduced?.matches || paused), bob = Math.abs(Math.sin(pose.phase)) * pose.stride * 1.5 + pose.breath * .35;
         ctx.save();
-        ctx.translate(q.x, q.y);
+        ctx.translate(q.x + pose.sway * .45, q.y);
         ctx.fillStyle = '#0e211a88';
         ctx.beginPath();
         ctx.ellipse(0, 0, 9, 3, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.translate(0, -bob);
-        ctx.rotate(pose.lean * .3);
+        ctx.rotate(pose.lean * .3 + pose.sway * .012);
         const asset = CHARACTER_ASSETS.find(a => a.id === skin), sheet = asset ? sheets.get(asset.id) : undefined;
         if (asset && sheet) {
             const crop = asset.crop, h = asset.id === 'seraphine' ? 60 : 46, w = h * crop.width / crop.height;

@@ -29,7 +29,7 @@ Visit `https://YOUR_DOMAIN`. The game server has no published direct port. Playe
 
 ## Included gameplay
 
-- A shared Willowglass Causeway, authoritative movement at 20 Hz, navigation, walking/jogging/running and energy.
+- A connected 256×256 metre Willowglass valley around the authored causeway, with deterministic height variation, water, props, generated landmark sites and authoritative movement at 20 Hz.
 - Quiet Tithe quest, equipment/inventory, the cooperative Lantern Warden, XP and bank state.
 - Gathering systems and explicit practice drills across 23 skills. Practice drills are not complete implementations of every profession.
 - Server-controlled protected Xam, persistent progress and continuous simulation even without human players.
