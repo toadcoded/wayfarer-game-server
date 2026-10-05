@@ -1,5 +1,6 @@
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {readFileSync} from 'node:fs';
 import {SqliteRealmStore,acquireRealmLease} from './sqlite-store.mjs';
 import {createLocalRealmServer} from './realm-server.mjs';
 
@@ -40,7 +41,8 @@ export async function startServer(env=process.env) {
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   process.umask(0o077);
   const app=await startServer();
-  const log=(event,fields={})=>console.log(JSON.stringify({time:new Date().toISOString(),event,version:'1.0.0',...fields}));
+  const version=JSON.parse(readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
+  const log=(event,fields={})=>console.log(JSON.stringify({time:new Date().toISOString(),event,version,...fields}));
   log('ready',{origin:app.origin,capacity:serverConfig().capacity,persistence:'sqlite',xam:!!app.xam});
   let shuttingDown=false;
   const shutdown=async(exitCode=0)=>{

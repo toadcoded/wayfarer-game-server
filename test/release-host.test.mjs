@@ -35,7 +35,7 @@ test('public host serves correct assets, rejects bad origins, saves connected pl
     const file=path.join(dir,'realm.sqlite');store=await SqliteRealmStore.open(file,{secure:true});
     host=await createLocalRealmServer({publicOrigin,profileStoreOverride:store,xam:true,xamStoreOverride:store.xam,autoTick:false});
     const request=(route,headers={})=>requestAt(host,route,headers);
-    assert.equal((await fetch(`http://127.0.0.1:${host.port}/health`)).status,200);
+    const health=await fetch(`http://127.0.0.1:${host.port}/health`);assert.equal(health.status,200);assert.equal((await health.json()).version,'1.2.0');
     const page=await request('/');assert.equal(page.status,200);assert.match(page.headers.get('content-security-policy'),/wss:\/\/play.example.com/);
     const first=page.headers.get('set-cookie');assert.match(first,/Secure/);const cookie=first.split(';')[0];
     assert.match(await page.text(),/WAYFARER \/ v1\.2 \/ CELESTIAL POLYCODEX/);
