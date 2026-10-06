@@ -15,6 +15,7 @@ import { practiceGesture } from './practice-pose.js';
 import { createPracticeYard } from './practice-yard-3d.js';
 import { Wildlife3D } from './wildlife-3d.js';
 import { wildlifeForRealm } from './wildlife.js';
+import { AdvancedFoliage3D } from './advanced-foliage-3d.js';
 import { createRealmScene, REALM_WORLD } from './realm-scene.js';
 import { crossingScene } from './scene-meshes.js';
 import { mountBabylonMesh } from './babylon-mesh.js';
@@ -46,6 +47,7 @@ export class Realm3D {
     keyLight;
     shadows;
     waterMaterials = [];
+    waterRipples = [];
     pipeline;
     quality = 'maximum';
     contextLost = false;
@@ -56,6 +58,7 @@ export class Realm3D {
     grass;
     metricsAt = -Infinity;
     cachedMetrics = { meshes: 0, triangles: 0, grassTufts: 0, fps: 0 };
+    foliage;
     get worldMetrics() { return { ...this.cachedMetrics }; }
     wildlife;
     practiceYard;
@@ -160,10 +163,19 @@ export class Realm3D {
             mounted.mesh.material.alpha = .88;
             mounted.mesh.material.specularPower = 64;
             this.waterMaterials.push(mounted.mesh.material);
+            if (i % 3 === 0) {
+                const p = data.positions;
+                const ripple = MeshBuilder.CreateLines('water-ripple', { points: [new Vector3(p[0], p[1] + .045, p[2]), new Vector3(p[3], p[4] + .045, p[5])], updatable: false }, this.scene);
+                ripple.color = new Color3(.42, .82, .9);
+                ripple.alpha = .48;
+                ripple.isPickable = false;
+                this.waterRipples.push(ripple);
+            }
         } if (mounted.mesh.material instanceof StandardMaterial)
             this.wetMaterials.push({ material: mounted.mesh.material, base: mounted.mesh.material.diffuseColor.clone(), cx: Math.floor(mounted.mesh.getBoundingInfo().boundingBox.centerWorld.x / 64), cz: Math.floor(mounted.mesh.getBoundingInfo().boundingBox.centerWorld.z / 64) }); });
         this.sky = new RealmSky3D(this.scene, REALM_WORLD.seed);
         this.grass = createRetroGrass(this.scene, REALM_WORLD.seed, [realm.plan.start, realm.plan.goal], (x, z) => realm.construction.terrainAt(x, z));
+        this.foliage = new AdvancedFoliage3D(this.scene, REALM_WORLD.seed, [realm.plan.start, realm.plan.goal], (x, z) => realm.construction.terrainAt(x, z));
         this.practiceYard = createPracticeYard(this.scene, realm.plan.start, p => realm.navigation.check(p));
         this.castPlacements = placeRealmCast(realm.plan.start, realm.plan.goal, p => realm.navigation.check(p));
         const host = this.castPlacements.find(p => p.id === 'tovik');
@@ -233,7 +245,7 @@ export class Realm3D {
             entry.hero.update(p.position, now, paused, wind, p.id === local && game?.practiceChallenge ? practiceGesture(game.practiceChallenge.skill) : p.id === this.xamId && isPracticeSkill(this.xamSkill) ? practiceGesture(this.xamSkill) : 'idle');
             if (p.id === local || p.id === this.focusId) {
                 const target = new Vector3(p.position.x, p.position.y + 1.15, p.position.z), dt = this.followTime === undefined ? 0 : Math.max(0, (now - this.followTime) / 1000);
-                if (!this.follow || this.followId !== local || Vector3.Distance(target, this.follow) > 8) {
+                if (!this.follow || this.followId !== p.id || Vector3.Distance(target, this.follow) > 8) {
                     this.follow = target;
                     this.camera.setTarget(target.clone(), false, true, true);
                 }
@@ -242,7 +254,7 @@ export class Realm3D {
                     this.camera.setTarget(this.camera.target.add(next.subtract(this.follow)), false, true, true);
                     this.follow = next;
                 }
-                this.followId = local;
+                this.followId = p.id;
                 this.followTime = now;
                 this.camera.panningOriginTarget = this.follow.clone();
             }
@@ -296,6 +308,9 @@ export class Realm3D {
                 map.renderList = [...this.heroes.values()].flatMap(e => e.hero.root.getChildMeshes()).slice(0, 96);
         }
         this.ambientText = this.ambience.update(now, paused, this.flashes && !paused);
+        this.foliage.update(now, paused);
+        for (let i = 0; i < this.waterRipples.length; i++)
+            this.waterRipples[i].position.y = paused ? 0 : Math.sin(now * .0014 + i * .37) * .025;
         this.wildlife.update(now, paused);
         for (const { placement, hero } of this.cast)
             hero.update(placement.position, now, paused, wind, placement.id === 'mirella' ? 'focus' : placement.id === 'kestrel' ? 'wave' : 'idle');
@@ -332,9 +347,13 @@ export class Realm3D {
         this.weatherChunks.clear();
         this.ambience.dispose();
         this.wildlife.dispose();
+        this.foliage.dispose();
         this.grass.dispose();
         this.practiceYard.dispose();
         this.shadows?.dispose();
+        for (const ripple of this.waterRipples)
+            ripple.dispose();
+        this.waterRipples.length = 0;
         this.waterMaterials.length = 0;
         this.pipeline?.dispose();
         this.scene.dispose();

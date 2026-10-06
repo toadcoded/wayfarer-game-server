@@ -6,7 +6,7 @@ export declare const AMBIENT_LINES: readonly string[];
 /** Decorative descriptors are seeded; none are colliders, loot or interactable resources. */
 export declare function realmDetails(seed: number, anchors: readonly Point[]): {
     id: string;
-    kind: "flower" | "mushroom" | "skeleton" | "bench" | "birdhouse" | "barrel" | "keg" | "bottle" | "fireworks" | "balloon" | "toy";
+    kind: "skeleton" | "flower" | "mushroom" | "bench" | "birdhouse" | "barrel" | "keg" | "bottle" | "fireworks" | "balloon" | "toy";
     position: {
         x: number;
         y: number;

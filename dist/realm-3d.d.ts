@@ -39,6 +39,7 @@ export declare class Realm3D {
     private keyLight;
     private shadows;
     private waterMaterials;
+    private waterRipples;
     private pipeline;
     private quality;
     private contextLost;
@@ -49,6 +50,7 @@ export declare class Realm3D {
     private grass;
     private metricsAt;
     private cachedMetrics;
+    private foliage;
     get worldMetrics(): {
         meshes: number;
         triangles: number;
