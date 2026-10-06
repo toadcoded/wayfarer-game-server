@@ -23,7 +23,7 @@ import {isTravelMode,type TravelMode} from './movement.js';
 import {encodeMoveIntent} from './movement.js';
 import {createRealmScene,REALM_WORLD} from './realm-scene.js';
 import {crossingScene} from './scene-meshes.js';
-import {toIso} from './adapters/iso.js';
+import {toIso,fromIso} from './adapters/iso.js';
 import type {Point} from './world.js';
 import type {Realm3D} from './realm-3d.js';
 import {DirectionInput} from './direction-input.js';
@@ -54,7 +54,7 @@ async function startGraphics(){
  if(visualClosed||graphics.state==='loading'||graphics.state==='ready')return;
  const button=document.querySelector<HTMLButtonElement>('#retry-graphics');if(button)button.disabled=true;
  try{if(typeof WebGLRenderingContext==='undefined'){fallbackGraphics();return;}
- overlay=document.createElement('canvas');overlay.id='world-3d';overlay.setAttribute('aria-label','3D multiplayer causeway');document.body.prepend(overlay);const target=overlay;
+ overlay=document.createElement('canvas');overlay.id='world-3d';overlay.setAttribute('aria-label','3D multiplayer causeway');document.body.prepend(overlay);const target=overlay;let pointerStart:{x:number;y:number}|undefined;target.addEventListener('pointerdown',event=>{pointerStart={x:event.clientX,y:event.clientY};});target.addEventListener('pointerup',event=>{if(!pointerStart||Math.hypot(event.clientX-pointerStart.x,event.clientY-pointerStart.y)>8){pointerStart=undefined;return;}pointerStart=undefined;const point=view3d?.pickGround(event.clientX,event.clientY);if(point)setClickTarget(point);});
  const next=await graphics.load(async()=>{const moduleUrl='/preview/realm-3d.bundle.js',module=await import(moduleUrl);if(visualClosed)throw Error('Page closed');const view:Realm3D=module.Realm3D.create(target);try{view.setQuality(qualityChoice());view.setRetro(document.querySelector<HTMLInputElement>('#retro-style')?.checked??true);view.setFlashes(!!document.querySelector<HTMLInputElement>('#ambient-flashes')?.checked);return view;}catch(error){view.dispose();throw error;}});
  if(next&&!visualClosed){view3d=next;const base=document.querySelector<HTMLCanvasElement>('#world');if(base)base.style.display='none';}else fallbackGraphics();
  }catch{fallbackGraphics();}finally{if(button)button.disabled=false;}
@@ -62,7 +62,7 @@ async function startGraphics(){
 document.querySelector('#retry-graphics')?.addEventListener('click',()=>{void startGraphics();});
 document.querySelector('#retry-artwork')?.addEventListener('click',()=>view3d?.retryArtwork());
 void startGraphics();
-const scene=createRealmScene(),canvas=document.querySelector<HTMLCanvasElement>('#world')!,ctx=canvas.getContext('2d')!;
+ const scene=createRealmScene(),canvas=document.querySelector<HTMLCanvasElement>('#world')!,ctx=canvas.getContext('2d')!;let clickTarget:Point|undefined;const setClickTarget=(point:Point|undefined)=>{if(!point)return;const checked=scene.navigation.check(point);if(checked.ok&&checked.position)clickTarget=checked.position;};
 const castPlacements=placeRealmCast(scene.plan.start,scene.plan.goal,p=>scene.navigation.check(p));
 const status=document.querySelector<HTMLElement>('#connection')!,stats=document.querySelector<HTMLElement>('#players')!;
 const join=document.querySelector<HTMLButtonElement>('#join')!,leave=document.querySelector<HTMLButtonElement>('#leave')!;
@@ -101,7 +101,7 @@ for(const m of crossingScene(REALM_WORLD,scene.plan))for(let i=0;i<m.indices.len
  faces.push({points,color:m.color,depth:points.reduce((n,p)=>n+p.x+p.z+p.y*.02,0)/3});
 }
 faces.sort((a,b)=>a.depth-b.depth);
-const project=(p:Point)=>{const q=toIso(p.x,p.z);return {x:ox+q.isoX*scale,y:oy+(q.isoY-p.y)*scale};};
+ const project=(p:Point)=>{const q=toIso(p.x,p.z);return {x:ox+q.isoX*scale,y:oy+(q.isoY-p.y)*scale};};canvas.addEventListener('click',event=>{if(view3d)return;const p=fromIso((event.offsetX-ox)/scale,(event.offsetY-oy)/scale);setClickTarget({x:p.tx,y:0,z:p.tz});});
 // Static scenery is rasterized only on resize, not once per network snapshot.
 const scenery=document.createElement('canvas'),sc=scenery.getContext('2d')!;let resizing=false;
 function resize(){if(resizing)return;resizing=true;try{
@@ -186,13 +186,13 @@ function sendDirection(){
  if(age>=5000){status.textContent='Server updates stopped. Rejoin to reconnect.';socket.close(1000,'snapshot_timeout');return;}
  // The client's queue is bounded too. Rejoin manually after a stalled connection.
  if(socket.bufferedAmount>=65536){status.textContent='Connection stalled. Disconnect and join again.';socket.close();return;}
- let dx=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));
+ const manual=held.has('ArrowRight')||held.has('ArrowLeft')||held.has('ArrowUp')||held.has('ArrowDown');let dx=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));
  let dz=-Number(held.has('ArrowRight'))+Number(held.has('ArrowLeft'))-Number(held.has('ArrowUp'))+Number(held.has('ArrowDown'));
  const n=Math.max(1,Math.hypot(dx,dz));dx/=n;dz/=n;
- if(view3d){const right=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft')),forward=Number(held.has('ArrowUp'))-Number(held.has('ArrowDown'));({dx,dz}=view3d.movementDirection(right,forward));}
+ if(clickTarget&&!manual){const current=snapshot?.players.find(player=>player.id===id)?.position;if(current){const distance=Math.hypot(clickTarget.x-current.x,clickTarget.z-current.z);if(distance<.8)clickTarget=undefined;else{dx=(clickTarget.x-current.x)/distance;dz=(clickTarget.z-current.z)/distance;}}}else if(view3d){const right=Number(held.has('ArrowRight'))-Number(held.has('ArrowLeft')),forward=Number(held.has('ArrowUp'))-Number(held.has('ArrowDown'));({dx,dz}=view3d.movementDirection(right,forward));}
  socket.send(encodeMoveIntent({sequence:sequence++,dx,dz,mode:sprintKeys.size?'run':travelMode}));
 }
-function stop(){sprintKeys.clear();held.clear();sendDirection();}
+ function stop(){sprintKeys.clear();held.clear();clickTarget=undefined;sendDirection();}
 function connect(){
  if(socket&&socket.readyState<WebSocket.CLOSING)return;
  id=undefined;snapshot=undefined;game=undefined;sequence=0;actionSequence=0;cape.reset();configureWind();buffer.clear();characters.clear();sprintKeys.clear();held.clear();render();join.disabled=true;

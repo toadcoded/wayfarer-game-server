@@ -23,7 +23,7 @@ import { isTravelMode } from './movement.js';
 import { encodeMoveIntent } from './movement.js';
 import { createRealmScene, REALM_WORLD } from './realm-scene.js';
 import { crossingScene } from './scene-meshes.js';
-import { toIso } from './adapters/iso.js';
+import { toIso, fromIso } from './adapters/iso.js';
 import { DirectionInput } from './direction-input.js';
 import { realmHeartbeat } from './realm-heartbeat.js';
 import { isVisualQuality } from './visual-surface.js';
@@ -117,6 +117,13 @@ async function startGraphics() {
         overlay.setAttribute('aria-label', '3D multiplayer causeway');
         document.body.prepend(overlay);
         const target = overlay;
+        let pointerStart;
+        target.addEventListener('pointerdown', event => { pointerStart = { x: event.clientX, y: event.clientY }; });
+        target.addEventListener('pointerup', event => { if (!pointerStart || Math.hypot(event.clientX - pointerStart.x, event.clientY - pointerStart.y) > 8) {
+            pointerStart = undefined;
+            return;
+        } pointerStart = undefined; const point = view3d?.pickGround(event.clientX, event.clientY); if (point)
+            setClickTarget(point); });
         const next = await graphics.load(async () => { const moduleUrl = '/preview/realm-3d.bundle.js', module = await import(moduleUrl); if (visualClosed)
             throw Error('Page closed'); const view = module.Realm3D.create(target); try {
             view.setQuality(qualityChoice());
@@ -149,6 +156,10 @@ document.querySelector('#retry-graphics')?.addEventListener('click', () => { voi
 document.querySelector('#retry-artwork')?.addEventListener('click', () => view3d?.retryArtwork());
 void startGraphics();
 const scene = createRealmScene(), canvas = document.querySelector('#world'), ctx = canvas.getContext('2d');
+let clickTarget;
+const setClickTarget = (point) => { if (!point)
+    return; const checked = scene.navigation.check(point); if (checked.ok && checked.position)
+    clickTarget = checked.position; };
 const castPlacements = placeRealmCast(scene.plan.start, scene.plan.goal, p => scene.navigation.check(p));
 const status = document.querySelector('#connection'), stats = document.querySelector('#players');
 const join = document.querySelector('#join'), leave = document.querySelector('#leave');
@@ -208,6 +219,8 @@ for (const m of crossingScene(REALM_WORLD, scene.plan))
     }
 faces.sort((a, b) => a.depth - b.depth);
 const project = (p) => { const q = toIso(p.x, p.z); return { x: ox + q.isoX * scale, y: oy + (q.isoY - p.y) * scale }; };
+canvas.addEventListener('click', event => { if (view3d)
+    return; const p = fromIso((event.offsetX - ox) / scale, (event.offsetY - oy) / scale); setClickTarget({ x: p.tx, y: 0, z: p.tz }); });
 // Static scenery is rasterized only on resize, not once per network snapshot.
 const scenery = document.createElement('canvas'), sc = scenery.getContext('2d');
 let resizing = false;
@@ -488,18 +501,31 @@ function sendDirection() {
         socket.close();
         return;
     }
+    const manual = held.has('ArrowRight') || held.has('ArrowLeft') || held.has('ArrowUp') || held.has('ArrowDown');
     let dx = Number(held.has('ArrowRight')) - Number(held.has('ArrowLeft')) - Number(held.has('ArrowUp')) + Number(held.has('ArrowDown'));
     let dz = -Number(held.has('ArrowRight')) + Number(held.has('ArrowLeft')) - Number(held.has('ArrowUp')) + Number(held.has('ArrowDown'));
     const n = Math.max(1, Math.hypot(dx, dz));
     dx /= n;
     dz /= n;
-    if (view3d) {
+    if (clickTarget && !manual) {
+        const current = snapshot?.players.find(player => player.id === id)?.position;
+        if (current) {
+            const distance = Math.hypot(clickTarget.x - current.x, clickTarget.z - current.z);
+            if (distance < .8)
+                clickTarget = undefined;
+            else {
+                dx = (clickTarget.x - current.x) / distance;
+                dz = (clickTarget.z - current.z) / distance;
+            }
+        }
+    }
+    else if (view3d) {
         const right = Number(held.has('ArrowRight')) - Number(held.has('ArrowLeft')), forward = Number(held.has('ArrowUp')) - Number(held.has('ArrowDown'));
         ({ dx, dz } = view3d.movementDirection(right, forward));
     }
     socket.send(encodeMoveIntent({ sequence: sequence++, dx, dz, mode: sprintKeys.size ? 'run' : travelMode }));
 }
-function stop() { sprintKeys.clear(); held.clear(); sendDirection(); }
+function stop() { sprintKeys.clear(); held.clear(); clickTarget = undefined; sendDirection(); }
 function connect() {
     if (socket && socket.readyState < WebSocket.CLOSING)
         return;
