@@ -54,6 +54,10 @@ export function createNamedNPC3D(scene, id, kind) {
             part('moustache' + side, 'sphere', [side * .07, -.13, .27], [.18, .07, .05], '#664726', head);
         part('tankard', 'box', [.44, 1.13, .19], [.17, .22, .17], '#8c724b');
     }
+    part('collar', 'box', [0, .28, .18], [.46, .12, .07], spec.trim, torso);
+    part('belt', 'box', [0, -.17, .13], [.62, .11, .08], kind === 'elowen' ? '#4d3a2b' : '#6f513b', torso);
+    for (const side of [-1, 1])
+        part('shoulder' + side, 'sphere', [side * .29, .17, 0], [.18, .13, .2], spec.coat, torso);
     if (kind === 'halden' || kind === 'elowen' || kind === 'yarrow') {
         part('lantern-frame', 'box', [-.43, .92, .15], [.18, .27, .18], '#655331');
         part('lantern-light', 'box', [-.43, .92, .245], [.11, .17, .018], '#f0ca65');

@@ -271,6 +271,13 @@ export class Realm3D {
                 entry.material.specularColor.set(w * .08, w * .08, w * .08);
             }
         }
+        const ripple = paused ? 0 : Math.sin(now * .0018) * .035 + Math.sin(now * .00073 + 1.7) * .02;
+        for (const material of this.waterMaterials) {
+            material.diffuseColor.set(.16 + ripple, .38 + ripple * 1.4, .5 + ripple * 1.8);
+            material.emissiveColor.set(.015, .045 + ripple * .4, .07 + ripple * .6);
+            material.alpha = .84;
+            material.backFaceCulling = false;
+        }
         const day = this.sky.daylight.day;
         if (this.ambientLight)
             this.ambientLight.intensity = .55 + day * .4;
