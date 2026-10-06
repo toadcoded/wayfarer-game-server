@@ -1,0 +1,43 @@
+{
+  "base": "https://8081-i91rudpzpjsuvxfk01pyj-5f4ce995.us3.manus.computer",
+  "durationMs": 5000,
+  "clients": 2,
+  "intervalMs": 50,
+  "stress": {
+    "opened": 4,
+    "closed": 4,
+    "messages": 388,
+    "snapshots": 192,
+    "gameStates": 192,
+    "frames": 394,
+    "errors": 0,
+    "decodeErrors": 0
+  },
+  "checks": {
+    "xamBefore": {
+      "phase": "travelling",
+      "totalXp": 2582,
+      "position": {
+        "x": 90.84121502426817,
+        "y": 6.481749565940865,
+        "z": 0.39859395306239565
+      }
+    },
+    "linkCode": {
+      "issued": true,
+      "firstRedeem": true,
+      "secondRedeemStatus": 401,
+      "restoredState": true
+    },
+    "xamAfter": {
+      "phase": "travelling",
+      "totalXp": 2582,
+      "position": {
+        "x": 44.93681863009638,
+        "y": 6.898826739746111,
+        "z": 0.006567214362979559
+      }
+    },
+    "stressHealthy": true
+  }
+}

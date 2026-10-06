@@ -30,6 +30,7 @@ The earlier `Project-Copper-Lantern-clean-room-runtime-2026-09-25.zip` remains i
 - **Copper Lantern TypeScript:** `8/8` standalone regression test files passed, plus strict TypeScript compilation.
 - **Copper Lantern Go authoritative server:** `17/17` top-level Go tests passed; the vertical-connector table also passed all 10 subtests (`38` Go pass events including subtests).
 - **Combined top-level checks represented here:** `342` (`317 + 8 + 17`). The count is intentionally reported exactly rather than rounded.
+- **Live realm soak:** 4 WebSocket sessions, 388 messages, 192 snapshots, 192 game states, 394 movement frames, 0 errors; Xam protection and one-time cross-device restoration verified. See `verification/live-hardening-2026-10-06.json`.
 
 ## Reproduction
 

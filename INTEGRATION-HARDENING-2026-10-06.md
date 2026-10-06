@@ -40,6 +40,10 @@ The linked Google Drive folder is the source/archive governance layer. Its `01_C
 - Public realm: health endpoint returned `ready: true`
 - Public realm headers: CSP, `nosniff`, same-origin referrer policy, restrictive permissions policy, and no-store behavior confirmed
 - Xam endpoint: live state returned with protected/nonblocking identity and persisted progression
+- Live stress run: 4 WebSocket sessions opened and closed cleanly; 388 messages, 192 snapshots, 192 game states, 394 movement frames, 0 socket errors, and 0 decode errors
+- Live cross-device run: link code issued, restored state matched, and second redemption returned HTTP 401
+- Live stress JSON: `verification/live-hardening-2026-10-06.json`
+- Reusable skill: `/home/ubuntu/skills/wayfarer-live-hardening/SKILL.md`
 
 ## Reproduction
 
