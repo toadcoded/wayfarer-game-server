@@ -44,7 +44,20 @@ test('SQLite transactions roll back whole batches and cookies survive reopen',as
     assert.equal(store.load(a.accountId).position.x,1);assert.equal(store.count,2);
     store.close();store=await SqliteRealmStore.open(path.join(dir,'backup.sqlite'),{maxProfiles:2});
     assert.equal(store.resolveCookie(cookie),a.accountId);assert.equal(store.load(a.accountId).position.x,1);assert.equal(store.revision(b.accountId),0);
-  }finally{store?.close();await rm(dir,{recursive:true,force:true});}
+ }finally{store?.close();await rm(dir,{recursive:true,force:true});}
+});
+
+test('cross-device link codes are strict, single-use and expire server-side',async()=>{
+  const dir=await temp();let store;
+  try {
+    store=await SqliteRealmStore.open(path.join(dir,'realm.sqlite'));
+    const session=await store.ensureSession(),issued=store.createLinkCode(session.accountId);
+    assert.match(issued.code,/^[A-HJ-NP-Z2-9]{10}$/);assert.ok(issued.expiresAt>Date.now());
+    assert.equal(store.resolveLinkCode(issued.code),session.accountId);
+    assert.equal(store.resolveLinkCode(issued.code),undefined);
+    for(const value of ['', 'short', 'abcdefghij', 'A'.repeat(11), 'A\n'.repeat(5)])assert.equal(store.resolveLinkCode(value),undefined);
+    const expired=store.createLinkCode(session.accountId);store.db.prepare('UPDATE link_codes SET expires=? WHERE code=?').run(Date.now()-1,expired.code);assert.equal(store.resolveLinkCode(expired.code),undefined);
+  } finally {store?.close();await rm(dir,{recursive:true,force:true});}
 });
 
 test('realm lease denies competing authorities and is released by process death',async()=>{

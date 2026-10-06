@@ -7,6 +7,15 @@ import {checkedXamSave} from './xam-store.mjs';
 import {PROFILE_COOKIE} from './profile-store.mjs';
 
 const validId = id => typeof id === 'string' && /^a_[0-9a-f]{32}$/.test(id);
+const LINK_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+function randomLinkCode(){
+  const limit=Math.floor(256/LINK_ALPHABET.length)*LINK_ALPHABET.length;
+  let code='';
+  while(code.length<10){
+    for(const byte of randomBytes(16))if(byte<limit){code+=LINK_ALPHABET[byte%LINK_ALPHABET.length];if(code.length===10)break;}
+  }
+  return code;
+}
 export class ProfileCapacityError extends Error {}
 
 /** One persistent realm, local disk only. SQLite's OS lock releases on process death. */
@@ -93,9 +102,9 @@ export class SqliteRealmStore {
   sessionCookie(id) {if(!validId(id)) throw Error('Invalid profile identity');return `${PROFILE_COOKIE}=${id}.${this.sign(id)}; HttpOnly; SameSite=Strict; Path=/; Max-Age=31536000${this.secure?'; Secure':''}`;}
   createLinkCode(id) {
     if(!validId(id)||!this.db.prepare('SELECT 1 FROM profiles WHERE id=?').get(id)) throw Error('Unknown profile');
-    const alphabet='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let code;
-    this.transaction(()=>{this.db.prepare('DELETE FROM link_codes WHERE expires<?').run(Date.now());for(let attempt=0;attempt<5;attempt++){code=Array.from({length:10},()=>alphabet[randomBytes(1)[0]%alphabet.length]).join('');if(!this.db.prepare('SELECT 1 FROM link_codes WHERE code=?').get(code))break;}if(!code||this.db.prepare('SELECT 1 FROM link_codes WHERE code=?').get(code))throw Error('Unable to create link code');this.db.prepare('INSERT INTO link_codes VALUES (?, ?, ?)').run(code,id,Date.now()+10*60*1000);});
-    return {code,expiresAt:Date.now()+10*60*1000};
+    const now=Date.now(),expires=now+10*60*1000;let code;
+    this.transaction(()=>{this.db.prepare('DELETE FROM link_codes WHERE expires<?').run(now);for(let attempt=0;attempt<5;attempt++){code=randomLinkCode();if(!this.db.prepare('SELECT 1 FROM link_codes WHERE code=?').get(code))break;}if(!code||this.db.prepare('SELECT 1 FROM link_codes WHERE code=?').get(code))throw Error('Unable to create link code');this.db.prepare('INSERT INTO link_codes VALUES (?, ?, ?)').run(code,id,expires);});
+    return {code,expiresAt:expires};
   }
   resolveLinkCode(value) {if(typeof value!=='string'||!/^[A-Z2-9]{10}$/.test(value))return;return this.transaction(()=>{const row=this.db.prepare('SELECT profile_id,expires FROM link_codes WHERE code=?').get(value);this.db.prepare('DELETE FROM link_codes WHERE code=?').run(value);if(!row||row.expires<Date.now()||!validId(row.profile_id))return;return row.profile_id;});}
   async save(id,save) {return this.saveMany([{accountId:id,save}]);}

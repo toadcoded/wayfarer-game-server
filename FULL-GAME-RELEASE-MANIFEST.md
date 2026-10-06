@@ -1,6 +1,6 @@
 # Project Copper Lantern — full-game release package
 
-**Release:** `full-game-2026-10-05`
+**Release:** `full-game-2026-10-06-hardened`
 
 This package is the complete current repository snapshot, not the smaller `clean-room-runtime` slice. It includes the Wayfarer browser/game runtime, generated 3D/browser bundles, original artwork and assets, world and character systems, verification/replay evidence, legacy/reference source records, and the recovered Copper Lantern/2006scape client/server source.
 
@@ -26,10 +26,10 @@ The earlier `Project-Copper-Lantern-clean-room-runtime-2026-09-25.zip` remains i
 
 ## Validation completed
 
-- **Wayfarer full suite:** `316/316` tests passed via `npm test`; strict TypeScript build completed.
+- **Wayfarer full suite:** `317/317` tests passed via `npm test`; strict TypeScript build completed. The additional test covers strict, single-use, expiring cross-device link codes.
 - **Copper Lantern TypeScript:** `8/8` standalone regression test files passed, plus strict TypeScript compilation.
 - **Copper Lantern Go authoritative server:** `17/17` top-level Go tests passed; the vertical-connector table also passed all 10 subtests (`38` Go pass events including subtests).
-- **Combined top-level checks represented here:** `341` (`316 + 8 + 17`). The count is intentionally reported exactly rather than rounded to 340.
+- **Combined top-level checks represented here:** `342` (`317 + 8 + 17`). The count is intentionally reported exactly rather than rounded.
 
 ## Reproduction
 

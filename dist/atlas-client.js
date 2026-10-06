@@ -71,7 +71,7 @@ function choose(id) {
     document.querySelector('#description').textContent = s.description;
     document.querySelector('#places').textContent = s.places.join(' · ');
     document.querySelector('#note').textContent = s.travelNote;
-    document.querySelector('#evidence').textContent = `Generated region ${selected.rx}, ${selected.rz} · center X ${selected.x}, Z ${selected.z}\nSample chunk ${data.chunkId}: ${data.propCount} props, ${data.wetCells}/${GRID * GRID} wet cells, height ${data.minHeight.toFixed(1)}–${data.maxHeight.toFixed(1)}.\nBiome resources: ${data.resources.join(', ')}. Resource harvesting is not implemented.`;
+    document.querySelector('#evidence').textContent = `Generated region ${selected.rx}, ${selected.rz} · center X ${selected.x}, Z ${selected.z}\nSample chunk ${data.chunkId}: ${data.propCount} props, ${data.wetCells}/${GRID * GRID} wet cells, height ${data.minHeight.toFixed(1)}–${data.maxHeight.toFixed(1)}.\nBiome resources: ${data.resources.join(', ')}. Harvesting is server-authoritative through the realm skilling loop.`;
     document.querySelector('#route').textContent = planItinerary('reedhaven', id).map(id => REGION_STORIES.find(s => s.id === id).name).join(' → ');
     const chunk = generateChunk(REALM_WORLD, Math.floor(selected.x / CHUNK_SIZE), Math.floor(selected.z / CHUNK_SIZE));
     const wildlife = wildlifeForChunk(REALM_WORLD, chunk.cx, chunk.cz), wildlifeText = document.querySelector('#wildlife');

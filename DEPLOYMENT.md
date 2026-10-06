@@ -46,7 +46,7 @@ Production data is `/data/realm.sqlite`, in the `realm-data` volume. SQLite uses
 
 Guest cookies are HttpOnly, SameSite=Strict, host-only and Secure in public mode. Their one-year lifetime is a browser cookie lifetime, not an account-recovery service. Copying a guest cookie grants access to that guest; protect backups because they contain the signing secret. Clearing cookies or moving to another browser creates a new character. One guest identity can have one active socket. Reconnect is manual: use Join again.
 
-Player position, appearance, quest, inventory/equipment, XP, bank/skilling and relative cooldowns persist through validated server exports. Active drill steps, health, encounter state, victory counters and shared-world events are session/runtime state. There is no offline XP, multi-device login, administrative account portal or password recovery.
+Player position, appearance, quest, inventory/equipment, XP, bank/skilling and relative cooldowns persist through validated server exports. Active drill steps, health, encounter state, victory counters and shared-world events are session/runtime state. There is no offline XP, administrative account portal or password recovery. A player can deliberately create a short-lived, single-use ten-character link code from the realm UI and redeem it on another device; the code transfers access to the existing guest profile without exposing the cookie or secret.
 
 The default save interval is one second. Abrupt termination can lose progress since the latest committed save. SIGTERM saves connected players and Xam before exit. SQLite transactions prevent partial batches; filesystem/hardware integrity still matters.
 
@@ -101,7 +101,7 @@ For the supplied stack, `.env` controls DOMAIN, EMAIL and REALM_CAPACITY. Other 
 
 The stack enables TRUST_PROXY because only its internal gateway reaches the realm port. The gateway supplies the final forwarded client address. Never expose that realm port directly with TRUST_PROXY enabled. Native public hosting must provide TLS termination and preserve Host/Origin; untrusted forwarded headers are ignored by default.
 
-HTTP requests are bounded to 300/address/minute, guest enrollments to 5/address/minute and socket upgrades to 30/address/minute. Each limiter holds at most 4096 address windows. Socket frames retain the existing 256-byte cap, 60-frame/second limit, handshake timeout, heartbeat and output backpressure. These are application safeguards, not a substitute for a hosting provider's network-level protection.
+HTTP requests are bounded to 300/address/minute, guest enrollments to 5/address/minute and socket upgrades to 30/address/minute. Each limiter holds at most 4096 address windows. Link-code creation and redemption inherit the HTTP limiter, accept only bounded JSON, use one-time ten-character codes with ten-minute expiry, and never return the guest cookie in a response body. Socket frames retain the existing 256-byte cap, 60-frame/second limit, handshake timeout, heartbeat and output backpressure. These are application safeguards, not a substitute for a hosting provider's network-level protection.
 
 ## Migrate earlier JSON profiles
 
