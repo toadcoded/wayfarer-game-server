@@ -38,7 +38,8 @@ export class Realm3D {
  private xamId:string|undefined;private xamSkill:string|undefined;
  setXam(id:string|undefined,skill:string|undefined){this.xamId=id;this.xamSkill=skill;}
  projectLabel(position:Point){const width=this.canvas?.clientWidth??this.engine.getRenderWidth(),height=this.canvas?.clientHeight??this.engine.getRenderHeight(),v=Vector3.Project(new Vector3(position.x,position.y+2.35,position.z),Matrix.Identity(),this.scene.getTransformMatrix(),this.camera.viewport.toGlobal(width,height));return {x:v.x,y:v.y,visible:v.z>=0&&v.z<=1&&v.x>=0&&v.x<=width&&v.y>=0&&v.y<=height};}
- private follow:Vector3|undefined;private followId:string|undefined;private followTime:number|undefined;
+ private follow:Vector3|undefined;private followId:string|undefined;private followTime:number|undefined;private focusId:string|undefined;
+ followPlayer(id:string|undefined){this.focusId=id;this.follow=undefined;this.followId=undefined;this.followTime=undefined;}
  movementDirection(right:number,forward:number){return cameraDirection(right,forward,this.camera.alpha);}
  zoomCamera(factor:number){if(!Number.isFinite(factor)||factor<=0)throw new Error('Invalid zoom');this.camera.radius=Math.max(6,Math.min(75,this.camera.radius*factor));this.camera.inertialRadiusOffset=0;}
  resetCamera(){this.camera.alpha=-Math.PI/2;this.camera.beta=Math.PI/3;this.camera.radius=23;this.camera.inertialAlphaOffset=0;this.camera.inertialBetaOffset=0;this.camera.inertialRadiusOffset=0;this.camera.inertialPanningX=0;this.camera.inertialPanningY=0;if(this.follow)this.camera.setTarget(this.follow.clone(),false,true,true);}
@@ -82,7 +83,7 @@ export class Realm3D {
  update(players:readonly {id:string;position:Point}[],game:GameState|undefined,local:string|undefined,now:number,paused:boolean,wind=0){
   if(this.disposed||this.contextLost||now-this.lastPaint<1000/QUALITY_PRESETS[this.quality].fps||(typeof document!=='undefined'&&document.hidden))return;this.lastPaint=now;
   const keep=new Set(players.map(p=>p.id));for(const [id,entry] of this.heroes)if(!keep.has(id)){entry.hero.dispose();this.heroes.delete(id);}
-  for(const p of players){const appearance=game?.players.find(a=>a.id===p.id),skin=appearance?.skin??'adventurer';let entry=this.heroes.get(p.id);if(!entry||entry.skin!==skin){entry?.hero.dispose();entry={skin,hero:createHero3D(this.scene,p.id,skin)};this.heroes.set(p.id,entry);}entry.hero.weapon(appearance?.weapon??null);entry.hero.update(p.position,now,paused,wind,p.id===local&&game?.practiceChallenge?practiceGesture(game.practiceChallenge.skill):p.id===this.xamId&&isPracticeSkill(this.xamSkill)?practiceGesture(this.xamSkill):'idle');if(p.id===local){
+  for(const p of players){const appearance=game?.players.find(a=>a.id===p.id),skin=appearance?.skin??'adventurer';let entry=this.heroes.get(p.id);if(!entry||entry.skin!==skin){entry?.hero.dispose();entry={skin,hero:createHero3D(this.scene,p.id,skin)};this.heroes.set(p.id,entry);}entry.hero.weapon(appearance?.weapon??null);entry.hero.update(p.position,now,paused,wind,p.id===local&&game?.practiceChallenge?practiceGesture(game.practiceChallenge.skill):p.id===this.xamId&&isPracticeSkill(this.xamSkill)?practiceGesture(this.xamSkill):'idle');if(p.id===local||p.id===this.focusId){
    const target=new Vector3(p.position.x,p.position.y+1.15,p.position.z),dt=this.followTime===undefined?0:Math.max(0,(now-this.followTime)/1000);
    if(!this.follow||this.followId!==local||Vector3.Distance(target,this.follow)>8){this.follow=target;this.camera.setTarget(target.clone(),false,true,true);}
    else {const next=Vector3.Lerp(this.follow,target,paused?1:1-Math.exp(-9*Math.min(dt,.1)));this.camera.setTarget(this.camera.target.add(next.subtract(this.follow)),false,true,true);this.follow=next;}

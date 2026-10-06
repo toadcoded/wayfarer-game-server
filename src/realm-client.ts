@@ -69,7 +69,7 @@ const join=document.querySelector<HTMLButtonElement>('#join')!,leave=document.qu
 let socket:WebSocket|undefined,id:string|undefined,snapshot:RealmSnapshot|undefined,sequence=0;
 const characters=new CharacterRenderer(),cape=new GameCape();
 let game:GameState|undefined,actionSequence=0;
-let xamView:XamView|undefined,xamPending=false,xamChecked=-Infinity;
+ let xamView:XamView|undefined,xamPending=false,xamChecked=-Infinity,xamFollowing=false;
 const reduced=typeof matchMedia==='function'?matchMedia('(prefers-reduced-motion: reduce)'):undefined;
 function action(action:Action['action'],value:string){if(socket?.readyState===WebSocket.OPEN&&id&&socket.bufferedAmount<65536)socket.send(JSON.stringify({kind:'action',sequence:actionSequence++,action,value}));}
 const effectPaused=()=>!!document.querySelector<HTMLInputElement>('#pause-effects')?.checked||!!reduced?.matches;
@@ -124,7 +124,7 @@ function render(){
  if(view3d&&!graphics.run(view=>view.update(players,game,id,now,effectPaused(),cape.patch.getABC().enabled?cape.patch.getABC().c+cape.patch.getABC().b-cape.patch.getABC().a:0)))fallbackGraphics();
  if(view3d){const hint=document.querySelector('#render-status');if(hint)hint.textContent=view3d.renderState==='recovering'?'Graphics context interrupted · recovering…':`3D · ${qualityChoice()} · drag orbit · right-drag pan · scroll/pinch zoom`;}
  const energy=document.querySelector<HTMLElement>('#run-energy'),self=snapshot?.players.find(p=>p.id===id);if(energy)energy.textContent=self?`${self.travelMode??'jog'} · Run energy ${Math.round(self.runEnergy??100)}%`: 'Jog · Join to move';
- if(id&&now-xamChecked>5000){xamChecked=now;void examineXam();}const xamButton=document.querySelector<HTMLButtonElement>('#xam-action'),me=snapshot?.players.find(p=>p.id===id)?.position;if(xamButton)xamButton.disabled=!me||!xamView||Math.hypot(me.x-xamView.position.x,me.z-xamView.position.z)>4;
+ if(id&&now-xamChecked>5000){xamChecked=now;void examineXam();}const xamButton=document.querySelector<HTMLButtonElement>('#xam-action'),xamFollow=document.querySelector<HTMLButtonElement>('#xam-follow'),xamLive=document.querySelector<HTMLElement>('#xam-live'),me=snapshot?.players.find(p=>p.id===id)?.position;if(xamButton)xamButton.disabled=!me||!xamView||Math.hypot(me.x-xamView.position.x,me.z-xamView.position.z)>4;if(xamFollow){xamFollow.disabled=!xamView;xamFollow.textContent=xamFollowing?'Stop watching Xam':'Watch Xam';}if(xamLive)xamLive.textContent=xamView?`Xam activity: ${xamView.phase} · level ${xamView.totalLevel} · ${xamView.totalXp.toLocaleString()} XP · travelling demo bot is live.`:'Xam activity: waiting for your realm connection.';
  const nameplate=document.querySelector<HTMLElement>('#xam-nameplate'),xamPosition=players.find(p=>p.id===xamView?.id)?.position;if(nameplate){const label=view3d&&xamPosition?view3d.projectLabel(xamPosition):undefined;nameplate.hidden=!label?.visible;if(label){nameplate.style.left=label.x+'px';nameplate.style.top=label.y+'px';}}
  const artStatus=document.querySelector<HTMLElement>('#artwork-status');if(artStatus)artStatus.textContent=view3d?view3d.artworkState.map(a=>a.title+' · '+a.state).join(' | '):'Artwork appears in the 3D view.';
  const weather=document.querySelector<HTMLElement>('#weather-state'),climate=view3d?.weatherState;if(weather&&climate)weather.textContent=`${climate.kind} · Cloud water ${Math.round(climate.cloudWater*100)}% · Humidity ${Math.round(climate.humidity*100)}% · Surface damp ${Math.round(climate.wetness*100)}%`;
@@ -195,7 +195,7 @@ function sendDirection(){
  function stop(){sprintKeys.clear();held.clear();clickTarget=undefined;sendDirection();}
 function connect(){
  if(socket&&socket.readyState<WebSocket.CLOSING)return;
- id=undefined;snapshot=undefined;game=undefined;sequence=0;actionSequence=0;cape.reset();configureWind();buffer.clear();characters.clear();sprintKeys.clear();held.clear();render();join.disabled=true;
+ id=undefined;snapshot=undefined;game=undefined;sequence=0;actionSequence=0;xamFollowing=false;view3d?.followPlayer(undefined);cape.reset();configureWind();buffer.clear();characters.clear();sprintKeys.clear();held.clear();render();join.disabled=true;
  status.textContent='Joining the realm…';
  const ws=new WebSocket(`${location.protocol==='https:'?'wss':'ws'}://${location.host}/socket`,REALM_SUBPROTOCOL);socket=ws;
  let failureMessage='';
@@ -215,7 +215,7 @@ function connect(){
   }catch(error){failureMessage=error instanceof CompatibilityError?compatibilityMessage(error.code):'Invalid server data. Connection stopped.';status.textContent=failureMessage;ws.close(1002);}
  });
  ws.addEventListener('error',()=>{status.textContent='Cannot reach the realm. Check your connection and try Join again.';});
- ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();id=undefined;snapshot=undefined;game=undefined;buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));render();});
+ ws.addEventListener('close',event=>{if(socket!==ws)return;sprintKeys.clear();held.clear();id=undefined;snapshot=undefined;game=undefined;xamFollowing=false;view3d?.followPlayer(undefined);buffer.clear();characters.clear();join.disabled=false;leave.disabled=true;status.textContent=failureMessage||(event.reason==='snapshot_timeout'?'Server updates stopped. Join again to reconnect.':compatibilityMessage(event.reason));render();});
 }
 join.addEventListener('click',()=>{void realmAudio.start();realmAudio.play('click');connect();});leave.addEventListener('click',()=>{realmAudio.play('click');stop();socket?.close();});
 addEventListener('keydown',e=>{if(typeof Element!=='undefined'&&e.target instanceof Element&&e.target.closest('input,select,textarea,button,summary,a'))return;if(held.keyDown(e.key,e.code))e.preventDefault();if(e.code==='Space'||e.code==='KeyG'){if(!e.repeat){e.preventDefault();action('combat',e.code==='Space'?'attack':'guard');}return;}if(e.code==='ShiftLeft'||e.code==='ShiftRight'){sprintKeys.add(e.code);e.preventDefault();}if(e.code==='KeyV'&&!e.repeat){chooseTravel(travelMode==='walk'?'jog':travelMode==='jog'?'run':'walk');e.preventDefault();}if(e.code==='KeyC'&&!e.repeat){view3d?.resetCamera();e.preventDefault();}});
@@ -234,7 +234,8 @@ function animate(now:number){try{if(!document.hidden&&now-lastPaint>=1000/(view3
 animationId=requestAnimationFrame(animate);
 
 async function examineXam(show=false){if(xamPending||visualClosed)return;xamPending=true;const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),3000);try{const response=await fetch(new URL('/npc/xam',location.href),{cache:'no-store',signal:controller.signal});if(!response.ok)throw Error('Xam unavailable');xamView=checkedXamView(await response.json());if(show){const text=document.querySelector<HTMLElement>('#xam-examine');if(text)text.textContent=xamView.examine+' '+xamView.phase+' · Total level '+xamView.totalLevel+' · '+xamView.totalXp.toLocaleString()+' XP · Bank '+Object.entries(xamView.bank).map(([k,n])=>k+' '+n).join(', ');}}catch{if(show){const text=document.querySelector<HTMLElement>('#xam-examine');if(text)text.textContent='Xam is unavailable. His host must be running.';}}finally{clearTimeout(timeout);xamPending=false;}}
-document.querySelector('#xam-action')?.addEventListener('click',()=>{void examineXam(true);});
+ document.querySelector('#xam-action')?.addEventListener('click',()=>{void examineXam(true);});
+ document.querySelector<HTMLButtonElement>('#xam-follow')?.addEventListener('click',()=>{if(!xamView)return;xamFollowing=!xamFollowing;view3d?.followPlayer(xamFollowing?xamView.id:undefined);render();});
 let dialogueIndex=0;
 document.querySelector<HTMLButtonElement>('#npc-talk')?.addEventListener('click',()=>{
  const position=snapshot?.players.find(p=>p.id===id)?.position,npc=nearestNPC(castPlacements,position),text=document.querySelector<HTMLElement>('#npc-dialogue');

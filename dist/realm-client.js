@@ -166,7 +166,7 @@ const join = document.querySelector('#join'), leave = document.querySelector('#l
 let socket, id, snapshot, sequence = 0;
 const characters = new CharacterRenderer(), cape = new GameCape();
 let game, actionSequence = 0;
-let xamView, xamPending = false, xamChecked = -Infinity;
+let xamView, xamPending = false, xamChecked = -Infinity, xamFollowing = false;
 const reduced = typeof matchMedia === 'function' ? matchMedia('(prefers-reduced-motion: reduce)') : undefined;
 function action(action, value) { if (socket?.readyState === WebSocket.OPEN && id && socket.bufferedAmount < 65536)
     socket.send(JSON.stringify({ kind: 'action', sequence: actionSequence++, action, value })); }
@@ -292,9 +292,15 @@ function render() {
         xamChecked = now;
         void examineXam();
     }
-    const xamButton = document.querySelector('#xam-action'), me = snapshot?.players.find(p => p.id === id)?.position;
+    const xamButton = document.querySelector('#xam-action'), xamFollow = document.querySelector('#xam-follow'), xamLive = document.querySelector('#xam-live'), me = snapshot?.players.find(p => p.id === id)?.position;
     if (xamButton)
         xamButton.disabled = !me || !xamView || Math.hypot(me.x - xamView.position.x, me.z - xamView.position.z) > 4;
+    if (xamFollow) {
+        xamFollow.disabled = !xamView;
+        xamFollow.textContent = xamFollowing ? 'Stop watching Xam' : 'Watch Xam';
+    }
+    if (xamLive)
+        xamLive.textContent = xamView ? `Xam activity: ${xamView.phase} · level ${xamView.totalLevel} · ${xamView.totalXp.toLocaleString()} XP · travelling demo bot is live.` : 'Xam activity: waiting for your realm connection.';
     const nameplate = document.querySelector('#xam-nameplate'), xamPosition = players.find(p => p.id === xamView?.id)?.position;
     if (nameplate) {
         const label = view3d && xamPosition ? view3d.projectLabel(xamPosition) : undefined;
@@ -534,6 +540,8 @@ function connect() {
     game = undefined;
     sequence = 0;
     actionSequence = 0;
+    xamFollowing = false;
+    view3d?.followPlayer(undefined);
     cape.reset();
     configureWind();
     buffer.clear();
@@ -591,7 +599,7 @@ function connect() {
     });
     ws.addEventListener('error', () => { status.textContent = 'Cannot reach the realm. Check your connection and try Join again.'; });
     ws.addEventListener('close', event => { if (socket !== ws)
-        return; sprintKeys.clear(); held.clear(); id = undefined; snapshot = undefined; game = undefined; buffer.clear(); characters.clear(); join.disabled = false; leave.disabled = true; status.textContent = failureMessage || (event.reason === 'snapshot_timeout' ? 'Server updates stopped. Join again to reconnect.' : compatibilityMessage(event.reason)); render(); });
+        return; sprintKeys.clear(); held.clear(); id = undefined; snapshot = undefined; game = undefined; xamFollowing = false; view3d?.followPlayer(undefined); buffer.clear(); characters.clear(); join.disabled = false; leave.disabled = true; status.textContent = failureMessage || (event.reason === 'snapshot_timeout' ? 'Server updates stopped. Join again to reconnect.' : compatibilityMessage(event.reason)); render(); });
 }
 join.addEventListener('click', () => { void realmAudio.start(); realmAudio.play('click'); connect(); });
 leave.addEventListener('click', () => { realmAudio.play('click'); stop(); socket?.close(); });
@@ -670,6 +678,8 @@ finally {
     xamPending = false;
 } }
 document.querySelector('#xam-action')?.addEventListener('click', () => { void examineXam(true); });
+document.querySelector('#xam-follow')?.addEventListener('click', () => { if (!xamView)
+    return; xamFollowing = !xamFollowing; view3d?.followPlayer(xamFollowing ? xamView.id : undefined); render(); });
 let dialogueIndex = 0;
 document.querySelector('#npc-talk')?.addEventListener('click', () => {
     const position = snapshot?.players.find(p => p.id === id)?.position, npc = nearestNPC(castPlacements, position), text = document.querySelector('#npc-dialogue');

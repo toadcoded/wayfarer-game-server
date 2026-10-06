@@ -68,6 +68,8 @@ export declare class Realm3D {
     private follow;
     private followId;
     private followTime;
+    private focusId;
+    followPlayer(id: string | undefined): void;
     movementDirection(right: number, forward: number): {
         dx: number;
         dz: number;

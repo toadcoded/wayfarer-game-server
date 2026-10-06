@@ -66,6 +66,8 @@ export class Realm3D {
     follow;
     followId;
     followTime;
+    focusId;
+    followPlayer(id) { this.focusId = id; this.follow = undefined; this.followId = undefined; this.followTime = undefined; }
     movementDirection(right, forward) { return cameraDirection(right, forward, this.camera.alpha); }
     zoomCamera(factor) { if (!Number.isFinite(factor) || factor <= 0)
         throw new Error('Invalid zoom'); this.camera.radius = Math.max(6, Math.min(75, this.camera.radius * factor)); this.camera.inertialRadiusOffset = 0; }
@@ -229,7 +231,7 @@ export class Realm3D {
             }
             entry.hero.weapon(appearance?.weapon ?? null);
             entry.hero.update(p.position, now, paused, wind, p.id === local && game?.practiceChallenge ? practiceGesture(game.practiceChallenge.skill) : p.id === this.xamId && isPracticeSkill(this.xamSkill) ? practiceGesture(this.xamSkill) : 'idle');
-            if (p.id === local) {
+            if (p.id === local || p.id === this.focusId) {
                 const target = new Vector3(p.position.x, p.position.y + 1.15, p.position.z), dt = this.followTime === undefined ? 0 : Math.max(0, (now - this.followTime) / 1000);
                 if (!this.follow || this.followId !== local || Vector3.Distance(target, this.follow) > 8) {
                     this.follow = target;
