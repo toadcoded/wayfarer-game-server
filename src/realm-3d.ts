@@ -16,6 +16,7 @@ import {createPracticeYard} from './practice-yard-3d.js';
 import {Wildlife3D} from './wildlife-3d.js';
 import {wildlifeForRealm} from './wildlife.js';
 import {AdvancedFoliage3D} from './advanced-foliage-3d.js';
+import {SpellWeatherFX3D} from './spell-weather-fx-3d.js';
 import {createRealmScene,REALM_WORLD} from './realm-scene.js';
 import {crossingScene} from './scene-meshes.js';
 import {mountBabylonMesh} from './babylon-mesh.js';
@@ -37,6 +38,7 @@ export class Realm3D {
  private foliage:AdvancedFoliage3D;
  get worldMetrics(){return {...this.cachedMetrics};}
  private wildlife:Wildlife3D;private practiceYard:ReturnType<typeof createPracticeYard>;
+ private fx:SpellWeatherFX3D;
  private xamId:string|undefined;private xamSkill:string|undefined;
  setXam(id:string|undefined,skill:string|undefined){this.xamId=id;this.xamSkill=skill;}
  projectLabel(position:Point){const width=this.canvas?.clientWidth??this.engine.getRenderWidth(),height=this.canvas?.clientHeight??this.engine.getRenderHeight(),v=Vector3.Project(new Vector3(position.x,position.y+2.35,position.z),Matrix.Identity(),this.scene.getTransformMatrix(),this.camera.viewport.toGlobal(width,height));return {x:v.x,y:v.y,visible:v.z>=0&&v.z<=1&&v.x>=0&&v.x<=width&&v.y>=0&&v.y<=height};}
@@ -72,6 +74,7 @@ export class Realm3D {
   this.grass=createRetroGrass(this.scene,REALM_WORLD.seed,[realm.plan.start,realm.plan.goal],(x,z)=>realm.construction.terrainAt(x,z));
   this.foliage=new AdvancedFoliage3D(this.scene,REALM_WORLD.seed,[realm.plan.start,realm.plan.goal],(x,z)=>realm.construction.terrainAt(x,z));
   this.practiceYard=createPracticeYard(this.scene,realm.plan.start,p=>realm.navigation.check(p));
+  this.fx=new SpellWeatherFX3D(this.scene);
   this.castPlacements=placeRealmCast(realm.plan.start,realm.plan.goal,p=>realm.navigation.check(p));
   const host=this.castPlacements.find(p=>p.id==='tovik');if(host){const z=host.position.z-1.6,x=host.position.x;this.painting=createWallPainting(this.scene,{x,y:realm.construction.terrainAt(x,z).height,z},this.engine instanceof Engine);}
   const apothecary=this.castPlacements.find(p=>p.id==='mirella');if(apothecary){const x=apothecary.position.x,z=apothecary.position.z+1.6;this.harvestPainting=createWallPainting(this.scene,{x,y:realm.construction.terrainAt(x,z).height,z},this.engine instanceof Engine,'harvest');this.harvestPainting.root.rotation.y=Math.PI;}
@@ -97,11 +100,11 @@ export class Realm3D {
   const weatherClock=game?game.tick*50:now;this.weather=this.sky.update(weatherClock,this.camera.target,paused,this.quality,this.retro);if(!paused&&Math.abs(weatherClock-this.moistureAt)>=100){this.moistureAt=weatherClock;for(const entry of this.wetMaterials){const w=this.weatherChunks.at(weatherClock,entry.cx,entry.cz).wetness;entry.material.diffuseColor.copyFrom(entry.base.scale(1-w*.16));entry.material.specularColor.set(w*.08,w*.08,w*.08);}}const ripple=paused?0:Math.sin(now*.0018)*.035+Math.sin(now*.00073+1.7)*.02;for(const material of this.waterMaterials){material.diffuseColor.set(.16+ripple,.38+ripple*1.4,.5+ripple*1.8);material.emissiveColor.set(.015,.045+ripple*.4,.07+ripple*.6);material.alpha=.84;material.backFaceCulling=false;}
   const day=this.sky.daylight.day;if(this.ambientLight)this.ambientLight.intensity=.55+day*.4;if(this.keyLight){this.keyLight.intensity=.65+day*.6;this.keyLight.diffuse=Color3.Lerp(new Color3(.65,.76,1),new Color3(1,.91,.73),day);this.keyLight.position.set(this.camera.target.x+30,this.camera.target.y+60,this.camera.target.z-30);}for(const m of this.waterMaterials){m.specularColor.set(.3+day*.25,.4+day*.2,.5+day*.15);m.diffuseColor=Color3.Lerp(new Color3(.15,.32,.42),new Color3(.25,.57,.62),day);}if(this.shadows){const map=this.shadows.getShadowMap();if(map)map.renderList=[...this.heroes.values()].flatMap(e=>e.hero.root.getChildMeshes()).slice(0,96);}
   this.ambientText=this.ambience.update(now,paused,this.flashes&&!paused);
-  this.foliage.update(now,paused);for(let i=0;i<this.waterRipples.length;i++)this.waterRipples[i]!.position.y=paused?0:Math.sin(now*.0014+i*.37)*.025;
+  this.foliage.update(now,paused);const localPosition=local?players.find(p=>p.id===local)?.position:undefined;this.fx.update(now,paused,this.camera.target,game,localPosition);for(let i=0;i<this.waterRipples.length;i++)this.waterRipples[i]!.position.y=paused?0:Math.sin(now*.0014+i*.37)*.025;
   this.wildlife.update(now,paused);for(const {placement,hero} of this.cast)hero.update(placement.position,now,paused,wind,placement.id==='mirella'?'focus':placement.id==='kestrel'?'wave':'idle');
   const viewport=`${this.canvas?.clientWidth??this.engine.getRenderWidth()}:${this.canvas?.clientHeight??this.engine.getRenderHeight()}:${globalThis.devicePixelRatio||1}`;
   if(viewport!==this.viewport){this.viewport=viewport;const scaling=1/Math.min(Math.max(1,globalThis.devicePixelRatio||1),QUALITY_PRESETS[this.quality].pixelRatio);if(scaling!==this.engine.getHardwareScalingLevel())this.engine.setHardwareScalingLevel(scaling);else this.engine.resize();}
   this.scene.render();if(now-this.metricsAt>=1000){this.metricsAt=now;this.cachedMetrics={meshes:this.scene.meshes.filter(m=>m.isEnabled()).length,triangles:this.scene.meshes.filter(m=>m.isEnabled()).reduce((n,m)=>n+(m instanceof LinesMesh?0:Math.floor(m.getTotalIndices()/3)),0),grassTufts:this.grass.count,fps:this.engine.getFps()};}
  }
-  dispose(){if(!this.disposed){this.disposed=true;for(const e of this.heroes.values())e.hero.dispose();for(const detail of this.npcDetails)detail.dispose();for(const actor of this.cast)actor.hero.dispose();this.cast.length=0;this.halden.dispose();this.warden.dispose();this.painting?.dispose();this.harvestPainting?.dispose();this.sky.dispose();this.wetMaterials.length=0;this.weatherChunks.clear();this.ambience.dispose();this.wildlife.dispose();this.foliage.dispose();this.grass.dispose();this.practiceYard.dispose();this.shadows?.dispose();for(const ripple of this.waterRipples)ripple.dispose();this.waterRipples.length=0;this.waterMaterials.length=0;this.pipeline?.dispose();this.scene.dispose();this.engine.dispose();}}
+  dispose(){if(!this.disposed){this.disposed=true;for(const e of this.heroes.values())e.hero.dispose();for(const detail of this.npcDetails)detail.dispose();for(const actor of this.cast)actor.hero.dispose();this.cast.length=0;this.halden.dispose();this.warden.dispose();this.painting?.dispose();this.harvestPainting?.dispose();this.sky.dispose();this.wetMaterials.length=0;this.weatherChunks.clear();this.ambience.dispose();this.wildlife.dispose();this.foliage.dispose();this.fx.dispose();this.grass.dispose();this.practiceYard.dispose();this.shadows?.dispose();for(const ripple of this.waterRipples)ripple.dispose();this.waterRipples.length=0;this.waterMaterials.length=0;this.pipeline?.dispose();this.scene.dispose();this.engine.dispose();}}
 }

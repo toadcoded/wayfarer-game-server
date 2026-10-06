@@ -32,6 +32,7 @@ The earlier `Project-Copper-Lantern-clean-room-runtime-2026-09-25.zip` remains i
 - **Combined top-level checks represented here:** `342` (`317 + 8 + 17`). The count is intentionally reported exactly rather than rounded.
 - **Visual pass:** animated water shimmer, layered named-NPC silhouettes, Xam watch mode, and the complete Wayfarer suite at `317/317` after rebuild. See `VISUAL-PASS-2026-10-06.md` and `verification/full-wayfarer-tests-2026-10-06.txt`.
 - **Visual V2:** layered forest canopies, trunks, roots, flowers, animated leaf sway, river ripple geometry, and corrected actor camera-follow targeting. See `VISUAL-PASS-2026-10-06-V2.md`.
+- **FX/animation pass:** pooled rain, dynamic lightning, authoritative spell bursts, breathing/weight-shift idles, and combat anticipation/recoil. See `VISUAL-PASS-2026-10-06-FX.md`.
 - **Live realm soak:** 4 WebSocket sessions, 388 messages, 192 snapshots, 192 game states, 394 movement frames, 0 errors; Xam protection and one-time cross-device restoration verified. See `verification/live-hardening-2026-10-06.json`.
 
 ## Reproduction

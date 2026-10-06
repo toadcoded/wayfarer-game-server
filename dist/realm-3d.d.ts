@@ -59,6 +59,7 @@ export declare class Realm3D {
     };
     private wildlife;
     private practiceYard;
+    private fx;
     private xamId;
     private xamSkill;
     setXam(id: string | undefined, skill: string | undefined): void;

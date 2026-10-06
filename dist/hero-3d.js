@@ -313,6 +313,12 @@ export function createHero3D(scene, id, skin, customAppearance, wardrobe) {
         eyes.forEach(e => e.mesh.scaling.y = e.height * blink);
         lids.forEach(l => l.position.y = .052 - (1 - blink) * .025);
         if (!paused) {
+            if (gesture === 'idle' && pose.stride < .05) {
+                const settle = Math.sin(t * 1.17 + blinkOffset) * .018;
+                pelvis.rotation.z += settle;
+                torso.position.x += settle * .35;
+                knees.forEach((k, i) => k.rotation.x += Math.max(0, settle * (i ? -.8 : .8)));
+            }
             if (gesture === 'wave') {
                 arms[1].rotation.z = -1.6;
                 arms[1].rotation.x = Math.sin(t * 4) * .25;
@@ -323,17 +329,22 @@ export function createHero3D(scene, id, skin, customAppearance, wardrobe) {
                 arms.forEach(a => a.rotation.x = -.6 + Math.sin(t * 2.8) * .65);
                 elbows.forEach(e => e.rotation.x = -.45 + Math.sin(t * 2.8) * .2);
                 torso.rotation.x = Math.sin(t * 2.8) * .08;
+                pelvis.rotation.z = Math.sin(t * 2.8) * .035;
             }
             else if (gesture === 'brace') {
-                torso.rotation.x = .12;
-                arms.forEach(a => a.rotation.x = -1.1 + Math.sin(t * 2) * .1);
+                const guard = Math.sin(t * 2.2);
+                torso.rotation.x = .12 + guard * .035;
+                torso.rotation.z = guard * .025;
+                arms.forEach(a => a.rotation.x = -1.1 + guard * .1);
                 elbows.forEach(e => e.rotation.x = -.55);
+                knees.forEach(k => k.rotation.x = .12);
             }
             else if (gesture === 'aim') {
                 arms[0].rotation.x = -1.45;
                 arms[1].rotation.x = -1.2;
                 elbows[1].rotation.x = -1.15;
                 head.rotation.y = -.15;
+                torso.rotation.z = Math.sin(t * 1.8) * .018;
             }
             else if (gesture === 'focus') {
                 arms.forEach(a => a.rotation.x = -.9);

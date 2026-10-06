@@ -16,6 +16,7 @@ import { createPracticeYard } from './practice-yard-3d.js';
 import { Wildlife3D } from './wildlife-3d.js';
 import { wildlifeForRealm } from './wildlife.js';
 import { AdvancedFoliage3D } from './advanced-foliage-3d.js';
+import { SpellWeatherFX3D } from './spell-weather-fx-3d.js';
 import { createRealmScene, REALM_WORLD } from './realm-scene.js';
 import { crossingScene } from './scene-meshes.js';
 import { mountBabylonMesh } from './babylon-mesh.js';
@@ -62,6 +63,7 @@ export class Realm3D {
     get worldMetrics() { return { ...this.cachedMetrics }; }
     wildlife;
     practiceYard;
+    fx;
     xamId;
     xamSkill;
     setXam(id, skill) { this.xamId = id; this.xamSkill = skill; }
@@ -177,6 +179,7 @@ export class Realm3D {
         this.grass = createRetroGrass(this.scene, REALM_WORLD.seed, [realm.plan.start, realm.plan.goal], (x, z) => realm.construction.terrainAt(x, z));
         this.foliage = new AdvancedFoliage3D(this.scene, REALM_WORLD.seed, [realm.plan.start, realm.plan.goal], (x, z) => realm.construction.terrainAt(x, z));
         this.practiceYard = createPracticeYard(this.scene, realm.plan.start, p => realm.navigation.check(p));
+        this.fx = new SpellWeatherFX3D(this.scene);
         this.castPlacements = placeRealmCast(realm.plan.start, realm.plan.goal, p => realm.navigation.check(p));
         const host = this.castPlacements.find(p => p.id === 'tovik');
         if (host) {
@@ -309,6 +312,8 @@ export class Realm3D {
         }
         this.ambientText = this.ambience.update(now, paused, this.flashes && !paused);
         this.foliage.update(now, paused);
+        const localPosition = local ? players.find(p => p.id === local)?.position : undefined;
+        this.fx.update(now, paused, this.camera.target, game, localPosition);
         for (let i = 0; i < this.waterRipples.length; i++)
             this.waterRipples[i].position.y = paused ? 0 : Math.sin(now * .0014 + i * .37) * .025;
         this.wildlife.update(now, paused);
@@ -348,6 +353,7 @@ export class Realm3D {
         this.ambience.dispose();
         this.wildlife.dispose();
         this.foliage.dispose();
+        this.fx.dispose();
         this.grass.dispose();
         this.practiceYard.dispose();
         this.shadows?.dispose();
