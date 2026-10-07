@@ -4,6 +4,7 @@ import type { Point } from './world.js';
 import { type Progression, type TrainingMode } from './progression.js';
 import { type PracticeChallenge } from './practice-interaction.js';
 import type { SkillId } from './skill-directory.js';
+import { type HostileWorld } from './hostile-world.js';
 import { type Skilling, type SkillCommand } from './skilling.js';
 export declare const SKINS: readonly ["adventurer", "elder", "traveler", "villager", "seraphine", "vector"];
 export type Skin = typeof SKINS[number];
@@ -55,6 +56,11 @@ export type Action = {
 } | {
     kind: 'action';
     sequence: number;
+    action: 'hostile';
+    value: string;
+} | {
+    kind: 'action';
+    sequence: number;
     action: 'training';
     value: TrainingMode;
 };
@@ -97,6 +103,21 @@ export declare const RESULT_TEXT: {
     readonly inventory_full: "You have all three bundles. Return to Halden.";
     readonly requirements_not_met: "Halden needs three reed bundles.";
     readonly quest_completed: "Quiet Tithe completed. You received one offering token.";
+    readonly enemy_unavailable: "That enemy is no longer available.";
+    readonly life_ammo: "You need more arrows or runes.";
+    readonly style_incompatible: "Your weapon cannot use that attack style.";
+    readonly combat_protected: "Combat is disabled in this protected area.";
+    readonly enemy_drop: "A rare steel weapon has dropped nearby.";
+    readonly enemy_defeated: "Enemy defeated. Watch for nearby attackers.";
+    readonly enemy_hit: "Your attack hit the enemy.";
+    readonly projectile_busy: "Too many projectiles are already in flight.";
+    readonly projectile_fired: "Projectile launched; damage resolves on impact.";
+    readonly projectile_hit: "Projectile impact resolved.";
+    readonly projectile_miss: "The target was gone before impact.";
+    readonly hostile_strike: "You are under attack; retreat, guard or use protection.";
+    readonly loot_unavailable: "That drop is no longer available.";
+    readonly loot_range: "Move closer to collect the drop.";
+    readonly loot_collected: "Steel weapon collected.";
 };
 export declare const SKILL_RESULT_TEXT: {
     readonly skill_range: "Gather within 8 metres of the far landing. Bank/craft within 3 metres of Halden.";
@@ -138,6 +159,7 @@ export interface GameState {
     kind: 'game';
     revision: number;
     tick: number;
+    hostiles: Pick<HostileWorld, 'camps' | 'mobs' | 'projectiles' | 'loot'>;
     beacon: {
         position: Point;
         lit: boolean;
@@ -176,6 +198,7 @@ export declare class GameActions {
     private stock;
     private respawnTick;
     private encounter;
+    private hostiles;
     private readonly beacon;
     private readonly camp;
     constructor(beacon: Point, camp?: Point);

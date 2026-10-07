@@ -6,9 +6,10 @@ import { PRACTICE_COOLDOWN_TICKS, PRACTICE_XP, isPracticeSkill, checkedPracticeT
 import { SKILLS, awardSkillXP } from './progression.js';
 import { awardNoncombatXP } from './skilling.js';
 import { canEquip, canTrain } from './weapon-builds.js';
+import { advanceHostileWorld, attackHostile, checkedHostileView, collectHostileLoot, createHostileWorld, hostileView, isHostileCommand, launchHostileProjectile, parseHostileCommand } from './hostile-world.js';
 import { freshSkilling, checkedSkilling, migrateSkilling, isSkillCommand, skillAction, awardWardenEssence } from './skilling.js';
 export const SKINS = ['adventurer', 'elder', 'traveler', 'villager', 'seraphine', 'vector'];
-export const RESULT_TEXT = { practice_started: 'Follow the three marked actions. XP is awarded only on completion.', practice_step: 'Good action. Follow the next marked target.', practice_early: 'Let the action settle before responding.', practice_miss: 'The drill slipped. No XP awarded; try again after recovery.', practice_stale: 'That drill response is no longer current.', practice_busy: 'Finish or cancel the current drill first.', practice_cancelled: 'Drill cancelled. No XP awarded.', practice_done: 'Practice complete. +1 XP to the chosen skill; no items awarded.', practice_wait: 'Practice recovery: one action every five seconds across all skills.', practice_full: 'This skill has reached its XP storage cap.', training_changed: 'Training changed. Style XP goes to the selected skill; damage also trains Hitpoints.', training_incompatible: 'Choose a training mode compatible with your weapon.', equipment_requirements: 'You do not meet the weapon requirements.', attack_hit: 'Hit the Lantern Warden.', attack_cooldown: 'Your weapon is recovering.', guarding: 'Guard raised for 0.8 seconds.', guard_cooldown: 'Guard is recovering.', recovering: 'Recovering — no items are lost.', warden_resting: 'Warden resets in eight seconds.', warden_defeated: 'Warden cleared! Contributors gain a session victory.', item_claimed: 'Reward added to your pack.', item_equipped: 'Weapon equipped and shared with nearby players.', item_unequipped: 'Weapon returned to your pack.', item_unavailable: 'That item is not in your pack.', reward_unavailable: 'Complete Quiet Tithe, then claim one reward from Halden.', equipped: 'Appearance shared with the realm.', lit: 'You lit the landing beacon.', already_lit: 'The beacon is already lit.', out_of_range: 'Move within 3 metres of the target.', quest_accepted: 'Halden: Bring me three bundles from the far reed patch.', quest_unavailable: 'This quest is already accepted or completed.', quest_not_active: 'Speak to Halden before gathering reeds.', gathered: 'Reed bundle gathered.', gather_wait: 'Give the reeds a moment before gathering again.', patch_empty: 'The shared reed patch is regrowing.', inventory_full: 'You have all three bundles. Return to Halden.', requirements_not_met: 'Halden needs three reed bundles.', quest_completed: 'Quiet Tithe completed. You received one offering token.' };
+export const RESULT_TEXT = { practice_started: 'Follow the three marked actions. XP is awarded only on completion.', practice_step: 'Good action. Follow the next marked target.', practice_early: 'Let the action settle before responding.', practice_miss: 'The drill slipped. No XP awarded; try again after recovery.', practice_stale: 'That drill response is no longer current.', practice_busy: 'Finish or cancel the current drill first.', practice_cancelled: 'Drill cancelled. No XP awarded.', practice_done: 'Practice complete. +1 XP to the chosen skill; no items awarded.', practice_wait: 'Practice recovery: one action every five seconds across all skills.', practice_full: 'This skill has reached its XP storage cap.', training_changed: 'Training changed. Style XP goes to the selected skill; damage also trains Hitpoints.', training_incompatible: 'Choose a training mode compatible with your weapon.', equipment_requirements: 'You do not meet the weapon requirements.', attack_hit: 'Hit the Lantern Warden.', attack_cooldown: 'Your weapon is recovering.', guarding: 'Guard raised for 0.8 seconds.', guard_cooldown: 'Guard is recovering.', recovering: 'Recovering — no items are lost.', warden_resting: 'Warden resets in eight seconds.', warden_defeated: 'Warden cleared! Contributors gain a session victory.', item_claimed: 'Reward added to your pack.', item_equipped: 'Weapon equipped and shared with nearby players.', item_unequipped: 'Weapon returned to your pack.', item_unavailable: 'That item is not in your pack.', reward_unavailable: 'Complete Quiet Tithe, then claim one reward from Halden.', equipped: 'Appearance shared with the realm.', lit: 'You lit the landing beacon.', already_lit: 'The beacon is already lit.', out_of_range: 'Move within 3 metres of the target.', quest_accepted: 'Halden: Bring me three bundles from the far reed patch.', quest_unavailable: 'This quest is already accepted or completed.', quest_not_active: 'Speak to Halden before gathering reeds.', gathered: 'Reed bundle gathered.', gather_wait: 'Give the reeds a moment before gathering again.', patch_empty: 'The shared reed patch is regrowing.', inventory_full: 'You have all three bundles. Return to Halden.', requirements_not_met: 'Halden needs three reed bundles.', quest_completed: 'Quiet Tithe completed. You received one offering token.', enemy_unavailable: 'That enemy is no longer available.', life_ammo: 'You need more arrows or runes.', style_incompatible: 'Your weapon cannot use that attack style.', combat_protected: 'Combat is disabled in this protected area.', enemy_drop: 'A rare steel weapon has dropped nearby.', enemy_defeated: 'Enemy defeated. Watch for nearby attackers.', enemy_hit: 'Your attack hit the enemy.', projectile_busy: 'Too many projectiles are already in flight.', projectile_fired: 'Projectile launched; damage resolves on impact.', projectile_hit: 'Projectile impact resolved.', projectile_miss: 'The target was gone before impact.', hostile_strike: 'You are under attack; retreat, guard or use protection.', loot_unavailable: 'That drop is no longer available.', loot_range: 'Move closer to collect the drop.', loot_collected: 'Steel weapon collected.' };
 export const SKILL_RESULT_TEXT = { skill_range: 'Gather within 8 metres of the far landing. Bank/craft within 3 metres of Halden.', skill_gathered: 'Resource gathered. +25 profession XP.', skill_wait: 'Your gathering tool is recovering.', skill_pack_full: 'Your 12-unit resource pack is full. Bank at Halden.', skill_banked: 'Resource pack deposited in your personal bank.', skill_bank_full: 'Bank resource limit reached.', skill_upgraded: 'Next tool tier crafted! Resource yield increased.', skill_requirements: 'Check the next tool recipe: profession levels, banked materials and Warden essence are required.', skill_max_tool: 'Masterwork tools are already unlocked.' };
 const object = (x, keys) => { if (!x || typeof x !== 'object' || Array.isArray(x) || Object.keys(x).length !== keys.length || !keys.every(k => Object.hasOwn(x, k)))
     throw new Error('Invalid game fields'); return x; };
@@ -42,10 +43,10 @@ export function checkedPersistentPlayerState(x) {
 export const freshPersistentPlayerState = () => ({ version: 5, practiceReadyTick: 0, skin: 'adventurer', quest: { status: 'available', reeds: 0, tithes: 0, gatherCooldownTicks: 0 }, inventory: freshInventory(), progression: freshProgression(), skilling: freshSkilling() });
 const parse = (text, limit) => { if (typeof text !== 'string' || new TextEncoder().encode(text).length > limit)
     throw new Error('Game message too large'); return JSON.parse(text); };
-export function decodeAction(text) { const r = object(parse(text, 256), ['kind', 'sequence', 'action', 'value']); if (r.kind !== 'action' || !seq(r.sequence) || !(r.action === 'practice-step' && isPracticeResponse(r.value) || r.action === 'practice' && isPracticeSkill(r.value) || r.action === 'skilling' && isSkillCommand(r.value) || (r.action === 'claim' || r.action === 'equip') && isItem(r.value) || r.action === 'unequip' && r.value === 'weapon' || r.action === 'combat' && ['attack', 'guard'].includes(r.value) || r.action === 'training' && isTrainingMode(r.value) || r.action === 'appearance' && skin(r.value) || r.action === 'beacon' && r.value === 'light' || r.action === 'quest' && ['accept', 'gather', 'submit'].includes(r.value)))
+export function decodeAction(text) { const r = object(parse(text, 256), ['kind', 'sequence', 'action', 'value']); if (r.kind !== 'action' || !seq(r.sequence) || !(r.action === 'practice-step' && isPracticeResponse(r.value) || r.action === 'practice' && isPracticeSkill(r.value) || r.action === 'skilling' && isSkillCommand(r.value) || (r.action === 'claim' || r.action === 'equip') && isItem(r.value) || r.action === 'unequip' && r.value === 'weapon' || r.action === 'combat' && ['attack', 'guard'].includes(r.value) || r.action === 'hostile' && isHostileCommand(r.value) || r.action === 'training' && isTrainingMode(r.value) || r.action === 'appearance' && skin(r.value) || r.action === 'beacon' && r.value === 'light' || r.action === 'quest' && ['accept', 'gather', 'submit'].includes(r.value)))
     throw new Error('Invalid action'); return r; }
 export function decodeGameState(text) {
-    const r = object(parse(text, 32768), ['kind', 'revision', 'tick', 'beacon', 'camp', 'patch', 'quest', 'inventory', 'fighter', 'progression', 'skilling', 'practiceReadyTick', 'practiceChallenge', 'encounter', 'players', 'result']);
+    const r = object(parse(text, 32768), ['kind', 'revision', 'tick', 'hostiles', 'beacon', 'camp', 'patch', 'quest', 'inventory', 'fighter', 'progression', 'skilling', 'practiceReadyTick', 'practiceChallenge', 'encounter', 'players', 'result']);
     if (r.practiceChallenge !== null) {
         if (r.quest === null)
             throw Error('Invalid practice membership');
@@ -62,8 +63,9 @@ export function decodeGameState(text) {
         if (s.readyTick > Number(r.tick) + 40)
             throw Error('Invalid skilling cooldown');
     }
-    if (r.kind !== 'game' || !seq(r.revision) || !seq(r.tick) || !Array.isArray(r.players) || r.players.length > 256)
+    if (r.kind !== 'game' || !seq(r.revision) || !seq(r.tick) || !r.hostiles || !Array.isArray(r.players) || r.players.length > 256)
         throw new Error('Invalid game state');
+    checkedHostileView(r.hostiles, r.tick);
     checkedEncounter(r.encounter, r.tick);
     if (r.fighter !== null)
         checkedFighter(r.fighter, r.tick, r.progression === null ? 40 : combatBonuses(checkedProgression(r.progression)).maxHealth);
@@ -125,9 +127,10 @@ export class GameActions {
     stock = 3;
     respawnTick = 0;
     encounter = freshEncounter();
+    hostiles;
     beacon;
     camp;
-    constructor(beacon, camp = beacon) { this.beacon = { ...point(beacon) }; this.camp = { ...point(camp) }; }
+    constructor(beacon, camp = beacon) { this.beacon = { ...point(beacon) }; this.camp = { ...point(camp) }; this.hostiles = createHostileWorld(this.camp, this.beacon); }
     join(connection, id, persisted, protectedCombat = false) { if (typeof connection !== 'string' || !connection || connection.length > 128 || this.players.has(connection) || [...this.players.values()].some(p => p.id === id) || this.players.size >= 256 || !/^p[1-9][0-9]{0,15}$/.test(id))
         throw new Error('Invalid action player'); const saved = persisted ? checkedPersistentPlayerState(persisted) : freshPersistentPlayerState(), ready = saved.quest.status === 'available' ? 0 : this.tick + saved.quest.gatherCooldownTicks; if (!Number.isSafeInteger(ready))
         throw new Error('Persistent cooldown overflow'); this.players.set(connection, { id, practiceChallenge: null, practiceReadyTick: checkedPracticeTick(this.tick + saved.practiceReadyTick), skilling: { ...checkedSkilling(saved.skilling), readyTick: this.tick + saved.skilling.readyTick }, progression: checkedProgression(saved.progression), fighter: freshFighter(combatBonuses(saved.progression).maxHealth), skin: saved.skin, sequence: -1, pending: [], result: null, inventory: copyInventory(saved.inventory), quest: { status: saved.quest.status, reeds: saved.quest.reeds, tithes: saved.quest.tithes, gatherReadyTick: ready } }); if (protectedCombat)
@@ -153,6 +156,7 @@ export class GameActions {
         next.stock = this.stock;
         next.respawnTick = this.respawnTick;
         next.encounter = { ...this.encounter };
+        next.hostiles = structuredClone(this.hostiles);
         next.players = new Map([...this.players].map(([c, p]) => [c, copyPlayer(p)]));
         next.protectedCombat = new Set(this.protectedCombat);
         next.commit(positionFor);
@@ -282,6 +286,20 @@ export class GameActions {
                         code = 'practice_started';
                     }
                 }
+                else if (a.action === 'hostile') {
+                    const command = parseHostileCommand(a.value), pos = positionFor(connection);
+                    if (!command || !pos)
+                        code = 'enemy_unavailable';
+                    else {
+                        const hp = { id: next.id, position: pos, fighter: next.fighter, inventory: next.inventory, progression: next.progression, lifePack: next.lifePack ?? { arrows: 50, runes: 50 }, ward: false, protectedCombat: this.protectedCombat.has(connection) };
+                        let events = command.kind === 'attack' ? attackHostile(this.hostiles, hp, command.target, command.style, tick, a.sequence) : command.kind === 'projectile' ? launchHostileProjectile(this.hostiles, hp, command.target, command.projectile, tick, a.sequence) : collectHostileLoot(this.hostiles, hp, command.lootId, tick, a.sequence);
+                        next.fighter = hp.fighter;
+                        next.inventory = hp.inventory;
+                        next.progression = hp.progression;
+                        next.lifePack = hp.lifePack;
+                        code = (events[0]?.code ?? 'enemy_unavailable');
+                    }
+                }
                 else if (a.action === 'training') {
                     if (canTrain(next.inventory.weapon, a.value)) {
                         next.progression.mode = a.value;
@@ -386,6 +404,17 @@ export class GameActions {
             }
             candidate.set(connection, next);
         }
+        const hostilePlayers = [...candidate].map(([c, p]) => ({ id: p.id, position: positionFor(c) ?? this.camp, fighter: p.fighter, inventory: p.inventory, progression: p.progression, lifePack: p.lifePack ?? { arrows: 50, runes: 50 }, ward: false, protectedCombat: this.protectedCombat.has(c) }));
+        const hostileEvents = advanceHostileWorld(this.hostiles, hostilePlayers, tick);
+        for (const hp of hostilePlayers) {
+            const p = [...candidate.values()].find(v => v.id === hp.id);
+            if (p) {
+                p.fighter = hp.fighter;
+                p.inventory = hp.inventory;
+                p.progression = hp.progression;
+                p.lifePack = hp.lifePack;
+            }
+        }
         finishEncounter(encounter, [...candidate].map(([c, p]) => ({ fighter: p.fighter, position: positionFor(c), maxHealth: combatBonuses(p.progression).maxHealth, damageReduction: combatBonuses(p.progression).damageReduction, protectedCombat: this.protectedCombat.has(c) })), this.beacon, this.camp, tick);
         for (const [c, p] of candidate)
             if (p.fighter.wins > this.players.get(c).fighter.wins)
@@ -397,6 +426,7 @@ export class GameActions {
         // when this reducer is used directly without RealmRuntime's outer transaction.
         const staged = new GameActions(this.beacon, this.camp);
         staged.encounter = encounter;
+        staged.hostiles = structuredClone(this.hostiles);
         staged.players = candidate;
         staged.protectedCombat = new Set(this.protectedCombat);
         staged.lit = lit;
@@ -406,6 +436,7 @@ export class GameActions {
         staged.revision = this.revision + Number(changed);
         staged.validate([...candidate.values()].map(p => p.id));
         this.encounter = encounter;
+        this.hostiles = this.hostiles;
         this.players = candidate;
         this.lit = lit;
         this.tick = tick;
@@ -413,5 +444,5 @@ export class GameActions {
         this.respawnTick = respawnTick;
         this.revision = staged.revision;
     }
-    snapshot(connection, visible) { const ids = new Set(visible), p = this.players.get(connection); return { kind: 'game', practiceChallenge: p?.practiceChallenge ? { ...p.practiceChallenge } : null, practiceReadyTick: p ? p.practiceReadyTick : null, skilling: p ? checkedSkilling(p.skilling) : null, progression: p ? checkedProgression(p.progression) : null, encounter: { ...this.encounter }, fighter: p ? { ...p.fighter } : null, revision: this.revision, tick: this.tick, beacon: { position: { ...this.beacon }, lit: this.lit }, camp: { ...this.camp }, patch: { stock: this.stock, respawnTick: this.respawnTick }, quest: p ? { ...p.quest } : null, inventory: p ? copyInventory(p.inventory) : null, players: [...this.players.values()].filter(p => ids.has(p.id)).map(p => ({ id: p.id, skin: p.skin, weapon: p.inventory.weapon })), result: p?.result ? { ...p.result } : null }; }
+    snapshot(connection, visible) { const ids = new Set(visible), p = this.players.get(connection); return { kind: 'game', hostiles: hostileView(this.hostiles), practiceChallenge: p?.practiceChallenge ? { ...p.practiceChallenge } : null, practiceReadyTick: p ? p.practiceReadyTick : null, skilling: p ? checkedSkilling(p.skilling) : null, progression: p ? checkedProgression(p.progression) : null, encounter: { ...this.encounter }, fighter: p ? { ...p.fighter } : null, revision: this.revision, tick: this.tick, beacon: { position: { ...this.beacon }, lit: this.lit }, camp: { ...this.camp }, patch: { stock: this.stock, respawnTick: this.respawnTick }, quest: p ? { ...p.quest } : null, inventory: p ? copyInventory(p.inventory) : null, players: [...this.players.values()].filter(p => ids.has(p.id)).map(p => ({ id: p.id, skin: p.skin, weapon: p.inventory.weapon })), result: p?.result ? { ...p.result } : null }; }
 }

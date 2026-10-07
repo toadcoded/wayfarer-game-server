@@ -1,6 +1,6 @@
 import type {Point} from './world.js';
 import type {ItemId} from './inventory.js';
-export const WEAPONS=Object.freeze({unarmed:Object.freeze({damage:4,range:3,cooldown:16}),reed_blade:Object.freeze({damage:7,range:3,cooldown:12}),ash_staff:Object.freeze({damage:9,range:8,cooldown:24}),granite_maul:Object.freeze({damage:16,range:3,cooldown:32})});
+export const WEAPONS=Object.freeze({unarmed:Object.freeze({damage:4,range:3,cooldown:16}),reed_blade:Object.freeze({damage:7,range:3,cooldown:12}),ash_staff:Object.freeze({damage:9,range:8,cooldown:24}),granite_maul:Object.freeze({damage:16,range:3,cooldown:32}),steel_warhammer:Object.freeze({damage:18,range:3,cooldown:30}),steel_battleaxe:Object.freeze({damage:19,range:3,cooldown:32}),steel_dagger:Object.freeze({damage:10,range:3,cooldown:10}),steel_sword:Object.freeze({damage:15,range:3,cooldown:16}),steel_rapier:Object.freeze({damage:13,range:3.5,cooldown:13})});
 export interface Fighter {hp:number;attackReady:number;guardReady:number;guardUntil:number;recoverAt:number;wins:number;contributed:boolean}
 export interface Encounter {hp:number;strikeAt:number;respawnAt:number;round:number}
 export const freshFighter=(maxHealth=40):Fighter=>({hp:maxHealth,attackReady:0,guardReady:0,guardUntil:0,recoverAt:0,wins:0,contributed:false});

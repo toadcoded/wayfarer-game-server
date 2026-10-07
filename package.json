@@ -1,6 +1,6 @@
 {
   "name": "wayfarer-world-kit",
-  "version": "1.0.0",
+  "version": "2.6.0",
   "private": true,
   "type": "module",
   "description": "Wayfarer authoritative persistent multiplayer realm",

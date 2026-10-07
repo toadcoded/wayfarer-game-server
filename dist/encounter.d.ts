@@ -21,6 +21,31 @@ export declare const WEAPONS: Readonly<{
         range: 3;
         cooldown: 32;
     }>;
+    steel_warhammer: Readonly<{
+        damage: 18;
+        range: 3;
+        cooldown: 30;
+    }>;
+    steel_battleaxe: Readonly<{
+        damage: 19;
+        range: 3;
+        cooldown: 32;
+    }>;
+    steel_dagger: Readonly<{
+        damage: 10;
+        range: 3;
+        cooldown: 10;
+    }>;
+    steel_sword: Readonly<{
+        damage: 15;
+        range: 3;
+        cooldown: 16;
+    }>;
+    steel_rapier: Readonly<{
+        damage: 13;
+        range: 3.5;
+        cooldown: 13;
+    }>;
 }>;
 export interface Fighter {
     hp: number;
